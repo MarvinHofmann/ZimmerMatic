@@ -10,7 +10,7 @@ const app = express()
 
 const port = 3443
 let bodyParser = require('body-parser');
-const { ok } = require("node:assert");
+
 app.use(express.static('public'));//Seite Läauft ganze zeit ohne init request
 app.use(bodyParser.json());
 app.listen(port, () => {
@@ -21,7 +21,7 @@ app.listen(port, () => {
 //1.HTTP Get request 
 app.get('/' , function ( request, response){
     console.log("Eingehende get request");
-    response.sendStatus(200, ok);
+    response.sendStatus(200);
 
 });
 
