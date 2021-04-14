@@ -30,7 +30,7 @@ app.post('/' , function ( req, res){
     console.log("Eingehende POST request");
     const temp = req.body.temperatur;
     const feucht = req.body.feuchtigkeit;
-    const queryObject = (temp + feucht).query;
+    const queryObject = (String(temp) + String(feucht)).query;
     console.log(queryObject);
     console.log('Temperatur: ' + temp + ' Feuchtigkeit: ' + feucht)
     res.sendStatus(200);
