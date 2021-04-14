@@ -25,6 +25,18 @@ app.get('/' , function ( request, response){
     response.sendStatus(200);
 
 });
+//2.Einrichten POST REQUEST d1 minis
+app.post('/' , function ( req, res){
+    console.log("Eingehende POST request");
+    const temp = req.body.temperatur;
+    const feucht = req.body.feuchtigkeit;
+    const queryObject = temp + feucht;
+    console.log(queryObject);
+    console.log('Temperatur: ' + temp + ' Feuchtigkeit: ' + feucht)
+    res.sendStatus(200);
+    
+
+});
 
 //Sagt euch wenn ein Client verbunden ist oder wenn er disconnected
 wss.on("connection", ws => {
