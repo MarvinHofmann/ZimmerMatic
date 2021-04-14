@@ -14,7 +14,8 @@ let bodyParser = require('body-parser');
 app.use(express.static('public'));//Seite Läauft ganze zeit ohne init request
 app.use(bodyParser.json());
 app.listen(port, () => {
-  console.log(`App listening at http://raspberrypi:${port}`) // Publisher Server auf Port 3443
+  console.log(`App listening at http://ZimmerMatic:${port}`) // Publisher Server auf Port 3443
+  console.log('Die IP Adresse lautet: 192.168.0.58');
 })
 
 //Ereignisse
