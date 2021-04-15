@@ -4,7 +4,7 @@ ws.addEventListener("open", () => {
     console.log("Client connected with server!")
 
 })
-ws.onmessage = function (event) {
+/*ws.onmessage = function (event) {
     console.log("Daten kamen an");
     switch (event.data[0])
     {
@@ -24,11 +24,31 @@ ws.onmessage = function (event) {
     //console.log(playlistTitlesClient);
 };
 
-ws.addEventListener('message', function (event, event1) {
+/*ws.addEventListener('message', function (event, event) {
     const temp = event.data;
-    const feucht = event1.data;
+    const feucht = event.data;
     console.log('Message from server ',data);
     //document.getElementById("displaytext").innerText = data;
     console.log(feucht);
     console.log(temp);
-});
+});*/
+
+wss.on('message', ev => {
+    const data = JSON.parse(ev.data);
+    switch (data.type) {
+      case 'feuchtigkeit':
+        //document.getElementById('first-name').textContent = data.value;
+        console.log("Feuchtigkeit:");
+        console.log(data.value);
+        break;
+  
+      case 'temperatur':
+        //document.getElementById('last-name').textContent = data.value;
+        console.log("Temperatur");
+        console.log(data.value);
+        break;
+  
+      default:
+        // Unknown websocket message type
+    }
+  });

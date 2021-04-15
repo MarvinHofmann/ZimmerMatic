@@ -57,7 +57,9 @@ wss.on("connection", ws => {
       if (client.readyState === WebSocket.OPEN) {
        //client.send(JSON.stringify(["temp", temp ]));
        // client.send(JSON.stringify(["feucht", feucht ]));
-       client.send(JSON.stringify(temp, feucht));
+       //client.send(JSON.stringify(temp, feucht));
+        wss.send(JSON.stringify({ type: 'feuchtigkeit', value: feucht }));
+        wss.send(JSON.stringify({ type: 'temperatur', value: temp }));
       }
     });
   }
