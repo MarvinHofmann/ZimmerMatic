@@ -21,8 +21,8 @@ app.listen(port, () => {
 })
 
 //Globale Variablen
-const temp;
-const feucht;
+let temp;
+let feucht;
 
 //Ereignisse
 //1.HTTP Get request 
