@@ -58,8 +58,8 @@ wss.on("connection", ws => {
        //client.send(JSON.stringify(["temp", temp ]));
        // client.send(JSON.stringify(["feucht", feucht ]));
        //client.send(JSON.stringify(temp, feucht));
-        wss.send(JSON.stringify({ type: 'feuchtigkeit', value: feucht }));
-        wss.send(JSON.stringify({ type: 'temperatur', value: temp }));
+        client.send(JSON.stringify({ type: 'feuchtigkeit', value: feucht }));
+        client.send(JSON.stringify({ type: 'temperatur', value: temp }));
       }
     });
   }
