@@ -21,5 +21,5 @@ ws.onmessage = function (event) {
             console.log(feuchtigkeit);
         break;
     }
-    console.log(playlistTitlesClient);
+    //console.log(playlistTitlesClient);
 };
