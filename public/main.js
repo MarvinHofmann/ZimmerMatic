@@ -1,3 +1,4 @@
+const ws = new WebSocket('ws://raspberrypi:8080');
 ws.addEventListener("open", () => {
     console.log("Client connected with server!")
 
