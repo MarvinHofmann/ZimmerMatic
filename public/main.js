@@ -52,3 +52,9 @@ ws.onmessage('message', function (event){
         // Unknown websocket message type
     }
   });
+
+  ws.addEventListener('message', function (event) {
+    const data = event.data
+    console.log('Message from server ',data);
+    
+});
