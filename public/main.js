@@ -32,7 +32,7 @@ ws.addEventListener('message', function (event){
         break;
 
      case 'feuchtigkeitS3':
-            document.getElementById('feuchtCon3').innerText = data.value;
+            document.getElementById('feuchtCont3').innerText = data.value;
             console.log("Feuchtigkeit:");
             console.log(data.value);
             break;
