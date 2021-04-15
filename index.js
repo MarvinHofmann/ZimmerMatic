@@ -36,9 +36,10 @@ app.post('/' , function ( req, res){
     console.log("Eingehende POST request");
     temp = req.body.temperatur;
     feucht = req.body.feuchtigkeit;
-    console.log('Temperatur: ' + temp + ' Feuchtigkeit: ' + feucht)
-    res.sendStatus(200);
+    console.log('Temperatur: ' + temp + ' Feuchtigkeit: ' + feucht);
     broadcast(feucht, temp);
+    res.sendStatus(200);
+    
 });
 
 //Sagt euch wenn ein Client verbunden ist oder wenn er disconnected
