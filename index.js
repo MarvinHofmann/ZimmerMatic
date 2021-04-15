@@ -42,6 +42,16 @@ app.post('/' , function ( req, res){
         
 });
 
+app.post('/senderZwei' , function ( req, res){
+  console.log("Eingehende POST request");
+  temp = req.body.temperatur;
+  feucht = req.body.feuchtigkeit;
+  console.log('Temperatur: ' + temp + ' Feuchtigkeit: ' + feucht);
+  broadcastSenderTwo(feucht, temp);
+  res.sendStatus(200);
+      
+});
+
 //Sagt euch wenn ein Client verbunden ist oder wenn er disconnected
 wss.on("connection", ws => {
     console.log("Client connected!");
@@ -55,10 +65,18 @@ wss.on("connection", ws => {
   function broadcast(feucht, temp) {
     wss.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify({ type: 'feuchtigkeit', value: feucht }));
-        client.send(JSON.stringify({ type: 'temperatur', value: temp }));
+        client.send(JSON.stringify({ type: 'feuchtigkeitS1', value: feucht }));
+        client.send(JSON.stringify({ type: 'temperaturS1', value: temp }));
       }
     });
   }
   
   
+  function broadcastSenderTwo(feucht, temp) {
+    wss.clients.forEach(function each(client) {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify({ type: 'feuchtigkeitS2', value: feucht }));
+        client.send(JSON.stringify({ type: 'temperaturS2', value: temp }));
+      }
+    });
+  }
