@@ -33,8 +33,8 @@ ws.addEventListener("open", () => {
     console.log(temp);
 });*/
 
-ws.on('message', ev => {
-    const data = JSON.parse(ev.data);
+ws.on('message', event => {
+    const data = JSON.parse(event.data);
     switch (data.type) {
       case 'feuchtigkeit':
         //document.getElementById('first-name').textContent = data.value;
