@@ -55,8 +55,9 @@ wss.on("connection", ws => {
   function broadcast(feucht, temp) {
     wss.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify(["temp", temp ]));
-        client.send(JSON.stringify(["feucht", feucht ]));
+       //client.send(JSON.stringify(["temp", temp ]));
+       // client.send(JSON.stringify(["feucht", feucht ]));
+       client.send(JSON.stringify(temp, feucht));
       }
     });
   }

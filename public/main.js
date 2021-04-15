@@ -23,3 +23,12 @@ ws.onmessage = function (event) {
     }
     //console.log(playlistTitlesClient);
 };
+
+ws.addEventListener('message', function (event, event1) {
+    const temp = event.data;
+    const feucht = event1.data;
+    console.log('Message from server ',data);
+    //document.getElementById("displaytext").innerText = data;
+    console.log(feucht);
+    console.log(temp);
+});
