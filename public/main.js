@@ -14,7 +14,7 @@ ws.addEventListener('message', function (event){
         console.log(data.value);
         break;
   
-      case 'temperaturS2':
+      case 'temperaturS1':
         document.getElementById('tempCont').innerText = data.value;
         console.log("Temperatur");
         console.log(data.value);
@@ -30,6 +30,18 @@ ws.addEventListener('message', function (event){
         console.log("Temperatur");
         console.log(data.value);
         break;
+
+     case 'feuchtigkeitS3':
+            document.getElementById('feuchtCon3t').innerText = data.value;
+            console.log("Feuchtigkeit:");
+            console.log(data.value);
+            break;
+      
+     case 'temperaturS3':
+            document.getElementById('tempCont3').innerText = data.value;
+            console.log("Temperatur");
+            console.log(data.value);
+            break;
     
   
       default:

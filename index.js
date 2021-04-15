@@ -47,7 +47,17 @@ app.post('/senderZwei' , function ( req, res){
   temp = req.body.temperatur;
   feucht = req.body.feuchtigkeit;
   console.log('Temperatur: ' + temp + ' Feuchtigkeit: ' + feucht);
-  broadcastSenderTwo(feucht, temp);
+  broadcastSenderZwei(feucht, temp);
+  res.sendStatus(200);
+      
+});
+
+app.post('/senderDrei' , function ( req, res){
+  console.log("Eingehende POST request");
+  temp = req.body.temperatur;
+  feucht = req.body.feuchtigkeit;
+  console.log('Temperatur: ' + temp + ' Feuchtigkeit: ' + feucht);
+  broadcastSenderDrei(feucht, temp);
   res.sendStatus(200);
       
 });
@@ -72,11 +82,20 @@ wss.on("connection", ws => {
   }
   
   
-  function broadcastSenderTwo(feucht, temp) {
+  function broadcastSenderZwei(feucht, temp) {
     wss.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify({ type: 'feuchtigkeitS2', value: feucht }));
         client.send(JSON.stringify({ type: 'temperaturS2', value: temp }));
+      }
+    });
+  }
+
+  function broadcastSenderDrei(feucht, temp) {
+    wss.clients.forEach(function each(client) {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify({ type: 'feuchtigkeitS3', value: feucht }));
+        client.send(JSON.stringify({ type: 'temperaturS3', value: temp }));
       }
     });
   }
