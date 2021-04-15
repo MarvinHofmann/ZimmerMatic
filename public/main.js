@@ -33,7 +33,7 @@ ws.addEventListener("open", () => {
     console.log(temp);
 });*/
 
-wss.on('message', ev => {
+ws.on('message', ev => {
     const data = JSON.parse(ev.data);
     switch (data.type) {
       case 'feuchtigkeit':
