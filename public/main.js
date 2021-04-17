@@ -43,18 +43,6 @@ ws.addEventListener('message', function (event){
             console.log(data.value);
             break;
 
-    case 'feuchtigkeitS4':
-              document.getElementById('feuchtCont4').innerText = String(data.value + "%");
-              console.log("Feuchtigkeit:");
-              console.log(data.value);
-              break;
-        
-    case 'temperaturS4':
-              document.getElementById('tempCont4').innerText = String(data.value + "°C");
-              console.log("Temperatur");
-              console.log(data.value);
-              break;
-  
       default:
         // Unknown websocket message type
     }
