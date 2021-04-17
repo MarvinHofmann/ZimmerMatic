@@ -33,30 +33,30 @@ app.get('/' , function ( request, response){
 });
 //2.Einrichten POST REQUEST d1 minis
 app.post('/' , function ( req, res){
-    console.log("Eingehende POST request");
+    //console.log("Eingehende POST request");
     temp = req.body.temperatur;
     feucht = req.body.feuchtigkeit;
-    console.log('Temperatur: ' + temp + ' Feuchtigkeit: ' + feucht);
+    console.log('Temperatur1: ' + temp + ' Feuchtigkeit1: ' + feucht);
     broadcast(feucht, temp);
     res.sendStatus(200);
         
 });
 
 app.post('/senderZwei' , function ( req, res){
-  console.log("Eingehende POST request");
+  //console.log("Eingehende POST request");
   temp = req.body.temperatur;
   feucht = req.body.feuchtigkeit;
-  console.log('Temperatur: ' + temp + ' Feuchtigkeit: ' + feucht);
+  console.log('Temperatur2: ' + temp + ' Feuchtigkeit2: ' + feucht);
   broadcastSenderZwei(feucht, temp);
   res.sendStatus(200);
       
 });
 
 app.post('/senderDrei' , function ( req, res){
-  console.log("Eingehende POST request");
+  //console.log("Eingehende POST request");
   temp = req.body.temperatur;
   feucht = req.body.feuchtigkeit;
-  console.log('Temperatur: ' + temp + ' Feuchtigkeit: ' + feucht);
+  console.log('Temperatur3: ' + temp + ' Feuchtigkeit3: ' + feucht);
   broadcastSenderDrei(feucht, temp);
   res.sendStatus(200);
       
