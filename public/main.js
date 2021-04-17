@@ -9,24 +9,24 @@ ws.addEventListener('message', function (event){
     const data = JSON.parse(event.data);
     switch (data.type) {
       case 'feuchtigkeitS1':
-        document.getElementById('feuchtCont').innerText = data.value;
+        document.getElementById('feuchtCont').innerText = String(data.value + "%");
         console.log("Feuchtigkeit:");
         console.log(data.value);
         break;
   
       case 'temperaturS1':
-        document.getElementById('tempCont').innerText = data.value;
+        document.getElementById('tempCont').innerText = String(data.value + "°C");
         console.log("Temperatur");
         console.log(data.value);
         break;
       case 'feuchtigkeitS2':
-        let x =document.getElementById('feuchtCont2').innerText = data.value;
+        let x =document.getElementById('feuchtCont2').innerText = String(data.value + "%");
         console.log("Feuchtigkeit:");
         console.log(data.value);
         break;
   
       case 'temperaturS2':
-        document.getElementById('tempCont2').innerText  = data.value;
+        document.getElementById('tempCont2').innerText  = String(data.value + "°C");
         console.log("Temperatur");
         console.log(data.value);
         break;
