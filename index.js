@@ -21,43 +21,49 @@ app.listen(port, () => {
 })
 
 //Globale Variablen
-let temp;
-let feucht;
-
+let temp1;
+let feucht1;
+let temp2;
+let feucht2;
+let temp3;
+let feucht3;
 //Ereignisse
 //1.HTTP Get request 
 app.get('/' , function ( request, response){
     console.log("Eingehende get request");
     response.sendStatus(200);
+    broadcast(feucht1, temp1, feucht2, temp2, feucht3, temp3);
 
 });
 //2.Einrichten POST REQUEST d1 minis
 app.post('/' , function ( req, res){
     //console.log("Eingehende POST request");
-    temp = req.body.temperatur;
-    feucht = req.body.feuchtigkeit;
-    console.log('Temperatur1: ' + temp + ' Feuchtigkeit1: ' + feucht);
-    broadcast(feucht, temp);
+    temp1 = req.body.temperatur;
+    feucht1 = req.body.feuchtigkeit;
+    console.log('Temperatur1: ' + temp1 + ' Feuchtigkeit1: ' + feucht1);
+    broadcast(feucht1, temp1, 0, 0, 0, 0);
     res.sendStatus(200);
         
 });
 
 app.post('/senderZwei' , function ( req, res){
   //console.log("Eingehende POST request");
-  temp = req.body.temperatur;
-  feucht = req.body.feuchtigkeit;
-  console.log('Temperatur2: ' + temp + ' Feuchtigkeit2: ' + feucht);
-  broadcastSenderZwei(feucht, temp);
+  temp2 = req.body.temperatur;
+  feucht2 = req.body.feuchtigkeit;
+  console.log('Temperatur2: ' + temp2 + ' Feuchtigkeit2: ' + feucht2);
+  //broadcastSenderZwei(feucht, temp);
+  broadcast(0,0,feucht2,temp2,0,0);
   res.sendStatus(200);
       
 });
 
 app.post('/senderDrei' , function ( req, res){
   //console.log("Eingehende POST request");
-  temp = req.body.temperatur;
-  feucht = req.body.feuchtigkeit;
-  console.log('Temperatur3: ' + temp + ' Feuchtigkeit3: ' + feucht);
-  broadcastSenderDrei(feucht, temp);
+  temp3 = req.body.temperatur;
+  feucht3 = req.body.feuchtigkeit;
+  console.log('Temperatur3: ' + temp3 + ' Feuchtigkeit3: ' + feucht3);
+  //broadcastSenderDrei(feucht, temp);
+  broadcast(0,0,0,0,feucht3,temp3)
   res.sendStatus(200);
       
 });
@@ -72,11 +78,15 @@ wss.on("connection", ws => {
   })
   
   // diese funktion schickt das übergebene Objekt , int , string oder json an alle verbundenen Clients
-  function broadcast(feucht, temp) {
+  function broadcast(feucht, temp, feucht2, temp2, feucht3, temp3) {
     wss.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify({ type: 'feuchtigkeitS1', value: feucht }));
         client.send(JSON.stringify({ type: 'temperaturS1', value: temp }));
+        client.send(JSON.stringify({ type: 'feuchtigkeitS2', value: feucht2 }));
+        client.send(JSON.stringify({ type: 'temperaturS2', value: temp2 }));
+        client.send(JSON.stringify({ type: 'feuchtigkeitS3', value: feucht3 }));
+        client.send(JSON.stringify({ type: 'temperaturS3', value: temp3 }));
       }
     });
   }
