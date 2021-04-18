@@ -23,12 +23,18 @@ app.listen(port, () => {
 //Globale Variablen
 let temp;
 let feucht;
+let temp2;
+let feucht2;
+let temp2;
+let feucht2;
 
 //Ereignisse
 //1.HTTP Get request 
 app.get('/' , function ( request, response){
     console.log("Eingehende get request");
-   
+    broadcast(feucht, temp);
+    broadcastSenderZwei(feucht2, temp2);
+    broadcastSenderDrei(feucht3, temp3);
     response.sendStatus(200);
 });
 //2.Einrichten POST REQUEST d1 minis
@@ -44,10 +50,10 @@ app.post('/' , function ( req, res){
 
 app.post('/senderZwei' , function ( req, res){
   //console.log("Eingehende POST request");
-  temp = req.body.temperatur;
-  feucht = req.body.feuchtigkeit;
-  console.log('Temperatur2: ' + temp + ' Feuchtigkeit2: ' + feucht);
-  broadcastSenderZwei(feucht, temp);
+  temp2 = req.body.temperatur;
+  feucht2 = req.body.feuchtigkeit;
+  console.log('Temperatur2: ' + temp2 + ' Feuchtigkeit2: ' + feucht2);
+  broadcastSenderZwei(feucht2, temp2);
   res.sendStatus(200);
       
 });
@@ -57,7 +63,7 @@ app.post('/senderDrei' , function ( req, res){
   temp3 = req.body.temperatur;
   feucht3 = req.body.feuchtigkeit;
   console.log('Temperatur3: ' + temp3 + ' Feuchtigkeit3: ' + feucht3);
-  broadcastSenderDrei(feucht, temp);
+  broadcastSenderDrei(feucht3, temp3);
   
   res.sendStatus(200);
       
@@ -66,6 +72,9 @@ app.post('/senderDrei' , function ( req, res){
 //Sagt euch wenn ein Client verbunden ist oder wenn er disconnected
 wss.on("connection", ws => {
     console.log("Client connected!");
+    broadcast(feucht, temp);
+    broadcastSenderZwei(feucht2, temp2);
+    broadcastSenderDrei(feucht3, temp3);
     ws.on("close", data => {
       console.log("Client has disconnceted");
     })
