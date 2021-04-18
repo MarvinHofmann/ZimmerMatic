@@ -61,6 +61,9 @@ ws.addEventListener('message', function (event){
     b = a.getHours();
     c = a.getMinutes();
     d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
     zeit = b+':'+c+':'+d
     return zeit ;
   }
