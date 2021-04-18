@@ -25,8 +25,8 @@ let temp;
 let feucht;
 let temp2;
 let feucht2;
-let temp2;
-let feucht2;
+let temp3;
+let feucht3;
 
 //Ereignisse
 //1.HTTP Get request 
