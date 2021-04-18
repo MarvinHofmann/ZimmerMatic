@@ -9,21 +9,57 @@
     <script src='main.js'></script>
 </head>
 <body>
-    <h1>Willkommen ZimmerMatic</h1>
-    <h2 class="Ueberschriften">Temperaturen & Relative Luftfeuchtigkeit</h2>
-    <div class="divcontainer">
-        <label>Lufteuchtigkeit:</label>               
-        <label id = "feuchtCont"></label>
-        <label>Temperatur:</label>        
-        <label id = "tempCont"></label>
-        <label >Lufteuchtigkeit:</label>
-        <label id = "feuchtCont2"></label>
-        <label >Temperatur:</label>
-        <label id = "tempCont2"></label>
-        <label >Lufteuchtigkeit:</label>
-        <label id = "feuchtCont3"></label>
-        <label >Temperatur:</label>
-        <label id = "tempCont3"></label>
+    <h1>Dashboard</h1>
+    <div id="sidebar">
+        <button>Home</button>
+        <button>Dashboard</button>
+    </div>
+    <div class="all">
+        <!--  <h2 class="Ueberschriften">Temperaturen & Relative Luftfeuchtigkeit</h2> -->
+        <h2>Temperatur und Relative Lufteuchtigkeit</h2>
+        <div class="container">
+        
+            <div class="divcontainer1">
+                <label class="bezeichner">Lufteuchtigkeit:</label>               
+                <label id = "feuchtCont" class="werte"></label></label>
+                <label class="bezeichner">Temperatur:</label>        
+                <label id = "tempCont" class="werte"></label>
+            </div>
+            <div class="divcontainer2">
+                <label class="bezeichner">Lufteuchtigkeit:</label>
+                <label id = "feuchtCont2" class="werte"></label>
+                <label class="bezeichner">Temperatur:</label>
+                <label id = "tempCont2" class="werte"></label>
+            </div >
+            <div class="divcontainer3">
+            <label class="bezeichner">Lufteuchtigkeit:</label>
+                <label id = "feuchtCont3" class="werte"></label>
+                <label class="bezeichner" >Temperatur:</label>
+                <label id = "tempCont3" class="werte"></label> 
+            </div>
+            
         </div>
+        <h2>Pflanzenüberwachung</h2>    
+        <div class="container">
+            
+            <div class="divcontainer1">
+                <label class="bezeichner">Feuchtigkeit:</label>               
+                <label id = "feuchtCont" class="werte"></label></label>
+                
+            </div>
+            <div class="divcontainer2">
+                <label class="bezeichner">Feuchtigkeit:</label>               
+                <label id = "feuchtCont" class="werte"></label></label>
+                
+            </div >
+            <div class="divcontainer3">
+                <label class="bezeichner">Feuchtigkeit:</label>               
+                <label id = "feuchtCont" class="werte"></label></label>
+            </div>
+            
+        </div>
+        
+    </div> 
+       
 </body>
 </html>

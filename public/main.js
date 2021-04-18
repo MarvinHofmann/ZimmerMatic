@@ -10,38 +10,38 @@ ws.addEventListener('message', function (event){
     switch (data.type) {
       case 'feuchtigkeitS1':
         document.getElementById('feuchtCont').innerText = String(data.value + "%");
-        console.log("Feuchtigkeit:");
-        console.log(data.value);
+        //console.log("Feuchtigkeit:");
+        //console.log(data.value);
         break;
   
       case 'temperaturS1':
         document.getElementById('tempCont').innerText = String(data.value + "°C");
-        console.log("Temperatur");
-        console.log(data.value);
+        //console.log("Temperatur");
+        //console.log(data.value);
         break;
       case 'feuchtigkeitS2':
         let x =document.getElementById('feuchtCont2').innerText = String(data.value + "%");
-        console.log("Feuchtigkeit:");
-        console.log(data.value);
+        //console.log("Feuchtigkeit:");
+        //console.log(data.value);
         break;
   
       case 'temperaturS2':
         document.getElementById('tempCont2').innerText  = String(data.value + "°C");
-        console.log("Temperatur");
-        console.log(data.value);
+        //console.log("Temperatur");
+        //console.log(data.value);
         break;
 
      case 'feuchtigkeitS3':
-            document.getElementById('feuchtCont3').innerText = String(data.value + "%");
-            console.log("Feuchtigkeit:");
-            console.log(data.value);
-            break;
+        document.getElementById('feuchtCont3').innerText = String(data.value + "%");
+        //console.log("Feuchtigkeit:");
+        //console.log(data.value);
+        break;
       
      case 'temperaturS3':
-            document.getElementById('tempCont3').innerText = String(data.value + "°C");
-            console.log("Temperatur");
-            console.log(data.value);
-            break;
+        document.getElementById('tempCont3').innerText = String(data.value + "°C");
+        //console.log("Temperatur");
+        //console.log(data.value);
+        break;
 
       default:
         // Unknown websocket message type
