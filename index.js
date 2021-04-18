@@ -31,10 +31,9 @@ let feucht3;
 //1.HTTP Get request 
 app.get('/' , function ( request, response){
     console.log("Eingehende get request");
-    response.sendStatus(200);
     console.log(feucht1);
     broadcast(feucht1, temp1, feucht2, temp2, feucht3, temp3);
-
+    response.sendStatus(200);
 });
 //2.Einrichten POST REQUEST d1 minis
 app.post('/' , function ( req, res){
