@@ -32,6 +32,7 @@ let feucht3;
 app.get('/' , function ( request, response){
     console.log("Eingehende get request");
     response.sendStatus(200);
+    console.log(feucht1);
     broadcast(feucht1, temp1, feucht2, temp2, feucht3, temp3);
 
 });
