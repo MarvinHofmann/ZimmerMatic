@@ -8,8 +8,8 @@
     grid-template-rows: repeat(2, 100px);
 }
 
-.divcontainer3{
-    background-color: rgb(93, 155, 170);
+.Sensordivcontainer{
+    background-color: cornflowerblue;
     border-radius: 20px;
     width: 180px;
     height: 180px;
@@ -21,34 +21,16 @@
 .uhr{
    font-size: 12px;
 }
-.divcontainer1{
-    background-color: rgb(93, 155, 170);
-    border-radius: 20px;
-    width: 180px;
-    height: 180px;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-}
-.divcontainer2{
-    background-color: rgb(93, 155, 170);
-    border-radius: 20px;
-    width: 180px;
-    height: 180px;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-}
  
 .bezeichner{
     color: rgb(0, 0, 0);
 }
+
 label{
     margin-top: 5px;
     display: grid;
     grid-template-rows: repeat(3,10px); /*4 spalten á 100px*/   
 }
-
 
 .werte{
     margin-left: 40px;
@@ -68,6 +50,7 @@ body{
     padding: 0;
     background-color: #282828;
 }
+
 .all{
     border-top: 1px solid rgb(0, 0, 0);
     padding-left: 14%;
@@ -87,6 +70,7 @@ body{
     border-top: 1px solid rgb(0, 0, 0); 
     
 }
+
 button{
     display: flex;
     align-items: center;
