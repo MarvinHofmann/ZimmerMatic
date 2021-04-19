@@ -27,14 +27,17 @@ let temp2;
 let feucht2;
 let temp3;
 let feucht3;
+let zeit1;
+let zeit2;
+let zeit3;
 
 //Ereignisse
 //1.HTTP Get request 
 app.get('/' , function ( request, response){
     console.log("Eingehende get request");
-    broadcast(feucht, temp);
-    broadcastSenderZwei(feucht2, temp2);
-    broadcastSenderDrei(feucht3, temp3);
+    broadcast(feucht, temp, zeit1);
+    broadcastSenderZwei(feucht2, temp2, zeit2);
+    broadcastSenderDrei(feucht3, temp3, zeit3);
     response.sendStatus(200);
 });
 //2.Einrichten POST REQUEST d1 minis
@@ -43,7 +46,8 @@ app.post('/' , function ( req, res){
     temp = req.body.temperatur;
     feucht = req.body.feuchtigkeit;
     console.log('Temperatur1: ' + temp + ' Feuchtigkeit1: ' + feucht);
-    broadcast(feucht, temp);
+    zeit1 = berechneZeit();
+    broadcast(feucht, temp, zeit1);
     res.sendStatus(200);
         
 });
@@ -53,7 +57,8 @@ app.post('/senderZwei' , function ( req, res){
   temp2 = req.body.temperatur;
   feucht2 = req.body.feuchtigkeit;
   console.log('Temperatur2: ' + temp2 + ' Feuchtigkeit2: ' + feucht2);
-  broadcastSenderZwei(feucht2, temp2);
+  zeit2 = berechneZeit();
+  broadcastSenderZwei(feucht2, temp2, zeit2);
   res.sendStatus(200);
       
 });
@@ -63,8 +68,8 @@ app.post('/senderDrei' , function ( req, res){
   temp3 = req.body.temperatur;
   feucht3 = req.body.feuchtigkeit;
   console.log('Temperatur3: ' + temp3 + ' Feuchtigkeit3: ' + feucht3);
-  broadcastSenderDrei(feucht3, temp3);
-  
+  zeit3 = berechneZeit();
+  broadcastSenderDrei(feucht3, temp3, zeit3);  
   res.sendStatus(200);
       
 });
@@ -72,9 +77,7 @@ app.post('/senderDrei' , function ( req, res){
 //Sagt euch wenn ein Client verbunden ist oder wenn er disconnected
 wss.on("connection", ws => {
     console.log("Client connected!");
-    broadcast(feucht, temp);
-    broadcastSenderZwei(feucht2, temp2);
-    broadcastSenderDrei(feucht3, temp3);
+   
     ws.on("close", data => {
       console.log("Client has disconnceted");
     })
@@ -82,30 +85,47 @@ wss.on("connection", ws => {
   })
   
   // diese funktion schickt das übergebene Objekt , int , string oder json an alle verbundenen Clients
-  function broadcast(feucht, temp) {
+  function broadcast(feucht, temp, zeit) {
     wss.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify({ type: 'feuchtigkeitS1', value: feucht }));
         client.send(JSON.stringify({ type: 'temperaturS1', value: temp }));
+        client.send(JSON.stringify({ type: 'zeitS1', value: zeit }));
       }
     });
   }
   
   
-  function broadcastSenderZwei(feucht, temp) {
+  function broadcastSenderZwei(feucht, temp, zeit) {
     wss.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify({ type: 'feuchtigkeitS2', value: feucht }));
         client.send(JSON.stringify({ type: 'temperaturS2', value: temp }));
+        client.send(JSON.stringify({ type: 'zeitS2', value: zeit }));
       }
     });
   }
 
-  function broadcastSenderDrei(feucht, temp) {
+  function broadcastSenderDrei(feucht, temp, zeit) {
     wss.clients.forEach(function each(client) {
       if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify({ type: 'feuchtigkeitS3', value: feucht }));
         client.send(JSON.stringify({ type: 'temperaturS3', value: temp }));
+        client.send(JSON.stringify({ type: 'zeitS3', value: zeit }));
       }
     });
   }
+
+  function berechneZeit(){
+    let a = new Date();
+    b = c = d = zeit = 0;
+    b = a.getHours();
+    c = a.getMinutes();
+    d = a.getSeconds();
+    if(b < 10){b = '0'+b;} 
+    if(c < 10){c = '0'+c;} 
+    if(d < 10){d = '0'+d;}
+    zeit = b+':'+c+':'+d
+    return zeit ;
+  }
+

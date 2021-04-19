@@ -7,14 +7,13 @@ ws.addEventListener("open", () => {
 
 ws.addEventListener('message', function (event){
     const data = JSON.parse(event.data);
-    let Uhrzeit = berechneZeit(); 
+    
     console.log(Uhrzeit);
     switch (data.type) {
       case 'feuchtigkeitS1':
         document.getElementById('feuchtCont').innerText = String(data.value + "%");
         //console.log("Feuchtigkeit:");
         //console.log(data.value);
-        document.getElementById('uhr1').innerText = Uhrzeit;
         break;
   
       case 'temperaturS1':
@@ -49,23 +48,22 @@ ws.addEventListener('message', function (event){
         //console.log("Temperatur");
         //console.log(data.value);
         break;
+    
+    case 'zeitS1':
+          document.getElementById('uhr1').innerText = data.value; 
+          break;
 
-      default:
+    case 'zeitS2':
+         document.getElementById('uhr2').innerText = data.value; 
+         break;
+
+    case 'zeitS3':
+          document.getElementById('uhr3').innerText = data.value; 
+          break;
+
+    default:
         // Unknown websocket message type
     }
   });
-
-  function berechneZeit(){
-    let a = new Date();
-    b = c = d = zeit = 0;
-    b = a.getHours();
-    c = a.getMinutes();
-    d = a.getSeconds();
-    if(b < 10){b = '0'+b;} 
-    if(c < 10){c = '0'+c;} 
-    if(d < 10){d = '0'+d;}
-    zeit = b+':'+c+':'+d
-    return zeit ;
-  }
 
 

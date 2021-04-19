@@ -70,7 +70,7 @@ body{
 }
 .all{
     border-top: 1px solid rgb(0, 0, 0);
-    padding-left: 12%;
+    padding-left: 14%;
     padding-top: 18px;    
     background-color: #1f1f1f;
     height: calc(100vh - 120px);
@@ -81,7 +81,7 @@ body{
     overflow: 100%;
     background-color: #282828;
     float: left;
-    width: 10%;
+    width: 12%;
     border-color: transparent;    
     position: fixed;  
     border-top: 1px solid rgb(0, 0, 0); 
@@ -91,6 +91,7 @@ button{
     display: flex;
     align-items: center;
     justify-content: left;
+    padding-left: 10%;
     width: 100%;
     height: 60px;
     background-color: #282828;
