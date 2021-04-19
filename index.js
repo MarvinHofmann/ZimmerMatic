@@ -46,7 +46,7 @@ app.post('/' , function ( req, res){
     temp = req.body.temperatur;
     feucht = req.body.feuchtigkeit;
     zeit1 = berechneZeit();
-    console.log('Temperatur1: ' + temp + ' Feuchtigkeit1: ' + feucht + 'Zeit: ' + zeit1);
+    console.log('Temperatur1: ' + temp + ' Feuchtigkeit1: ' + feucht + ' Zeit: ' + zeit1);
     broadcast(feucht, temp, zeit1);
     res.sendStatus(200);
         
@@ -57,7 +57,7 @@ app.post('/senderZwei' , function ( req, res){
   temp2 = req.body.temperatur;
   feucht2 = req.body.feuchtigkeit;
   zeit2 = berechneZeit();
-  console.log('Temperatur2: ' + temp2 + ' Feuchtigkeit2: ' + feucht2 + 'Zeit: ' + zeit2);
+  console.log('Temperatur2: ' + temp2 + ' Feuchtigkeit2: ' + feucht2 + ' Zeit: ' + zeit2);
   broadcastSenderZwei(feucht2, temp2, zeit2);
   res.sendStatus(200);
       
@@ -68,7 +68,7 @@ app.post('/senderDrei' , function ( req, res){
   temp3 = req.body.temperatur;
   feucht3 = req.body.feuchtigkeit;
   zeit3 = berechneZeit();
-  console.log('Temperatur3: ' + temp3 + ' Feuchtigkeit3: ' + feucht3 + 'Zeit: ' + zeit3);
+  console.log('Temperatur3: ' + temp3 + ' Feuchtigkeit3: ' + feucht3 + ' Zeit: ' + zeit3);
   broadcastSenderDrei(feucht3, temp3, zeit3);  
   res.sendStatus(200);
       

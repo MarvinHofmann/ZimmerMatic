@@ -7,8 +7,7 @@ ws.addEventListener("open", () => {
 
 ws.addEventListener('message', function (event){
     const data = JSON.parse(event.data);
-    
-    console.log(Uhrzeit);
+      
     switch (data.type) {
       case 'feuchtigkeitS1':
         document.getElementById('feuchtCont').innerText = String(data.value + "%");
@@ -26,8 +25,7 @@ ws.addEventListener('message', function (event){
         let x =document.getElementById('feuchtCont2').innerText = String(data.value + "%");
         //console.log("Feuchtigkeit:");
         //console.log(data.value);
-        
-        document.getElementById('uhr2').innerText = Uhrzeit;
+        //document.getElementById('uhr2').innerText = Uhrzeit;
         break;
   
       case 'temperaturS2':
@@ -40,7 +38,7 @@ ws.addEventListener('message', function (event){
         document.getElementById('feuchtCont3').innerText = String(data.value + "%");
         //console.log("Feuchtigkeit:");
         //console.log(data.value);
-        document.getElementById('uhr3').innerText = Uhrzeit;
+        //document.getElementById('uhr3').innerText = Uhrzeit;
         break;
       
      case 'temperaturS3':
