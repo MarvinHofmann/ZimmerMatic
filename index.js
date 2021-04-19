@@ -38,6 +38,9 @@ app.get('/' , function ( request, response){
     broadcast(feucht, temp, zeit1);
     broadcastSenderZwei(feucht2, temp2, zeit2);
     broadcastSenderDrei(feucht3, temp3, zeit3);
+    console.log('Temperatur1: ' + temp + ' Feuchtigkeit1: ' + feucht + ' Zeit: ' + zeit1);
+    console.log('Temperatur1: ' + temp2 + ' Feuchtigkeit1: ' + feucht2 + ' Zeit: ' + zeit2);
+    console.log('Temperatur3: ' + temp3 + ' Feuchtigkeit3: ' + feucht3 + ' Zeit: ' + zeit3);
     response.sendStatus(200);
 });
 //2.Einrichten POST REQUEST d1 minis
