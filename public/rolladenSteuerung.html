@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <button onclick="btnfunction(1)">hoch</button>
+    <button onclick="btnfunction(2)">stop</button>
+    <button onclick="btnfunction(3)">runter</button>
+ 
+    <script>
+      function btnfunction(number) {
+        switch (number) {
+          case 1:
+            fetch("http://192.168.0.58:3443/hoch")
+              .then((res) => res.json())
+              .then((data) => console.log(data));
+
+            break;
+
+          case 2:
+            fetch("http://192.168.0.58:3443/stop")
+              .then((res) => res.json())
+              .then((data) => console.log(data));
+            break;
+          case 3:
+            fetch("http://192.168.0.58:3443/runter")
+              .then((res) => res.json())
+              .then((data) => console.log(data));
+            break;
+         
+          default:
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>

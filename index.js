@@ -4,6 +4,10 @@
 const WebSocket = require("ws");
 const wss = new WebSocket.Server({ port: 8080 }); // abgespilteter WS Server auf anderem Port
 
+//2. Websocket Server für Rolladensteuerung
+const WebSocket = require("ws");
+const wsRolladen = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
+let currentClientsws = [];
 // Init. EXpress Server
 const express = require('express')
 const app = express()
@@ -131,3 +135,28 @@ wss.on("connection", ws => {
     return zeit ;
   }
 
+
+  wsRolladen.on("connection", (ws) => {
+    console.log("Client connected!");
+    currentClientsws[0] = ws;
+    console.log(currentClientsws);
+    ws.on("close", (data) => {
+      console.log("Client has disconnceted");
+    });
+  });
+
+  app.get("/hoch", function (request, response) {
+    console.log("Eingehende get request");
+    currentClientsws[0].send("0");
+    response.sendStatus(200);
+  });app.get("/stop", function (request, response) {
+    console.log("Eingehende get request");
+    currentClientsws[0].send("1");
+    response.sendStatus(200);
+  });
+  app.get("/runter", function (request, response) {
+    console.log("Eingehende get request");
+    currentClientsws[0].send("2");
+    response.sendStatus(200);
+  });
+  

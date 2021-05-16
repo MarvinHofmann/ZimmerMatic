@@ -95,3 +95,11 @@ h2{
     color: seashell;
     font-family: Arial, Helvetica, sans-serif;   
 }
+a {
+    text-decoration: none;
+    color: aliceblue;
+}
+a:visited{
+    text-decoration: none;
+    color: aliceblue; 
+}

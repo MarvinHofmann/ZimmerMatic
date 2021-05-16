@@ -1,8 +1,8 @@
 const ws = new WebSocket('ws://ZimmerMatic:8080');
 
+
 ws.addEventListener("open", () => {
     console.log("Client connected with server!")
-
 })
 
 ws.addEventListener('message', function (event){
