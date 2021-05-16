@@ -19,3 +19,7 @@ button{
    background-color: azure;
    font-weight: lighter;
 }
+button:hover{
+    cursor: grab;
+    background-color: cadetblue;
+}
