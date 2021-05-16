@@ -1,0 +1,21 @@
+body{
+    background-color: #282828;
+}
+
+#Btns{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+button{
+   margin-top: 20px;
+   width: 200px;
+   height: 200px;
+   font-size: 40px;
+   font-family: Arial, Helvetica, sans-serif;
+   border-radius: 20px;
+   border: none;
+   background-color: azure;
+   font-weight: lighter;
+}

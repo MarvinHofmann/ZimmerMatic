@@ -5,13 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="styleRolladen.css">
   </head>
 
   <body>
-    <button onclick="btnfunction(1)">hoch</button>
-    <button onclick="btnfunction(2)">stop</button>
-    <button onclick="btnfunction(3)">runter</button>
- 
+    <div id="Btns">
+        <button onclick="btnfunction(1)">Hoch</button>
+        <button onclick="btnfunction(2)">Stop</button>
+        <button onclick="btnfunction(3)">Runter</button>
+    </div>
     <script>
       function btnfunction(number) {
         switch (number) {
