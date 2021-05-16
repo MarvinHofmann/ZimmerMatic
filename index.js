@@ -5,7 +5,7 @@ const WebSocket = require("ws");
 const wss = new WebSocket.Server({ port: 8080 }); // abgespilteter WS Server auf anderem Port
 
 //2. Websocket Server für Rolladensteuerung
-const WebSocket = require("ws");
+
 const wsRolladen = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
 let currentClientsws = [];
 // Init. EXpress Server
