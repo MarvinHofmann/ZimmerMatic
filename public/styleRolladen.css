@@ -23,3 +23,24 @@ button:hover{
     cursor: grab;
     background-color: cadetblue;
 }
+#homeBtn{
+    width: 100px;
+    height: 50px;
+    font-size: 18px;
+    color: #282828;
+    border-radius: 10px;
+      
+}
+
+button:hover{
+    cursor: grab;
+    background-color: cadetblue;
+}
+a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+a:visited{
+    text-decoration: none;
+    color: rgb(0, 0, 0); 
+}

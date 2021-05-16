@@ -9,7 +9,7 @@
 }
 
 .Sensordivcontainer{
-    background-color: cornflowerblue;
+    background-color: azure;
     border-radius: 20px;
     width: 180px;
     height: 180px;
@@ -18,12 +18,15 @@
     justify-content: center;
     
 }
+.Sensordivcontainer:hover{
+    background-color: cadetblue;
+}
 .uhr{
    font-size: 12px;
 }
  
 .bezeichner{
-    color: rgb(0, 0, 0);
+    color: #282828;
 }
 
 label{
@@ -34,14 +37,14 @@ label{
 
 .werte{
     margin-left: 40px;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
  }
 
 h1{
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 40px;
-    color: cornflowerblue;
+    color: cadetblue;
     
 }
 
@@ -92,7 +95,7 @@ button:hover{
 }
 
 h2{
-    color: seashell;
+    color: cadetblue;
     font-family: Arial, Helvetica, sans-serif;   
 }
 a {
