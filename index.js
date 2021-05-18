@@ -15,8 +15,6 @@ const app = express()
 const port = 3443
 let bodyParser = require('body-parser');
 
-let urlencodedParser = bodyParser.urlencoded({ extended: false})
-
 app.use(express.static('public'));//Seite Läauft ganze zeit ohne init request
 app.use(bodyParser.json());
 app.listen(port, () => {
