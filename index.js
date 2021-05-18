@@ -22,6 +22,9 @@ app.listen(port, () => {
   console.log('Die IP Adresse lautet: 192.168.0.58');
 })
 
+const cors = require('cors');
+app.use(cors());
+
 //Globale Variablen
 let temp;
 let feucht;
