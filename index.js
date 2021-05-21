@@ -62,7 +62,7 @@ app.post("/senderDrei", function (req, res) {
   broadcast(feucht, temp, zeit1, "S3");
   res.sendStatus(200);
 });
-let d1 = "192.168.0.65";
+let d1 = "::ffff:192.168.0.62";
 //Sagt euch wenn ein Client verbunden ist oder wenn er disconnected
 wss.on("connection", function connection(ws, req) {
   console.log("Client connected!");
