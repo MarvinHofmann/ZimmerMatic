@@ -137,7 +137,7 @@ function berechneZeit() {
     d = "0" + d;
   }
   zeit = b + ":" + c + ":" + d;
-  if (b===12 && rolStatus !== 2) {
+  if (b===12 && rolStatus === 1 && rolStatus === 0) {
     broadcastRolladen();
   }
   return zeit;
