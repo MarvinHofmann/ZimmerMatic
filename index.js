@@ -114,12 +114,6 @@ function broadcast(feucht, temp, zeit, sender) {
   }
 }
 
-function broadcastRolladen() {
-  for (let i = 1; i < currentClientsws.length; i++) {
-    currentClientsws[i].send("now");
-  }
-}
-
 let rolStatus = 0;
 
 function berechneZeit() {
@@ -138,10 +132,6 @@ function berechneZeit() {
     d = "0" + d;
   }
   zeit = b + ":" + c + ":" + d;
-  if (b===12 && rolStatus !== 2) {
-    console.log("sende zu");
-    //broadcastRolladen();
-  }
   return zeit;
 }
 

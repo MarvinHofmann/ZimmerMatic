@@ -26,3 +26,12 @@ function btnfunction(number) {
         break;
     }
   }
+
+function sumbit(){
+    let time = document.getElementById(inputTime).innerText;
+    let h = time.charAt[1]+charAt[2];
+    let m = time.charAt[4]+charAt[5];
+    console.log(time);
+    console.log(h);
+    console.log(m);
+}
