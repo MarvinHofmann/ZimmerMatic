@@ -1,8 +1,8 @@
 const ws = new WebSocket('ws://192.168.0.58:8000');
 let aktRoutine;
-ws.addEventListener("open", () => {
+ws.addEventListener("open", (message) => {
     console.log("Client connected with server!")
-    document.getElementById('aktuelleRoutine').innerText = aktRoutine;
+    document.getElementById('aktuelleRoutine').innerText = message;
 })
 ws.addEventListener('message', function (event){
     const data = event.data;
