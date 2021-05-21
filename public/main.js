@@ -6,7 +6,8 @@ ws.addEventListener("open", () => {
 
 ws.addEventListener('message', function (event){
     const data = JSON.parse(event.data);
-      
+    console.log("incoming Object");
+    console.log(data);
     switch (data.type) {
       case 'feuchtigkeitS1':
         document.getElementById('feuchtCont').innerText = String(data.value + "%");
