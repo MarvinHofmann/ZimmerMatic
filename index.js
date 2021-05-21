@@ -67,6 +67,7 @@ let d1 = "192.168.0.65";
 wss.on("connection", function connection(ws, req) {
   console.log("Client connected!");
   const ip = req.socket.remoteAddress;
+  console.log(currentClientsws);
   if (ip === d1) {
     console.log("client 0 verbunden!");
     currentClientsws[0] = ws;
