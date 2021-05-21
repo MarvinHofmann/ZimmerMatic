@@ -82,19 +82,19 @@ wss.on("connection", function connection(ws, req) {
     if(currentClientsws[0] != null){
       switch (message) {
         case 'hoch':
-          currentClientsws[0].send("0");
+          currentClientsws[0].send("99");
           rolStatus = 0;
           break;
         case 'stop':
           rolStatus = 1;
-          currentClientsws[0].send("1");
+          currentClientsws[0].send("100");
           break;
         case 'runter':
           rolStatus = 2;
-          currentClientsws[0].send("2");
+          currentClientsws[0].send("101");
           break;
         default:
-          currentClientsws[0].send("x" + parseInt(message));
+          currentClientsws[0].send(parseInt(message));
           break;
       }
     }  
