@@ -3,7 +3,6 @@
 //Websocket Server
 const WebSocket = require("ws");
 const wss = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
-let aktRoutine;
 let currentClientsws = [];
 // Init. EXpress Server
 const express = require("express");
@@ -62,7 +61,7 @@ let d1 = "::ffff:192.168.0.62";
 //Sagt euch wenn ein Client verbunden ist oder wenn er disconnected
 wss.on("connection", function connection(ws, req) {
   console.log("Client connected!");
-  ws.send(aktRoutine);
+  
   const ip = req.socket.remoteAddress;
   console.log(ip);
   if (ip === d1) {

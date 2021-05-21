@@ -2,7 +2,6 @@ const ws = new WebSocket('ws://192.168.0.58:8000');
 let aktRoutine;
 ws.addEventListener("open", (message) => {
     console.log("Client connected with server!")
-    document.getElementById('aktuelleRoutine').innerText = message;
 })
 ws.addEventListener('message', function (event){
     const data = event.data;
@@ -42,7 +41,6 @@ function sendRoutine(){
     console.log(mh);
     aktRoutine = String(h + ":" + m)
     document.getElementById('aktuelleRoutine').innerText = aktRoutine;
-    
     ws.send(h);
     ws.send(m);
     ws.send(mh);
