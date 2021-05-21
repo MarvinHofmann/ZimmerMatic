@@ -39,6 +39,4 @@ function btnfunction(number) {
     return zeit;
   }
 
-  if(berechneZeit() === "12:00"){
-      btnfunction(3);
-  }
+  console.log(berechneZeit());

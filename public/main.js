@@ -49,21 +49,5 @@ ws.addEventListener('message', function (event){
     }
   });
 
-  function btnfunction(number) {
-    switch (number) {
-      case 1:
-        ws.send('hoch');
-        break;
-      case 2:
-        ws.send('stop');
-        break;
-      case 3:
-        ws.send('runter');
-        break;
-
-      default:
-        break;
-    }
-  }
-
+ 
 
