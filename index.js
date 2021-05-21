@@ -54,7 +54,7 @@ app.post("/senderDrei", function (req, res) {
   feucht3 = req.body.feuchtigkeit;
   zeit3 = berechneZeit();
   console.log("Temperatur3: " + temp3 + " Feuchtigkeit3: " + feucht3 + " Zeit: " + zeit3);
-  broadcast(feucht, temp, zeit1, "S3");
+  broadcast(feucht3, temp3, zeit3, "S3");
   res.sendStatus(200);
 });
 let d1 = "::ffff:192.168.0.62";
