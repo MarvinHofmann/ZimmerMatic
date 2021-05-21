@@ -39,7 +39,7 @@ function sendRoutine(){
     }
     console.log(mh);
 
-    ws.send(JSON.stringify({ type: "stunde", value: h }));
-    ws.send(JSON.stringify({ type: "minute", value: m }));
-    ws.send(JSON.stringify({ type: "erlaubt", value: mh }));
+    ws.send(h);
+    ws.send(m);
+    ws.send(mh);
 }

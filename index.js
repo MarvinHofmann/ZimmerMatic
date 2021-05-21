@@ -94,34 +94,13 @@ wss.on("connection", function connection(ws, req) {
           currentClientsws[0].send("2");
           break;
         default:
+          currentClientsws[0].send("x" + parseInt(message));
           break;
       }
     }  
   });
 
-  ws.on("message", function incoming(message) {
-    console.log("received: %s", message);
-    const data = JSON.parse(message.data);
-    if(currentClientsws[0] != null){
-      switch (data.type) {
-        case 'stunde':
-          currentClientsws[0].send("h" + data.value);
-          
-          break;
-        case 'minute':
-          
-          currentClientsws[0].send("m" + data.value);
-          break;
-        case 'erlaubt':
-          
-          currentClientsws[0].send("e" + data.value);
-          break;
-        default:
-          break;
-      }
-    }  
-  });
-
+  
 ws.on("close", (data) => {
     console.log("Client has disconnceted");
   });
