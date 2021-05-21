@@ -13,7 +13,7 @@ ws.addEventListener('message', function (event){
         break;
   
       case 'temperaturS1':
-        document.getElementById('tempCont').innerText = String(data.value);
+        document.getElementById('tempCont').innerText = String(data.value + "°C");
         break;
 
       case 'feuchtigkeitS2':
@@ -21,7 +21,7 @@ ws.addEventListener('message', function (event){
         break;
   
       case 'temperaturS2':
-        document.getElementById('tempCont2').innerText  = String(data.value);
+        document.getElementById('tempCont2').innerText  = String(data.value  + "°C");
         break;
 
      case 'feuchtigkeitS3':
@@ -29,7 +29,7 @@ ws.addEventListener('message', function (event){
         break;
       
      case 'temperaturS3':
-        document.getElementById('tempCont3').innerText = String(data.value);
+        document.getElementById('tempCont3').innerText = String(data.value  + "°C");
         break;
     
     case 'zeitS1':
