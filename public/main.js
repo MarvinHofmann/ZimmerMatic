@@ -17,7 +17,7 @@ ws.addEventListener('message', function (event){
         break;
 
       case 'feuchtigkeitS2':
-        let x =document.getElementById('feuchtCont2').innerText = String(data.value + "%");
+        document.getElementById('feuchtCont2').innerText = String(data.value + "%");
         break;
   
       case 'temperaturS2':
