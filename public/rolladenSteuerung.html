@@ -6,34 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>Steuerung</title>
-    <link rel="stylesheet" href="styleRolladen.css">
+    <link rel="stylesheet" href="styleRolladen.css" />
   </head>
 
   <body>
     <div id="Btns">
-        <button onclick="btnfunction(1)">Hoch</button>
-        <button onclick="btnfunction(2)">Stop</button>
-        <button onclick="btnfunction(3)">Runter</button>
+      <button onclick="btnfunction(1)">Hoch</button>
+      <button onclick="btnfunction(2)">Stop</button>
+      <button onclick="btnfunction(3)">Runter</button>
     </div>
-    <button id="homeBtn" ><a href="index.html">Home</a></button>
+    <button id="homeBtn"><a href="index.html">Home</a></button>
     <script>
+      const ws = new WebSocket("ws://192.168.0.58:8000");
+
+      ws.addEventListener("open", () => {
+        console.log("Client connected with server!");
+      });
       function btnfunction(number) {
         switch (number) {
           case 1:
-            fetch("http://192.168.0.58:3443/hoch", {mode: 'no-cors'})
-              .then((data) => console.log(data));
-
+            ws.send('hoch');
             break;
-
           case 2:
-            fetch("http://192.168.0.58:3443/stop",{mode: 'no-cors'})
-              .then((data) => console.log(data));
+            ws.send('stop');
             break;
           case 3:
-            fetch("http://192.168.0.58:3443/runter",{mode: 'no-cors'})
-              .then((data) => console.log(data));
+            ws.send('runter');
             break;
-         
+
           default:
             break;
         }

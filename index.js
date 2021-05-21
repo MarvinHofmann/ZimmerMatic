@@ -2,159 +2,130 @@
 
 //Websocket Server
 const WebSocket = require("ws");
-const wss = new WebSocket.Server({ port: 8080 }); // abgespilteter WS Server auf anderem Port
+const wss = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
 
-//2. Websocket Server für Rolladensteuerung
-
-const wsRolladen = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
 let currentClientsws = [];
 // Init. EXpress Server
-const express = require('express')
-const app = express()
+const express = require("express");
+const app = express();
 
-const port = 3443
-let bodyParser = require('body-parser');
+const port = 3443;
+let bodyParser = require("body-parser");
 
-app.use(express.static('public'));//Seite Läauft ganze zeit ohne init request
+app.use(express.static("public")); //Seite Läauft ganze zeit ohne init request
 app.use(bodyParser.json());
 app.listen(port, () => {
-  console.log(`App listening at http://ZimmerMatic:${port}`) // Publisher Server auf Port 3443
-  console.log('Die IP Adresse lautet: 192.168.0.58');
-})
+  console.log(`App listening at http://ZimmerMatic:${port}`); // Publisher Server auf Port 3443
+  console.log("Die IP Adresse lautet: 192.168.0.58");
+});
 
 //Globale Variablen
-let temp;
-let feucht;
-let temp2;
-let feucht2;
-let temp3;
-let feucht3;
-let zeit1;
-let zeit2;
-let zeit3;
-
-//Ereignisse
-//1.HTTP Get request 
-app.get('/' , function ( request, response){
-    console.log("Eingehende get request");
-    response.sendStatus(200);
+let temp, feucht, temp2, feucht2, temp3, feucht3, zeit1, zeit2, zeit3, anzClients = 1;
+//1.HTTP Get request
+app.get("/", function (request, response) {
+  console.log("Eingehende get request");
+  response.sendStatus(200);
 });
 //2.Einrichten POST REQUEST d1 minis
-app.post('/' , function ( req, res){
-    //console.log("Eingehende POST request");
-    temp = req.body.temperatur;
-    feucht = req.body.feuchtigkeit;
-    zeit1 = berechneZeit();
-    console.log('Temperatur1: ' + temp + ' Feuchtigkeit1: ' + feucht + ' Zeit: ' + zeit1);
-    broadcast(feucht, temp, zeit1);
-    res.sendStatus(200);
-        
+app.post("/", function (req, res) {
+  //console.log("Eingehende POST request");
+  temp = req.body.temperatur;
+  feucht = req.body.feuchtigkeit;
+  zeit1 = berechneZeit();
+  console.log(
+    "Temperatur1: " + temp + " Feuchtigkeit1: " + feucht + " Zeit: " + zeit1
+  );
+  broadcast(feucht, temp, zeit1, "S1");
+  res.sendStatus(200);
 });
 
-app.post('/senderZwei' , function ( req, res){
+app.post("/senderZwei", function (req, res) {
   //console.log("Eingehende POST request");
   temp2 = req.body.temperatur;
   feucht2 = req.body.feuchtigkeit;
   zeit2 = berechneZeit();
-  console.log('Temperatur2: ' + temp2 + ' Feuchtigkeit2: ' + feucht2 + ' Zeit: ' + zeit2);
-  broadcastSenderZwei(feucht2, temp2, zeit2);
+  console.log(
+    "Temperatur2: " + temp2 + " Feuchtigkeit2: " + feucht2 + " Zeit: " + zeit2
+  );
+  broadcast(feucht, temp, zeit1, "S2");
   res.sendStatus(200);
-      
 });
 
-app.post('/senderDrei' , function ( req, res){
+app.post("/senderDrei", function (req, res) {
   //console.log("Eingehende POST request");
   temp3 = req.body.temperatur;
   feucht3 = req.body.feuchtigkeit;
   zeit3 = berechneZeit();
-  console.log('Temperatur3: ' + temp3 + ' Feuchtigkeit3: ' + feucht3 + ' Zeit: ' + zeit3);
-  broadcastSenderDrei(feucht3, temp3, zeit3);  
+  console.log(
+    "Temperatur3: " + temp3 + " Feuchtigkeit3: " + feucht3 + " Zeit: " + zeit3
+  );
+  broadcast(feucht, temp, zeit1, "S3");
   res.sendStatus(200);
-      
+});
+let d1 = "192.168.0.65";
+//Sagt euch wenn ein Client verbunden ist oder wenn er disconnected
+wss.on("connection", function connection(ws, req) {
+  console.log("Client connected!");
+  const ip = req.socket.remoteAddress;
+  if (ip === d1) {
+    currentClientsws[0] = ws;
+  } else {
+    currentClientsws[anzClients] = ws;
+    anzClients++;
+    broadcast(feucht, temp, zeit1, "S1");
+    broadcast(feucht2, temp2, zeit2, "S2");
+    broadcast(feucht3, temp3, zeit3, "S3");
+  }
+
+  ws.on("message", function incoming(message) {
+    console.log("received: %s", message);
+    if(currentClientsws[0] != null){
+      switch (message) {
+        case 'hoch':
+          currentClientsws[0].send("0");
+          break;
+        case 'stop':
+          currentClientsws[0].send("1");
+          break;
+        case 'runter':
+          currentClientsws[0].send("2");
+          break;
+        default:
+          break;
+      }
+    }  
+  });
+
+  ws.on("close", (data) => {
+    console.log("Client has disconnceted");
+  });
 });
 
-//Sagt euch wenn ein Client verbunden ist oder wenn er disconnected
-wss.on("connection", ws => {
-    console.log("Client connected!");
-    broadcast(feucht, temp, zeit1);
-    broadcastSenderZwei(feucht2, temp2, zeit2);
-    broadcastSenderDrei(feucht3, temp3, zeit3);
-    console.log('Temperatur1: ' + temp + ' Feuchtigkeit1: ' + feucht + ' Zeit: ' + zeit1);
-    console.log('Temperatur1: ' + temp2 + ' Feuchtigkeit1: ' + feucht2 + ' Zeit: ' + zeit2);
-    console.log('Temperatur3: ' + temp3 + ' Feuchtigkeit3: ' + feucht3 + ' Zeit: ' + zeit3);
-    ws.on("close", data => {
-      console.log("Client has disconnceted");
-    })
-  
-  })
-  
-  // diese funktion schickt das übergebene Objekt , int , string oder json an alle verbundenen Clients
-  function broadcast(feucht, temp, zeit) {
-    wss.clients.forEach(function each(client) {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify({ type: 'feuchtigkeitS1', value: feucht }));
-        client.send(JSON.stringify({ type: 'temperaturS1', value: temp }));
-        client.send(JSON.stringify({ type: 'zeitS1', value: zeit }));
-      }
-    });
+// diese funktion schickt das übergebene Objekt , int , string oder json an alle verbundenen Clients
+
+function broadcast(feucht, temp, zeit, sender) {
+  for (let i = 1; i < currentClientsws.length; i++) {
+    currentClientsws[i].send(JSON.stringify({ type: "feuchtigkeit" + sender, value: feucht }));
+    currentClientsws[i].send(JSON.stringify({ type: "temperatur" + sender, value: temp }));
+    currentClientsws[i].send(JSON.stringify({ type: "zeit" + sender, value: zeit }));
   }
-  
-  
-  function broadcastSenderZwei(feucht, temp, zeit) {
-    wss.clients.forEach(function each(client) {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify({ type: 'feuchtigkeitS2', value: feucht }));
-        client.send(JSON.stringify({ type: 'temperaturS2', value: temp }));
-        client.send(JSON.stringify({ type: 'zeitS2', value: zeit }));
-      }
-    });
+}
+
+function berechneZeit() {
+  let a = new Date();
+  b = c = d = zeit = 0;
+  b = a.getHours();
+  c = a.getMinutes();
+  d = a.getSeconds();
+  if (b < 10) {
+    b = "0" + b;
   }
-
-  function broadcastSenderDrei(feucht, temp, zeit) {
-    wss.clients.forEach(function each(client) {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify({ type: 'feuchtigkeitS3', value: feucht }));
-        client.send(JSON.stringify({ type: 'temperaturS3', value: temp }));
-        client.send(JSON.stringify({ type: 'zeitS3', value: zeit }));
-      }
-    });
+  if (c < 10) {
+    c = "0" + c;
   }
-
-  function berechneZeit(){
-    let a = new Date();
-    b = c = d = zeit = 0;
-    b = a.getHours();
-    c = a.getMinutes();
-    d = a.getSeconds();
-    if(b < 10){b = '0'+b;} 
-    if(c < 10){c = '0'+c;} 
-    if(d < 10){d = '0'+d;}
-    zeit = b+':'+c+':'+d
-    return zeit ;
+  if (d < 10) {
+    d = "0" + d;
   }
-
-
-  wsRolladen.on("connection", (ws) => {
-    console.log("Client connected!");
-    currentClientsws[0] = ws;
-    console.log(currentClientsws);
-    ws.on("close", (data) => {
-      console.log("Client has disconnceted");
-    });
-  });
-
-  app.get("/hoch", function (request, response) {
-    console.log("Eingehende get request");
-    currentClientsws[0].send("0");
-    response.sendStatus(200);
-  });app.get("/stop", function (request, response) {
-    console.log("Eingehende get request");
-    currentClientsws[0].send("1");
-    response.sendStatus(200);
-  });
-  app.get("/runter", function (request, response) {
-    console.log("Eingehende get request");
-    currentClientsws[0].send("2");
-    response.sendStatus(200);
-  });
-  
+  zeit = b + ":" + c + ":" + d;
+  return zeit;
+}
