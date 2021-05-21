@@ -75,7 +75,7 @@ wss.on("connection", function connection(ws, req) {
     broadcast(feucht3, temp3, zeit3, "S3");
   }
 
-  let rolStatus = 0;
+
 
   ws.on("message", function incoming(message) {
     console.log("received: %s", message);
@@ -120,6 +120,7 @@ function broadcastRolladen() {
   }
 }
 
+let rolStatus = 0;
 
 function berechneZeit() {
   let a = new Date();
