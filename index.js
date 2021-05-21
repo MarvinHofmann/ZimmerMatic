@@ -75,17 +75,22 @@ wss.on("connection", function connection(ws, req) {
     broadcast(feucht3, temp3, zeit3, "S3");
   }
 
+  let rolStatus;
+
   ws.on("message", function incoming(message) {
     console.log("received: %s", message);
     if(currentClientsws[0] != null){
       switch (message) {
         case 'hoch':
           currentClientsws[0].send("0");
+          rolStatus = 0;
           break;
         case 'stop':
+          rolStatus = 1;
           currentClientsws[0].send("1");
           break;
         case 'runter':
+          rolStatus = 2;
           currentClientsws[0].send("2");
           break;
         default:
@@ -94,7 +99,7 @@ wss.on("connection", function connection(ws, req) {
     }  
   });
 
-  ws.on("close", (data) => {
+ws.on("close", (data) => {
     console.log("Client has disconnceted");
   });
 });
@@ -108,6 +113,13 @@ function broadcast(feucht, temp, zeit, sender) {
     currentClientsws[i].send(JSON.stringify({ type: "zeit" + sender, value: zeit }));
   }
 }
+
+function broadcastRolladen() {
+  for (let i = 1; i < currentClientsws.length; i++) {
+    currentClientsws[i].send("now");
+  }
+}
+
 
 function berechneZeit() {
   let a = new Date();
@@ -125,5 +137,11 @@ function berechneZeit() {
     d = "0" + d;
   }
   zeit = b + ":" + c + ":" + d;
+  if (b===12 && rolStatus !== 2) {
+    broadcastRolladen();
+  }
   return zeit;
 }
+
+
+

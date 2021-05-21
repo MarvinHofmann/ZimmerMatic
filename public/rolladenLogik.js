@@ -3,7 +3,12 @@ const ws = new WebSocket('ws://192.168.0.58:8000');
 ws.addEventListener("open", () => {
     console.log("Client connected with server!")
 })
-
+ws.addEventListener('message', function (event){
+    const data = event.data;
+    if(data === "now"){
+        btnfunction(3);
+    }    
+  });
 function btnfunction(number) {
     switch (number) {
       case 1:
@@ -20,23 +25,3 @@ function btnfunction(number) {
         break;
     }
   }
-  function berechneZeit() {
-    let a = new Date();
-    b = c = d = zeit = 0;
-    b = a.getHours();
-    c = a.getMinutes();
-    d = a.getSeconds();
-    if (b < 10) {
-      b = "0" + b;
-    }
-    if (c < 10) {
-      c = "0" + c;
-    }
-    if (d < 10) {
-      d = "0" + d;
-    }
-    zeit = b + ":" + c + ":" + d;
-    return zeit;
-  }
-
-  console.log(berechneZeit());
