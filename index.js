@@ -140,7 +140,7 @@ function berechneZeit() {
   zeit = b + ":" + c + ":" + d;
   if (b===12 && rolStatus !== 2) {
     console.log("sende zu");
-    broadcastRolladen();
+    //broadcastRolladen();
   }
   return zeit;
 }
