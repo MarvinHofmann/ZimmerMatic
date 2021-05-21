@@ -27,11 +27,19 @@ function btnfunction(number) {
     }
   }
 
-function sumbit(){
-    let time = document.getElementById(inputTime).innerText;
-    let h = time.charAt[1]+charAt[2];
-    let m = time.charAt[4]+charAt[5];
-    console.log(time);
-    console.log(h);
-    console.log(m);
+function sendRoutine(){
+    let h = document.getElementById('inputTime').value;
+    let m = document.getElementById("inputTimeMin").value;
+    let mh = 0;
+    console.log('Stunde ' + h);
+    console.log('Minute ' + m);
+
+    if (document.getElementById("flexSwitchCheckChecked").checked) {
+        mh = 0;
+    }
+    console.log(mh);
+
+    ws.send(JSON.stringify({ type: "stunde", value: h }));
+    ws.send(JSON.stringify({ type: "minute", value: m }));
+    ws.send(JSON.stringify({ type: "erlaubt", value: mh }));
 }
