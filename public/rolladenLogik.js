@@ -1,7 +1,8 @@
 const ws = new WebSocket('ws://192.168.0.58:8000');
-
+let aktRoutine;
 ws.addEventListener("open", () => {
     console.log("Client connected with server!")
+    document.getElementById('aktuelleRoutine').innerText = aktRoutine;
 })
 ws.addEventListener('message', function (event){
     const data = event.data;
@@ -9,7 +10,8 @@ ws.addEventListener('message', function (event){
     if(data === "now"){
         btnfunction(3);
     }    
-  });
+});
+
 function btnfunction(number) {
     switch (number) {
       case 1:
@@ -38,7 +40,9 @@ function sendRoutine(){
         mh = 0;
     }
     console.log(mh);
-
+    aktRoutine = String(h + ":" + m)
+    document.getElementById('aktuelleRoutine').innerText = aktRoutine;
+    
     ws.send(h);
     ws.send(m);
     ws.send(mh);

@@ -94,3 +94,12 @@
     line-height: 1rem;
   }
   
+  #label1{
+    font-size: 18px;
+    color: white;
+  }
+
+  #aktuelleRoutine{
+    font-size: 17px;
+    color: white;
+  }
