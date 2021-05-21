@@ -5,6 +5,8 @@ ws.addEventListener("open", () => {
 })
 ws.addEventListener('message', function (event){
     const data = event.data;
+    console.log("Client schickt:")
+    console.log(data)
     if(data === "now"){
         btnfunction(3);
     }    
