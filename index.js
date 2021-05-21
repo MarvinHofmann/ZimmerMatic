@@ -68,6 +68,7 @@ wss.on("connection", function connection(ws, req) {
   console.log("Client connected!");
   const ip = req.socket.remoteAddress;
   if (ip === d1) {
+    console.log("client 0 verbunden!");
     currentClientsws[0] = ws;
   } else {
     currentClientsws[anzClients] = ws;
