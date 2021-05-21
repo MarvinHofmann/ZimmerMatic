@@ -1,75 +1,3 @@
-<!--<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Home</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
-    <script src='main.js'></script>
-    <link rel="shortcut icon" href="home.ico" type="image/x-icon">
-</head>
-<body>
-    <h1>Dashboard</h1>
-    <div id="sidebar">
-        <button>Home</button>
-        <button>Dashboard</button>
-        <button ><a href="rolladenSteuerung.html">Rolladen</a></button>
-    </div>
-    <div class="all">
-        
-        <h2>Temperatur und Relative Lufteuchtigkeit</h2>
-        <div class="container">
-        
-            <div class="Sensordivcontainer">
-                <label class="bezeichner">Lufteuchtigkeit:</label>               
-                <label id = "feuchtCont" class="werte"></label></label>
-                <label class="bezeichner">Temperatur:</label>        
-                <label id = "tempCont" class="werte"></label>
-                <p class="uhr" id="uhr1"></p>
-            </div>
-            <div class="Sensordivcontainer">
-                <label class="bezeichner">Lufteuchtigkeit:</label>
-                <label id = "feuchtCont2" class="werte"></label>
-                <label class="bezeichner">Temperatur:</label>
-                <label id = "tempCont2" class="werte"></label>
-                <p class="uhr" id="uhr2"></p>
-            </div >
-            <div class="Sensordivcontainer">
-            <label class="bezeichner">Lufteuchtigkeit:</label>
-                <label id = "feuchtCont3" class="werte"></label>
-                <label class="bezeichner" >Temperatur:</label>
-                <label id = "tempCont3" class="werte"></label> 
-                <p class="uhr" id="uhr3"></p>
-            </div>
-            
-        </div>
-        <h2>Pflanzenüberwachung</h2>    
-        <div class="container">
-            
-            <div class="Sensordivcontainer">
-                <label class="bezeichner">Feuchtigkeit:</label>               
-                <label id = "feuchtCont" class="werte"></label></label>
-                
-            </div>
-            <div class="Sensordivcontainer">
-                <label class="bezeichner">Feuchtigkeit:</label>               
-                <label id = "feuchtCont" class="werte"></label></label>
-                
-            </div >
-            <div class="Sensordivcontainer">
-                <label class="bezeichner">Feuchtigkeit:</label>               
-                <label id = "feuchtCont" class="werte"></label></label>
-            </div>
-            
-        </div>
-        
-    </div> 
-       
-</body>
-</html>
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,7 +71,7 @@
                         <span class="progress-bar border-primary"></span>
           </span>
           <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-            <div class="h2 font-weight-bold" id="tempCont">/<sup class="small">°C</sup></div>
+            <div class="h2 font-weight-bold" ><label id="tempCont">/</label><sup class="small">°C</sup></div>
           </div>
         </div>
         <!-- END -->
@@ -151,10 +79,10 @@
         <!-- Demo info -->
         <div class="row text-center mt-4">
           <div class="col-6 border-right">
-            <div class="h4 font-weight-bold mb-0" id="feuchtCont">/</div><span class="small text-gray">Luftfeuchtigkeit</span>
+            <div class="h4 font-weight-bold mb-0" ><label id="feuchtCont">/</label></div><span class="small text-gray">Luftfeuchtigkeit</span>
           </div>
           <div class="col-6">
-            <div class="h4 font-weight-bold mb-0" id="uhr1">/</div><span class="small text-gray">Uhrzeit</span>
+            <div class="h4 font-weight-bold mb-0" ><label id="uhr1">/</label></div><span class="small text-gray">Uhrzeit</span>
           </div>
         </div>
         <!-- END -->
@@ -174,7 +102,7 @@
                         <span class="progress-bar border-danger"></span>
           </span>
           <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-            <div class="h2 font-weight-bold" id="tempCont2">/<sup class="small">°C</sup></div>
+            <div class="h2 font-weight-bold" ><label id="tempCont2">/</label><sup class="small">°C</sup></div>
           </div>
         </div>
         <!-- END -->
@@ -182,10 +110,10 @@
         <!-- Demo info-->
         <div class="row text-center mt-4">
           <div class="col-6 border-right">
-            <div class="h4 font-weight-bold mb-0" id="feuchtCont2">/</div><span class="small text-gray">Luftfeuchtigkeit</span>
+            <div class="h4 font-weight-bold mb-0" ><label id="feuchtCont2">/</label></div><span class="small text-gray">Luftfeuchtigkeit</span>
           </div>
           <div class="col-6">
-            <div class="h4 font-weight-bold mb-0" id="uhr2">/</div><span class="small text-gray">Uhrzeit</span>
+            <div class="h4 font-weight-bold mb-0"><label id="uhr2">/</label></div><span class="small text-gray">Uhrzeit</span>
           </div>
         </div>
         <!-- END -->
@@ -205,7 +133,7 @@
                         <span class="progress-bar border-success"></span>
           </span>
           <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-            <div class="h2 font-weight-bold" id="tempCont3">/<sup class="small">°C</sup></div>
+            <div class="h2 font-weight-bold" ><label id="tempCont3">/</label><sup class="small">°C</sup></div>
           </div>
         </div>
         <!-- END -->
@@ -213,10 +141,10 @@
         <!-- Demo info -->
         <div class="row text-center mt-4">
           <div class="col-6 border-right">
-            <div class="h4 font-weight-bold mb-0" id="feuchtCont3">/</div><span class="small text-gray">Luftfeuchtigkeit</span>
+            <div class="h4 font-weight-bold mb-0"><label id="feuchtCont3">/</label></div><span class="small text-gray">Luftfeuchtigkeit</span>
           </div>
           <div class="col-6">
-            <div class="h4 font-weight-bold mb-0" id="uhr3">/</div><span class="small text-gray">Uhrzeit</span>
+            <div class="h4 font-weight-bold mb-0"><label id="uhr3">/</label></div><span class="small text-gray">Uhrzeit</span>
           </div>
         </div>
         <!-- END -->
