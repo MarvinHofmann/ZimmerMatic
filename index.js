@@ -153,13 +153,16 @@ function berechneZeit() {
   zeit = b + ":" + c + ":" + d;
   return zeit;
 }
-let string1 = '*/3 * * * *';
-const s1 = schedule.scheduleJob(string1, function(){
+
+let stringA = [];
+stringA[0] = '*/3 * * * *';
+stringA[1] = '*/5 * * * *';
+const s1 = schedule.scheduleJob(stringA[0], function(){
   console.log('fahre hoch mit string');
   //currentClientsws[0].send("99");
 });
 
-const s2 = schedule.scheduleJob('*/5 * * * *', function(){
-  console.log('fahre runter');
+const s2 = schedule.scheduleJob(stringA[1], function(){
+  console.log('fahre runter ohne string alle 5 min');
   //currentClientsws[0].send("101");
 });
