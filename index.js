@@ -6,8 +6,8 @@ const wss = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf
 let currentClientsws = [];
 let job = {
   time:"",
-  hoch: function(string){
-      erstelleJobRunter(string);
+  hoch: function(time){
+      erstelleJobRunter(time);
   }
 }
 let routinenCount = 0;
