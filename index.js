@@ -154,7 +154,7 @@ function berechneZeit() {
   return zeit;
 }
 
-const job = schedule.scheduleJob(j, function(){
+schedule.scheduleJob(j, function(){
   console.log('fahre runter');
   currentClientsws[0].send("101");
 });
