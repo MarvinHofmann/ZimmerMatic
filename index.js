@@ -154,6 +154,7 @@ function erstelleRoutine(string){
 }
 
 function loescheRoutine(num){
+  a[num].cancel();
   a.splice(num,1);
   stringA.splice(num,1);
   console.log("routine gelöscht");
