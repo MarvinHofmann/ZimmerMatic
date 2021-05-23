@@ -153,9 +153,9 @@ function berechneZeit() {
   zeit = b + ":" + c + ":" + d;
   return zeit;
 }
-
-const s1 = schedule.scheduleJob('*/3 * * * *', function(){
-  console.log('fahre hoch');
+let string1 = '*/3 * * * *';
+const s1 = schedule.scheduleJob(string1, function(){
+  console.log('fahre hoch mit string');
   //currentClientsws[0].send("99");
 });
 
