@@ -158,7 +158,7 @@ function loescheRoutine(num){
 app.post("/testerR", function (request, response) {
   console.log("Eingehende post request");
   stringA[aCoutn] = request.body.time;
-  erstelleRoutine(req.body.inhalt);
+  erstelleRoutine(request.body.inhalt);
   console.log(a)
   console.log(stringA);
   aCoutn++;
