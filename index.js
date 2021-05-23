@@ -144,7 +144,6 @@ function broadcast(feucht, temp, zeit, sender) {
   }
 }
 
-let rolStatus = 0;
 
 function berechneZeit() {
   let a = new Date();
@@ -167,13 +166,13 @@ function berechneZeit() {
 
 function erstelleJobRunter(string){
   console.log("Runter Job erstellt an " + string);
-  return schedule.scheduleJob(string, function(){
+  return (job = schedule.scheduleJob(string, function(){
     console.log(string);
     console.log('Fahre runter');
     if (currentClientsws[0] != null) {
       currentClientsws[0].send("101");  
     }
-  });
+  }));
 }
 
 function erstelleJobHoch(string){
