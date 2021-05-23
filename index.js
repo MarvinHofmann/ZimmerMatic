@@ -150,7 +150,7 @@ let a = [];
 aCoutn = 0;
 function erstelleRoutine(){
   a[aCoutn] = schedule.scheduleJob(stringA[aCoutn], function(){
-    console.log('scedule mit String ' + i);
+    console.log('scedule mit String ' + aCoutn);
     //currentClientsws[0].send("99");
   });
 }
