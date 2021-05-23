@@ -168,7 +168,7 @@ function berechneZeit() {
 
 function erstelleJobRunter(string){
   console.log("Runter Job erstellt an " + string);
-  return job = schedule.scheduleJob(string, function(){
+  return schedule.scheduleJob(string, function(){
     console.log(string);
     console.log('Fahre runter');
     if (currentClientsws[0] != null) {
