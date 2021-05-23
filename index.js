@@ -5,11 +5,8 @@ const WebSocket = require("ws");
 const wss = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
 const schedule = require('node-schedule');
 let currentClientsws = [];
-let job = {
-  time:"",
-  hoch: erstelleJobRunter(this.time) 
-}
-let routinenCount = 0;
+
+const j;
 // Init. EXpress Server
 const express = require("express");
 const app = express();
@@ -75,9 +72,13 @@ app.post("/senderDrei", function (req, res) {
 
 app.post("/routineRunter", function (req, res) {
   console.log("Eingehende POST request zur routine Runter");
-  job.time = req.body.time;
-  job.hoch;
-  console.log(job);
+  j =  schedule.scheduleJob(req.body.time, function(){
+    console.log(string);
+    console.log('Fahre runter');
+    if (currentClientsws[0] != null) {
+      currentClientsws[0].send("101");  
+    }
+  });
   res.sendStatus(200);
 });
 
@@ -164,25 +165,6 @@ function berechneZeit() {
   return zeit;
 }
 
-function erstelleJobRunter(string){
-  console.log("Runter Job erstellt an " + string);
-  let j = schedule.scheduleJob(string, function(){
-    console.log(string);
-    console.log('Fahre runter');
-    if (currentClientsws[0] != null) {
-      currentClientsws[0].send("101");  
-    }
-  });
-}
 
-function erstelleJobHoch(string){
-  console.log("Hoch Job erstellt an " + string);
+
   
-  let job = schedule.scheduleJob(string, function(){
-    console.log(string);
-    console.log('Fahre runter');
-    if (currentClientsws[0] != null) {
-      currentClientsws[0].send("99");  
-    }
-  });
-}
