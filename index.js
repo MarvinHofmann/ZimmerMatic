@@ -143,8 +143,8 @@ function berechneZeit() {
 /**************************************************************************************************** */
 
 let stringA = [];
-stringA[0] = '*/3 * * * *';
-stringA[1] = '*/5 * * * *';
+//stringA[0] = '*/3 * * * *';
+//stringA[1] = '*/5 * * * *';
 
 let a = [];
 aCoutn = 0;
@@ -163,8 +163,11 @@ function erstelleRoutine(){
 }*/
 
 app.post("/testerR", function (request, response) {
-  console.log("Eingehende get request");
+  console.log("Eingehende post request");
+  stringA[aCoutn] = request.body.time;
   erstelleRoutine();
   console.log(a)
+  console.log(stringA);
+  aCoutn++;
   response.sendStatus(200);
 });
