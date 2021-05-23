@@ -72,23 +72,12 @@ app.post("/senderDrei", function (req, res) {
 
 app.post("/routineRunter", function (req, res) {
   console.log("Eingehende POST request zur routine Runter");
-  j =  schedule.scheduleJob(req.body.time, function(){
-    console.log(string);
-    console.log('Fahre runter');
-    if (currentClientsws[0] != null) {
-      currentClientsws[0].send("101");  
-    }
-  });
+  j = req.body.time;
   res.sendStatus(200);
 });
 
 app.post("/routineHoch", function (req, res) {
   console.log("Eingehende POST request zur routine");
-  let jobH = erstelleJobHoch(req.body.time);
-  routinen[routinenCount] = jobH;
-  console.log(req.body.time);
-  console.log(routinen);
-  routinenCount++;
   res.sendStatus(200);
 });
 
@@ -165,6 +154,7 @@ function berechneZeit() {
   return zeit;
 }
 
-
-
-  
+const job = schedule.scheduleJob(j, function(){
+  console.log('fahre runter');
+  currentClientsws[0].send("101");
+});
