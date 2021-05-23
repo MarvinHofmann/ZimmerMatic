@@ -146,9 +146,9 @@ let stringA = [];
 let a = [];
 aCoutn = 0;
 
-function erstelleRoutine(){
+function erstelleRoutine(string){
   a[aCoutn] = schedule.scheduleJob(stringA[aCoutn], function(){
-    console.log('schedule mit String ' + aCoutn);
+    console.log(string);
   });
 }
 
@@ -158,10 +158,9 @@ function loescheRoutine(num){
 app.post("/testerR", function (request, response) {
   console.log("Eingehende post request");
   stringA[aCoutn] = request.body.time;
-  erstelleRoutine();
+  erstelleRoutine(req.body.inhalt);
   console.log(a)
   console.log(stringA);
-  console.log(aCoutn);
   aCoutn++;
   response.sendStatus(200);
 });
