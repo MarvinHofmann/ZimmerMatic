@@ -143,17 +143,30 @@ function berechneZeit() {
 /**************************************************************************************************** */
 
 let stringA = [];
-//stringA[0] = '*/3 * * * *';
-//stringA[1] = '*/5 * * * *';
-
 let a = [];
 aCoutn = 0;
+
 function erstelleRoutine(){
   a[aCoutn] = schedule.scheduleJob(stringA[aCoutn], function(){
-    console.log('scedule mit String ' + aCoutn);
-    //currentClientsws[0].send("99");
+    console.log('schedule mit String ' + aCoutn);
   });
 }
+
+function loescheRoutine(num){
+  console.log("routine gelöscht");
+}
+app.post("/testerR", function (request, response) {
+  console.log("Eingehende post request");
+  stringA[aCoutn] = request.body.time;
+  erstelleRoutine();
+  console.log(a)
+  console.log(stringA);
+  console.log(aCoutn);
+  aCoutn++;
+  response.sendStatus(200);
+});
+
+
 /**for (let i = 0; i < 2; i++) {
    a[i] = schedule.scheduleJob(stringA[i], function(){
     console.log('scedule mit String ' + i);
@@ -161,13 +174,3 @@ function erstelleRoutine(){
   });
   console.log(a);
 }*/
-
-app.post("/testerR", function (request, response) {
-  console.log("Eingehende post request");
-  stringA[aCoutn] = request.body.time;
-  erstelleRoutine();
-  console.log(a)
-  console.log(stringA);
-  aCoutn++;
-  response.sendStatus(200);
-});
