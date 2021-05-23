@@ -160,6 +160,10 @@ function loescheRoutine(num){
     return el != null && el != '';
   });
   a = arrFiltered;
+  const arrFiltered1 = a.filter(el => {
+    return el != null && el != '';
+  });
+  stringA = arrFiltered1;
   console.log("routine gelöscht");
 }
 app.post("/testerR", function (request, response) {
