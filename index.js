@@ -28,12 +28,11 @@ let d1 = "::ffff:192.168.0.62";
 app.get("/", function (request, response) {
   console.log("Eingehende get request");
   response.sendStatus(200);
-  akt = erstelleJob('*/5 * * * *');
 });
 
-app.get("/phone", function (request, response) {
+app.get("/test", function (request, response) {
   console.log("Eingehende get request");
-  currentClientsws[0].send("99");
+  akt = erstelleJob('*/5 * * * *');
   response.sendStatus(200);
 });
 
