@@ -4,6 +4,8 @@
 const WebSocket = require("ws");
 const wss = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
 let currentClientsws = [];
+let routinen = [];
+let routinenCount = 0;
 // Init. EXpress Server
 const express = require("express");
 const app = express();
@@ -12,7 +14,7 @@ const port = 3443;
 let bodyParser = require("body-parser");
 
 const schedule = require('node-schedule');
-let akt;
+
 app.use(express.static("public")); //Seite Läauft ganze zeit ohne init request
 app.use(bodyParser.json());
 app.listen(port, () => {
@@ -69,6 +71,14 @@ app.post("/senderDrei", function (req, res) {
   res.sendStatus(200);
 });
 
+app.post("/routine", function (req, res) {
+  console.log("Eingehende POST request zur routine");
+  routinen[routinenCount] = req.body.time;
+  console.log(req.body.time);
+  erstelleJob(routinen[routinenCount]);
+  res.sendStatus(200);
+});
+
 //Sagt euch wenn ein Client verbunden ist oder wenn er disconnected
 wss.on("connection", function connection(ws, req) {
   console.log("Client connected!");
@@ -86,8 +96,6 @@ wss.on("connection", function connection(ws, req) {
     broadcast(feucht3, temp3, zeit3, "S3");
   }
 
-
-
   ws.on("message", function incoming(message) {
     console.log("received: %s", message);
     if(currentClientsws[0] != null){
@@ -103,10 +111,6 @@ wss.on("connection", function connection(ws, req) {
         case 'runter':
           rolStatus = 2;
           currentClientsws[0].send("101");
-          break;
-        default:
-          currentClientsws[0].send(parseInt(message));
-          aktRoutine = String(message + " : ")
           break;
       }
     }  
@@ -149,12 +153,22 @@ function berechneZeit() {
   return zeit;
 }
 
-function erstelleJob(string){
+function erstelleJobRunter(string){
   return job = schedule.scheduleJob(string, function(){
     console.log(string);
     console.log('Fahre runter');
     if (currentClientsws[0] != null) {
       currentClientsws[0].send("101");  
+    }
+  });
+}
+
+function erstelleJobHoch(string){
+  return job = schedule.scheduleJob(string, function(){
+    console.log(string);
+    console.log('Fahre runter');
+    if (currentClientsws[0] != null) {
+      currentClientsws[0].send("99");  
     }
   });
 }
