@@ -154,7 +154,8 @@ function erstelleRoutine(string){
 }
 
 function loescheRoutine(num){
-  a[num] = null;
+  a.splice(num,1);
+  stringA.splice(num,1);
   console.log("routine gelöscht");
 }
 app.post("/testerR", function (request, response) {
