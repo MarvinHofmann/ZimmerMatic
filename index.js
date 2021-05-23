@@ -159,6 +159,7 @@ function loescheRoutine(num){
   const arrFiltered = a.filter(el => {
     return el != null && el != '';
   });
+  a = arrFiltered;
   console.log("routine gelöscht");
 }
 app.post("/testerR", function (request, response) {
