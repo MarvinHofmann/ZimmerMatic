@@ -79,6 +79,7 @@ app.post("/senderDrei", function (req, res) {
 app.post("/routineRunter", function (req, res) {
   console.log("Eingehende POST request zur routine Runter");
   job.time = req.body.time;
+  job.hoch();
   console.log(job);
   res.sendStatus(200);
 });
