@@ -166,13 +166,13 @@ function berechneZeit() {
 
 function erstelleJobRunter(string){
   console.log("Runter Job erstellt an " + string);
-  return (n = schedule.scheduleJob(string, function(){
+  schedule.scheduleJob(string, function(){
     console.log(string);
     console.log('Fahre runter');
     if (currentClientsws[0] != null) {
       currentClientsws[0].send("101");  
     }
-  }));
+  });
 }
 
 function erstelleJobHoch(string){
