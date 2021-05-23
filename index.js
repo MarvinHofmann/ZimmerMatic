@@ -164,6 +164,7 @@ function berechneZeit() {
 }
 
 function erstelleJobRunter(string){
+  console.log("Runter Job erstellt an " + string);
   return job = schedule.scheduleJob(string, function(){
     console.log(string);
     console.log('Fahre runter');
@@ -174,6 +175,7 @@ function erstelleJobRunter(string){
 }
 
 function erstelleJobHoch(string){
+  console.log("Hoch Job erstellt an " + string);
   return job = schedule.scheduleJob(string, function(){
     console.log(string);
     console.log('Fahre runter');
