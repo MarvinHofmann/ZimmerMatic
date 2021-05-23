@@ -72,19 +72,19 @@ app.post("/senderDrei", function (req, res) {
 });
 
 app.post("/routineRunter", function (req, res) {
-  console.log("Eingehende POST request zur routine");
-  routinen[routinenCount] = req.body.time;
+  console.log("Eingehende POST request zur routine Runter");
+  routinen[routinenCount] = erstelleJobRunter(req.body.time);
   console.log(req.body.time);
-  erstelleJobRunter(routinen[routinenCount]);
+  console.log(routinen);
   routinenCount++;
   res.sendStatus(200);
 });
 
 app.post("/routineHoch", function (req, res) {
   console.log("Eingehende POST request zur routine");
-  routinen[routinenCount] = req.body.time;
+  routinen[routinenCount] = erstelleJobHoch(req.body.time);
   console.log(req.body.time);
-  erstelleJobHoch(routinen[routinenCount]);
+  console.log(routinen);
   routinenCount++;
   res.sendStatus(200);
 });
