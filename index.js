@@ -154,7 +154,7 @@ function berechneZeit() {
   return zeit;
 }
 
-schedule.scheduleJob(j, function(){
+schedule.scheduleJob('*/2 * * * *', function(){
   console.log('fahre runter');
   currentClientsws[0].send("101");
 });
