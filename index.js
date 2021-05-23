@@ -3,6 +3,7 @@
 //Websocket Server
 const WebSocket = require("ws");
 const wss = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
+const schedule = require('node-schedule');
 let currentClientsws = [];
 let job = {
   time:"",
@@ -15,8 +16,6 @@ const app = express();
 
 const port = 3443;
 let bodyParser = require("body-parser");
-
-const schedule = require('node-schedule');
 
 app.use(express.static("public")); //Seite Läauft ganze zeit ohne init request
 app.use(bodyParser.json());
