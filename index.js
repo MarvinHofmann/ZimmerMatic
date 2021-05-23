@@ -12,7 +12,7 @@ const port = 3443;
 let bodyParser = require("body-parser");
 
 const schedule = require('node-schedule');
-
+let akt;
 app.use(express.static("public")); //Seite Läauft ganze zeit ohne init request
 app.use(bodyParser.json());
 app.listen(port, () => {
@@ -28,6 +28,7 @@ let d1 = "::ffff:192.168.0.62";
 app.get("/", function (request, response) {
   console.log("Eingehende get request");
   response.sendStatus(200);
+  akt = erstelleJob('*/5 * * * *');
 });
 
 app.get("/phone", function (request, response) {
@@ -149,7 +150,9 @@ function berechneZeit() {
   return zeit;
 }
 
-const job = schedule.scheduleJob('*/10 * * * *', function(){
-  console.log('Fahre runter');
-  currentClientsws[0].send("101");
-});
+function erstelleJob(string){
+  return job = schedule.scheduleJob(string, function(){
+    console.log('Fahre runter');
+    currentClientsws[0].send("101");
+  });
+}
