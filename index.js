@@ -148,11 +148,13 @@ aCoutn = 0;
 
 function erstelleRoutine(string){
   a[aCoutn] = schedule.scheduleJob(stringA[aCoutn], function(){
+    console.log("Routine mit Inhalt:");
     console.log(string);
   });
 }
 
 function loescheRoutine(num){
+  a[num] = null;
   console.log("routine gelöscht");
 }
 app.post("/testerR", function (request, response) {
@@ -165,11 +167,10 @@ app.post("/testerR", function (request, response) {
   response.sendStatus(200);
 });
 
-
-/**for (let i = 0; i < 2; i++) {
-   a[i] = schedule.scheduleJob(stringA[i], function(){
-    console.log('scedule mit String ' + i);
-    //currentClientsws[0].send("99");
-  });
-  console.log(a);
-}*/
+app.post("/deleteR", function (request, response) {
+  console.log("Eingehende delete request");
+  loescheRoutine(request.body.num);
+  console.log(a)
+  console.log(stringA);
+  response.sendStatus(200);
+});
