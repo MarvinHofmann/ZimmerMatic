@@ -151,7 +151,10 @@ function berechneZeit() {
 
 function erstelleJob(string){
   return job = schedule.scheduleJob(string, function(){
+    console.log(string);
     console.log('Fahre runter');
-    currentClientsws[0].send("101");
+    if (currentClientsws[0] != null) {
+      currentClientsws[0].send("101");  
+    }
   });
 }
