@@ -6,7 +6,6 @@ const wss = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf
 const schedule = require('node-schedule');
 let currentClientsws = [];
 
-let j;
 // Init. EXpress Server
 const express = require("express");
 const app = express();
@@ -70,17 +69,6 @@ app.post("/senderDrei", function (req, res) {
   res.sendStatus(200);
 });
 
-app.post("/routineRunter", function (req, res) {
-  console.log("Eingehende POST request zur routine Runter");
-  j = req.body.time;
-  res.sendStatus(200);
-});
-
-app.post("/routineHoch", function (req, res) {
-  console.log("Eingehende POST request zur routine");
-  res.sendStatus(200);
-});
-
 //Sagt euch wenn ein Client verbunden ist oder wenn er disconnected
 wss.on("connection", function connection(ws, req) {
   console.log("Client connected!");
@@ -125,7 +113,6 @@ ws.on("close", (data) => {
 });
 
 // diese funktion schickt das übergebene Objekt , int , string oder json an alle verbundenen Clients
-
 function broadcast(feucht, temp, zeit, sender) {
   for (let i = 1; i < currentClientsws.length; i++) {
     currentClientsws[i].send(JSON.stringify({ type: "feuchtigkeit" + sender, value: feucht }));
@@ -133,7 +120,6 @@ function broadcast(feucht, temp, zeit, sender) {
     currentClientsws[i].send(JSON.stringify({ type: "zeit" + sender, value: zeit }));
   }
 }
-
 
 function berechneZeit() {
   let a = new Date();
@@ -154,17 +140,31 @@ function berechneZeit() {
   return zeit;
 }
 
+/**************************************************************************************************** */
+
 let stringA = [];
 stringA[0] = '*/3 * * * *';
 stringA[1] = '*/5 * * * *';
-stringA[2] = '*/5 * * * *';
+
 let a = [];
-for (let i = 0; i < 3; i++) {
+aCoutn = 0;
+function erstelleRoutine(){
+  a[aCoutn] = schedule.scheduleJob(stringA[aCoutn], function(){
+    console.log('scedule mit String ' + i);
+    //currentClientsws[0].send("99");
+  });
+}
+/**for (let i = 0; i < 2; i++) {
    a[i] = schedule.scheduleJob(stringA[i], function(){
     console.log('scedule mit String ' + i);
     //currentClientsws[0].send("99");
   });
   console.log(a);
-}
+}*/
 
-
+app.post("/testerR", function (request, response) {
+  console.log("Eingehende get request");
+  erstelleRoutine();
+  console.log(a)
+  response.sendStatus(200);
+});
