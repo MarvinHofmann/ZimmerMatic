@@ -154,12 +154,12 @@ function berechneZeit() {
   return zeit;
 }
 
-schedule.scheduleJob('*/3 * * * *', function(){
-  console.log('fahre runter');
-  currentClientsws[0].send("99");
+const s1 = schedule.scheduleJob('*/3 * * * *', function(){
+  console.log('fahre hoch');
+  //currentClientsws[0].send("99");
 });
 
-schedule.scheduleJob('*/5 * * * *', function(){
-  console.log('fahre hoch');
-  currentClientsws[0].send("101");
+const s2 = schedule.scheduleJob('*/5 * * * *', function(){
+  console.log('fahre runter');
+  //currentClientsws[0].send("101");
 });
