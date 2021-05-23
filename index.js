@@ -164,6 +164,7 @@ for (let i = 0; i < 3; i++) {
     console.log('scedule mit String ' + i);
     //currentClientsws[0].send("99");
   });
+  console.log(a);
 }
 
 
