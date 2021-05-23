@@ -4,7 +4,7 @@
 const WebSocket = require("ws");
 const wss = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
 let currentClientsws = [];
-let routinen = [];
+let jobH, jobR;
 let routinenCount = 0;
 // Init. EXpress Server
 const express = require("express");
@@ -73,11 +73,12 @@ app.post("/senderDrei", function (req, res) {
 
 app.post("/routineRunter", function (req, res) {
   console.log("Eingehende POST request zur routine Runter");
-  let job = erstelleJobRunter(req.body.time);
-  routinen[routinenCount] = job;
+  jobR = erstelleJobRunter(req.body.time);
+  /**routinen[routinenCount] = job;
   console.log(req.body.time);
   console.log(routinen);
-  routinenCount++;
+  routinenCount++;*/
+  console.log(jobR);
   res.sendStatus(200);
 });
 
