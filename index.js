@@ -6,7 +6,7 @@ const wss = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf
 let currentClientsws = [];
 let job = {
   time:"",
-  hoch: erstelleJobRunter(time) 
+  hoch: erstelleJobRunter(this.time) 
 }
 let routinenCount = 0;
 // Init. EXpress Server
