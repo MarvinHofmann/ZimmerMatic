@@ -148,7 +148,6 @@ aCoutn = 0;
 
 function erstelleRoutine(string){
   a[aCoutn] = schedule.scheduleJob(stringA[aCoutn], function(){
-    console.log("Routine mit Inhalt:");
     console.log(string);
   });
 }
@@ -157,6 +156,9 @@ function loescheRoutine(num){
   a[num].cancel();
   a.splice(num,1);
   stringA.splice(num,1);
+  const arrFiltered = a.filter(el => {
+    return el != null && el != '';
+  });
   console.log("routine gelöscht");
 }
 app.post("/testerR", function (request, response) {
@@ -176,3 +178,4 @@ app.post("/deleteR", function (request, response) {
   console.log(stringA);
   response.sendStatus(200);
 });
+
