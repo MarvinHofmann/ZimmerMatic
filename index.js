@@ -6,7 +6,7 @@ const wss = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf
 const schedule = require('node-schedule');
 let currentClientsws = [];
 
-const j;
+let j;
 // Init. EXpress Server
 const express = require("express");
 const app = express();
