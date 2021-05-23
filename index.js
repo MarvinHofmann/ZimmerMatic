@@ -11,6 +11,8 @@ const app = express();
 const port = 3443;
 let bodyParser = require("body-parser");
 
+const schedule = require('node-schedule');
+
 app.use(express.static("public")); //Seite Läauft ganze zeit ohne init request
 app.use(bodyParser.json());
 app.listen(port, () => {
@@ -20,11 +22,20 @@ app.listen(port, () => {
 
 //Globale Variablen
 let temp, feucht, temp2, feucht2, temp3, feucht3, zeit1, zeit2, zeit3, anzClients = 1;
+let d1 = "::ffff:192.168.0.62";
+
 //1.HTTP Get request
 app.get("/", function (request, response) {
   console.log("Eingehende get request");
   response.sendStatus(200);
 });
+
+app.get("/phone", function (request, response) {
+  console.log("Eingehende get request");
+  currentClientsws[0].send("99");
+  response.sendStatus(200);
+});
+
 //2.Einrichten POST REQUEST d1 minis
 app.post("/", function (req, res) {
   //console.log("Eingehende POST request");
@@ -57,7 +68,7 @@ app.post("/senderDrei", function (req, res) {
   broadcast(feucht3, temp3, zeit3, "S3");
   res.sendStatus(200);
 });
-let d1 = "::ffff:192.168.0.62";
+
 //Sagt euch wenn ein Client verbunden ist oder wenn er disconnected
 wss.on("connection", function connection(ws, req) {
   console.log("Client connected!");
@@ -137,3 +148,8 @@ function berechneZeit() {
   zeit = b + ":" + c + ":" + d;
   return zeit;
 }
+
+const job = schedule.scheduleJob('*/10 * * * *', function(){
+  console.log('Fahre runter');
+  currentClientsws[0].send("101");
+});
