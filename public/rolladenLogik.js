@@ -28,7 +28,7 @@ function btnfunction(number) {
     }
   }
 
-function sendRoutine(){
+function send(){
   console.log("sende");
   fetch('192.168.0.58:3443', {
     method: 'POST',
