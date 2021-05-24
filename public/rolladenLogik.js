@@ -37,6 +37,6 @@ function send(){
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({time: document.getElementById("inputTime").value()})
+    body: JSON.stringify({time: document.getElementById("inputTime").value})
   });
 }
