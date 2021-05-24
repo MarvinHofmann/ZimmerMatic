@@ -146,9 +146,9 @@ let stringA = [];
 let a = [];
 aCoutn = 0;
 
-function erstelleRoutine(string){
+function erstelleRoutine(){
   a[aCoutn] = schedule.scheduleJob(stringA[aCoutn], function(){
-    console.log(string);
+    console.log("Führe Routine aus");
   });
 }
 
