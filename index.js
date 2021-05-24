@@ -170,7 +170,7 @@ function loescheRoutine(num){
 app.post("/create", function (request, response) {
   console.log("Eingehende post request");
   stringA[aCoutn] = request.body.time;
-  erstelleRoutine(request.body.wohin);
+  erstelleRoutine(request.body.richtung);
   console.log(request.body.richtung);
   console.log(a)
   console.log(stringA);

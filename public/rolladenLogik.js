@@ -37,6 +37,6 @@ function send(){
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({time: document.getElementById("inputTime").value, wohin: document.getElementById("inputRichtung").value})
+    body: JSON.stringify({time: document.getElementById("inputTime").value, richtung: document.getElementById("inputRichtung").value})
   });
 }
