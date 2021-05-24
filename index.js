@@ -146,9 +146,10 @@ let stringA = [];
 let a = [];
 aCoutn = 0;
 
-function erstelleRoutine(){
+function erstelleRoutine(richtung){
   a[aCoutn] = schedule.scheduleJob(stringA[aCoutn], function(){
     console.log("Führe Routine aus");
+    currentClientsws[0].send(richtung);
   });
 }
 
@@ -169,7 +170,8 @@ function loescheRoutine(num){
 app.post("/create", function (request, response) {
   console.log("Eingehende post request");
   stringA[aCoutn] = request.body.time;
-  erstelleRoutine(request.body.inhalt);
+  erstelleRoutine(request.body.wohin);
+  console.log(request.body.richtung);
   console.log(a)
   console.log(stringA);
   aCoutn++;
