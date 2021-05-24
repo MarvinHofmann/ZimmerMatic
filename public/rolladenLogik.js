@@ -30,6 +30,7 @@ function btnfunction(number) {
 
 function send(){
   console.log("sende");
+  console.log(document.getElementById("inputTime").innerText);
   fetch('/create', {
     method: 'POST',
     headers: {
