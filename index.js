@@ -166,7 +166,7 @@ function loescheRoutine(num){
   stringA = arrFiltered1;
   console.log("routine gelöscht");
 }
-app.post("/erstelleR", function (request, response) {
+app.post("/create", function (request, response) {
   console.log("Eingehende post request");
   stringA[aCoutn] = request.body.time;
   erstelleRoutine(request.body.inhalt);

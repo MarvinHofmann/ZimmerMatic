@@ -30,7 +30,7 @@ function btnfunction(number) {
 
 function send(){
   console.log("sende");
-  fetch('192.168.0.58:3443/erstelleR', {
+  fetch('192.168.0.58:3443/create', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
