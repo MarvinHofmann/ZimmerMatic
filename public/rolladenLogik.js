@@ -29,19 +29,12 @@ function btnfunction(number) {
   }
 
 function sendRoutine(){
-    let h = document.getElementById('inputTime').value;
-    let m = document.getElementById("inputTimeMin").value;
-    let mh = 0;
-    console.log('Stunde ' + h);
-    console.log('Minute ' + m);
-
-    if (document.getElementById("flexSwitchCheckChecked").checked) {
-        mh = 0;
-    }
-    console.log(mh);
-    aktRoutine = String(h + ":" + m)
-    document.getElementById('aktuelleRoutine').innerText = aktRoutine;
-    ws.send(h);
-    ws.send(m);
-    ws.send(mh);
+  fetch('192.168.0.58:3443', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({time: document.getElementById("inputTime").innerText})
+  });
 }
