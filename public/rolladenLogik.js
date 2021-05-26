@@ -39,4 +39,20 @@ function send(){
     },
     body: JSON.stringify({time: document.getElementById("inputTime").value, richtung: document.getElementById("inputRichtung").value})
   });
+  document.getElementById("inputTime").innerText() = "Erfolgreich";
+  document.getElementById("inputTime").innerText() = "Erstellt";
+}
+
+function sendDelete(){
+  console.log("sende Löschen");
+  console.log(document.getElementById("inputIndexDelete").value);
+  fetch('/deleteR', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({num: document.getElementById("inputIndexDelete").value})
+  });
+  document.getElementById("inputIndexDelete").innerText() = "Erfolgreich gelöscht";
 }
