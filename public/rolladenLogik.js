@@ -61,6 +61,7 @@ function btnfunction(number) {
 function send() {
   console.log("sende");
   console.log(document.getElementById("inputTime").value);
+  
   fetch("/create", {
     method: "POST",
     headers: {
@@ -69,11 +70,19 @@ function send() {
     },
     body: JSON.stringify({
       time: document.getElementById("inputTime").value,
-      richtung: document.getElementById("inputRichtung").value,
+      richtung: getRichtung(),
     }),
   });
   document.getElementById("inputTime").innerText = "Erfolgreich";
   document.getElementById("inputTime").innerText = "Erstellt";
+}
+
+function getRichtung(){
+  if (document.getElementById("Hoch").checked) {
+    return "99"
+  }else if (document.getElementById("Runter").checked) {
+    return "101"
+  }
 }
 
 function sendDelete() {

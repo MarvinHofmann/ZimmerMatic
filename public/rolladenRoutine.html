@@ -57,7 +57,18 @@
       <p class="text-uppercase mt-3 text-light">Routine Erstellen</p>
 
       <input class="form-control mb-2" id="inputTime" placeholder="crontab Format">
-      <input class="form-control mb-2" id="inputRichtung" placeholder="hoch/runter">
+      <div class="form-check">
+        <input class="form-check-input " type="radio" name="flexRadioDefault" id="Runter">
+        <label class="form-check-label text-light" for="flexRadioDefault1">
+          Runter
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="Hoch" checked>
+        <label class="form-check-label text-light" for="flexRadioDefault2">
+          Hoch
+        </label>
+      </div>
 
       <button onclick="send()" class="btn btn-secondary">Bestätigen</button>
 
