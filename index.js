@@ -171,7 +171,7 @@ function berechneZeit() {
 }
 
 /*****************************************RolladenRoutine********************************************* */
-
+const prettyCron = require('prettycron');
 let timeArray = [];
 let jobArray = [];
 let richArray = [];
@@ -199,8 +199,8 @@ function loescheRoutine(index) {
 
 app.post("/create", function (request, response) {
   console.log("Eingehende post request");
-  let time = cronParser.parseExpression(request.body.time)
-  realTime[aCoutn] = convertCronToString(time);
+  let time = request.body.time;
+  realTime[aCoutn] = prettyCron.toString(time);
   timeArray[aCoutn] = request.body.time;
   richArray[aCoutn] = getRichtung(request.body.richtung);
   erstelleRoutine(request.body.richtung);
@@ -254,87 +254,4 @@ function getRichtung(num) {
     default:
       break;
   }
-}
-
-function convertCronToString(cronExpression) {
-  let cron = cronExpression.split(" ");
-  let minutes = cron[0];
-  let hours = cron[1];
-  let dayOfMonth = cron[2];
-  let month = cron[3];
-  let dayOfWeek = cron[4];
-
-  let cronToString = "";
-
-  // Formatting time if composed of zeros
-  if (minutes === "0") minutes = "00";
-  if (hours === "0") hours = "00";
-  // If it's not past noon add a zero before the hour to make it look like "04h00" instead of "4h00"
-  else if (hours.length === 1 && hours !== "*") {
-    hours = "0" + hours;
-  }
-  // Our activities do not allow launching pipelines every minute. It won't be processed.
-  if (minutes === "*") {
-    cronToString =
-      "Unreadable cron format. Cron will be displayed in its raw form: " +
-      cronExpression;
-  }
-
-  cronToString = cronToString + hours + "h" + minutes + " ";
-
-  if (dayOfWeek === "0,6") dayOfWeek = "Am Wochendende";
-  else if (dayOfWeek === "1-5") dayOfWeek = "Wochentags";
-  else if (dayOfWeek.length === 1) {
-    if (dayOfWeek === "*" && dayOfMonth === "*") dayOfWeek = "jeden tag ";
-    else if (dayOfWeek === "*" && dayOfMonth !== "*") {
-      cronToString = cronToString + "on the " + dayOfMonth;
-      if (
-        dayOfMonth === "1" ||
-        dayOfMonth === "21" ||
-        dayOfMonth === "31"
-      ) {
-        cronToString = cronToString + "st ";
-      } else if (dayOfMonth === "2" || dayOfMonth === "22") {
-        cronToString = cronToString + "nd ";
-      } else if (dayOfMonth === "3" || dayOfMonth === "23") {
-        cronToString = cronToString + "rd ";
-      } else {
-        cronToString = cronToString + "th ";
-      }
-      cronToString = cronToString + "jeden Tag";
-      return cronToString;
-    } else if (dayOfWeek !== "*" && dayOfMonth === "*") {
-      switch (parseInt(dayOfWeek)) {
-        case 0:
-          dayOfWeek = "Samstags";
-          break;
-        case 1:
-          dayOfWeek = "Montags";
-          break;
-        case 2:
-          dayOfWeek = "Dienstags";
-          break;
-        case 3:
-          dayOfWeek = "Mittwochs";
-          break;
-        case 4:
-          dayOfWeek = "Donnerstags";
-          break;
-        case 5:
-          dayOfWeek = "Freitag";
-          break;
-        case 6:
-          dayOfWeek = "Samstag";
-          break;
-        default:
-          cronToString =
-            "Unreadable cron format. Cron will be displayed in its raw form: " +
-            cronExpression;
-          return cronToString;
-      }
-    }
-    cronToString = cronToString + dayOfWeek + " ";
-  }
-
-  return cronToString;
 }
