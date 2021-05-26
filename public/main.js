@@ -55,11 +55,10 @@ ws.addEventListener("message", function (event) {
       break;
 
     case "average":
-      $(element)
-        .tooltip("hide")
-        .attr("data-original-title", String(data.value))
-        .tooltip("fixTitle")
-        .tooltip("show");
+      var title = String(data.value);
+      elt.attr("data-original-title", title);
+      elt.tooltip("update");
+      elt.tooltip("show");
       break;
 
     default:
