@@ -9,34 +9,34 @@ ws.addEventListener("message", function (event) {
   console.log(data);
   switch (data.type) {
     case "routineT0":
-      document.getElementById("Routine1").innerTex = data.value;
+      document.getElementById("Routine1").innerTex = String(data.value);
       break;
     case "routineT1":
-      document.getElementById("Routine2").innerTex = data.value;
+      document.getElementById("Routine2").innerTex = String(data.value);
       break;
     case "routineT2":
-      document.getElementById("Routine3").innerTex = data.value;
+      document.getElementById("Routine3").innerTex = String(data.value);
       break;
     case "routineT3":
-      document.getElementById("Routine4").innerTex = data.value;
+      document.getElementById("Routine4").innerTex = String(data.value);
       break;
     case "routineT4":
-      document.getElementById("Routine5").innerTex = data.value;
+      document.getElementById("Routine5").innerTex = String(data.value);
       break;
     case "routineR0":
-      document.getElementById("RoutineR1").innerTex = data.value;
+      document.getElementById("RoutineR1").innerTex = String(data.value);
       break;
     case "routineR1":
-      document.getElementById("RoutineR2").innerTex = data.value;
+      document.getElementById("RoutineR2").innerTex = String(data.value);
       break;
     case "routineR2":
-      document.getElementById("RoutineR3").innerTex = data.value;
+      document.getElementById("RoutineR3").innerTex = String(data.value);
       break;
     case "routineR3":
-      document.getElementById("RoutineR4").innerTex = data.value;
+      document.getElementById("RoutineR4").innerTex = String(data.value);
       break;
     case "routineR4":
-      document.getElementById("RoutineR5").innerTex = data.value;
+      document.getElementById("RoutineR5").innerTex = String(data.value);
       break;
   }
 });
