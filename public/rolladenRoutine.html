@@ -11,6 +11,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
+  <link href="jquery.nice-number.css" rel="stylesheet">
+  <script src="bootstrap-input-spinner.js"></script>
   <script src="rolladenLogik.js"></script>
   <link rel="stylesheet" href="style.css" />
   <title>Steuerung</title>
@@ -55,20 +57,24 @@
     </div>
   </nav>
   <form id="formRoutinen">
-  <div class="form-group dark mt-2 w-25">
-    <p class="text-uppercase mt-3 text-light">Routine Erstellen</p>
-    
-    <input class="form-control mb-2" id="inputTime" placeholder="crontab Format">
-    <input class="form-control mb-2" id="inputRichtung" placeholder="hoch/runter">
+    <div class="form-group dark mt-2 w-25">
+      <p class="text-uppercase mt-3 text-light">Routine Erstellen</p>
 
-    <button onclick="send()" class="btn btn-secondary">Bestätigen</button>
+      <input class="form-control mb-2" id="inputTime" placeholder="crontab Format">
+      <input class="form-control mb-2" id="inputRichtung" placeholder="hoch/runter">
 
-    <p class="text-uppercase mt-3 text-light">Routine Löschen</p>
-    <input class="form-control mb-2" id="inputIndexDelete" placeholder="Nummer der Routine">
+      <button onclick="send()" class="btn btn-secondary">Bestätigen</button>
 
-    <button onclick="sendDelete()" class="btn btn-secondary">Bestätigen</button>
-  </div> 
+      <p class="text-uppercase mt-3 text-light">Routine Löschen</p>
+      <input class="form-control mb-2" id="inputIndexDelete" placeholder="Nummer der Routine">
+
+      <button onclick="sendDelete()" class="btn btn-secondary">Bestätigen</button>
+    </div>
   </form>
-</body>
 
+
+  <input type="number" value="5" min="0" max="100" step="1" data-decimals="2" data-digit-grouping="false" data-suffix="" data-prefix=""inputmode="decimal">
+   
+
+</body>
 </html>
