@@ -22,7 +22,7 @@ app.listen(port, () => {
 });
 
 //Globale Variablen
-let temp, feucht, temp2, feucht2, temp3, feucht3, zeit1, zeit2, zeit3, anzClients = 1;
+let temp, feucht, temp2, feucht2, temp3, feucht3, zeit1, zeit2, zeit3, anzClients = 1, plFeucht1, plFeucht2, plFeucht3;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62"; 
 
@@ -55,7 +55,6 @@ app.post("/senderZwei", function (req, res) {
 });
 
 app.post("/senderDrei", function (req, res) {
-
   temp3 = req.body.temperatur;
   feucht3 = req.body.feuchtigkeit;
   zeit3 = berechneZeit();
@@ -63,7 +62,20 @@ app.post("/senderDrei", function (req, res) {
   broadcast(feucht3, temp3, zeit3, "S3");
   res.sendStatus(200);
 });
-/***************************************************************************************************/
+
+/********************************Pflanzenüberwachung*********************************************/
+app.post("/plfanze1", function (req, res) {
+  res.sendStatus(200);
+});
+
+app.post("/plfanze2", function (req, res) {
+  res.sendStatus(200);
+});
+
+app.post("/plfanze3", function (req, res) {
+  res.sendStatus(200);
+});
+/***********************************************************************************************/
 
 //Sagt euch wenn ein Client verbunden ist oder wenn er disconnected
 wss.on("connection", function connection(ws, req) {
@@ -137,38 +149,38 @@ function berechneZeit() {
 
 /*****************************************RolladenRoutine********************************************* */
 
-let stringA = [];
-let a = [];
+let timeArray = [];
+let jobArray = [];
 aCoutn = 0;
 
 function erstelleRoutine(richtung){
-  a[aCoutn] = schedule.scheduleJob(stringA[aCoutn], function(){
+  jobArray[aCoutn] = schedule.scheduleJob(timeArray[aCoutn], function(){
     console.log("Führe Routine aus");
     currentClientsws[0].send(richtung);
   });
 }
 
-function loescheRoutine(num){
-  a[num].cancel();
-  a.splice(num,1);
-  stringA.splice(num,1);
-  const arrFiltered = a.filter(el => {
+function loescheRoutine(index){
+  jobArray[index].cancel();
+  jobArray.splice(index,1);
+  timeArray.splice(index,1);
+  const arrFiltered = jobArray.filter(el => {
     return el != null && el != '';
   });
-  a = arrFiltered;
-  const arrFiltered1 = a.filter(el => {
+  jobArray = arrFiltered;
+  const arrFiltered1 = jobArray.filter(el => {
     return el != null && el != '';
   });
-  stringA = arrFiltered1;
+  timeArray = arrFiltered1;
   console.log("routine gelöscht");
 }
 app.post("/create", function (request, response) {
   console.log("Eingehende post request");
-  stringA[aCoutn] = request.body.time;
+  timeArray[aCoutn] = request.body.time;
   erstelleRoutine(request.body.richtung);
   console.log(request.body.richtung);
-  console.log(a)
-  console.log(stringA);
+  console.log(jobArray)
+  console.log(timeArray);
   aCoutn++;
   response.sendStatus(200);
 });
@@ -176,8 +188,8 @@ app.post("/create", function (request, response) {
 app.post("/deleteR", function (request, response) {
   console.log("Eingehende delete request");
   loescheRoutine(request.body.num);
-  console.log(a)
-  console.log(stringA);
+  console.log(jobArray)
+  console.log(timeArray);
   response.sendStatus(200);
 });
 
