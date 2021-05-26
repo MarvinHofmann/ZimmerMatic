@@ -200,7 +200,7 @@ function loescheRoutine(index) {
 app.post("/create", function (request, response) {
   console.log("Eingehende post request");
   let time = cronParser.parseExpression(request.body.time)
-  realTime[aCoutn] = time.next().toString();
+  realTime[aCoutn] = cronParser.parseExpression(request.body.time);
   timeArray[aCoutn] = request.body.time;
   richArray[aCoutn] = getRichtung(request.body.richtung);
   erstelleRoutine(request.body.richtung);
