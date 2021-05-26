@@ -227,12 +227,13 @@ function cleanArray(actual) {
 }
 
 function broadcastRoutinen() {
+  console.log("sendRoutinen")
   for (let i = 1; i < aCoutn; i++) {
     currentClientsws[i].send(
-      JSON.stringify({ type: "routineT" + i, value: timeArray[i] })
+      JSON.stringify({ type: "Routine" + i, value: timeArray[i] })
     );
     currentClientsws[i].send(
-      JSON.stringify({ type: "routineR" + i, value: richArray[i] })
+      JSON.stringify({ type: "RoutineR" + i, value: richArray[i] })
     );
   }
 }
