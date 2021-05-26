@@ -8,34 +8,34 @@ ws.addEventListener("message", function (event) {
   const data = JSON.parse(event.data);
   console.log(data);
   switch (data.type) {
-    case "routineT1":
+    case "routineT0":
       document.getElementById("Routine1").innerTex = data.value;
       break;
-    case "routineT2":
+    case "routineT1":
       document.getElementById("Routine2").innerTex = data.value;
       break;
-    case "routineT3":
+    case "routineT2":
       document.getElementById("Routine3").innerTex = data.value;
       break;
-    case "routineT4":
+    case "routineT3":
       document.getElementById("Routine4").innerTex = data.value;
       break;
-    case "routineT5":
+    case "routineT4":
       document.getElementById("Routine5").innerTex = data.value;
       break;
-    case "routineR1":
+    case "routineR0":
       document.getElementById("RoutineR1").innerTex = data.value;
       break;
-    case "routineR2":
+    case "routineR1":
       document.getElementById("RoutineR2").innerTex = data.value;
       break;
-    case "routineR3":
+    case "routineR2":
       document.getElementById("RoutineR3").innerTex = data.value;
       break;
-    case "routineR4":
+    case "routineR3":
       document.getElementById("RoutineR4").innerTex = data.value;
       break;
-    case "routineR5":
+    case "routineR4":
       document.getElementById("RoutineR5").innerTex = data.value;
       break;
   }
