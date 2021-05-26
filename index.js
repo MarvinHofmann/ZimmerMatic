@@ -228,7 +228,8 @@ function cleanArray(actual) {
 
 function broadcastRoutinen() {
   console.log("sendRoutinen")
-  for (let i = 1; i < aCoutn; i++) {
+  for (let i = 1; i < aCoutn+1; i++) {
+    console.log("sende");
     currentClientsws[i].send(
       JSON.stringify({ type: "routineT" + i, value: timeArray[i] })
     );
