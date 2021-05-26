@@ -4,6 +4,14 @@ ws.addEventListener("open", () => {
   console.log("Client connected with server!");
 });
 
+let tooltipTriggerList = [].slice.call(
+  document.querySelectorAll('[data-bs-toggle="tooltip"]')
+);
+let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl);
+});
+
+
 ws.addEventListener("message", function (event) {
   const data = JSON.parse(event.data);
   //console.log(data);
@@ -66,9 +74,3 @@ ws.addEventListener("message", function (event) {
   }
 });
 
-let tooltipTriggerList = [].slice.call(
-  document.querySelectorAll('[data-bs-toggle="tooltip"]')
-);
-let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl);
-});
