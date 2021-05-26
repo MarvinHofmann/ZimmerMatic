@@ -164,19 +164,12 @@ function loescheRoutine(index){
   jobArray[index].cancel();
   jobArray.splice(index,1);
   timeArray.splice(index,1);
- /*  const arrFiltered = jobArray.filter(el => {
-    return el != null && el != '';
-  });
-  jobArray = arrFiltered;
-  const arrFiltered1 = jobArray.filter(el => {
-    return el != null && el != '';
-  });
-  timeArray = arrFiltered1;
-  */
   jobArray = cleanArray(jobArray);
   timeArray= cleanArray(timeArray); 
+  aCoutn--;
   console.log("routine gelöscht");
 }
+
 app.post("/create", function (request, response) {
   console.log("Eingehende post request");
   timeArray[aCoutn] = request.body.time;
@@ -190,11 +183,7 @@ app.post("/create", function (request, response) {
 
 app.post("/deleteR", function (request, response) {
   console.log("Eingehende delete request");
-  jobArray = cleanArray(jobArray);
-  timeArray= cleanArray(timeArray);
   loescheRoutine(request.body.num);
-  jobArray = cleanArray(jobArray);
-  timeArray= cleanArray(timeArray);
   console.log(jobArray)
   console.log(timeArray);
   response.sendStatus(200);
