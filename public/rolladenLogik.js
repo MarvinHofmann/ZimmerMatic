@@ -9,19 +9,19 @@ ws.addEventListener("message", function (event) {
   console.log(data);
   switch (data.type) {
     case "routineT0":
-      document.getElementById("Routine1").innerText = String(data.value);
+      document.getElementById("Routine1").innerText = "1.Routine " + String(data.value) + " ";
       break;
     case "routineT1":
-      document.getElementById("Routine2").innerText = String(data.value);
+      document.getElementById("Routine2").innerText = "2.Routine " + String(data.value) + " "
       break;
     case "routineT2":
-      document.getElementById("Routine3").innerText = String(data.value);
+      document.getElementById("Routine3").innerText = "3.Routine " + String(data.value) + " "
       break;
     case "routineT3":
-      document.getElementById("Routine4").innerText = String(data.value);
+      document.getElementById("Routine4").innerText = "4.Routine " + String(data.value) + " "
       break;
     case "routineT4":
-      document.getElementById("Routine5").innerText = String(data.value);
+      document.getElementById("Routine5").innerText = "5.Routine " + String(data.value) + " "
       break;
     case "routineR0":
       document.getElementById("RoutineR1").innerText = String(data.value);
@@ -86,7 +86,7 @@ function sendDelete() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      num: document.getElementById("inputIndexDelete").value,
+      num: document.getElementById("inputIndexDelete").value - 1,
     }),
   });
   document.getElementById("inputIndexDelete").innerText =
