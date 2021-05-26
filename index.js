@@ -158,10 +158,10 @@ function berechneZeit() {
   zeit = b + ":" + c + ":" + d;
   return zeit;
 }
-
+//schließe Rolladen, wenn wärmer als 24 ° Durchschnitt
 function getTempAverage(){
   average = ((temp+temp2+temp3) / 3).toFixed(2);
-  if (average > 23) {
+  if (average > 24) {
     currentClientsws[0].send(101);    
   }
 }
