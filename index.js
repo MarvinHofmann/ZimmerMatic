@@ -231,10 +231,10 @@ function cleanArray(actual) {
 }
 
 function broadcastRoutinen() {
-  console.log("sendRoutinen")
+ 
   for (let i = 0; i < currentClientsws.length; i++) {
     for (let l = 0; l < aCoutn; l++) {
-      console.log("sende");
+      
       currentClientsws[i].send(
         JSON.stringify({ type: "routineT" + l, value: realTime[l] })
       );
