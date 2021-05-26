@@ -73,8 +73,6 @@ function send() {
       richtung: getRichtung(),
     }),
   });
-  document.getElementById("inputTime").innerText = "Erfolgreich";
-  document.getElementById("inputTime").innerText = "Erstellt";
 }
 
 function getRichtung(){
