@@ -1,5 +1,4 @@
 /*ZimmerMatic Node.js Webserver*/
-
 //Websocket Server
 const WebSocket = require("ws");
 const wss = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
@@ -12,9 +11,11 @@ const app = express();
 
 const port = 3443;
 let bodyParser = require("body-parser");
-
-app.use(express.static("public")); //Seite Läauft ganze zeit ohne init request
 app.use(bodyParser.json());
+
+//express.static sucht im Ordner public nach der Index.js Datei und publisht sie direkt
+app.use(express.static("public")); 
+
 app.listen(port, () => {
   console.log(`App listening at http://ZimmerMatic:${port}`); // Publisher Server auf Port 3443
   console.log("Die IP Adresse lautet: 192.168.0.58");
@@ -22,7 +23,8 @@ app.listen(port, () => {
 
 //Globale Variablen
 let temp, feucht, temp2, feucht2, temp3, feucht3, zeit1, zeit2, zeit3, anzClients = 1;
-let d1 = "::ffff:192.168.0.62";
+//D1 Mini Whitelist, um ihm besondere Dinge zu senden
+let d1 = "::ffff:192.168.0.62"; 
 
 //1.HTTP Get request
 app.get("/", function (request, response) {
@@ -30,15 +32,9 @@ app.get("/", function (request, response) {
   response.sendStatus(200);
 });
 
-app.get("/test", function (request, response) {
-  console.log("Eingehende get request");
-  akt = erstelleJob('*/5 * * * *');
-  response.sendStatus(200);
-});
+/********************************Temperatursensoren******************************************* */
 
-//2.Einrichten POST REQUEST d1 minis
 app.post("/", function (req, res) {
-  //console.log("Eingehende POST request");
   temp = req.body.temperatur;
   feucht = req.body.feuchtigkeit;
   zeit1 = berechneZeit();
@@ -50,7 +46,6 @@ app.post("/", function (req, res) {
 });
 
 app.post("/senderZwei", function (req, res) {
-  //console.log("Eingehende POST request");
   temp2 = req.body.temperatur;
   feucht2 = req.body.feuchtigkeit;
   zeit2 = berechneZeit();
@@ -60,7 +55,7 @@ app.post("/senderZwei", function (req, res) {
 });
 
 app.post("/senderDrei", function (req, res) {
-  //console.log("Eingehende POST request");
+
   temp3 = req.body.temperatur;
   feucht3 = req.body.feuchtigkeit;
   zeit3 = berechneZeit();
@@ -68,6 +63,7 @@ app.post("/senderDrei", function (req, res) {
   broadcast(feucht3, temp3, zeit3, "S3");
   res.sendStatus(200);
 });
+/***************************************************************************************************/
 
 //Sagt euch wenn ein Client verbunden ist oder wenn er disconnected
 wss.on("connection", function connection(ws, req) {
@@ -85,7 +81,7 @@ wss.on("connection", function connection(ws, req) {
     broadcast(feucht2, temp2, zeit2, "S2");
     broadcast(feucht3, temp3, zeit3, "S3");
   }
-
+  //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
   ws.on("message", function incoming(message) {
     console.log("received: %s", message);
     if(currentClientsws[0] != null){
@@ -105,8 +101,7 @@ wss.on("connection", function connection(ws, req) {
       }
     }  
   });
-
-  
+ 
 ws.on("close", (data) => {
     console.log("Client has disconnceted");
   });
@@ -140,7 +135,7 @@ function berechneZeit() {
   return zeit;
 }
 
-/**************************************************************************************************** */
+/*****************************************RolladenRoutine********************************************* */
 
 let stringA = [];
 let a = [];
