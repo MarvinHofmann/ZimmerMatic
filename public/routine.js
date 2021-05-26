@@ -8,7 +8,7 @@ ws.addEventListener("open", (message) => {
 
 ws.addEventListener("message", function (event) {
   const data = JSON.parse(event.data);
-  console.log(data);
+  //console.log(data);
   switch (data.type) {
     case "routineT0":
       document.getElementById("Routine1").innerText = "1.Routine " + String(data.value) + " ";

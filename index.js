@@ -34,7 +34,8 @@ let temp,
   anzClients = 1,
   plFeucht1,
   plFeucht2,
-  plFeucht3;
+  plFeucht3,
+  average;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
 
@@ -53,6 +54,7 @@ app.post("/", function (req, res) {
   console.log(
     "Temperatur1: " + temp + " Feuchtigkeit1: " + feucht + " Zeit: " + zeit1
   );
+  getTempAverage();
   broadcast(feucht, temp, zeit1, "S1");
   res.sendStatus(200);
 });
@@ -64,6 +66,7 @@ app.post("/senderZwei", function (req, res) {
   console.log(
     "Temperatur2: " + temp2 + " Feuchtigkeit2: " + feucht2 + " Zeit: " + zeit2
   );
+  getTempAverage();
   broadcast(feucht2, temp2, zeit2, "S2");
   res.sendStatus(200);
 });
@@ -75,6 +78,7 @@ app.post("/senderDrei", function (req, res) {
   console.log(
     "Temperatur3: " + temp3 + " Feuchtigkeit3: " + feucht3 + " Zeit: " + zeit3
   );
+  getTempAverage();
   broadcast(feucht3, temp3, zeit3, "S3");
   res.sendStatus(200);
 });
@@ -148,6 +152,9 @@ function broadcast(feucht, temp, zeit, sender) {
     currentClientsws[i].send(
       JSON.stringify({ type: "zeit" + sender, value: zeit })
     );
+    currentClientsws[i].send(
+      JSON.stringify({ type: "average", value: average })
+    );
   }
 }
 
@@ -168,6 +175,10 @@ function berechneZeit() {
   }
   zeit = b + ":" + c + ":" + d;
   return zeit;
+}
+
+function getTempAverage(){
+  average = ((temp+temp2+temp3) / 3).toFixed(2);
 }
 
 /*****************************************RolladenRoutine********************************************* */
