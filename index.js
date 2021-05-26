@@ -105,9 +105,9 @@ wss.on("connection", function connection(ws, req) {
   } else {
     currentClientsws[anzClients] = ws;
     anzClients++;
-   // broadcast(feucht, temp, zeit1, "S1");
-   // broadcast(feucht2, temp2, zeit2, "S2");
-   // broadcast(feucht3, temp3, zeit3, "S3");
+    broadcast(feucht, temp, zeit1, "S1");
+    broadcast(feucht2, temp2, zeit2, "S2");
+    broadcast(feucht3, temp3, zeit3, "S3");
     broadcastRoutinen();
   }
   //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
@@ -228,14 +228,16 @@ function cleanArray(actual) {
 
 function broadcastRoutinen() {
   console.log("sendRoutinen")
-  for (let i = 0; i < aCoutn; i++) {
-    console.log("sende");
-    currentClientsws[i].send(
-      JSON.stringify({ type: "routineT" + i, value: timeArray[i] })
-    );
-    currentClientsws[i].send(
-      JSON.stringify({ type: "routineR" + i, value: richArray[i] })
-    );
+  for (let i = 0; i < currentClientsws.length; i++) {
+    for (let l = 0; l < aCoutn; l++) {
+      console.log("sende");
+      currentClientsws[i].send(
+        JSON.stringify({ type: "routineT" + i, value: timeArray[i] })
+      );
+      currentClientsws[i].send(
+        JSON.stringify({ type: "routineR" + i, value: richArray[i] })
+      );      
+    }
   }
 }
 
