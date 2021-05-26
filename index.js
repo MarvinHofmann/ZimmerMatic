@@ -189,6 +189,8 @@ app.post("/create", function (request, response) {
 });
 
 app.post("/deleteR", function (request, response) {
+  jobArray = cleanArray(jobArray);
+  timeArray= cleanArray(timeArray); 
   console.log("Eingehende delete request");
   loescheRoutine(request.body.num);
   console.log(jobArray)
