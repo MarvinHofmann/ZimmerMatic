@@ -56,7 +56,7 @@ ws.addEventListener("message", function (event) {
       break;
 
     case "average":
-      document.getElementById("average").innerText = String(data.value) + " °C";
+      document.getElementById("average").innerText = "Durchschnitt " + String(data.value) + " °C";
       break;
 
     default:
