@@ -4,13 +4,6 @@ ws.addEventListener("open", () => {
   console.log("Client connected with server!");
 });
 
-let tooltipTriggerList = [].slice.call(
-  document.querySelectorAll('[data-bs-toggle="tooltip"]')
-);
-let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl);
-});
-
 
 ws.addEventListener("message", function (event) {
   const data = JSON.parse(event.data);
@@ -63,10 +56,7 @@ ws.addEventListener("message", function (event) {
       break;
 
     case "average":
-      var title = String(data.value);
-      elt.attr("data-original-title", title);
-      elt.tooltip("update");
-      elt.tooltip("show");
+      document.getElementById("average").innerText = String(data.value);
       break;
 
     default:
