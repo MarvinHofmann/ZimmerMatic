@@ -239,9 +239,9 @@ function broadcastRoutinen() {
 
 function getRichtung(num) {
   switch (num) {
-    case 99:
+    case "99":
       return "Hoch";
-    case 101:
+    case "101":
       return "Runter"
     default:
       break;
