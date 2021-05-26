@@ -232,10 +232,10 @@ function broadcastRoutinen() {
     for (let l = 0; l < aCoutn; l++) {
       console.log("sende");
       currentClientsws[i].send(
-        JSON.stringify({ type: "routineT" + i, value: timeArray[i] })
+        JSON.stringify({ type: "routineT" + l, value: timeArray[l] })
       );
       currentClientsws[i].send(
-        JSON.stringify({ type: "routineR" + i, value: richArray[i] })
+        JSON.stringify({ type: "routineR" + l, value: richArray[l] })
       );      
     }
   }
