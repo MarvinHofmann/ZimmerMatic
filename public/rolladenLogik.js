@@ -3,7 +3,7 @@ let aktRoutine;
 ws.addEventListener("open", (message) => {
   console.log("Client connected with server!");
 });
-let counter = 0;
+
 ws.addEventListener("message", function (event) {
   const data = JSON.parse(event.data);
   console.log(data);

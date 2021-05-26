@@ -105,9 +105,9 @@ wss.on("connection", function connection(ws, req) {
   } else {
     currentClientsws[anzClients] = ws;
     anzClients++;
-    broadcast(feucht, temp, zeit1, "S1");
-    broadcast(feucht2, temp2, zeit2, "S2");
-    broadcast(feucht3, temp3, zeit3, "S3");
+   // broadcast(feucht, temp, zeit1, "S1");
+   // broadcast(feucht2, temp2, zeit2, "S2");
+   // broadcast(feucht3, temp3, zeit3, "S3");
     broadcastRoutinen();
   }
   //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
