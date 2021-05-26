@@ -164,7 +164,7 @@ function loescheRoutine(index){
   jobArray[index].cancel();
   jobArray.splice(index,1);
   timeArray.splice(index,1);
-  const arrFiltered = jobArray.filter(el => {
+ /*  const arrFiltered = jobArray.filter(el => {
     return el != null && el != '';
   });
   jobArray = arrFiltered;
@@ -172,6 +172,9 @@ function loescheRoutine(index){
     return el != null && el != '';
   });
   timeArray = arrFiltered1;
+  */
+  jobArray = cleanArray(jobArray);
+  timeArray= cleanArray(timeArray); 
   console.log("routine gelöscht");
 }
 app.post("/create", function (request, response) {
@@ -193,3 +196,12 @@ app.post("/deleteR", function (request, response) {
   response.sendStatus(200);
 });
 
+function cleanArray(actual) {
+  var newArray = new Array();
+  for (var i = 0; i < actual.length; i++) {
+    if (actual[i]) {
+      newArray.push(actual[i]);
+    }
+  }
+  return newArray;
+}
