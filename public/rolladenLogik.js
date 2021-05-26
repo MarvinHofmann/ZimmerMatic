@@ -5,7 +5,8 @@ ws.addEventListener("open", (message) => {
 });
 let counter = 0;
 ws.addEventListener("message", function (event) {
-  const data = event.data;
+  const data = JSON.parse(event.data);
+  console.log(data);
   switch (data.type) {
     case "routineT1":
       document.getElementById("Routine1").innerTex = data.value;
