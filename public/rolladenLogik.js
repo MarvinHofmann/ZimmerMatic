@@ -1,5 +1,5 @@
 const ws = new WebSocket("ws://192.168.0.58:8000");
-let aktRoutine;
+
 ws.addEventListener("open", (message) => {
   console.log("Client connected with server!");
 });
@@ -7,6 +7,7 @@ ws.addEventListener("open", (message) => {
 function btnfunction(number) {
   switch (number) {
     case 1:
+      console.log("sende")
       ws.send("hoch");
       break;
     case 2:

@@ -115,7 +115,25 @@ wss.on("connection", function connection(ws, req) {
     broadcastRoutinen();
   }
   //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
-  
+  ws.on("message", function incoming(message) {
+    console.log("received: %s", message);
+    if (currentClientsws[0] != null) {
+      switch (message) {
+        case "hoch":
+          currentClientsws[0].send("99");
+          rolStatus = 0;
+          break;
+        case "stop":
+          rolStatus = 1;
+          currentClientsws[0].send("100");
+          break;
+        case "runter":
+          rolStatus = 2;
+          currentClientsws[0].send("101");
+          break;
+      }
+    }
+  });
 
   ws.on("close", (data) => {
     console.log("Client has disconnceted");
