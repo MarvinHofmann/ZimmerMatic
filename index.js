@@ -4,7 +4,7 @@ const WebSocket = require("ws");
 const wss = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
 const schedule = require("node-schedule");
 let currentClientsws = [];
-
+const cronParser = require('cron-parser');
 // Init. EXpress Server
 const express = require("express");
 const app = express();
@@ -175,6 +175,7 @@ function berechneZeit() {
 let timeArray = [];
 let jobArray = [];
 let richArray = [];
+let realTime = [];
 aCoutn = 0;
 
 function erstelleRoutine(richtung) {
@@ -198,9 +199,11 @@ function loescheRoutine(index) {
 
 app.post("/create", function (request, response) {
   console.log("Eingehende post request");
+  realTime[aCoutn] = cronParser.next().toString();
   timeArray[aCoutn] = request.body.time;
   richArray[aCoutn] = getRichtung(request.body.richtung);
   erstelleRoutine(request.body.richtung);
+  console.log(realTime);
   console.log(jobArray);
   console.log(timeArray);
   console.log(richArray);
@@ -232,7 +235,7 @@ function broadcastRoutinen() {
     for (let l = 0; l < aCoutn; l++) {
       console.log("sende");
       currentClientsws[i].send(
-        JSON.stringify({ type: "routineT" + l, value: timeArray[l] })
+        JSON.stringify({ type: "routineT" + l, value: realTime[l] })
       );
       currentClientsws[i].send(
         JSON.stringify({ type: "routineR" + l, value: richArray[l] })
