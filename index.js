@@ -16,6 +16,14 @@ app.use(bodyParser.json());
 //express.static sucht im Ordner public nach der Index.js Datei und publisht sie direkt
 app.use(express.static("public"));
 
+//Cors
+const cors = require("cors");
+app.use(
+  cors({
+  origin: "*",
+  })
+);
+
 app.listen(port, () => {
   console.log(`App listening at http://ZimmerMatic:${port}`); // Publisher Server auf Port 3443
   console.log("Die IP Adresse lautet: 192.168.0.58");
