@@ -95,7 +95,7 @@ app.post("/senderDrei", function (req, res) {
 app.post("/plfanze1", function (req, res) {
   plFeucht1 = req.body.feuchtigkeit;
   console.log("Pflanze 1: " + plFeucht1);
-  broadcastPflanzen(plFeucht1, berechneZeit(), "S3");
+  broadcastPflanzen(plFeucht1, berechneZeit(), "S1");
   res.sendStatus(200);
 });
 
@@ -130,7 +130,7 @@ wss.on("connection", function connection(ws, req) {
     broadcast(feucht2, temp2, zeit2, "S2");
     broadcast(feucht3, temp3, zeit3, "S3");
     broadcastRoutinen();
-    broadcastPflanzen(plFeucht3, berechneZeit(), "S3");
+    broadcastPflanzen(plFeucht3, berechneZeit(), "S1");
     broadcastPflanzen(plFeucht2, berechneZeit(), "S2");
     broadcastPflanzen(plFeucht1, berechneZeit(), "S3");
   }
