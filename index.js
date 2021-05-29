@@ -93,14 +93,23 @@ app.post("/senderDrei", function (req, res) {
 
 /********************************Pflanzenüberwachung*********************************************/
 app.post("/plfanze1", function (req, res) {
+  plFeucht1 = req.body.feuchtigkeit;
+  console.log("Pflanze 1: " + plFeucht1);
+  broadcastPflanzen(plFeucht1, berechneZeit(), "S3");
   res.sendStatus(200);
 });
 
 app.post("/plfanze2", function (req, res) {
+  plFeucht2 = req.body.feuchtigkeit;
+  console.log("Pflanze 2: " + plFeucht2);
+  broadcastPflanzen(plFeucht2, berechneZeit(), "S2");
   res.sendStatus(200);
 });
 
-app.post("/plfanze3", function (req, res) {
+app.post("/plfanze3", function (req,res) {
+  plFeucht3 = req.body.feuchtigkeit;
+  console.log("Pflanze 3: " + plFeucht3);
+  broadcastPflanzen(plFeucht3, berechneZeit(), "S3");
   res.sendStatus(200);
 });
 /***********************************************************************************************/
@@ -121,6 +130,9 @@ wss.on("connection", function connection(ws, req) {
     broadcast(feucht2, temp2, zeit2, "S2");
     broadcast(feucht3, temp3, zeit3, "S3");
     broadcastRoutinen();
+    broadcastPflanzen(plFeucht3, berechneZeit(), "S3");
+    broadcastPflanzen(plFeucht2, berechneZeit(), "S2");
+    broadcastPflanzen(plFeucht1, berechneZeit(), "S3");
   }
   //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
   ws.on("message", function incoming(message) {
@@ -163,6 +175,19 @@ function broadcast(feucht, temp, zeit, sender) {
     currentClientsws[i].send(
       JSON.stringify({ type: "average", value: average })
     );
+  }
+}
+
+function broadcastPflanzen(feucht, zeit, sender) {
+  for (let i = 1; i < currentClientsws.length; i++) {
+    currentClientsws[i].send(
+      JSON.stringify({ type: "PLfeuchtigkeit" + sender, value: feucht })
+    );
+    
+    currentClientsws[i].send(
+      JSON.stringify({ type: "PLzeit" + sender, value: zeit })
+    );
+    
   }
 }
 
