@@ -12,9 +12,9 @@ const app = express();
 const port = 3443;
 let bodyParser = require("body-parser");
 app.use(bodyParser.json());
-
+const path = require('path');
 //express.static sucht im Ordner public nach der Index.js Datei und publisht sie direkt
-app.use(express.static("public"));
+app.use(express.static(__dirname + '/public/temp'));
 
 //Cors
 const cors = require("cors");
