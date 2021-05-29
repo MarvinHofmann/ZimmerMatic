@@ -43,7 +43,10 @@ let temp,
   plFeucht1,
   plFeucht2,
   plFeucht3,
-  average;
+  average,
+  plZeit1,
+  plZeit2,
+  plZeit3;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
 
@@ -95,21 +98,24 @@ app.post("/senderDrei", function (req, res) {
 app.post("/plfanze1", function (req, res) {
   plFeucht1 = req.body.feuchtigkeit;
   console.log("Pflanze 1: " + plFeucht1);
-  broadcastPflanzen(plFeucht1, berechneZeit(), "S1");
+  plZeit1 = berechneZeit();
+  broadcastPflanzen(plFeucht1, plZeit1, "S1");
   res.sendStatus(200);
 });
 
 app.post("/plfanze2", function (req, res) {
   plFeucht2 = req.body.feuchtigkeit;
   console.log("Pflanze 2: " + plFeucht2);
-  broadcastPflanzen(plFeucht2, berechneZeit(), "S2");
+  plZeit2 = berechneZeit();
+  broadcastPflanzen(plFeucht2, plZeit2, "S2");
   res.sendStatus(200);
 });
 
 app.post("/plfanze3", function (req,res) {
   plFeucht3 = req.body.feuchtigkeit;
   console.log("Pflanze 3: " + plFeucht3);
-  broadcastPflanzen(plFeucht3, berechneZeit(), "S3");
+  plZeit3 = berechneZeit();
+  broadcastPflanzen(plFeucht3, plZeit3, "S3");
   res.sendStatus(200);
 });
 /***********************************************************************************************/
@@ -130,9 +136,9 @@ wss.on("connection", function connection(ws, req) {
     broadcast(feucht2, temp2, zeit2, "S2");
     broadcast(feucht3, temp3, zeit3, "S3");
     broadcastRoutinen();
-    broadcastPflanzen(plFeucht1, berechneZeit(), "S1");
-    broadcastPflanzen(plFeucht2, berechneZeit(), "S2");
-    broadcastPflanzen(plFeucht3, berechneZeit(), "S3");
+    broadcastPflanzen(plFeucht1, plZeit1, "S1");
+    broadcastPflanzen(plFeucht2, plZeit2, "S2");
+    broadcastPflanzen(plFeucht3, plZeit3, "S3");
   }
   //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
   ws.on("message", function incoming(message) {
