@@ -14,7 +14,7 @@ let bodyParser = require("body-parser");
 app.use(bodyParser.json());
 const path = require('path');
 //express.static sucht im Ordner public nach der Index.js Datei und publisht sie direkt
-app.use(express.static(__dirname + '/public/temp'));
+app.use(express.static('public'));
 
 //Cors
 const cors = require("cors");
