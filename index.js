@@ -130,9 +130,9 @@ wss.on("connection", function connection(ws, req) {
     broadcast(feucht2, temp2, zeit2, "S2");
     broadcast(feucht3, temp3, zeit3, "S3");
     broadcastRoutinen();
-    broadcastPflanzen(plFeucht3, berechneZeit(), "S1");
+    broadcastPflanzen(plFeucht1, berechneZeit(), "S1");
     broadcastPflanzen(plFeucht2, berechneZeit(), "S2");
-    broadcastPflanzen(plFeucht1, berechneZeit(), "S3");
+    broadcastPflanzen(plFeucht3, berechneZeit(), "S3");
   }
   //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
   ws.on("message", function incoming(message) {
