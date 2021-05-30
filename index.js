@@ -150,16 +150,12 @@ wss.on("connection", function connection(ws, req) {
     if (currentClientsws[0] != null) {
       switch (message) {
         case "hoch":
-          currentClientsws[0].send("99");
-          rolStatus = 0;
-          break;
+        currentClientsws[0].send("99");  
+        break;
         case "stop":
-          rolStatus = 1;
           currentClientsws[0].send("100");
           break;
         case "runter":
-          rolStatus = 2;
-          console.log("runter");
           currentClientsws[0].send("101");
           break;
         case "getAbstand":
@@ -236,8 +232,8 @@ function berechneZeit() {
 //schließe Rolladen, wenn wärmer als 24 ° Durchschnitt
 function getTempAverage(){
   average = ((temp+temp2+temp3) / 3).toFixed(2);
-  if (average > 24) {
-    currentClientsws[0].send(101);    
+  if (average > 24 && statusRolladen != 2) {
+    currentClientsws[0].send(101); 
   }
 }
 
