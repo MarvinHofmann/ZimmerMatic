@@ -9,7 +9,7 @@ ws.addEventListener("message", function (event) {
   const data = JSON.parse(event.data);
   switch (data.type) {
     case "abstand":
-      document.getElementById("runterBtn").style.color = "red";
+      document.getElementById("runterBtn").style.backgroundColor = "red";
       document.getElementById("runterBtn").innerText = "Fenster Offen";
       offen = true;
       break;
@@ -37,4 +37,6 @@ function btnfunction(number) {
       break;
   }
 }
+
+
 
