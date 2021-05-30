@@ -162,6 +162,7 @@ wss.on("connection", function connection(ws, req) {
           console.log("runter");
           currentClientsws[0].send("101");
           break;
+        default: handleAbstand(message);          
       }
     }
   });
@@ -170,6 +171,16 @@ wss.on("connection", function connection(ws, req) {
     console.log("Client has disconnceted");
   });
 });
+
+function handleAbstand(abstand){
+  if (abstand >= 13) {
+    for (let i = 1; i < currentClientsws.length; i++) {
+      currentClientsws[i].send(
+        JSON.stringify({ type: "abstand", value: abstand })
+      );
+    } 
+  }
+}
 
 // diese funktion schickt das übergebene Objekt , int , string oder json an alle verbundenen Clients
 function broadcast(feucht, temp, zeit, sender) {

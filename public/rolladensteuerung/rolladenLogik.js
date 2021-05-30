@@ -4,6 +4,18 @@ ws.addEventListener("open", (message) => {
   console.log("Client connected with server!");
 });
 
+ws.addEventListener("message", function (event) {
+  const data = JSON.parse(event.data);
+  switch (data.type) {
+    case "abstand":
+      document.getElementById("runterBtn").style.color = "red";
+      document.getElementById("runterBtn").innerText = "Fenster Offen";
+      break;
+    default:
+      break;
+  }
+});
+
 function btnfunction(number) {
   switch (number) {
     case 1:
