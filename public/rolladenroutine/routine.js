@@ -72,6 +72,8 @@ function send() {
   function getEinmalig(){
     if (document.getElementById("Einmalig").checked) {
       return 1;
+    }else{
+      return 0;
     }
   }
   
