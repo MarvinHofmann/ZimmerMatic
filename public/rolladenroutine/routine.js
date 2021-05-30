@@ -47,7 +47,7 @@ function send() {
     console.log("sende");
     console.log(document.getElementById("inputTime").value);
     
-    fetch("http://192.168.0.58/create", {
+    fetch("/create", {
       method: "POST",
       headers: {
         Accept: "application/json",
