@@ -2,9 +2,8 @@
 #include <DHT_U.h>
 #include <ESP8266HTTPClient.h>
 #include <ESP8266WiFi.h>
-#include "arduino_secret.h"
 #include "DHT.h"
-#include "arduino_secret.h"
+#include "arduino_secretSe2.h"
 #define DHTPIN D5
 #define DHTTYPE DHT22   // DHT 22  (AM2302)
 DHT dht(DHTPIN, DHTTYPE);

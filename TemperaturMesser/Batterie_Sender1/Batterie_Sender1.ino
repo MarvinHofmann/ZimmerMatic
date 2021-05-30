@@ -5,7 +5,7 @@
 #include "DHT.h"
 #define DHTPIN D5
 #define DHTTYPE DHT22   // DHT 22  (AM2302)
-#include "arduino_secret.h"
+#include "arduino_secretBatt.h"
 DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
