@@ -277,8 +277,6 @@ app.post("/create", function (request, response) {
   console.log(richArray);
   console.log("Einmalig: " + einmalig);
   aCoutn++;
-  response.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  response.setHeader("Access-Control-Allow-Headers", "Authorization, Cache-Control, Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
   response.sendStatus(200);
 });
 
@@ -288,8 +286,6 @@ app.post("/deleteR", function (request, response) {
   console.log(jobArray);
   console.log(timeArray);
   console.log(request.body.num);
-  response.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  response.setHeader("Access-Control-Allow-Headers", "Authorization, Cache-Control, Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
   response.sendStatus(200);
 });
 
