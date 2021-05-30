@@ -1,10 +1,11 @@
 #include <ESP8266HTTPClient.h>
 #include <ESP8266WiFi.h>
 const int rainPin = A0;
+#include "arduino_secret.h"
 void setup() {
   
   Serial.begin(115200);                 //Serial connection
-  WiFi.begin("og2.4", "supportadminraithweg15");   //WiFi connection
+  WiFi.begin(SECRET_SSID, SECRET_PASS);   //WiFi connection
  
   while (WiFi.status() != WL_CONNECTED) {  //Wait for the WiFI connection completion
  

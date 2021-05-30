@@ -5,8 +5,11 @@
 #include "DHT.h"
 #define DHTPIN D5
 #define DHTTYPE DHT22   // DHT 22  (AM2302)
+#include "arduino_secret.h"
 DHT dht(DHTPIN, DHTTYPE);
+
 void setup() {
+  WiFi.begin(SECRET_SSID, SECRET_PASS);   //WiFi connection
   while (WiFi.status() != WL_CONNECTED) {  //Wait for the WiFI connection completion
      delay(500);
   }

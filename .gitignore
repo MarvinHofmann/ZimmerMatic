@@ -1,4 +1,7 @@
 TemperaturMesser/websocket/arduino_secret.h
-package.json
-manifest.json
-package-lock.json
+TemperaturMesser/Batterie_Sender1/arduino_secret.h
+TemperaturMesser/Bett_Sender2/arduino_secret.h
+TemperaturMesser/Pflanze1/arduino_secret.h
+TemperaturMesser/Pflanze2/arduino_secret.h
+TemperaturMesser/Pflanze3/arduino_secret.h
+TemperaturMesser/Schreibtisch_Sender3/arduino_secret.h

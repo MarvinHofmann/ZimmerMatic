@@ -2,9 +2,9 @@
 #include <DHT_U.h>
 #include <ESP8266HTTPClient.h>
 #include <ESP8266WiFi.h>
-
+#include "arduino_secret.h"
 #include "DHT.h"
-
+#include "arduino_secret.h"
 #define DHTPIN D5
 #define DHTTYPE DHT22   // DHT 22  (AM2302)
 DHT dht(DHTPIN, DHTTYPE);
@@ -12,7 +12,7 @@ DHT dht(DHTPIN, DHTTYPE);
 void setup() {
   
   Serial.begin(115200);                 //Serial connection
-  WiFi.begin("og2.4", "supportadminraithweg15");   //WiFi connection
+  WiFi.begin(SECRET_SSID, SECRET_PASS);   //WiFi connection   //WiFi connection
  
   while (WiFi.status() != WL_CONNECTED) {  //Wait for the WiFI connection completion
  
