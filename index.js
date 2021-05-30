@@ -229,14 +229,15 @@ let timeArray = [];
 let jobArray = [];
 let richArray = [];
 let realTime = [];
+let einmaligArray = [];
 aCoutn = 0;
 
 function erstelleRoutine(richtung, isEinmalig) {
-  jobArray[aCoutn] = schedule.scheduleJob(timeArray[aCoutn], function (aCoutn) {
+  jobArray[aCoutn] = schedule.scheduleJob(timeArray[aCoutn], function () {
     console.log("Führe Routine aus");
     currentClientsws[0].send(richtung);
     let einmalig = isEinmalig;
-    let indexofEinmalig = aCoutn;
+    let indexofEinmalig = einmaligArray[aCoutn];
     console.log(indexofEinmalig);
     if (einmalig == 1) {
       loescheRoutine(indexofEinmalig);
@@ -269,6 +270,7 @@ app.post("/create", function (request, response) {
     realTime[aCoutn] = prettyCron.toString(time);
   }
   erstelleRoutine(request.body.richtung, einmalig);
+  einmaligArray[aCoutn] = einmalig; 
   console.log(realTime);
   console.log(jobArray);
   console.log(timeArray);
