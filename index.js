@@ -155,6 +155,7 @@ wss.on("connection", function connection(ws, req) {
           break;
         case "runter":
           rolStatus = 2;
+          console.log("runter");
           currentClientsws[0].send("101");
           break;
       }
