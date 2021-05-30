@@ -231,12 +231,13 @@ let realTime = [];
 let einmArray = [];
 aCoutn = 0;
 
-function erstelleRoutine(richtung,einmalig) {
+function erstelleRoutine(richtung) {
   jobArray[aCoutn] = schedule.scheduleJob(timeArray[aCoutn], function () {
     console.log("Führe Routine aus");
     currentClientsws[0].send(richtung);
-    if (einmalig == 1) {
+    if (einmArray[aCoutn] == 1) {
       loescheRoutine(aCoutn);
+      console.log("lösche routine");
     }
   });
 }
@@ -271,6 +272,7 @@ app.post("/create", function (request, response) {
   console.log(jobArray);
   console.log(timeArray);
   console.log(richArray);
+  console.log(einmArray);
   aCoutn++;
   response.sendStatus(200);
 });
