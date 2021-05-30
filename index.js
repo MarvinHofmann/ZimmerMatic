@@ -237,6 +237,7 @@ function erstelleRoutine(richtung, isEinmalig) {
     currentClientsws[0].send(richtung);
     let einmalig = isEinmalig;
     let indexofEinmalig = aCoutn;
+    console.log(indexofEinmalig);
     if (einmalig == 1) {
       loescheRoutine(indexofEinmalig);
       console.log("lösche routine");
