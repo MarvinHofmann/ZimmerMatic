@@ -56,6 +56,7 @@ function send() {
       body: JSON.stringify({
         time: document.getElementById("inputTime").value,
         richtung: getRichtung(),
+        einmalig: getEinmalig(),
       }),
     });
   }
@@ -65,6 +66,12 @@ function send() {
       return "99"
     }else if (document.getElementById("Runter").checked) {
       return "101"
+    }
+  }
+
+  function getEinmalig(){
+    if (document.getElementById("Einmalig").checked) {
+      return "1"
     }
   }
   

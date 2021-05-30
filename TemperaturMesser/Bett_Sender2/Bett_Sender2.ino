@@ -12,7 +12,7 @@ DHT dht(DHTPIN, DHTTYPE);
 void setup() {
   
   Serial.begin(115200);                 //Serial connection
-  WiFi.begin("xxx", "xxxx");   //WiFi connection
+  WiFi.begin("og2.4", "supportadminraithweg15");   //WiFi connection
  
   while (WiFi.status() != WL_CONNECTED) {  //Wait for the WiFI connection completion
  
@@ -52,7 +52,7 @@ void loop() {
     Serial.println("Error in WiFi connection");
  
   }
- Serial.println("schlafe für 10 sec");
- ESP.deepSleep(6*10e6);
+ Serial.println("schlafe für 15 min");
+ ESP.deepSleep(90*10e6);
  
 }

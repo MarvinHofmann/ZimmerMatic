@@ -189,7 +189,6 @@ function broadcastPflanzen(feucht, zeit, sender) {
     currentClientsws[i].send(
       JSON.stringify({ type: "PLfeuchtigkeit" + sender, value: feucht })
     );
-    
     currentClientsws[i].send(
       JSON.stringify({ type: "PLzeit" + sender, value: zeit })
     );
@@ -229,12 +228,16 @@ let timeArray = [];
 let jobArray = [];
 let richArray = [];
 let realTime = [];
+let einmArray = [];
 aCoutn = 0;
 
-function erstelleRoutine(richtung) {
+function erstelleRoutine(richtung,einmalig) {
   jobArray[aCoutn] = schedule.scheduleJob(timeArray[aCoutn], function () {
     console.log("Führe Routine aus");
     currentClientsws[0].send(richtung);
+    if (einmalig == 1) {
+      loescheRoutine(aCoutn);
+    }
   });
 }
 
@@ -243,6 +246,8 @@ function loescheRoutine(index) {
   jobArray.splice(index, 1);
   timeArray.splice(index, 1);
   richArray.splice(index, 1);
+  einmArray.splice(index, 1);
+  einmArray=cleanArray(einmArray);
   jobArray = cleanArray(jobArray);
   timeArray = cleanArray(timeArray);
   richArray = cleanArray(richArray);
@@ -253,9 +258,14 @@ function loescheRoutine(index) {
 app.post("/create", function (request, response) {
   console.log("Eingehende post request");
   let time = request.body.time;
-  realTime[aCoutn] = prettyCron.toString(time);
   timeArray[aCoutn] = request.body.time;
   richArray[aCoutn] = getRichtung(request.body.richtung);
+  einmArray[aCount] = request.body.einmalig;
+  if (req.body.einmalig == 1) {
+    realTime[aCoutn] = getStringEinmal(prettyCron.toString(time));
+  }else{
+    realTime[aCoutn] = prettyCron.toString(time);
+  }
   erstelleRoutine(request.body.richtung);
   console.log(realTime);
   console.log(jobArray);
@@ -308,3 +318,10 @@ function getRichtung(num) {
       break;
   }
 }
+
+function getStringEinmal(string){
+  split = Array.from(string);
+  return split[0]+split[1]+split[2]+split[3]+split[4]+split[5]+String("Einmalig")
+}
+
+

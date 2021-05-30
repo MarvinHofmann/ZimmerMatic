@@ -12,7 +12,7 @@ DHT dht(DHTPIN, DHTTYPE);
 void setup() {
   
   Serial.begin(115200);                 //Serial connection
-  WiFi.begin("xxx", "xxxx");   //WiFi connection
+  WiFi.begin("og2.4", "supportadminraithweg15");   //WiFi connection
  
   while (WiFi.status() != WL_CONNECTED) {  //Wait for the WiFI connection completion
  
@@ -37,7 +37,7 @@ void loop() {
  
     HTTPClient http;    //Declare object of class HTTPClient
  
-    http.begin("http://192.168.0.58:3443");      //Specify request destination
+    http.begin("http://192.168.0.58:3443/senderDrei");      //Specify request destination
     http.addHeader("Content-Type", "application/json");  //Specify content-type header
     int httpCode = http.POST("{ \"temperatur\": " + String(temp) + ", \"feuchtigkeit\":" + String(feucht) +" }");   //Send the request
     String payload = http.getString();                  //Get the response payload
@@ -52,7 +52,7 @@ void loop() {
     Serial.println("Error in WiFi connection");
  
   }
- Serial.println("schlafe für 10 sec");
- ESP.deepSleep(6*10e6);
+ Serial.println("schlafe für 15 min");
+ ESP.deepSleep(90*10e6);
  
 }
