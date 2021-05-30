@@ -283,6 +283,7 @@ app.post("/deleteR", function (request, response) {
   loescheRoutine(request.body.num);
   console.log(jobArray);
   console.log(timeArray);
+  console.log(request.body.num);
   response.sendStatus(200);
 });
 

@@ -90,8 +90,6 @@ function send() {
         num: (document.getElementById("inputIndexDelete").value) - 1,
       }),
     });
-    document.getElementById("inputIndexDelete").innerText =
-      "Erfolgreich gelöscht";
   }
   
   
