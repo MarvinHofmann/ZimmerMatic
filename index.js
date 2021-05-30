@@ -162,6 +162,9 @@ wss.on("connection", function connection(ws, req) {
           console.log("runter");
           currentClientsws[0].send("101");
           break;
+        case "getAbstand":
+          currentClientsws[0].send("0");
+          break;
         default: handleAbstand(message);          
       }
     }
