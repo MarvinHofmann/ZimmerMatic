@@ -71,7 +71,7 @@ function send() {
 
   function getEinmalig(){
     if (document.getElementById("Einmalig").checked) {
-      return "1"
+      return 1;
     }
   }
   
@@ -85,7 +85,7 @@ function send() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        num: document.getElementById("inputIndexDelete").value - 1,
+        num: (document.getElementById("inputIndexDelete").value) - 1,
       }),
     });
     document.getElementById("inputIndexDelete").innerText =
