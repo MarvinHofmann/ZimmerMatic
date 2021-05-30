@@ -229,14 +229,14 @@ let timeArray = [];
 let jobArray = [];
 let richArray = [];
 let realTime = [];
-let einmArray = [];
 aCoutn = 0;
 
-function erstelleRoutine(richtung) {
+function erstelleRoutine(richtung, isEinmalig) {
   jobArray[aCoutn] = schedule.scheduleJob(timeArray[aCoutn], function () {
     console.log("Führe Routine aus");
     currentClientsws[0].send(richtung);
-    if (einmArray[aCoutn] == 1) {
+    let einmalig = isEinmalig;
+    if (einmalig == 1) {
       loescheRoutine(aCoutn);
       console.log("lösche routine");
     }
@@ -248,8 +248,6 @@ function loescheRoutine(index) {
   jobArray.splice(index, 1);
   timeArray.splice(index, 1);
   richArray.splice(index, 1);
-  einmArray.splice(index, 1);
-  einmArray=cleanArray(einmArray);
   jobArray = cleanArray(jobArray);
   timeArray = cleanArray(timeArray);
   richArray = cleanArray(richArray);
@@ -260,20 +258,20 @@ function loescheRoutine(index) {
 app.post("/create", function (request, response) {
   console.log("Eingehende post request");
   let time = request.body.time;
+  let einmalig = request.body.einmalig;
   timeArray[aCoutn] = request.body.time;
   richArray[aCoutn] = getRichtung(request.body.richtung);
-  einmArray[aCoutn] = request.body.einmalig;
-  if (request.body.einmalig == 1) {
+  if (einmalig == 1) {
     realTime[aCoutn] = getStringEinmal(prettyCron.toString(time));
   }else{
     realTime[aCoutn] = prettyCron.toString(time);
   }
-  erstelleRoutine(request.body.richtung);
+  erstelleRoutine(request.body.richtung, einmalig);
   console.log(realTime);
   console.log(jobArray);
   console.log(timeArray);
   console.log(richArray);
-  console.log(einmArray);
+  console.log("Einmalig: " + einmalig);
   aCoutn++;
   response.sendStatus(200);
 });
