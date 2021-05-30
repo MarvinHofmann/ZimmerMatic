@@ -232,7 +232,7 @@ let realTime = [];
 aCoutn = 0;
 
 function erstelleRoutine(richtung, isEinmalig) {
-  jobArray[aCoutn] = schedule.scheduleJob(timeArray[aCoutn], function () {
+  jobArray[aCoutn] = schedule.scheduleJob(timeArray[aCoutn], function (aCoutn) {
     console.log("Führe Routine aus");
     currentClientsws[0].send(richtung);
     let einmalig = isEinmalig;
