@@ -261,7 +261,7 @@ app.post("/create", function (request, response) {
   timeArray[aCoutn] = request.body.time;
   richArray[aCoutn] = getRichtung(request.body.richtung);
   einmArray[aCoutn] = request.body.einmalig;
-  if (req.body.einmalig == 1) {
+  if (request.body.einmalig == 1) {
     realTime[aCoutn] = getStringEinmal(prettyCron.toString(time));
   }else{
     realTime[aCoutn] = prettyCron.toString(time);
