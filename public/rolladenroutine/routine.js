@@ -47,7 +47,7 @@ function send() {
     console.log("sende");
     console.log(document.getElementById("inputTime").value);
     
-    fetch("/create", {
+    fetch("http://zimmermatic:3443/create", {
       method: "POST",
       headers: {
         Accept: "application/json",
