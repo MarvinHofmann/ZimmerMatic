@@ -229,15 +229,16 @@ let timeArray = [];
 let jobArray = [];
 let richArray = [];
 let realTime = [];
+let anzLoesch = 0;
 aCoutn = 0;
 
 function erstelleRoutine(richtung, isEinmalig, index) {
   jobArray[aCoutn] = schedule.scheduleJob(timeArray[aCoutn], function () {
     console.log("Führe Routine aus");
     currentClientsws[0].send(richtung);
-    console.log(index);
+    console.log(index-anzLoesch);
     if (isEinmalig == 1) {
-      loescheRoutine(index);
+      loescheRoutine(index-anzLoesch);
       console.log("lösche routine");
     }
   });
@@ -251,6 +252,7 @@ function loescheRoutine(index) {
   jobArray = cleanArray(jobArray);
   timeArray = cleanArray(timeArray);
   richArray = cleanArray(richArray);
+  anzLoesch++;
   aCoutn--;
   console.log("routine gelöscht");
 }
