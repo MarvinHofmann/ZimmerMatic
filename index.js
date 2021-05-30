@@ -260,7 +260,7 @@ app.post("/create", function (request, response) {
   let time = request.body.time;
   timeArray[aCoutn] = request.body.time;
   richArray[aCoutn] = getRichtung(request.body.richtung);
-  einmArray[aCount] = request.body.einmalig;
+  einmArray[aCoutn] = request.body.einmalig;
   if (req.body.einmalig == 1) {
     realTime[aCoutn] = getStringEinmal(prettyCron.toString(time));
   }else{
