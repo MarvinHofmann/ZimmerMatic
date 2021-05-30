@@ -249,6 +249,8 @@ function loescheRoutine(index) {
   jobArray.splice(index, 1);
   timeArray.splice(index, 1);
   richArray.splice(index, 1);
+  realTime.splice(index,1);
+  realTime = cleanArray(realTime);
   jobArray = cleanArray(jobArray);
   timeArray = cleanArray(timeArray);
   richArray = cleanArray(richArray);
