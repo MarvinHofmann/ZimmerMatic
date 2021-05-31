@@ -44,7 +44,6 @@ const boxClicked = (e) => {
         else if(currentPlayer == X_TEXT){
             currentPlayer=O_TEXT;
         }
-        //currentPlayer = currentPlayer == O_TEXT ? X_TEXT : O_TEXT;
     }
 };
 
@@ -106,7 +105,7 @@ drawBoard();
 
 function jumpHome(){
     console.log("Clicked");
-    window.location = "index.html";
+    window.location = "../index.html";
 }
 
 homeBtn.addEventListener('click',jumpHome);
