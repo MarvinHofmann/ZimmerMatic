@@ -51,6 +51,7 @@ let temp,
   plZeit1,
   plZeit2,
   plZeit3;
+let status = true;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
 
@@ -150,12 +151,16 @@ wss.on("connection", function connection(ws, req) {
     if (currentClientsws[0] != null) {
       switch (message) {
         case "hoch":
+        if (average > 24) {
+            status = false;
+        }
         currentClientsws[0].send("99");  
         break;
         case "stop":
           currentClientsws[0].send("100");
           break;
         case "runter":
+          status = true;
           currentClientsws[0].send("101");
           break;
         case "getAbstand":
@@ -232,7 +237,7 @@ function berechneZeit() {
 //schließe Rolladen, wenn wärmer als 24 ° Durchschnitt
 function getTempAverage(){
   average = ((temp+temp2+temp3) / 3).toFixed(2);
-  if (average > 24) {
+  if (average > 24 && status === true) {
     currentClientsws[0].send(101); 
   }
 }
