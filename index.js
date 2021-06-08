@@ -33,6 +33,10 @@ app.listen(port, () => {
   console.log("Die IP Adresse lautet: 192.168.0.58");
 });
 
+const TelegramBot = require('node-telegram-bot-api');
+const token = '1885391976:AAE4_R-CQXXFZxIuz_AxFIyF6BuTdaWV2HM';
+const bot = new TelegramBot(token, {polling: true});
+
 //Globale Variablen
 let temp,
   feucht,
@@ -238,6 +242,7 @@ function berechneZeit() {
 function getTempAverage(){
   average = ((temp+temp2+temp3) / 3).toFixed(2);
   if (average > 24 && status === true) {
+    bot.sendMessage(id, "Temperatur > 24°C Fahre Rolladen runter");   
     currentClientsws[0].send(101); 
   }
 }
@@ -349,4 +354,21 @@ function getStringEinmal(string){
   return split[0]+split[1]+split[2]+split[3]+split[4]+split[5]+String("Einmalig")
 }
 
+/*********************************Telegram Bot**********************************/
+//Start Messaage zum Anfangen der Kommunikation
+let id;
+bot.on('message', (msg) => {
+  const chatId = msg.chat.id;
+  id = msg.chat.id;
+  console.log(id);
+  // send a message to the chat acknowledging receipt of their message
+  bot.sendMessage(chatId, 'Received your message');
+});
 
+
+bot.onText(/\/temp (.+)/, (msg, match) => {
+  const chatId = msg.chat.id;
+  const resp = match[1]; // the captured "whatever"
+  let stringTemp = "Die Temperatur im Mittel beträgt " + average + "°C";
+  bot.sendMessage(chatId, stringTemp);
+});
