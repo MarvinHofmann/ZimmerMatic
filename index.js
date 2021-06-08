@@ -244,6 +244,7 @@ function getTempAverage(){
   if (average > 24 && status === true) {
     bot.sendMessage(id, "Temperatur > 24°C Fahre Rolladen runter");   
     currentClientsws[0].send(101); 
+    status = false;
   }
 }
 
@@ -361,14 +362,19 @@ bot.on('message', (msg) => {
   const chatId = msg.chat.id;
   id = msg.chat.id;
   console.log(id);
-  // send a message to the chat acknowledging receipt of their message
-  bot.sendMessage(chatId, 'Received your message');
 });
 
-
+//reagiert auf /temp gibt average zurück
 bot.onText(/\/temp (.+)/, (msg, match) => {
   const chatId = msg.chat.id;
   const resp = match[1]; // the captured "whatever"
   let stringTemp = "Die Temperatur im Mittel beträgt " + average + "°C";
   bot.sendMessage(chatId, stringTemp);
+});
+
+bot.onText(/\/Rollup (.+)/, (msg, match) => {
+  const chatId = msg.chat.id;
+  const resp = match[1]; // the captured "whatever"
+  currentClientsws[0].send(99); 
+  bot.sendMessage(chatId, "Fahre Rolladen hoch");
 });
