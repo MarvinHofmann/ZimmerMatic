@@ -73,7 +73,8 @@ app.post("/testAkku", function (req, res) {
 });
 
 app.post("/testBatterie", function (req, res) {
-  anzBatt++
+  console.log("Eingehende post Batterie");
+  anzBatt++;
   timeBatt = berechneZeit();
   res.sendStatus(200);
 });
