@@ -56,6 +56,7 @@ let temp,
   plZeit2,
   plZeit3;
 let status = true;
+let anzAkk, anzBatt, timeAkk, timeBatt;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
 
@@ -63,6 +64,18 @@ let d1 = "::ffff:192.168.0.62";
 app.get("/", function (request, response) {
   console.log("Eingehende get request");
   response.sendStatus(200);
+});
+
+app.post("/testAkku", function (req, res) {
+  anzAkk++;
+  timeAkk = berechneZeit();
+  res.sendStatus(200);
+});
+
+app.post("/testBatterie", function (req, res) {
+  anzBatt++
+  timeBatt = berechneZeit();
+  res.sendStatus(200);
 });
 
 /********************************Temperatursensoren******************************************* */
@@ -377,4 +390,10 @@ bot.onText(/\/Rollup (.+)/, (msg, match) => {
   const resp = match[1]; // the captured "whatever"
   currentClientsws[0].send(99); 
   bot.sendMessage(chatId, "Fahre Rolladen hoch");
+});
+
+bot.onText(/\/testD1 (.+)/, (msg, match) => {
+  const chatId = msg.chat.id;
+  const resp = match[1]; // the captured "whatever"
+  bot.sendMessage(chatId, "Anzahl Eingegangenen Sendungen mit Akku: " + anzAkk + " letze Zeit: " + timeAkk + " Anzahl Eingegangenen Sendungen mit Batterie: " + anzBatt + " letze Zeit: " + timeBatt);
 });
