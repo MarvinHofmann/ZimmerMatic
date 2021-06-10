@@ -56,17 +56,18 @@ let temp,
   plZeit2,
   plZeit3;
 let status = true;
-let anzAkk = 25, timeAkk;
+let anzAkk = 27, timeAkk;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
 
 //Hello Button Pressed
 app.get("/hello", function (request, response) {
-  currentClientsws[0].send("99");  
+  rolladenUP();
   response.sendStatus(200);
 });
 //Bye Button Pressed
 app.get("/bye", function (request, response) {
+  rolladenDown(); 
   response.sendStatus(200);
 });
 
@@ -173,17 +174,13 @@ wss.on("connection", function connection(ws, req) {
     if (currentClientsws[0] != null) {
       switch (message) {
         case "hoch":
-        if (average > 24) {
-            status = false;
-        }
-        currentClientsws[0].send("99");  
+        rolladenUP();
         break;
         case "stop":
-          currentClientsws[0].send("100");
+          rolladenStop();
           break;
         case "runter":
-          status = true;
-          currentClientsws[0].send("101");
+          rolladenDown(); 
           break;
         case "getAbstand":
           currentClientsws[0].send("0");
@@ -261,9 +258,25 @@ function getTempAverage(){
   average = ((temp+temp2+temp3) / 3).toFixed(2);
   if (average > 24 && status === true) {
     bot.sendMessage(id, "Temperatur > 24°C Fahre Rolladen runter");   
-    currentClientsws[0].send(101); 
+    rolladenDown(); 
     status = false;
   }
+}
+
+function rolladenUP(){
+  if (average > 24) {
+    status = false;
+  }
+  currentClientsws[0].send("99"); 
+}
+
+function rolladenStop(){
+  currentClientsws[0].send("100"); 
+}
+
+function rolladenDown(){
+  status = true;
+  currentClientsws[0].send("101");  
 }
 
 /*****************************************RolladenRoutine********************************************* */
@@ -391,7 +404,13 @@ bot.onText(/\/temp (.+)/, (msg, match) => {
 
 bot.onText(/\/Rollup (.+)/, (msg, match) => {
   const chatId = msg.chat.id;
-  currentClientsws[0].send(99); 
+  rolladenUP();
+  bot.sendMessage(chatId, "Fahre Rolladen hoch");
+});
+
+bot.onText(/\/Rollup (.+)/, (msg, match) => {
+  const chatId = msg.chat.id;
+  rolladenDown();
   bot.sendMessage(chatId, "Fahre Rolladen hoch");
 });
 
