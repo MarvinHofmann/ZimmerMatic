@@ -56,13 +56,17 @@ let temp,
   plZeit2,
   plZeit3;
 let status = true;
-let anzAkk = 0, anzBatt = 0, timeAkk, timeBatt;
+let anzAkk = 25, timeAkk;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
 
-//1.HTTP Get request
-app.get("/", function (request, response) {
-  console.log("Eingehende get request");
+//Hello Button Pressed
+app.get("/hello", function (request, response) {
+  currentClientsws[0].send("99");  
+  response.sendStatus(200);
+});
+//Bye Button Pressed
+app.get("/bye", function (request, response) {
   response.sendStatus(200);
 });
 
@@ -381,20 +385,17 @@ bot.on('message', (msg) => {
 //reagiert auf /temp gibt average zurück
 bot.onText(/\/temp (.+)/, (msg, match) => {
   const chatId = msg.chat.id;
-  const resp = match[1]; // the captured "whatever"
   let stringTemp = "Die Temperatur im Mittel beträgt " + average + "°C";
   bot.sendMessage(chatId, stringTemp);
 });
 
 bot.onText(/\/Rollup (.+)/, (msg, match) => {
   const chatId = msg.chat.id;
-  const resp = match[1]; // the captured "whatever"
   currentClientsws[0].send(99); 
   bot.sendMessage(chatId, "Fahre Rolladen hoch");
 });
 
 bot.onText(/\/testD1 (.+)/, (msg, match) => {
   const chatId = msg.chat.id;
-  const resp = match[1]; // the captured "whatever"
-  bot.sendMessage(chatId, "Anzahl Eingegangenen Sendungen mit Akku: " + anzAkk + " letze Zeit: " + timeAkk + " Anzahl Eingegangenen Sendungen mit Batterie: " + anzBatt + " letze Zeit: " + timeBatt);
+  bot.sendMessage(chatId, "Anzahl Eingegangenen Sendungen mit Akku: " + anzAkk + " letze Zeit: " + timeAkk );
 });
