@@ -128,6 +128,9 @@ app.post("/plfanze1", function (req, res) {
   console.log("Pflanze 1: " + plFeucht1);
   plZeit1 = berechneZeit();
   broadcastPflanzen(plFeucht1, plZeit1, "S1");
+  if (plFeucht1 >= 440) {
+    bot.sendMessage(id, "Pflanze 1 bitte Gießen!");   
+  }
   res.sendStatus(200);
 });
 
@@ -136,6 +139,9 @@ app.post("/plfanze2", function (req, res) {
   console.log("Pflanze 2: " + plFeucht2);
   plZeit2 = berechneZeit();
   broadcastPflanzen(plFeucht2, plZeit2, "S2");
+  if (plFeucht2 >= 410) {
+    bot.sendMessage(id, "Pflanze 2 bitte Gießen!");   
+  }
   res.sendStatus(200);
 });
 
@@ -144,6 +150,9 @@ app.post("/plfanze3", function (req,res) {
   console.log("Pflanze 3: " + plFeucht3);
   plZeit3 = berechneZeit();
   broadcastPflanzen(plFeucht3, plZeit3, "S3");
+  if (plFeucht3 >= 250) {
+    bot.sendMessage(id, "Pflanze 2 bitte Gießen!");   
+  }
   res.sendStatus(200);
 });
 /***********************************************************************************************/
