@@ -56,7 +56,7 @@ let temp,
   plZeit2,
   plZeit3;
 let status = true;
-let anzAkk = 27, timeAkk;
+let anzAkk = 172, timeAkk;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
 
