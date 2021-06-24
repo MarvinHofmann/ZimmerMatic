@@ -34,7 +34,7 @@ app.listen(port, () => {
 });
 
 const TelegramBot = require('node-telegram-bot-api');
-const bot = new TelegramBot(token1, {polling: true});
+const bot = new TelegramBot(token, {polling: true});
 
 //Globale Variablen
 let temp,
