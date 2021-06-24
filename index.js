@@ -413,6 +413,7 @@ bot.on('message', (msg) => {
       break;
       case "/fs":
       currentClientsws[0].send("0");
+      currentClientsws[0].send("0");
       if (fensterabstand > 13) {
         bot.sendMessage(chatId, "Das Fenster ist offen mit einem Abstand von: " + fensterabstand)  
       }else{
