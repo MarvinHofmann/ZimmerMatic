@@ -411,7 +411,7 @@ bot.on('message', (msg) => {
     case "/temp@zimmerMatic_Bot":
         bot.sendMessage(chatId, "Die Temperatur im Mittel beträgt: " + average)
       break;
-      case "rs":
+      case "/fs":
       currentClientsws[0].send("0");
       if (fensterabstand > 13) {
         bot.sendMessage(chatId, "Das Fenster ist offen mit einem Abstand von: " + fensterabstand)  
