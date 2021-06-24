@@ -34,8 +34,7 @@ app.listen(port, () => {
 });
 
 const TelegramBot = require('node-telegram-bot-api');
-const token = '1885391976:AAE4_R-CQXXFZxIuz_AxFIyF6BuTdaWV2HM';
-const bot = new TelegramBot(token, {polling: true});
+const bot = new TelegramBot(token1, {polling: true});
 
 //Globale Variablen
 let temp,
@@ -56,7 +55,7 @@ let temp,
   plZeit2,
   plZeit3;
 let status = true;
-let anzAkk = 172, timeAkk;
+let anzAkk = 370, timeAkk;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
 
@@ -110,6 +109,9 @@ app.post("/senderZwei", function (req, res) {
   res.sendStatus(200);
 });
 
+const token = '1885391976:AAE4_R-CQXXFZxIuz_AxFIyF6BuTdaWV2HM';
+//const token1 = '1710906682:AAFpnBEr_fTgOGsQNN0zdjDcvzqIW_SBns4';
+
 app.post("/senderDrei", function (req, res) {
   temp3 = req.body.temperatur;
   feucht3 = req.body.feuchtigkeit;
@@ -129,7 +131,7 @@ app.post("/plfanze1", function (req, res) {
   plZeit1 = berechneZeit();
   broadcastPflanzen(plFeucht1, plZeit1, "S1");
   if (plFeucht1 >= 440) {
-    bot.sendMessage(id, "Pflanze 1 bitte Gießen!");   
+    bot.sendMessage(chatId, "Pflanze 1 bitte Gießen!");   
   }
   res.sendStatus(200);
 });
@@ -140,7 +142,7 @@ app.post("/plfanze2", function (req, res) {
   plZeit2 = berechneZeit();
   broadcastPflanzen(plFeucht2, plZeit2, "S2");
   if (plFeucht2 >= 410) {
-    bot.sendMessage(id, "Pflanze 2 bitte Gießen!");   
+    bot.sendMessage(chatId, "Pflanze 2 bitte Gießen!");   
   }
   res.sendStatus(200);
 });
@@ -151,7 +153,7 @@ app.post("/plfanze3", function (req,res) {
   plZeit3 = berechneZeit();
   broadcastPflanzen(plFeucht3, plZeit3, "S3");
   if (plFeucht3 >= 250) {
-    bot.sendMessage(id, "Pflanze 2 bitte Gießen!");   
+    bot.sendMessage(chatId, "Pflanze 2 bitte Gießen!");   
   }
   res.sendStatus(200);
 });
@@ -203,8 +205,9 @@ wss.on("connection", function connection(ws, req) {
     console.log("Client has disconnceted");
   });
 });
-
+let fensterabstand;
 function handleAbstand(abstand){
+  fensterabstand = abstand;
   if (abstand >= 13) {
     for (let i = 1; i < currentClientsws.length; i++) {
       currentClientsws[i].send(
@@ -266,7 +269,7 @@ function berechneZeit() {
 function getTempAverage(){
   average = ((temp+temp2+temp3) / 3).toFixed(2);
   if (average > 24 && status === true) {
-    bot.sendMessage(id, "Temperatur > 24°C Fahre Rolladen runter");   
+    bot.sendMessage(chatId, "Temperatur > 24°C Fahre Rolladen runter");   
     rolladenDown(); 
     status = false;
   }
@@ -397,31 +400,29 @@ function getStringEinmal(string){
 
 /*********************************Telegram Bot**********************************/
 //Start Messaage zum Anfangen der Kommunikation
-let id;
+let chatId;
 bot.on('message', (msg) => {
-  const chatId = msg.chat.id;
-  id = msg.chat.id;
-  console.log(id);
+  chatId = msg.chat.id;
+  console.log(chatId);
+  switch (msg.text) {
+    case "temp":
+      bot.sendMessage(chatId, "Die Temperatur im Mittel beträgt: " + average)
+      break;
+      case "rs":
+      currentClientsws[0].send("0");
+      if (fensterabstand > 13) {
+        bot.sendMessage(chatId, "Das Fenster ist offen mit einem Abstand von: " + fensterabstand)  
+      }else{
+        bot.sendMessage(chatId, "Das Fenster ist geschlossen mit einem Abstand von: " + fensterabstand)  
+      }
+      
+      break;
+    default:
+      break;
+  }
 });
 
 //reagiert auf /temp gibt average zurück
-bot.onText(/\/temp (.+)/, (msg, match) => {
-  const chatId = msg.chat.id;
-  let stringTemp = "Die Temperatur im Mittel beträgt " + average + "°C";
-  bot.sendMessage(chatId, stringTemp);
-});
-
-bot.onText(/\/Rollup (.+)/, (msg, match) => {
-  const chatId = msg.chat.id;
-  rolladenUP();
-  bot.sendMessage(chatId, "Fahre Rolladen hoch");
-});
-
-bot.onText(/\/Rollup (.+)/, (msg, match) => {
-  const chatId = msg.chat.id;
-  rolladenDown();
-  bot.sendMessage(chatId, "Fahre Rolladen hoch");
-});
 
 bot.onText(/\/testD1 (.+)/, (msg, match) => {
   const chatId = msg.chat.id;
