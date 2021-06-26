@@ -4,7 +4,7 @@ const WebSocket = require("ws");
 const wss = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
 const schedule = require("node-schedule");
 let currentClientsws = [];
-const cronParser = require('cron-parser');
+const cronParser = require("cron-parser");
 // Init. EXpress Server
 const express = require("express");
 const app = express();
@@ -12,20 +12,23 @@ const app = express();
 const port = 3443;
 let bodyParser = require("body-parser");
 app.use(bodyParser.json());
-const path = require('path');
+const path = require("path");
 //express.static sucht im Ordner public nach der Index.js Datei und publisht sie direkt
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 //Cors
 const cors = require("cors");
 app.use(
   cors({
-  origin: "*",
+    origin: "*",
   })
 );
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
 app.listen(port, () => {
@@ -33,10 +36,10 @@ app.listen(port, () => {
   console.log("Die IP Adresse lautet: 192.168.0.58");
 });
 
-const TelegramBot = require('node-telegram-bot-api');
-const token = '1885391976:AAE4_R-CQXXFZxIuz_AxFIyF6BuTdaWV2HM';
+const TelegramBot = require("node-telegram-bot-api");
+const token = "1885391976:AAE4_R-CQXXFZxIuz_AxFIyF6BuTdaWV2HM";
 //const token1 = '1710906682:AAFpnBEr_fTgOGsQNN0zdjDcvzqIW_SBns4';
-const bot = new TelegramBot(token, {polling: true});
+const bot = new TelegramBot(token, { polling: true });
 
 //Globale Variablen
 let temp,
@@ -57,7 +60,8 @@ let temp,
   plZeit2,
   plZeit3;
 let status = true;
-let anzAkk = 370, timeAkk;
+let anzAkk = 413,
+  timeAkk;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
 
@@ -68,20 +72,13 @@ app.get("/hello", function (request, response) {
 });
 //Bye Button Pressed
 app.get("/bye", function (request, response) {
-  rolladenDown(); 
+  rolladenDown();
   response.sendStatus(200);
 });
 
 app.post("/testAkku", function (req, res) {
   anzAkk++;
   timeAkk = berechneZeit();
-  res.sendStatus(200);
-});
-
-app.post("/testBatterie", function (req, res) {
-  console.log("Eingehende post Batterie");
-  anzBatt++;
-  timeBatt = berechneZeit();
   res.sendStatus(200);
 });
 
@@ -130,7 +127,8 @@ app.post("/plfanze1", function (req, res) {
   plZeit1 = berechneZeit();
   broadcastPflanzen(plFeucht1, plZeit1, "S1");
   if (plFeucht1 >= 440) {
-    bot.sendMessage(chatId, "Pflanze 1 bitte Gießen!");   
+    //390 - 440
+    bot.sendMessage(chatId, "Pflanze 1 bitte Gießen!");
   }
   res.sendStatus(200);
 });
@@ -141,18 +139,20 @@ app.post("/plfanze2", function (req, res) {
   plZeit2 = berechneZeit();
   broadcastPflanzen(plFeucht2, plZeit2, "S2");
   if (plFeucht2 >= 410) {
-    bot.sendMessage(chatId, "Pflanze 2 bitte Gießen!");   
+    //380-410
+    bot.sendMessage(chatId, "Pflanze 2 bitte Gießen!");
   }
   res.sendStatus(200);
 });
 
-app.post("/plfanze3", function (req,res) {
+app.post("/plfanze3", function (req, res) {
   plFeucht3 = req.body.feuchtigkeit;
   console.log("Pflanze 3: " + plFeucht3);
   plZeit3 = berechneZeit();
   broadcastPflanzen(plFeucht3, plZeit3, "S3");
-  if (plFeucht3 >= 250) {
-    bot.sendMessage(chatId, "Pflanze 2 bitte Gießen!");   
+  if (plFeucht3 >= 200) {
+    //zw 180 && 200
+    bot.sendMessage(chatId, "Pflanze 2 bitte Gießen!");
   }
   res.sendStatus(200);
 });
@@ -184,18 +184,19 @@ wss.on("connection", function connection(ws, req) {
     if (currentClientsws[0] != null) {
       switch (message) {
         case "hoch":
-        rolladenUP();
-        break;
+          rolladenUP();
+          break;
         case "stop":
           rolladenStop();
           break;
         case "runter":
-          rolladenDown(); 
+          rolladenDown();
           break;
         case "getAbstand":
           currentClientsws[0].send("0");
           break;
-        default: handleAbstand(message);          
+        default:
+          handleAbstand(message);
       }
     }
   });
@@ -205,14 +206,14 @@ wss.on("connection", function connection(ws, req) {
   });
 });
 let fensterabstand;
-function handleAbstand(abstand){
+function handleAbstand(abstand) {
   fensterabstand = abstand;
   if (abstand >= 13) {
     for (let i = 1; i < currentClientsws.length; i++) {
       currentClientsws[i].send(
         JSON.stringify({ type: "abstand", value: abstand })
       );
-    } 
+    }
   }
 }
 
@@ -242,7 +243,6 @@ function broadcastPflanzen(feucht, zeit, sender) {
     currentClientsws[i].send(
       JSON.stringify({ type: "PLzeit" + sender, value: zeit })
     );
-    
   }
 }
 
@@ -265,33 +265,33 @@ function berechneZeit() {
   return zeit;
 }
 //schließe Rolladen, wenn wärmer als 24 ° Durchschnitt
-function getTempAverage(){
-  average = ((temp+temp2+temp3) / 3).toFixed(2);
+function getTempAverage() {
+  average = ((temp + temp2 + temp3) / 3).toFixed(2);
   if (average > 24 && status === true) {
-    bot.sendMessage(chatId, "Temperatur > 24°C Fahre Rolladen runter");   
-    rolladenDown(); 
+    bot.sendMessage(chatId, "Temperatur > 24°C Fahre Rolladen runter");
+    rolladenDown();
     status = false;
   }
 }
 
-function rolladenUP(){
+function rolladenUP() {
   if (average > 24) {
     status = false;
   }
-  currentClientsws[0].send("99"); 
+  currentClientsws[0].send("99");
 }
 
-function rolladenStop(){
-  currentClientsws[0].send("100"); 
+function rolladenStop() {
+  currentClientsws[0].send("100");
 }
 
-function rolladenDown(){
+function rolladenDown() {
   status = true;
-  currentClientsws[0].send("101");  
+  currentClientsws[0].send("101");
 }
 
 /*****************************************RolladenRoutine********************************************* */
-const prettyCron = require('prettycron');
+const prettyCron = require("prettycron");
 let timeArray = [];
 let jobArray = [];
 let richArray = [];
@@ -303,9 +303,9 @@ function erstelleRoutine(richtung, isEinmalig, index) {
   jobArray[aCoutn] = schedule.scheduleJob(timeArray[aCoutn], function () {
     console.log("Führe Routine aus");
     currentClientsws[0].send(richtung);
-    console.log(index-anzLoesch);
+    console.log(index - anzLoesch);
     if (isEinmalig == 1) {
-      loescheRoutine(index-anzLoesch);
+      loescheRoutine(index - anzLoesch);
       console.log("lösche routine");
     }
   });
@@ -316,7 +316,7 @@ function loescheRoutine(index) {
   jobArray.splice(index, 1);
   timeArray.splice(index, 1);
   richArray.splice(index, 1);
-  realTime.splice(index,1);
+  realTime.splice(index, 1);
   realTime = cleanArray(realTime);
   jobArray = cleanArray(jobArray);
   timeArray = cleanArray(timeArray);
@@ -334,7 +334,7 @@ app.post("/create", function (request, response) {
   richArray[aCoutn] = getRichtung(request.body.richtung);
   if (einmalig == 1) {
     realTime[aCoutn] = getStringEinmal(prettyCron.toString(time));
-  }else{
+  } else {
     realTime[aCoutn] = prettyCron.toString(time);
   }
   erstelleRoutine(request.body.richtung, einmalig, aCoutn);
@@ -367,16 +367,14 @@ function cleanArray(actual) {
 }
 
 function broadcastRoutinen() {
- 
   for (let i = 0; i < currentClientsws.length; i++) {
     for (let l = 0; l < aCoutn; l++) {
-      
       currentClientsws[i].send(
         JSON.stringify({ type: "routineT" + l, value: realTime[l] })
       );
       currentClientsws[i].send(
         JSON.stringify({ type: "routineR" + l, value: richArray[l] })
-      );      
+      );
     }
   }
 }
@@ -386,49 +384,69 @@ function getRichtung(num) {
     case "99":
       return "Hoch";
     case "101":
-      return "Runter"
+      return "Runter";
     default:
       break;
   }
 }
 
-function getStringEinmal(string){
+function getStringEinmal(string) {
   split = Array.from(string);
-  return split[0]+split[1]+split[2]+split[3]+split[4]+split[5]+String("Einmalig")
+  return (
+    split[0] +
+    split[1] +
+    split[2] +
+    split[3] +
+    split[4] +
+    split[5] +
+    String("Einmalig")
+  );
 }
 
 /*********************************Telegram Bot**********************************/
 //Start Messaage zum Anfangen der Kommunikation
 let chatId;
-bot.on('message', (msg) => {
+bot.on("message", (msg) => {
   chatId = msg.chat.id;
   console.log(chatId);
   console.log(msg.text);
   switch (msg.text) {
     case "/temp":
-      bot.sendMessage(chatId, "Die Temperatur im Mittel beträgt: " + average)
+      bot.sendMessage(chatId, "Die Temperatur im Mittel beträgt: " + average);
       break;
     case "/temp@zimmerMatic_Bot":
-        bot.sendMessage(chatId, "Die Temperatur im Mittel beträgt: " + average)
+      bot.sendMessage(chatId, "Die Temperatur im Mittel beträgt: " + average);
       break;
-      case "/fs":
+    case "/status":
+      bot.sendMessage(chatId, 
+        "Durchschn. Temp: " + average 
+      + "Temp1: " + temp
+      + "Temp2: " + temp2
+      + "Temp3: " + temp3
+      + "Fenster: " + fensterabstand
+      + "Pflanze3: " + plFeucht1
+      + "Pflanze3: " + plFeucht2
+      + "Pflanze3: " + plFeucht3);
+      break;
+    case "/akku":
+      bot.sendMessage(chatId,"Anzahl Eingegangenen Sendungen mit Akku: " + anzAkk + " letze Zeit: " + timeAkk);
+      break;
+    case "/fs":
       currentClientsws[0].send("0");
       currentClientsws[0].send("0");
       if (fensterabstand > 13) {
-        bot.sendMessage(chatId, "Das Fenster ist offen mit einem Abstand von: " + fensterabstand)  
-      }else{
-        bot.sendMessage(chatId, "Das Fenster ist geschlossen mit einem Abstand von: " + fensterabstand)  
+        bot.sendMessage(
+          chatId,
+          "Das Fenster ist offen mit einem Abstand von: " + fensterabstand
+        );
+      } else {
+        bot.sendMessage(
+          chatId,
+          "Das Fenster ist geschlossen mit einem Abstand von: " + fensterabstand
+        );
       }
-      
       break;
     default:
       break;
   }
-});
-
-//reagiert auf /temp gibt average zurück
-
-bot.onText(/\/testD1 (.+)/, (msg, match) => {
-  const chatId = msg.chat.id;
-  bot.sendMessage(chatId, "Anzahl Eingegangenen Sendungen mit Akku: " + anzAkk + " letze Zeit: " + timeAkk );
 });
