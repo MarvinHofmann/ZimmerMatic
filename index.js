@@ -78,12 +78,12 @@ app.get("/bye", function (request, response) {
 });
 
 app.get("/on", function (request, response) {
-  
+  currentClientsws[0].send("0");
   response.sendStatus(200);
 });
 
 app.get("/off", function (request, response) {
-  
+  currentClientsws[0].send("1");
   response.sendStatus(200);
 });
 
