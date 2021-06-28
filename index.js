@@ -179,8 +179,8 @@ wss.on("connection", function connection(ws, req) {
     console.log("client 0 verbunden!");
     currentClientsws[0] = ws;
   }else if (ip === ledD1) {
-    console.log("client 0 verbunden!");
-    currentClientsws[0] = ws;
+    console.log("client 1 verbunden!");
+    currentClientsws[1] = ws;
   }else {
     currentClientsws[anzClients] = ws;
     anzClients++;
