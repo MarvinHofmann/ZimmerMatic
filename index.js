@@ -51,7 +51,7 @@ let temp,
   zeit1,
   zeit2,
   zeit3,
-  anzClients = 1,
+  anzClients = 2,
   plFeucht1,
   plFeucht2,
   plFeucht3,
@@ -64,6 +64,7 @@ let anzAkk = 413,
   timeAkk;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
+let ledD1 ="::ffff:192.168.0.73";
 
 //Hello Button Pressed
 app.get("/hello", function (request, response) {
@@ -73,6 +74,16 @@ app.get("/hello", function (request, response) {
 //Bye Button Pressed
 app.get("/bye", function (request, response) {
   rolladenDown();
+  response.sendStatus(200);
+});
+
+app.get("/on", function (request, response) {
+  
+  response.sendStatus(200);
+});
+
+app.get("/off", function (request, response) {
+  
   response.sendStatus(200);
 });
 
@@ -167,7 +178,10 @@ wss.on("connection", function connection(ws, req) {
   if (ip === d1) {
     console.log("client 0 verbunden!");
     currentClientsws[0] = ws;
-  } else {
+  }else if (ip === ledD1) {
+    console.log("client 0 verbunden!");
+    currentClientsws[0] = ws;
+  }else {
     currentClientsws[anzClients] = ws;
     anzClients++;
     broadcast(feucht, temp, zeit1, "S1");
