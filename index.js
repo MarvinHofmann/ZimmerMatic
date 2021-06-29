@@ -223,7 +223,7 @@ let fensterabstand;
 function handleAbstand(abstand) {
   fensterabstand = abstand;
   if (abstand >= 13) {
-    for (let i = 1; i < currentClientsws.length; i++) {
+    for (let i = 2; i < currentClientsws.length; i++) {
       currentClientsws[i].send(
         JSON.stringify({ type: "abstand", value: abstand })
       );
@@ -233,7 +233,7 @@ function handleAbstand(abstand) {
 
 // diese funktion schickt das übergebene Objekt , int , string oder json an alle verbundenen Clients
 function broadcast(feucht, temp, zeit, sender) {
-  for (let i = 1; i < currentClientsws.length; i++) {
+  for (let i = 2; i < currentClientsws.length; i++) {
     currentClientsws[i].send(
       JSON.stringify({ type: "feuchtigkeit" + sender, value: feucht })
     );
@@ -250,7 +250,7 @@ function broadcast(feucht, temp, zeit, sender) {
 }
 
 function broadcastPflanzen(feucht, zeit, sender) {
-  for (let i = 1; i < currentClientsws.length; i++) {
+  for (let i = 2; i < currentClientsws.length; i++) {
     currentClientsws[i].send(
       JSON.stringify({ type: "PLfeuchtigkeit" + sender, value: feucht })
     );
@@ -381,8 +381,8 @@ function cleanArray(actual) {
 }
 
 function broadcastRoutinen() {
-  for (let i = 0; i < currentClientsws.length; i++) {
-    for (let l = 0; l < aCoutn; l++) {
+  for (let i = 2; i < currentClientsws.length; i++) {
+    for (let l = 2; l < aCoutn; l++) {
       currentClientsws[i].send(
         JSON.stringify({ type: "routineT" + l, value: realTime[l] })
       );
