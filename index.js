@@ -94,6 +94,7 @@ app.post("/fenster", function (req, res) {
   }else if (req.body.status == 0) {
     fenster = false;  //fenster zu
   }
+  console.log("Fenster: " + fenster)
   res.sendStatus(200);
 });
 
