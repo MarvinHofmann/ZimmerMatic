@@ -468,9 +468,9 @@ bot.on("message", (msg) => {
       break;
     case "/bf":
       if (fenster == true) {
-        "Das Fenster ist offen";
+        bot.sendMessage(chatId, "Das Fenster ist offen");
       } else {
-        "Das Fenster ist geschlossen";
+        bot.sendMessage(chatId, "Das Fenster ist geschlossen");
       }
     default:
       break;
