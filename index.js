@@ -62,6 +62,7 @@ let temp,
 let status = true;
 let anzAkk = 490,
   timeAkk;
+let fenster = false;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
 let ledD1 ="::ffff:192.168.0.73";
@@ -87,11 +88,15 @@ app.get("/off", function (request, response) {
   response.sendStatus(200);
 });
 
-app.post("/testAkku", function (req, res) {
-  anzAkk++;
-  timeAkk = berechneZeit();
+app.post("/fenster", function (req, res) {
+  if (req.body.status == 1) { // fenster offen
+    fenster = true;  
+  }else if (req.body.status == 0) {
+    fenster = false;  //fenster zu
+  }
   res.sendStatus(200);
 });
+
 
 /********************************Temperatursensoren******************************************* */
 
@@ -460,6 +465,12 @@ bot.on("message", (msg) => {
         );
       }
       break;
+    case "/bf":
+      if (fenster == true) {
+        "Das Fenster ist offen";
+      } else {
+        "Das Fenster ist geschlossen";
+      }
     default:
       break;
   }
