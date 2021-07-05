@@ -143,7 +143,7 @@ app.post("/plfanze1", function (req, res) {
   console.log("Pflanze 1: " + plFeucht1);
   plZeit1 = berechneZeit();
   broadcastPflanzen(plFeucht1, plZeit1, "S1");
-  if (plFeucht1 >= 320) {
+  if (plFeucht1 >= 360) {
     //390 - 440
     bot.sendMessage(chatId, "Pflanze 1 bitte Gießen!");
   }
