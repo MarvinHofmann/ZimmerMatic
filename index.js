@@ -70,7 +70,7 @@ let ledD1 ="::ffff:192.168.0.73";
 
 app.post("/fensterZu", function (request, response) {
   console.log(berechneZeit());
-  if (b >= 23) {
+  if (b >= 23 && b <= 6) {
     console.log("mache rolladen zu")
     rolladenDown();
   }
