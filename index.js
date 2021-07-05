@@ -63,18 +63,17 @@ let status = true;
 let anzAkk = 490,
   timeAkk;
 let fenster = false;
+let b;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
 let ledD1 ="::ffff:192.168.0.73";
 
-//Hello Button Pressed
-app.get("/hello", function (request, response) {
-  rolladenUP();
-  response.sendStatus(200);
-});
-//Bye Button Pressed
-app.get("/bye", function (request, response) {
-  rolladenDown();
+app.post("/fensterZu", function (request, response) {
+  console.log(berechneZeit());
+  if (b > 23) {
+    console.log("mache rolladen zu")
+    rolladenDown();
+  }
   response.sendStatus(200);
 });
 
