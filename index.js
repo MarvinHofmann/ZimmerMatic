@@ -72,7 +72,7 @@ app.post("/fensterZu", function (request, response) {
   console.log(berechneZeit());
   if (b >= 23 && b <= 6) {
     console.log("mache rolladen zu")
-    rolladenDown();
+    currentClientsws[0].send("101");
   }
   response.sendStatus(200);
 });
