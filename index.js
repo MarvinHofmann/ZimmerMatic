@@ -73,6 +73,7 @@ app.post("/fensterZu", function (request, response) {
   if (b >= 23 || b < 6) {
     console.log("mache rolladen zu")
     currentClientsws[0].send("101");
+    status = true;
   }
   response.sendStatus(200);
 });
@@ -142,7 +143,7 @@ app.post("/plfanze1", function (req, res) {
   console.log("Pflanze 1: " + plFeucht1);
   plZeit1 = berechneZeit();
   broadcastPflanzen(plFeucht1, plZeit1, "S1");
-  if (plFeucht1 >= 360) {
+  if (plFeucht1 >= 440) {
     //390 - 440
     bot.sendMessage(chatId, "Pflanze 1 bitte Gießen!");
   }
