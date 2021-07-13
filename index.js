@@ -69,6 +69,7 @@ let d1 = "::ffff:192.168.0.62";
 let ledD1 ="::ffff:192.168.0.73";
 let ledD1Sofa ="::ffff:192.168.0.64";
 
+
 app.post("/fensterZu", function (request, response) {
   console.log(berechneZeit());
   if (b >= 23 || b < 6) {
@@ -81,13 +82,13 @@ app.post("/fensterZu", function (request, response) {
 
 app.get("/on", function (request, response) {
   currentClientsws[1].send("0");
-  currentClientsws[1000].send("0");
+  currentClientsws[2].send("0");
   response.sendStatus(200);
 });
 
 app.get("/off", function (request, response) {
   currentClientsws[1].send("1");
-  currentClientsws[1000].send("1");
+  currentClientsws[2].send("1");
   response.sendStatus(200);
 });
 
@@ -192,7 +193,7 @@ wss.on("connection", function connection(ws, req) {
     currentClientsws[1] = ws;
   }else if (ip === ledD1Sofa) {
     console.log("client Sofa verbunden!");
-    currentClientsws[1000] = ws;
+    currentClientsws[2] = ws;
   }else {
     currentClientsws[anzClients] = ws;
     anzClients++;
@@ -235,7 +236,7 @@ let fensterabstand;
 function handleAbstand(abstand) {
   fensterabstand = abstand;
   if (abstand >= 13) {
-    for (let i = 2; i < currentClientsws.length; i++) {
+    for (let i = 3; i < currentClientsws.length; i++) {
       currentClientsws[i].send(
         JSON.stringify({ type: "abstand", value: abstand })
       );
@@ -245,7 +246,7 @@ function handleAbstand(abstand) {
 
 // diese funktion schickt das übergebene Objekt , int , string oder json an alle verbundenen Clients
 function broadcast(feucht, temp, zeit, sender) {
-  for (let i = 2; i < currentClientsws.length; i++) {
+  for (let i = 3; i < currentClientsws.length; i++) {
     currentClientsws[i].send(
       JSON.stringify({ type: "feuchtigkeit" + sender, value: feucht })
     );
@@ -262,7 +263,7 @@ function broadcast(feucht, temp, zeit, sender) {
 }
 
 function broadcastPflanzen(feucht, zeit, sender) {
-  for (let i = 2; i < currentClientsws.length; i++) {
+  for (let i = 3; i < currentClientsws.length; i++) {
     currentClientsws[i].send(
       JSON.stringify({ type: "PLfeuchtigkeit" + sender, value: feucht })
     );
@@ -393,8 +394,8 @@ function cleanArray(actual) {
 }
 
 function broadcastRoutinen() {
-  for (let i = 2; i < currentClientsws.length; i++) {
-    for (let l = 2; l < aCoutn; l++) {
+  for (let i = 3; i < currentClientsws.length; i++) {
+    for (let l = 0; l < aCoutn; l++) {
       currentClientsws[i].send(
         JSON.stringify({ type: "routineT" + l, value: realTime[l] })
       );
