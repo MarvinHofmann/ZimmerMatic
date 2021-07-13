@@ -67,6 +67,7 @@ let b;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
 let ledD1 ="::ffff:192.168.0.73";
+let ledD1Sofa ="::ffff:192.168.0.64";
 
 app.post("/fensterZu", function (request, response) {
   console.log(berechneZeit());
@@ -80,11 +81,13 @@ app.post("/fensterZu", function (request, response) {
 
 app.get("/on", function (request, response) {
   currentClientsws[1].send("0");
+  currentClientsws[1000].send("0");
   response.sendStatus(200);
 });
 
 app.get("/off", function (request, response) {
   currentClientsws[1].send("1");
+  currentClientsws[1000].send("1");
   response.sendStatus(200);
 });
 
@@ -185,8 +188,11 @@ wss.on("connection", function connection(ws, req) {
     console.log("client 0 verbunden!");
     currentClientsws[0] = ws;
   }else if (ip === ledD1) {
-    console.log("client 1 verbunden!");
+    console.log("client Dart verbunden!");
     currentClientsws[1] = ws;
+  }else if (ip === ledD1Sofa) {
+    console.log("client Sofa verbunden!");
+    currentClientsws[1000] = ws;
   }else {
     currentClientsws[anzClients] = ws;
     anzClients++;
