@@ -74,7 +74,7 @@ function getTempAverage() {
     if (average > 24 && status === true) {
       tel.bot.sendMessage(chatId, "Temperatur > 24°C Fahre Rolladen runter");
       main.rolladenDown();
-      main.status = false;
+      main.status = false; //setze status
     }
 }
 exports.getTempAverage = getTempAverage;
