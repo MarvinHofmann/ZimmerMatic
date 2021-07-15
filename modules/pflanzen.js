@@ -33,7 +33,7 @@ main.app.post("/plfanze2", function (req, res) {
     broadcastPflanzen(plFeucht2, plZeit2, "S2");
     if (plFeucht2 >= 320) {
       //380-410
-      tel.bot.sendMessage(chatId, "Pflanze 2 bitte Gießen!");
+      tel.sendM("Pflanze 2 bitte Gießen!");
     }
     res.sendStatus(200);
   });
@@ -45,7 +45,7 @@ main.app.post("/plfanze2", function (req, res) {
     broadcastPflanzen(plFeucht3, plZeit3, "S3");
     if (plFeucht3 >= 180) {
       //zw 180 && 200
-      tel.bot.sendMessage(chatId, "Pflanze 2 bitte Gießen!");
+      tel.sendM("Pflanze 3 bitte Gießen!");
     }
     res.sendStatus(200);
   });

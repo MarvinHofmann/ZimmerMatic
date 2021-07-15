@@ -58,3 +58,7 @@ bot.on("message", (msg) => {
       break;
   }
 });
+
+exports.sendM = function(s){
+    bot.send(chatId, s);
+}
