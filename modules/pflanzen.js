@@ -43,7 +43,7 @@ main.app.post("/plfanze2", function (req, res) {
   });
   /***********************************************************************************************/
 
-  exports.broadcastPflanzen = function(feucht, zeit, sender) {
+  function broadcastPflanzen(feucht, zeit, sender) {
     for (let i = 3; i < currentClientsws.length; i++) {
       currentClientsws[i].main.send(
         JSON.stringify({ type: "PLfeuchtigkeit" + sender, value: feucht })
@@ -53,4 +53,4 @@ main.app.post("/plfanze2", function (req, res) {
       );
     }
   }
-  
+  exports.broadcastPflanzen = broadcastPflanzen;
