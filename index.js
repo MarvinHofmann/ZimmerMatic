@@ -42,6 +42,7 @@ app.listen(port, () => {
 
 const telegrambot = require("./modules/telegram.js");
 const pflanzen = require("./modules/pflanzen.js");
+const temp = require("./modules/temp");
 //Globale Variablen
 let anzClients = 2;
 let status = true;
