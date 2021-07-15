@@ -6,7 +6,7 @@ plFeucht3;
 main.app.post("/plfanze1", function (req, res) {
     plFeucht1 = req.body.feuchtigkeit;
     console.log("Pflanze 1: " + plFeucht1);
-    plZeit1 = berechneZeit();
+    plZeit1 = main.berechneZeit();
     broadcastPflanzen(plFeucht1, plZeit1, "S1");
     if (plFeucht1 >= 440) {
       //390 - 440
@@ -39,3 +39,15 @@ main.app.post("/plfanze2", function (req, res) {
     res.sendStatus(200);
   });
   /***********************************************************************************************/
+
+  exports.broadcastPflanzen = function(feucht, zeit, sender) {
+    for (let i = 3; i < currentClientsws.length; i++) {
+      currentClientsws[i].send(
+        JSON.stringify({ type: "PLfeuchtigkeit" + sender, value: feucht })
+      );
+      currentClientsws[i].send(
+        JSON.stringify({ type: "PLzeit" + sender, value: zeit })
+      );
+    }
+  }
+  

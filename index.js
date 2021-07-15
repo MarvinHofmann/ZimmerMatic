@@ -2,6 +2,7 @@
 //Websocket Server
 const WebSocket = require("ws");
 const wss = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
+exports.wss = wss;
 const schedule = require("node-schedule");
 let currentClientsws = [];
 const cronParser = require("cron-parser");
@@ -161,9 +162,9 @@ wss.on("connection", function connection(ws, req) {
     broadcast(feucht2, temp2, zeit2, "S2");
     broadcast(feucht3, temp3, zeit3, "S3");
     broadcastRoutinen();
-    broadcastPflanzen(plFeucht1, plZeit1, "S1");
-    broadcastPflanzen(plFeucht2, plZeit2, "S2");
-    broadcastPflanzen(plFeucht3, plZeit3, "S3");
+    pflanzen.broadcastPflanzen(plFeucht1, plZeit1, "S1");
+    pflanzen.broadcastPflanzen(plFeucht2, plZeit2, "S2");
+    pflanzen.broadcastPflanzen(plFeucht3, plZeit3, "S3");
   }
   //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
   ws.on("message", function incoming(message) {
@@ -222,18 +223,7 @@ function broadcast(feucht, temp, zeit, sender) {
   }
 }
 
-function broadcastPflanzen(feucht, zeit, sender) {
-  for (let i = 3; i < currentClientsws.length; i++) {
-    currentClientsws[i].send(
-      JSON.stringify({ type: "PLfeuchtigkeit" + sender, value: feucht })
-    );
-    currentClientsws[i].send(
-      JSON.stringify({ type: "PLzeit" + sender, value: zeit })
-    );
-  }
-}
-
-function berechneZeit() {
+exports.berechneZeit = function () {
   let a = new Date();
   b = c = d = zeit = 0;
   b = a.getHours();
