@@ -159,7 +159,7 @@ function berechneZeit() {
 exports.berechneZeit = berechneZeit;
 
 function rolladenUP() {
-  if (average > 24) {
+  if (temp.average > 24) {
     status = false;
   }
   currentClientsws[0].send("99");
