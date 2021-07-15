@@ -46,6 +46,7 @@ const temp = require("./modules/temp");
 //Globale Variablen
 let anzClients = 2;
 let status = true;
+exports.status = status;
 let b;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
