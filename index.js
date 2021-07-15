@@ -93,10 +93,8 @@ wss.on("connection", function connection(ws, req) {
     currentClientsws[anzClients] = ws;
     anzClients++;
     temp.publish();
+    pflanzen.publish();
     broadcastRoutinen();
-    pflanzen.broadcastPflanzen(pflanzen.plFeucht1, plZeit1, "S1");
-    pflanzen.broadcastPflanzen(pflanzen.plFeucht2, plZeit2, "S2");
-    pflanzen.broadcastPflanzen(pflanzen.plFeucht3, plZeit3, "S3");
   }
   //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
   ws.on("message", function incoming(message) {

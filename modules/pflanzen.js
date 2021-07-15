@@ -63,3 +63,9 @@ main.app.post("/plfanze2", function (req, res) {
     }
   }
   exports.broadcastPflanzen = broadcastPflanzen;
+
+  exports.publish = function(){
+    broadcastPflanzen(plFeucht1, plZeit1, "S1");
+    broadcastPflanzen(plFeucht2, plZeit2, "S2");
+    broadcastPflanzen(plFeucht3, plZeit3, "S3");
+  }
