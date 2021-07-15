@@ -71,7 +71,7 @@ main.app.post("/", function (req, res) {
 //schließe Rolladen, wenn wärmer als 24 ° Durchschnitt
 function getTempAverage() {
     average = ((temp + temp2 + temp3) / 3).toFixed(2);
-    if (average > 24 && status === true) {
+    if (average > 24 && main.status === true) {
       tel.bot.sendMessage(chatId, "Temperatur > 24°C Fahre Rolladen runter");
       main.rolladenDown();
       main.status = false; //setze status
