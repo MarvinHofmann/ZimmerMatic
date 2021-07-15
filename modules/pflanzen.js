@@ -1,3 +1,4 @@
+const WebSocket = require("ws");
 const main = require("../index.js");
 let plFeucht1,
 plFeucht2,
