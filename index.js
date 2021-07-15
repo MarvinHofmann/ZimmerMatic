@@ -163,9 +163,9 @@ wss.on("connection", function connection(ws, req) {
     broadcast(feucht2, temp2, zeit2, "S2");
     broadcast(feucht3, temp3, zeit3, "S3");
     broadcastRoutinen();
-    pflanzen.broadcastPflanzen(plFeucht1, plZeit1, "S1");
-    pflanzen.broadcastPflanzen(plFeucht2, plZeit2, "S2");
-    pflanzen.broadcastPflanzen(plFeucht3, plZeit3, "S3");
+    pflanzen.broadcastPflanzen(pflanzen.plFeucht1, plZeit1, "S1");
+    pflanzen.broadcastPflanzen(pflanzen.plFeucht2, plZeit2, "S2");
+    pflanzen.broadcastPflanzen(pflanzen.plFeucht3, plZeit3, "S3");
   }
   //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
   ws.on("message", function incoming(message) {
