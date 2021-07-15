@@ -2,6 +2,9 @@ const main = require("../index.js");
 let plFeucht1,
 plFeucht2,
 plFeucht3;
+exports={
+    plFeucht1, plFeucht2, plFeucht3
+};
 /********************************Pflanzenüberwachung*********************************************/
 main.app.post("/plfanze1", function (req, res) {
     plFeucht1 = req.body.feuchtigkeit;
