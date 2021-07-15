@@ -43,25 +43,8 @@ app.listen(port, () => {
 const telegrambot = require("./modules/telegram.js");
 const pflanzen = require("./modules/pflanzen.js");
 //Globale Variablen
-let temp,
-  feucht,
-  temp2,
-  feucht2,
-  temp3,
-  feucht3,
-  zeit1,
-  zeit2,
-  zeit3,
-  anzClients = 2,
-  average,
-  plZeit1,
-  plZeit2,
-  plZeit3;
-exports.average = average;
+let anzClients = 2;
 let status = true;
-let anzAkk = 490,
-  timeAkk;
-let fenster = false;
 let b;
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
@@ -90,61 +73,10 @@ app.get("/off", function (request, response) {
   response.sendStatus(200);
 });
 
-app.post("/fenster", function (req, res) {
-  if (req.body.status == 1) { // fenster offen
-    fenster = true;  
-  }else if (req.body.status == 0) {
-    fenster = false;  //fenster zu
-  }
-  console.log("Fenster: " + fenster)
-  res.sendStatus(200);
-});
-
-
-/********************************Temperatursensoren******************************************* */
-
-app.post("/", function (req, res) {
-  temp = req.body.temperatur;
-  feucht = req.body.feuchtigkeit;
-  zeit1 = berechneZeit();
-  console.log(
-    "Temperatur1: " + temp + " Feuchtigkeit1: " + feucht + " Zeit: " + zeit1
-  );
-  getTempAverage();
-  broadcast(feucht, temp, zeit1, "S1");
-  res.sendStatus(200);
-});
-
-app.post("/senderZwei", function (req, res) {
-  temp2 = req.body.temperatur;
-  feucht2 = req.body.feuchtigkeit;
-  zeit2 = berechneZeit();
-  console.log(
-    "Temperatur2: " + temp2 + " Feuchtigkeit2: " + feucht2 + " Zeit: " + zeit2
-  );
-  getTempAverage();
-  broadcast(feucht2, temp2, zeit2, "S2");
-  res.sendStatus(200);
-});
-
-app.post("/senderDrei", function (req, res) {
-  temp3 = req.body.temperatur;
-  feucht3 = req.body.feuchtigkeit;
-  zeit3 = berechneZeit();
-  console.log(
-    "Temperatur3: " + temp3 + " Feuchtigkeit3: " + feucht3 + " Zeit: " + zeit3
-  );
-  getTempAverage();
-  broadcast(feucht3, temp3, zeit3, "S3");
-  res.sendStatus(200);
-});
-
-
-
-//Sagt euch wenn ein Client verbunden ist oder wenn er disconnected
+//Sagt, wenn ein Client verbunden ist oder wenn er disconnected
 wss.on("connection", function connection(ws, req) {
   console.log("Client connected!");
-
+  //hole IP Adresse
   const ip = req.socket.remoteAddress;
   console.log(ip);
   if (ip === d1) {
@@ -159,9 +91,7 @@ wss.on("connection", function connection(ws, req) {
   }else {
     currentClientsws[anzClients] = ws;
     anzClients++;
-    broadcast(feucht, temp, zeit1, "S1");
-    broadcast(feucht2, temp2, zeit2, "S2");
-    broadcast(feucht3, temp3, zeit3, "S3");
+    temp.publish();
     broadcastRoutinen();
     pflanzen.broadcastPflanzen(pflanzen.plFeucht1, plZeit1, "S1");
     pflanzen.broadcastPflanzen(pflanzen.plFeucht2, plZeit2, "S2");
@@ -207,24 +137,7 @@ function handleAbstand(abstand) {
 }
 
 // diese funktion schickt das übergebene Objekt , int , string oder json an alle verbundenen Clients
-function broadcast(feucht, temp, zeit, sender) {
-  for (let i = 3; i < currentClientsws.length; i++) {
-    currentClientsws[i].send(
-      JSON.stringify({ type: "feuchtigkeit" + sender, value: feucht })
-    );
-    currentClientsws[i].send(
-      JSON.stringify({ type: "temperatur" + sender, value: temp })
-    );
-    currentClientsws[i].send(
-      JSON.stringify({ type: "zeit" + sender, value: zeit })
-    );
-    currentClientsws[i].send(
-      JSON.stringify({ type: "average", value: average })
-    );
-  }
-}
-
-exports.berechneZeit = function () {
+function berechneZeit() {
   let a = new Date();
   b = c = d = zeit = 0;
   b = a.getHours();
@@ -242,15 +155,7 @@ exports.berechneZeit = function () {
   zeit = b + ":" + c + ":" + d;
   return zeit;
 }
-//schließe Rolladen, wenn wärmer als 24 ° Durchschnitt
-function getTempAverage() {
-  average = ((temp + temp2 + temp3) / 3).toFixed(2);
-  if (average > 24 && status === true) {
-    //bot.sendMessage(chatId, "Temperatur > 24°C Fahre Rolladen runter");
-    rolladenDown();
-    status = false;
-  }
-}
+exports.berechneZeit = berechneZeit;
 
 function rolladenUP() {
   if (average > 24) {
@@ -267,6 +172,7 @@ function rolladenDown() {
   status = true;
   currentClientsws[0].send("101");
 }
+exports.rolladenDown = rolladenDown;
 
 /*****************************************RolladenRoutine********************************************* */
 const prettyCron = require("prettycron");
