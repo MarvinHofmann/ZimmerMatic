@@ -2,9 +2,9 @@ const main = require("../index.js");
 let plFeucht1,
 plFeucht2,
 plFeucht3;
-exports={
-    plFeucht1, plFeucht2, plFeucht3
-};
+exports.plFeucht1 = plFeucht1;
+exports.plFeucht2 = plFeucht2;
+exports.plFeucht3 = plFeucht3;
 /********************************Pflanzenüberwachung*********************************************/
 main.app.post("/plfanze1", function (req, res) {
     plFeucht1 = req.body.feuchtigkeit;
@@ -16,7 +16,7 @@ main.app.post("/plfanze1", function (req, res) {
       bot.sendMessage(chatId, "Pflanze 1 bitte Gießen!");
     }
     res.sendStatus(200);
-  });
+});
   
 main.app.post("/plfanze2", function (req, res) {
     plFeucht2 = req.body.feuchtigkeit;
@@ -45,10 +45,10 @@ main.app.post("/plfanze2", function (req, res) {
 
   exports.broadcastPflanzen = function(feucht, zeit, sender) {
     for (let i = 3; i < currentClientsws.length; i++) {
-      currentClientsws[i].send(
+      currentClientsws[i].main.send(
         JSON.stringify({ type: "PLfeuchtigkeit" + sender, value: feucht })
       );
-      currentClientsws[i].send(
+      currentClientsws[i].main.send(
         JSON.stringify({ type: "PLzeit" + sender, value: zeit })
       );
     }
