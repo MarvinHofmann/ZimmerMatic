@@ -13,17 +13,17 @@ let temp,
   average;
 exports.temp = temp;
 function broadcast(feucht, temp, zeit, sender) {
-    for (let i = 3; i < main.currentClientsws.length; i++) {
-      main.currentClientsws[i].send(
+    for (let i = 0; i < main.ClientswsBrowser.length; i++) {
+      ClientswsBrowser[i].send(
         JSON.stringify({ type: "feuchtigkeit" + sender, value: feucht })
       );
-      main.currentClientsws[i].send(
+      ClientswsBrowser[i].send(
         JSON.stringify({ type: "temperatur" + sender, value: temp })
       );
-      main.currentClientsws[i].send(
+      ClientswsBrowser[i].send(
         JSON.stringify({ type: "zeit" + sender, value: zeit })
       );
-      main.currentClientsws[i].send(
+      ClientswsBrowser[i].send(
         JSON.stringify({ type: "average", value: average })
       );
     }
@@ -85,3 +85,11 @@ function publish(){
     broadcast(feucht3, temp3, zeit3, "S3");
 }
 exports.publish = publish;
+
+exports.botSendStatus = function(){
+  tel.sendM( 
+    "Durchschn. Temp: " + average 
+  + "Temp1: " + temp
+  + "Temp2: " + temp2
+  + "Temp3: " + temp3);
+}

@@ -1,4 +1,4 @@
-const ws = new WebSocket("ws://192.168.0.58:8000");
+const ws = new WebSocket("ws://192.168.0.58:3000");
 
 ws.addEventListener("open", () => {
   console.log("Client connected with server!");

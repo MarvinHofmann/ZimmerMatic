@@ -1,25 +1,34 @@
 /*ZimmerMatic Node.js Webserver*/
 //Websocket Server
 const WebSocket = require("ws");
-const wss = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
+const wssLED = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
+exports.wssLED = wssLED;
+
+const wss = new WebSocket.Server({ port: 3000 }); // abgespilteter WS Server auf anderem Port
 exports.wss = wss;
-const schedule = require("node-schedule");
+let ClientswsBrowser = [];
+exports.ClientswsBrowser = ClientswsBrowser;
+let clientsCn = 0;
+
 let currentClientsws = [];
 exports.currentClientsws = currentClientsws;
+
+const schedule = require("node-schedule");
+
 const cronParser = require("cron-parser");
+
 // Init. EXpress Server
 const express = require("express");
 const app = express();
 exports.app = app;
-
 const port = 3443;
+
 let bodyParser = require("body-parser");
-//exports.bodyParser = bodyParser;
 app.use(bodyParser.json());
+
 const path = require("path");
 //express.static sucht im Ordner public nach der Index.js Datei und publisht sie direkt
 app.use(express.static("public"));
-
 //Cors
 const cors = require("cors");
 app.use(
@@ -39,10 +48,11 @@ app.listen(port, () => {
   console.log(`App listening at http://ZimmerMatic:${port}`); // Publisher Server auf Port 3443
   console.log("Die IP Adresse lautet: 192.168.0.58");
 });
-
+//Einpflegen der Module 
 const telegrambot = require("./modules/telegram.js");
 const pflanzen = require("./modules/pflanzen.js");
 const temp = require("./modules/temp");
+const leds = require("./modules/leds");
 
 //Globale Variablen
 let anzClients = 2;
@@ -64,20 +74,8 @@ app.post("/fensterZu", function (request, response) {
   response.sendStatus(200);
 });
 
-app.get("/on", function (request, response) {
-  currentClientsws[1].send("0");
-  currentClientsws[2].send("0");
-  response.sendStatus(200);
-});
-
-app.get("/off", function (request, response) {
-  currentClientsws[1].send("1");
-  currentClientsws[2].send("1");
-  response.sendStatus(200);
-});
-
 //Sagt, wenn ein Client verbunden ist oder wenn er disconnected
-wss.on("connection", function connection(ws, req) {
+wssLED.on("connection", function connection(ws, req) {
   console.log("Client connected!");
   //hole IP Adresse
   const ip = req.socket.remoteAddress;
@@ -94,14 +92,26 @@ wss.on("connection", function connection(ws, req) {
   }else {
     currentClientsws[anzClients] = ws;
     anzClients++;
-    temp.publish();
-    pflanzen.publish();
-    broadcastRoutinen();
   }
   //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
   ws.on("message", function incoming(message) {
     console.log("received: %s", message);
-    if (currentClientsws[0] != null) {
+    //Einzige message die ankommen kann ist der Abstand vom Fenster
+    handleAbstand(message);   
+  });
+  ws.on("close", (data) => {
+    console.log("Client has disconnceted");
+  });
+});
+
+wss.on("connection", function connection(ws, req) {
+  console.log("Client connected!");
+  currentClientsws[clientsCn] = ws;
+  temp.publish();
+  pflanzen.publish();
+  broadcastRoutinen();
+  ws.on("message", function incoming(message) {
+    console.log("received: %s", message);
       switch (message) {
         case "hoch":
           rolladenUP();
@@ -116,21 +126,20 @@ wss.on("connection", function connection(ws, req) {
           currentClientsws[0].send("0");
           break;
         default:
-          handleAbstand(message);
       }
-    }
   });
 
   ws.on("close", (data) => {
     console.log("Client has disconnceted");
   });
 });
+
 let fensterabstand;
 function handleAbstand(abstand) {
   fensterabstand = abstand;
   if (abstand >= 13) {
-    for (let i = 3; i < currentClientsws.length; i++) {
-      currentClientsws[i].send(
+    for (let i = 0; i < ClientswsBrowser.length; i++) {
+      ClientswsBrowser[i].send(
         JSON.stringify({ type: "abstand", value: abstand })
       );
     }

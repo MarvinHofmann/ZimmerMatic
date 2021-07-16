@@ -53,11 +53,11 @@ main.app.post("/plfanze2", function (req, res) {
 
   function broadcastPflanzen(feucht, zeit, sender) {
       
-    for (let i = 3; i < main.currentClientsws.length; i++) {
-      main.currentClientsws[i].send(
+    for (let i = 0; i < main.ClientswsBrowser.length; i++) {
+      main.ClientswsBrowser[i].send(
         JSON.stringify({ type: "PLfeuchtigkeit" + sender, value: feucht })
       );
-      main.currentClientsws[i].send(
+      main.ClientswsBrowser[i].send(
         JSON.stringify({ type: "PLzeit" + sender, value: zeit })
       );
     }
@@ -68,4 +68,11 @@ main.app.post("/plfanze2", function (req, res) {
     broadcastPflanzen(plFeucht1, plZeit1, "S1");
     broadcastPflanzen(plFeucht2, plZeit2, "S2");
     broadcastPflanzen(plFeucht3, plZeit3, "S3");
+  }
+
+  exports.botSendStatus = function(){
+    tel.sendM( 
+    + "Pflanze3: " + plFeucht1
+    + "Pflanze3: " + plFeucht2
+    + "Pflanze3: " + plFeucht3);
   }
