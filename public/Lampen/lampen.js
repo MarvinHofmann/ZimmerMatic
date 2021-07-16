@@ -56,6 +56,7 @@ function setAll(value){
     alleSwitch = value;
     document.getElementById("BL").checked = false;
     document.getElementById("BR").checked = false;
+    document.getElementById("BT").checked = false;
      BLSwitch = false;
      BRSwitch = false;
      let BateltischSwitch = false;
