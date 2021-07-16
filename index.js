@@ -71,8 +71,9 @@ app.get("/hello" , function(req, res) {
   console.log("Nachricht kam an!");
   currentClientsws[1].send("255,244,89,100");
   currentClientsws[2].send("255,244,89,100");  
-  Ikea.fetchLampe("BL", "Helligkeit", 100);
-  Ikea.fetchLampe("BR", "Helligkeit", 100);
+  Ikea.fetchLampe("BL", "Helligkeit", 30);
+  Ikea.fetchLampe("BR", "Helligkeit", 30);
+  Ikea.fetchSteckdose("OFF");
   res.sendStatus(200);
 });
 
@@ -82,6 +83,7 @@ app.get("/tschuess" , function(req, res) {
   currentClientsws[2].send("0,0,0,0");  
   Ikea.fetchLampe("BL", "Helligkeit", 0);
   Ikea.fetchLampe("BR", "Helligkeit", 0);
+  Ikea.fetchSteckdose("OFF");
   res.sendStatus(200);
 });
 
