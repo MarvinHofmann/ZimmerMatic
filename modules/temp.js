@@ -14,16 +14,16 @@ let temp,
 exports.temp = temp;
 function broadcast(feucht, temp, zeit, sender) {
     for (let i = 0; i < main.ClientswsBrowser.length; i++) {
-      ClientswsBrowser[i].send(
+      main.ClientswsBrowser[i].send(
         JSON.stringify({ type: "feuchtigkeit" + sender, value: feucht })
       );
-      ClientswsBrowser[i].send(
+      main.ClientswsBrowser[i].send(
         JSON.stringify({ type: "temperatur" + sender, value: temp })
       );
-      ClientswsBrowser[i].send(
+      main.ClientswsBrowser[i].send(
         JSON.stringify({ type: "zeit" + sender, value: zeit })
       );
-      ClientswsBrowser[i].send(
+      main.ClientswsBrowser[i].send(
         JSON.stringify({ type: "average", value: average })
       );
     }
