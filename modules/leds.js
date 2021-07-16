@@ -1,3 +1,4 @@
+const WebSocket = require("ws");
 const main = require("../index");
 
 main.app.get("/on", function (request, response) {
