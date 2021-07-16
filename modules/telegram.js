@@ -28,9 +28,6 @@ bot.on("message", (msg) => {
       pflanzen.botSendStatus();
       temp.botSendStatus();
       break;
-    case "/akku":
-      bot.sendMessage(chatId,"Anzahl Eingegangenen Sendungen mit Akku: " + anzAkk + " letze Zeit: " + timeAkk);
-      break;
     default:
       break;
   }

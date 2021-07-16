@@ -47,7 +47,7 @@ const Ikea = require("./modules/tradfri");
 
 let status = true;
 exports.status = status;
-let b;
+
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.62";
 let ledD1 ="::ffff:192.168.0.73";
@@ -132,6 +132,3 @@ function berechneZeit() {
   return zeit;
 }
 exports.berechneZeit = berechneZeit;
-
-
-

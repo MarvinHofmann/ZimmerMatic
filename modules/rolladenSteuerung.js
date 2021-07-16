@@ -1,10 +1,13 @@
 const main = require("../index");
 const temp = require("./temp");
+const lampen = require("./tradfri");
 main.app.post("/fensterZu", function (request, response) {
-  console.log(berechneZeit());
-  if (b >= 23 || b < 6) {
+  let a = new Date();
+  if (a.getHours >= 23 || a.getHours < 6) {
     console.log("mache rolladen zu");
     main.currentClientsws[0].send("101");
+    lampen.fetchLampe("BL", "Helligkeit", 0);
+    lampen.fetchLampe("BR", "Helligkeit", 0);
     //status = true;
   }
   response.sendStatus(200);
