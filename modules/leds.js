@@ -17,7 +17,7 @@ main.app.post("/D1Leds" , function (req, res) {
    let r = req.body.red; 
    let g = req.body.green; 
    let b = req.body.blue; 
-   let v = req.body.value; 
+   let v = (Number(req.body.value) *2.5); 
    let n = req.body.who;
    console.log("Fetch kam an Sende an " + n);
    console.log(`r: ${r}, g: ${g}, b: ${b}, v: ${v}`);
@@ -29,7 +29,7 @@ main.app.post("/D1LedsAll" , function (req, res) {
     let r = req.body.red; 
     let g = req.body.green; 
     let b = req.body.blue; 
-    let v = req.body.value; 
+    let v = (Number(req.body.value) *2.5); 
     console.log(`r: ${r}, g: ${g}, b: ${b}, v: ${v}`);
     main.currentClientsws[1].send(`${r},${g},${b},${v}`);
     main.currentClientsws[2].send(`${r},${g},${b},${v}`);
