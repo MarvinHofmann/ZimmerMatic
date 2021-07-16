@@ -69,11 +69,19 @@ app.use(function (req, res, next) {
 
 app.get("/hello" , function(req, res) {
   console.log("Nachricht kam an!");
+  currentClientsws[1].send("255,244,89,100");
+  currentClientsws[2].send("255,244,89,100");  
+  lampen.fetchLampe("BL", "Helligkeit", 100);
+  lampen.fetchLampe("BR", "Helligkeit", 100);
   res.sendStatus(200);
 });
 
 app.get("/tschuess" , function(req, res) {
-  console.log("Nachricht kam an! Bye");
+  console.log("Nachricht kam an!");
+  currentClientsws[1].send("0,0,0,0");
+  currentClientsws[2].send("0,0,0,0");  
+  lampen.fetchLampe("BL", "Helligkeit", 0);
+  lampen.fetchLampe("BR", "Helligkeit", 0);
   res.sendStatus(200);
 });
 
