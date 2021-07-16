@@ -13,6 +13,7 @@ let temp,
   zeit3,
   average;
 exports.temp = temp;
+exports.average = average;
 function broadcast(feucht, temp, zeit, sender) {
     for (let i = 0; i < main.ClientswsBrowser.length; i++) {
       main.ClientswsBrowser[i].send(
