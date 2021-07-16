@@ -1,3 +1,4 @@
+const main = require("../index");
 /**
 const prettyCron = require("prettycron");
 let timeArray = [];

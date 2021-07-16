@@ -71,8 +71,7 @@ main.app.post("/plfanze2", function (req, res) {
   }
 
   exports.botSendStatus = function(){
-    tel.sendM( 
-    + "Pflanze3: " + plFeucht1
-    + "Pflanze3: " + plFeucht2
-    + "Pflanze3: " + plFeucht3);
+    tel.sendM("Pflanze1: " + plFeucht1
+    + " Pflanze2: " + plFeucht2
+    + " Pflanze3: " + plFeucht3);
   }
