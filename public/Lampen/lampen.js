@@ -2,6 +2,7 @@ let slider = document.getElementById("myRange");
 let BLSwitch = false;
 let BRSwitch = false;
 let alleSwitch = true;
+let BateltischSwitch = false;
 
 
 // Update the current slider value (each time you drag the slider handle)
@@ -12,6 +13,8 @@ function helligkeit(value) {
         sendFetch("BL", "Helligkeit", value);
     }if(BRSwitch){
         sendFetch("BR", "Helligkeit", value);
+    }if (BateltischSwitch) {
+        sendFetch("BT", "Helligkeit", value);
     }
     console.log(value);
 }
@@ -23,6 +26,8 @@ function farbtemperatur(value){
         sendFetch("BL", "Farbtemperatur", value);
     }if(BRSwitch){
         sendFetch("BR", "Farbtemperatur", value);
+    }if (BateltischSwitch) {
+        sendFetch("BT", "Farbtempertaur", value);
     }
     console.log(value);
 }
@@ -40,6 +45,12 @@ function setStatusBR(value){
     alleSwitch = false;
     console.log(value);
 }
+function setBastel(value){
+    BateltischSwitch = value
+    document.getElementById("Alle").checked = false;
+    alleSwitch = false;
+    console.log(value);
+}
 
 function setAll(value){
     alleSwitch = value;
@@ -47,6 +58,7 @@ function setAll(value){
     document.getElementById("BR").checked = false;
      BLSwitch = false;
      BRSwitch = false;
+     let BateltischSwitch = false;
     console.log(value);
 }
 

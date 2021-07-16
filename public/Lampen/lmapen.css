@@ -1,5 +1,5 @@
 .slidecontainer {
-    width: 50%; /* Width of the outside container */
+    width: 100%; /* Width of the outside container */
   }
   
   /* The slider itself */
@@ -35,4 +35,19 @@
     height: 25px; /* Slider handle height */
     background: #04AA6D; /* Green background */
     cursor: pointer; /* Cursor on hover */
+  }
+
+  #containerDiv{
+      display: grid;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+  }
+
+  #sw{
+    display: grid;
+    padding-left: 60px;
+    grid-template-columns: 200px 200px;
+    grid-row: auto auto;
+    
   }
