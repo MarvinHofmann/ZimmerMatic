@@ -67,6 +67,16 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.get("/hello" , function(req, res) {
+  console.log("Nachricht kam an!");
+  res.sendStatus(200);
+});
+
+app.get("/tschuess" , function(req, res) {
+  console.log("Nachricht kam an! Bye");
+  res.sendStatus(200);
+});
+
 //Sagt, wenn ein Client verbunden ist oder wenn er disconnected
 wssLED.on("connection", function connection(ws, req) {
   console.log("Client connected!");
