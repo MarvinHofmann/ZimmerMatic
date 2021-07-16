@@ -21,6 +21,7 @@ main.app.post('/LampenAll' , function ( request, response){
 
 function fetchLampe(lampe, modus, wert){
     let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_" + modus;
+    console.log("fetch an: " +adresse );
     fetch(adresse, {method: 'POST', body: wert});
 }
 exports.fetchLampe = fetchLampe;
