@@ -52,7 +52,7 @@ exports.status = status;
 let d1 = "::ffff:192.168.0.62";
 let ledD1 ="::ffff:192.168.0.73";
 let ledD1Sofa ="::ffff:192.168.0.64";
-
+const cors = require("cors");
 app.use(
   cors({
     origin: "*",
