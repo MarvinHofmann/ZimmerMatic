@@ -53,6 +53,20 @@ let d1 = "::ffff:192.168.0.62";
 let ledD1 ="::ffff:192.168.0.73";
 let ledD1Sofa ="::ffff:192.168.0.64";
 
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 //Sagt, wenn ein Client verbunden ist oder wenn er disconnected
 wssLED.on("connection", function connection(ws, req) {
   console.log("Client connected!");
