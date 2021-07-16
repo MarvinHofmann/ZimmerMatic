@@ -1,3 +1,14 @@
-*{
-    font-family: Arial, Helvetica, sans-serif;
+#outsideContainer {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+#checkBox{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;  
+    padding-top: 2%;
+    padding-bottom: 2%;
 }

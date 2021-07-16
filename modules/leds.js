@@ -12,3 +12,23 @@ main.app.get("/off", function (request, response) {
     main.currentClientsws[2].send("1");
     response.sendStatus(200);
 });
+
+main.app.post("/D1Leds" , function (req, res) {
+   let r = req.body.red; 
+   let g = req.body.green; 
+   let b = req.body.blue; 
+   let v = req.body.value; 
+   let n = req.body.who;
+   console.log(`r: ${r}, g: ${g}, b: ${b}, v: ${v}`);
+   main.currentClientsws[n].send(`${r},${g},${b},${v}`);
+});
+
+main.app.post("/D1LedsAll" , function (req, res) {
+    let r = req.body.red; 
+    let g = req.body.green; 
+    let b = req.body.blue; 
+    let v = req.body.value; 
+    console.log(`r: ${r}, g: ${g}, b: ${b}, v: ${v}`);
+    main.currentClientsws[1].send(`${r},${g},${b},${v}`);
+    main.currentClientsws[2].send(`${r},${g},${b},${v}`);
+ });

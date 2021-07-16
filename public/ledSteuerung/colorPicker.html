@@ -50,8 +50,26 @@
           </div>
         </div>
       </nav>
-    <h1>ColorPicker</h1>
-    <div id="picker"></div>
+    <div id="outsideContainer">
     
+    <div id="checkBox">
+    <h1>ColorPicker</h1>
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="Couch" onchange="setStatusCouch(this.checked);">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Couch</label>
+    </div>
+
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="Dart" onchange="setStatusDart(this.checked);">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Dartscheibe</label>
+    </div>
+
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="Alle" onchange="setAll(this.checked)" checked>
+        <label class="form-check-label" for="flexSwitchCheckDefault">Alle</label>
+    </div>
+</div>
+    <div id="picker"></div>
+    </div>
 </body>
 </html>
