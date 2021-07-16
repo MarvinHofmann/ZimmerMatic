@@ -46,14 +46,14 @@ function sendFetchAll(red, green, blue, value) {
   }
 
 function setStatusCouch(value) {
-  BLSwitch = value;
+  Couchswitch = value;
   document.getElementById("Alle").checked = false;
   alleSwitch = false;
   console.log(value);
 }
 
 function setStatusDart(value) {
-  BRSwitch = value;
+  Dartswitch = value;
   document.getElementById("Alle").checked = false;
   alleSwitch = false;
   console.log(value);
