@@ -25,6 +25,7 @@ colorPicker.on("input:end", function (color) {
 });
 
 function sendFetch(red, green, blue, value, who) {
+  console.log("Sende Fetch");
   fetch("http://192.168.0.58:3443/D1Leds", {
     method: "POST",
     headers: {

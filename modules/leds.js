@@ -19,8 +19,10 @@ main.app.post("/D1Leds" , function (req, res) {
    let b = req.body.blue; 
    let v = req.body.value; 
    let n = req.body.who;
+   console.log("Fetch kam an Sende an " + n);
    console.log(`r: ${r}, g: ${g}, b: ${b}, v: ${v}`);
    main.currentClientsws[n].send(`${r},${g},${b},${v}`);
+   res.sendStatus(200);
 });
 
 main.app.post("/D1LedsAll" , function (req, res) {
@@ -31,4 +33,5 @@ main.app.post("/D1LedsAll" , function (req, res) {
     console.log(`r: ${r}, g: ${g}, b: ${b}, v: ${v}`);
     main.currentClientsws[1].send(`${r},${g},${b},${v}`);
     main.currentClientsws[2].send(`${r},${g},${b},${v}`);
+    res.sendStatus(200);
  });

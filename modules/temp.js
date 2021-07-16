@@ -1,6 +1,7 @@
 const WebSocket = require("ws");
 const main = require("../index.js");
 const tel = require("./telegram");
+const rol = require("./rolladenSteuerung");
 let temp,
   feucht,
   temp2,
@@ -73,8 +74,8 @@ function getTempAverage() {
     average = ((temp + temp2 + temp3) / 3).toFixed(2);
     if (average > 24 /*&& main.status === true*/) {
       tel.sendM("Fahre Rolladen runter Temperatur >24°");
-      main.rolladenDown();
-      main.status = false; //setze status
+      rol.rolladenDown();
+     // main.status = false; //setze status
     }
 }
 exports.getTempAverage = getTempAverage;
