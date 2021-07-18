@@ -169,11 +169,15 @@ function berechneZeit() {
 }
 exports.berechneZeit = berechneZeit;
 
+function getStunde() {
+  let x = new Date();
+  return x.getHours();
+}
+
 app.post('/fensterZu', function (request, response) {
   console.log("Soll ich fenster zu ?");
-  let a = new Date();
-  console.log("stunde: " + a.getHours());
-  if (a.getHours() >= 12 || a.getHours() < 6) {
+  console.log("stunde: " + getStunde());
+  if (getStunde() >= 12 || getStunde < 6) {
     console.log("mache rolladen zu");
     currentClientsws[0].send("101");
     Ikea.fetchLampe("BL", "Helligkeit", 0);
