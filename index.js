@@ -71,7 +71,7 @@ app.get("/hello" , function(req, res) {
   currentClientsws[1].send("255,244,89,100");
   currentClientsws[2].send("255,244,89,100"); 
   let a = new Date();
-  if (a.getHours >= 18 || a.getHours <= 6) {
+  if (a.getHours() >= 18 || a.getHours() <= 6) {
     Ikea.fetchLampe("BL", "Helligkeit", 30);
     Ikea.fetchLampe("BR", "Helligkeit", 30); 
   }
