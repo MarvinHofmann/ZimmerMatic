@@ -175,7 +175,7 @@ function getStunde() {
 }
 
 app.post('/fensterZu', function (request, response) {
-  console.log("Soll ich fenster zu ?");
+  console.log("Soll ich fenster zu IN MAIN?");
   console.log("stunde: " + getStunde());
   if (getStunde() >= 12 || getStunde < 6) {
     console.log("mache rolladen zu");
