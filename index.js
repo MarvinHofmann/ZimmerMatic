@@ -168,21 +168,3 @@ function berechneZeit() {
   return zeit;
 }
 exports.berechneZeit = berechneZeit;
-
-function getStunde() {
-  let x = new Date();
-  return x.getHours();
-}
-
-app.post('/fensterZu', function (request, response) {
-  console.log("Soll ich fenster zu IN MAIN?");
-  console.log("stunde: " + getStunde());
-  if (getStunde() >= 12 || getStunde < 6) {
-    console.log("mache rolladen zu");
-    currentClientsws[0].send("101");
-    Ikea.fetchLampe("BL", "Helligkeit", 0);
-    Ikea.fetchLampe("BR", "Helligkeit", 0);
-    //status = true;
-  }
-  response.sendStatus(200);
-});
