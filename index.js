@@ -44,7 +44,6 @@ const rR = require("./modules/rolladenRoutine");
 const Ikea = require("./modules/tradfri");
 
 //Globale Variablen
-
 let status = true;
 exports.status = status;
 
@@ -70,10 +69,13 @@ app.use(function (req, res, next) {
 app.get("/hello" , function(req, res) {
   console.log("Nachricht kam an!");
   currentClientsws[1].send("255,244,89,100");
-  currentClientsws[2].send("255,244,89,100");  
-  Ikea.fetchLampe("BL", "Helligkeit", 30);
-  Ikea.fetchLampe("BR", "Helligkeit", 30);
-  Ikea.fetchSteckdose("OFF");
+  currentClientsws[2].send("255,244,89,100"); 
+  let a = new Date();
+  if (a.getHours >= 18 || a.getHours <= 6) {
+    Ikea.fetchLampe("BL", "Helligkeit", 30);
+    Ikea.fetchLampe("BR", "Helligkeit", 30); 
+  }
+  rS.rolladenUP();
   res.sendStatus(200);
 });
 
@@ -83,7 +85,7 @@ app.get("/tschuess" , function(req, res) {
   currentClientsws[2].send("0,0,0,0");  
   Ikea.fetchLampe("BL", "Helligkeit", 0);
   Ikea.fetchLampe("BR", "Helligkeit", 0);
-  Ikea.fetchSteckdose("OFF");
+  rS.rolladenDown();
   res.sendStatus(200);
 });
 
