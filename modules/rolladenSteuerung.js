@@ -12,7 +12,7 @@ main.app.post('/fensterZu', function (request, response) {
     main.currentClientsws[0].send("101");
     lampen.fetchLampe("BL", "Helligkeit", 0);
     lampen.fetchLampe("BR", "Helligkeit", 0);
-    await new Promise(resolve => setTimeout(resolve, 10000));
+    
     main.currentClientsws[1].send("0,0,0,0");
     main.currentClientsws[2].send("0,0,0,0");
     //status = true;
