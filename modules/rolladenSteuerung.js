@@ -1,16 +1,20 @@
 const main = require("../index");
 const temp = require("./temp");
 const lampen = require("./tradfri");
+const led = require("./leds");
 
 main.app.post('/fensterZu', function (request, response) {
   console.log("Soll ich fenster zu ?");
   let a = new Date();
   console.log("stunde: " + a.getHours());
-  if (a.getHours() >= 23 || a.getHours() < 6) {
+  if (a.getHours() >= 23 || a.getHours() <= 6) {
     console.log("mache rolladen zu");
     main.currentClientsws[0].send("101");
     lampen.fetchLampe("BL", "Helligkeit", 0);
     lampen.fetchLampe("BR", "Helligkeit", 0);
+    await new Promise(resolve => setTimeout(resolve, 10000));
+    main.currentClientsws[1].send("0,0,0,0");
+    main.currentClientsws[2].send("0,0,0,0");
     //status = true;
   }
   response.sendStatus(200);
