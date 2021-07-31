@@ -51,6 +51,7 @@ exports.status = status;
 let d1 = "::ffff:192.168.0.62";
 let ledD1 ="::ffff:192.168.0.73";
 let ledD1Sofa ="::ffff:192.168.0.64";
+let ledD1UHR ="::ffff:192.168.0.76";
 const cors = require("cors");
 app.use(
   cors({
@@ -104,6 +105,9 @@ wssLED.on("connection", function connection(ws, req) {
   }else if (ip === ledD1Sofa) {
     console.log("client Sofa verbunden!");
     currentClientsws[2] = ws;
+  }else if (ip === ledD1UHR) {
+    console.log("client Uhr verbunden!");
+    currentClientsws[3] = ws;
   }else {
     currentClientsws[anzClients] = ws;
     anzClients++;

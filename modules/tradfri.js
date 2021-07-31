@@ -16,6 +16,7 @@ main.app.post('/LampenAll' , function ( request, response){
   let wert = request.body.Wert;
   fetchLampe("BL", modus, wert);
   fetchLampe("BR", modus, wert);
+  fetchLampe("BT", modus, wert);
   response.sendStatus(200);
 });
 
