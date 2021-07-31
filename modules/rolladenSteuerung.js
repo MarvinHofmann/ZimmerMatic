@@ -15,6 +15,7 @@ main.app.post('/fensterZu', function (request, response) {
     
     main.currentClientsws[1].send("0,0,0,0");
     main.currentClientsws[2].send("0,0,0,0");
+    main.currentClientsws[3].send("0");
     //status = true;
   }
   response.sendStatus(200);

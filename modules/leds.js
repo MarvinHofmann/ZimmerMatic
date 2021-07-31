@@ -2,7 +2,7 @@ const WebSocket = require("ws");
 const main = require("../index");
 
 main.app.get("/on", function (request, response) {
-    main.currentClientsws[3].send("1");
+    main.currentClientsws[3].send("40,191,255,255");
     response.sendStatus(200);
 });
 
