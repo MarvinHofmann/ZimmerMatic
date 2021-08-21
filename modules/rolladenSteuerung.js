@@ -14,13 +14,13 @@ main.app.post('/fensterZu', function (request, response) {
     lampen.fetchLampe("BR", "Helligkeit", 0);
     
     main.currentClientsws[4].send("0,0,0,0");
-    syncDelay(3000);
+    syncDelay(1500);
     main.currentClientsws[1].send("0,0,0,0");
-    syncDelay(3000);
-    main.currentClientsws[2].send("0");
-    syncDelay(3000);
-    main.currentClientsws[3].send("0,0,0,0");
-    syncDelay(3000);
+    syncDelay(1500);
+    main.currentClientsws[2].send("0,0,0,0");
+    syncDelay(1500);
+    main.currentClientsws[3].send("0");
+    syncDelay(1500);
     //status = true;
   }
   response.sendStatus(200);
