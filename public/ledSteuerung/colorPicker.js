@@ -1,4 +1,6 @@
 let Couchswitch = false;
+let Uhrswitch = false;
+let Tischswitch = false;
 let Dartswitch = false;
 let alleSwitch = true;
 let colorPicker = new iro.ColorPicker("#picker", {
@@ -18,6 +20,12 @@ colorPicker.on("input:end", function (color) {
   if (Dartswitch) {
       //sende an 1 => dart d1 whitelist
     sendFetch(color.red, color.green, color.blue, color.value, 1);
+  }
+  if (Couchswitch) {
+    sendFetch(color.red, color.green, color.blue, color.value, 2);
+  }
+  if (Couchswitch) {
+    sendFetch(color.red, color.green, color.blue, color.value, 2);
   }
   if (Couchswitch) {
     sendFetch(color.red, color.green, color.blue, color.value, 2);
@@ -59,10 +67,26 @@ function setStatusDart(value) {
   console.log(value);
 }
 
+function setStatusTisch(value) {
+  Tischswitch = value;
+  document.getElementById("Alle").checked = false;
+  alleSwitch = false;
+  console.log(value);
+}
+
+function setStatusUhr(value) {
+  Uhrswitch = value;
+  document.getElementById("Alle").checked = false;
+  alleSwitch = false;
+  console.log(value);
+}
+
 function setAll(value) {
   alleSwitch = value;
   document.getElementById("Couch").checked = false;
   document.getElementById("Dart").checked = false;
+  document.getElementById("Tisch").checked = false;
+  document.getElementById("Uhr").checked = false;
   Couchswitch = false;
   Dartswitch = false;
   console.log(value);

@@ -52,6 +52,8 @@ let d1 = "::ffff:192.168.0.62";
 let ledD1 ="::ffff:192.168.0.73";
 let ledD1Sofa ="::ffff:192.168.0.64";
 let ledD1UHR ="::ffff:192.168.0.76";
+let ledD1Schreibtisch ="::ffff:192.168.0.78";
+
 const cors = require("cors");
 app.use(
   cors({
@@ -71,6 +73,7 @@ app.get("/hello" , function(req, res) {
   console.log("Nachricht kam an!");
   currentClientsws[1].send("255,244,89,100");
   currentClientsws[2].send("255,244,89,100"); 
+  currentClientsws[3].send("40,191,255,255");
   let a = new Date();
   if (a.getHours() >= 18 || a.getHours() <= 6) {
     Ikea.fetchLampe("BL", "Helligkeit", 30);
@@ -83,7 +86,8 @@ app.get("/hello" , function(req, res) {
 app.get("/tschuess" , function(req, res) {
   console.log("Nachricht kam an!");
   currentClientsws[1].send("0,0,0,0");
-  currentClientsws[2].send("0,0,0,0");  
+  currentClientsws[2].send("0,0,0,0"); 
+  currentClientsws[3].send("0,0,0,0");
   Ikea.fetchLampe("BL", "Helligkeit", 0);
   Ikea.fetchLampe("BR", "Helligkeit", 0);
   rS.rolladenDown();
@@ -108,6 +112,9 @@ wssLED.on("connection", function connection(ws, req) {
   }else if (ip === ledD1UHR) {
     console.log("client Uhr verbunden!");
     currentClientsws[3] = ws;
+  }else if (ip === ledD1Schreibtisch) {
+    console.log("client Tisch verbunden!");
+    currentClientsws[4] = ws;
   }else {
     currentClientsws[anzClients] = ws;
     anzClients++;
