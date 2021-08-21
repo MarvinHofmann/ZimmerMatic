@@ -25,10 +25,10 @@ colorPicker.on("input:end", function (color) {
     sendFetch(color.red, color.green, color.blue, color.value, 2);
   }
   if (Tischswitch) {
-    sendFetch(color.red, color.green, color.blue, color.value, 2);
+    sendFetch(color.red, color.green, color.blue, color.value, 4);
   }
   if (Uhrswitch) {
-    sendFetch(color.red, color.green, color.blue, color.value, 2);
+    sendFetch(color.red, color.green, color.blue, color.value, 3);
   }
 });
 
