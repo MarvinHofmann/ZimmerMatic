@@ -24,10 +24,10 @@ colorPicker.on("input:end", function (color) {
   if (Couchswitch) {
     sendFetch(color.red, color.green, color.blue, color.value, 2);
   }
-  if (Couchswitch) {
+  if (Tischswitch) {
     sendFetch(color.red, color.green, color.blue, color.value, 2);
   }
-  if (Couchswitch) {
+  if (Uhrswitch) {
     sendFetch(color.red, color.green, color.blue, color.value, 2);
   }
 });
@@ -89,5 +89,7 @@ function setAll(value) {
   document.getElementById("Uhr").checked = false;
   Couchswitch = false;
   Dartswitch = false;
+  Uhrswitch = false;
+  Tischswitch = false;
   console.log(value);
 }

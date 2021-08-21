@@ -1,84 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
     <script src="colorPicker.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     <title>ColorPicker</title>
-</head>
-<body>
+  </head>
+  <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="../index.html">ZimmerMatic by MH</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="../index.html">Temperatur</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../rolladensteuerung/rolladenSteuerung.html">Rolladensteuerung</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="../Lampen/lampenSteuerung.html">Licht</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Alles Mögliche
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="../ttt/ttt.html">Tic Tac Toe</a></li>
-                  <li><a class="dropdown-item" href="../rolladenroutine/rolladenRoutine.html">Rolladen Routine</a></li>
-                  <li><a class="dropdown-item " href="../pflanzen/pflanzen.html">Pflanzen</a></li>
-                  <li><a class="dropdown-item active" href="#">LEDs</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html">ZimmerMatic by MH</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="../index.html"
+                >Temperatur</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="../rolladensteuerung/rolladenSteuerung.html"
+                >Rolladensteuerung</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../Lampen/lampenSteuerung.html"
+                >Licht</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Alles Mögliche
+              </a>
+              <ul
+                class="dropdown-menu"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <li>
+                  <a class="dropdown-item" href="../ttt/ttt.html"
+                    >Tic Tac Toe</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="../rolladenroutine/rolladenRoutine.html"
+                    >Rolladen Routine</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="../pflanzen/pflanzen.html"
+                    >Pflanzen</a
+                  >
+                </li>
+                <li><a class="dropdown-item active" href="#">LEDs</a></li>
+              </ul>
+            </li>
+          </ul>
         </div>
-        <div class="collapse" id="navbarToggleExternalContent">
-          <div class="bg-dark p-4">
-            <h5 class="text-white h4">Temperaturüberwachung</h5>
-            <span class="text-muted">Toggleable via the navbar brand.</span>
-          </div>
+      </div>
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark p-4">
+          <h5 class="text-white h4">Temperaturüberwachung</h5>
+          <span class="text-muted">Toggleable via the navbar brand.</span>
         </div>
-      </nav>
+      </div>
+    </nav>
     <div id="outsideContainer">
-    
-    <div id="checkBox">
-    <h1>ColorPicker</h1>
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="Couch" onchange="setStatusCouch(this.checked);">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Couch</label>
-    </div>
+      <div id="checkBox">
+        <h1>ColorPicker</h1>
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="Couch"
+            onchange="setStatusCouch(this.checked);"
+          />
+          <label class="form-check-label" for="flexSwitchCheckDefault"
+            >Couch</label
+          >
+        </div>
 
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="Dart" onchange="setStatusDart(this.checked);">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Dartscheibe</label>
-    </div>
-    <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" id="Tisch" onchange="setStatusTisch(this.checked);">
-      <label class="form-check-label" for="flexSwitchCheckDefault">Tisch</label>
-  </div>
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="Dart"
+            onchange="setStatusDart(this.checked);"
+          />
+          <label class="form-check-label" for="flexSwitchCheckDefault"
+            >Dartscheibe</label
+          >
+        </div>
 
-  <div class="form-check form-switch">
-    <input class="form-check-input" type="checkbox" id="Uhr" onchange="setStatusUhr(this.checked);">
-    <label class="form-check-label" for="flexSwitchCheckDefault">Uhr</label>
-</div>
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="Alle" onchange="setAll(this.checked)" checked>
-        <label class="form-check-label" for="flexSwitchCheckDefault">Alle</label>
-    </div>
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="Tisch"
+            onchange="setStatusTisch(this.checked);"
+          />
+          <label class="form-check-label" for="flexSwitchCheckDefault"
+            >Tisch</label
+          >
+        </div>
 
-</div>
-    <div id="picker"></div>
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="Uhr"
+            onchange="setStatusUhr(this.checked);"
+          />
+          <label class="form-check-label" for="flexSwitchCheckDefault"
+            >Uhr</label
+          >
+        </div>
+
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="Alle"
+            onchange="setAll(this.checked)"
+            checked
+          />
+          <label class="form-check-label" for="flexSwitchCheckDefault"
+            >Alle</label
+          >
+        </div>
+      </div>
+      
+      <div id="picker"></div>
     </div>
-</body>
+  </body>
 </html>
