@@ -7,15 +7,20 @@ main.app.post('/fensterZu', function (request, response) {
   console.log("Soll ich fenster zu ?");
   let a = new Date();
   console.log("stunde: " + a.getHours());
-  if (a.getHours() >= 23 || a.getHours() <= 6) {
+  if (a.getHours() >= 22 || a.getHours() <= 6) {
     console.log("mache rolladen zu");
     main.currentClientsws[0].send("101");
     lampen.fetchLampe("BL", "Helligkeit", 0);
     lampen.fetchLampe("BR", "Helligkeit", 0);
     
+    main.currentClientsws[4].send("0,0,0,0");
+    syncDelay(3000);
     main.currentClientsws[1].send("0,0,0,0");
-    main.currentClientsws[2].send("0,0,0,0");
-    main.currentClientsws[3].send("0");
+    syncDelay(3000);
+    main.currentClientsws[2].send("0");
+    syncDelay(3000);
+    main.currentClientsws[3].send("0,0,0,0");
+    syncDelay(3000);
     //status = true;
   }
   response.sendStatus(200);
@@ -50,3 +55,11 @@ function handleAbstand(abstand) {
   }
 }
 exports.handleAbstand = handleAbstand;
+
+function syncDelay(milliseconds){
+  var start = new Date().getTime();
+  var end=0;
+  while( (end-start) < milliseconds){
+      end = new Date().getTime();
+  }
+ }

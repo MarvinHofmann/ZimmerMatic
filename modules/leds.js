@@ -9,7 +9,7 @@ main.app.get("/on", function (request, response) {
 
 main.app.get("/off", function (request, response) {
     main.currentClientsws[3].send("0");
-    main.currentClientsws[4].send("0");
+    main.currentClientsws[4].send("0,0,0,0");
     response.sendStatus(200);
 });
 
