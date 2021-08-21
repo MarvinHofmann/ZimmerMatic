@@ -10,18 +10,16 @@ main.app.post('/fensterZu', function (request, response) {
   if (a.getHours() >= 22 || a.getHours() <= 6) {
     console.log("mache rolladen zu");
     main.currentClientsws[0].send("101");
+    syncDelay(1500);    
+    main.currentClientsws[4].send("0,0,0,0");
+    main.currentClientsws[1].send("0,0,0,0");
+    main.currentClientsws[2].send("0,0,0,0");
+    main.currentClientsws[3].send("0");
+    syncDelay(3000);
+    //status = true;
     lampen.fetchLampe("BL", "Helligkeit", 0);
     lampen.fetchLampe("BR", "Helligkeit", 0);
     
-    main.currentClientsws[4].send("0,0,0,0");
-    syncDelay(1500);
-    main.currentClientsws[1].send("0,0,0,0");
-    syncDelay(1500);
-    main.currentClientsws[2].send("0,0,0,0");
-    syncDelay(1500);
-    main.currentClientsws[3].send("0");
-    syncDelay(1500);
-    //status = true;
   }
   response.sendStatus(200);
 });
