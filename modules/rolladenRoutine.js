@@ -35,7 +35,7 @@ function loescheRoutine(index) {
   console.log("routine gelöscht");
 }
 
-app.post("/create", function (request, response) {
+main.app.post("/create", function (request, response) {
   console.log("Eingehende post request");
   let time = request.body.time;
   let einmalig = request.body.einmalig;
@@ -56,7 +56,7 @@ app.post("/create", function (request, response) {
   response.sendStatus(200);
 });
 
-app.post("/deleteR", function (request, response) {
+main.app.post("/deleteR", function (request, response) {
   console.log("Eingehende delete request");
   loescheRoutine(request.body.num);
   console.log(jobArray);

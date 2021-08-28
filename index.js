@@ -53,6 +53,7 @@ let ledD1 ="::ffff:192.168.0.73";
 let ledD1Sofa ="::ffff:192.168.0.64";
 let ledD1UHR ="::ffff:192.168.0.76";
 let ledD1Schreibtisch ="::ffff:192.168.0.78";
+let ledD1EmelySchr ="::ffff:192.168.0.80";
 
 const cors = require("cors");
 app.use(
@@ -71,8 +72,8 @@ app.use(function (req, res, next) {
 
 app.get("/hello" , function(req, res) {
   console.log("Nachricht kam an!");
-  currentClientsws[1].send("255,244,89,100");
-  currentClientsws[2].send("255,244,89,100"); 
+  currentClientsws[1].send("255,161,20,100");
+  currentClientsws[2].send("255,161,20,100"); 
   currentClientsws[3].send("40,191,255,255");
   let a = new Date();
   if (a.getHours() >= 18 || a.getHours() <= 6) {
@@ -85,9 +86,9 @@ app.get("/hello" , function(req, res) {
 
 app.get("/tschuess" , function(req, res) {
   console.log("Nachricht kam an!");
-  currentClientsws[1].send("0,0,0,0");
-  currentClientsws[2].send("0,0,0,0"); 
-  currentClientsws[3].send("0,0,0,0");
+  for (let i = 0; i < currentClientsws.length; i++) {
+    currentClientsws[i].send(`${r},${g},${b},${v}`);    
+  }
   Ikea.fetchLampe("BL", "Helligkeit", 0);
   Ikea.fetchLampe("BR", "Helligkeit", 0);
   rS.rolladenDown();
@@ -100,6 +101,7 @@ wssLED.on("connection", function connection(ws, req) {
   //hole IP Adresse
   const ip = req.socket.remoteAddress;
   console.log(ip);
+  /**Verbinden der Whitelist D1 mini */
   if (ip === d1) {
     console.log("client 0 verbunden!");
     currentClientsws[0] = ws;
@@ -115,9 +117,9 @@ wssLED.on("connection", function connection(ws, req) {
   }else if (ip === ledD1Schreibtisch) {
     console.log("client Tisch verbunden!");
     currentClientsws[4] = ws;
-  }else {
-    currentClientsws[anzClients] = ws;
-    anzClients++;
+  }else if (ip === ledD1EmelySchr) {
+    console.log("client Emely verbunden!");
+    currentClientsws[5] = ws;
   }
   //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
   ws.on("message", function incoming(message) {
