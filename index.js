@@ -87,7 +87,7 @@ app.get("/hello" , function(req, res) {
 app.get("/tschuess" , function(req, res) {
   console.log("Nachricht kam an!");
   for (let i = 0; i < currentClientsws.length; i++) {
-    currentClientsws[i].send(`${r},${g},${b},${v}`);    
+    currentClientsws[i].send("0,0,0,0");    
   }
   Ikea.fetchLampe("BL", "Helligkeit", 0);
   Ikea.fetchLampe("BR", "Helligkeit", 0);
