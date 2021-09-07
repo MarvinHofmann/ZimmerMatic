@@ -98,6 +98,7 @@ app.get("/tschuess" , function(req, res) {
     try {
       currentClientsws[i].send("0,0,0,0");      
     } catch (error) {
+      console.log(error);
       logger.error(error); 
     }
   }
