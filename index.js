@@ -86,8 +86,11 @@ app.get('/DownloadLog', function(req, res){
 });
 
 app.get('/DownloadLogCom', function(req, res){
+  console.log("********************");
+  console.log("Download Anfrage");
+  console.log(berechneZeit());
+  console.log("********************");
   const file = `${__dirname}/log-file.txt`;
-  console.log("Anfrage kam an");
   console.log(file);
   res.download(file); // Set disposition and send it.
 });
