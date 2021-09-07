@@ -57,6 +57,7 @@ const rS = require("./modules/rolladenSteuerung");
 const rR = require("./modules/rolladenRoutine");
 const Ikea = require("./modules/tradfri");
 const time = require("./modules/zeit");
+const logs = require("./modules/logfiles");
 
 //Globale Variablen
 let status = true;
