@@ -20,10 +20,10 @@ const cronParser = require("cron-parser");
 //Logger4JS
 const log4js = require("log4js");
 log4js.configure({
-  appenders: { cheese: { type: "file", filename: "error.log" } },
-  categories: { default: { appenders: ["errorZMbyMH"], level: "error" } }
+  appenders: { cheese: { type: "file", filename: "cheese.log" } },
+  categories: { default: { appenders: ["cheese"], level: "error" } }
 });
-const logger = log4js.getLogger("errorZMbyMH");
+const logger = log4js.getLogger("cheese");
 
 // Init. EXpress Server
 const express = require("express");
