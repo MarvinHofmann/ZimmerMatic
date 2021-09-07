@@ -173,7 +173,7 @@ wss.on("connection", function connection(ws, req) {
   ClientswsBrowser[clientsCn] = ws;
   temp.publish();
   pflanzen.publish();
-  broadcastTime();
+  
   //broadcastRoutinen();
   ws.on("message", function incoming(message) {
     console.log("received: %s", message);
@@ -241,29 +241,37 @@ let sekunde = start.getSeconds();
 let millisekunde = start.getMilliseconds();
  // Erstes Release von Javascript
 
-function broadcastTime() {
-  for (let i = 0; i < ClientswsBrowser.length; i++) {
-    ClientswsBrowser[i].send(
-      JSON.stringify({ type: "jahr" , value: jahr })
-    );
-    ClientswsBrowser[i].send(
-      JSON.stringify({ type: "monat", value: monat })
-    );
-    ClientswsBrowser[i].send(
-      JSON.stringify({ type: "tag" , value: tag })
-    );
-    ClientswsBrowser[i].send(
-      JSON.stringify({ type: "stunde", value: stunde })
-    );
-    ClientswsBrowser[i].send(
-      JSON.stringify({ type: "minute", value: minute })
-    );
-    ClientswsBrowser[i].send(
-      JSON.stringify({ type: "sekunde", value: sekunde })
-    );
-    ClientswsBrowser[i].send(
-      JSON.stringify({ type: "millisekunde" , value: millisekunde })
-    );
-    
-  }
-}
+ 
+ const startDateTime = new Date(jahr,monat,tag,stunde,minute,sekunde,millisekunde); // letzter Neustart 
+ const startStamp = startDateTime.getTime();
+ 
+ let newDate = new Date();
+ let newStamp = newDate.getTime();
+ 
+ let timer;
+ 
+ function updateClock() {
+     newDate = new Date();
+     newStamp = newDate.getTime();
+     let diff = Math.round((newStamp-startStamp)/1000);
+     
+     let d = Math.floor(diff/(24*60*60));
+     diff = diff-(d*24*60*60);
+     let h = Math.floor(diff/(60*60));
+     diff = diff-(h*60*60);
+     let m = Math.floor(diff/(60));
+     diff = diff-(m*60);
+
+    let startZeit = d+" Tage, "+h+" Stunden, "+m+" Minuten Uptime";
+    broadcastTime(startZeit);
+ }
+ 
+ timer = setInterval(updateClock, 1000);
+
+ function broadcastTime(String){
+    for (let i = 0; i < ClientswsBrowser.length; i++) {
+      ClientswsBrowser[i].send(
+        JSON.stringify({ type: "uptime", value: String })
+      );
+    }
+ }
