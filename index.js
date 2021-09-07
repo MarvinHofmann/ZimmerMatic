@@ -36,7 +36,7 @@ app.use(bodyParser.json());
 
 const path = require("path");
 //express.static sucht im Ordner public nach der Index.js Datei und publisht sie direkt
-app.use(express.static(__dirname + '/public/dashboard/dash.html'));
+app.use(express.static("public"));
 
 app.listen(port, () => {
   console.log(`App listening at http://ZimmerMatic:${port}`); // Publisher Server auf Port 3443
