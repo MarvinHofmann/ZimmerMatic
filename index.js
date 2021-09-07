@@ -218,10 +218,13 @@ function berechneZeit() {
 exports.berechneZeit = berechneZeit;
 
 function getTag() {
-  let b = new Date();
-  x = b.getDay;
-  y = b.getMonth;
-  z = b.getFullYear;
-  tag = x + "." + y + "." + z;
-  return tag;
+  let dt = new Date();
+  let month = "" + (dt.getMonth() + 1);
+  let day = "" + dt.getDate();
+  let year = dt.getFullYear();
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+
+  let dateF = [year, month, day].join("-");
+  return dateF;
 }
