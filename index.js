@@ -85,22 +85,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get("/DownloadLog", function (req, res) {
-  const file = `${__dirname}/cheese.log`;
-  console.log("Anfrage kam an");
-  console.log(file);
-  res.download(file); // Set disposition and send it.
-});
 
-app.get("/DownloadLogCom", function (req, res) {
-  console.log("********************");
-  console.log("Download Anfrage");
-  console.log(time.berechneZeit() + ", " + time.getTag());
-  console.log("********************");
-  const file = `${__dirname}/log-file.txt`;
-  console.log(file);
-  res.download(file); // Set disposition and send it.
-});
 
 app.get("/hello", function (req, res) {
   console.log("Nachricht kam an!");
@@ -174,7 +159,7 @@ wss.on("connection", function connection(ws, req) {
   ClientswsBrowser[clientsCn] = ws;
   temp.publish();
   pflanzen.publish();
-  
+  time.updateClock();
   //broadcastRoutinen();
   ws.on("message", function incoming(message) {
     console.log("received: %s", message);

@@ -35,6 +35,7 @@ let millisekunde = start.getMilliseconds();
     let startZeit = d+" Tage, "+h+" Stunden, "+m+" Minuten Uptime";
     broadcastTime(startZeit);
  }
+ exports.updateClock = updateClock;
  
  timer = setInterval(updateClock, 45000);
 
