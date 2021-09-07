@@ -11,6 +11,7 @@ ws.addEventListener("message", function (event) {
   //console.log(data);
   switch (data.value) {
       case "uptimeStart":
+          console.log(data.value);
           startDateTime = data.value;
           break;
   
