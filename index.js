@@ -244,25 +244,25 @@ let millisekunde = start.getMilliseconds();
 function broadcastTime() {
   for (let i = 0; i < ClientswsBrowser.length; i++) {
     ClientswsBrowser[i].send(
-      JSON.stringify({ type: "jahr" + sender, value: jahr })
+      JSON.stringify({ type: "jahr" , value: jahr })
     );
     ClientswsBrowser[i].send(
-      JSON.stringify({ type: "monat" + sender, value: monat })
+      JSON.stringify({ type: "monat", value: monat })
     );
     ClientswsBrowser[i].send(
-      JSON.stringify({ type: "tag" + sender, value: tag })
+      JSON.stringify({ type: "tag" , value: tag })
     );
     ClientswsBrowser[i].send(
       JSON.stringify({ type: "stunde", value: stunde })
     );
     ClientswsBrowser[i].send(
-      JSON.stringify({ type: "minute" + sender, value: minute })
+      JSON.stringify({ type: "minute", value: minute })
     );
     ClientswsBrowser[i].send(
-      JSON.stringify({ type: "sekunde" + sender, value: sekunde })
+      JSON.stringify({ type: "sekunde", value: sekunde })
     );
     ClientswsBrowser[i].send(
-      JSON.stringify({ type: "millisekunde" + sender, value: millisekunde })
+      JSON.stringify({ type: "millisekunde" , value: millisekunde })
     );
     
   }
