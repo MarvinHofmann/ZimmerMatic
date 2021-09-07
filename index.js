@@ -84,6 +84,13 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.get("", function (req,res) {
+  const file = `${__dirname}/public/dashboard/dash`;
+  console.log("Anfrage kam an");
+  console.log(file);
+  res.sendFile(file); 
+})
+
 app.get("/DownloadLog", function (req, res) {
   const file = `${__dirname}/cheese.log`;
   console.log("Anfrage kam an");
@@ -266,7 +273,7 @@ let millisekunde = start.getMilliseconds();
     broadcastTime(startZeit);
  }
  
- timer = setInterval(updateClock, 1000);
+ timer = setInterval(updateClock, 45000);
 
  function broadcastTime(String){
     for (let i = 0; i < ClientswsBrowser.length; i++) {
