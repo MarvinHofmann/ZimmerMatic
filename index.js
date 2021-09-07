@@ -41,8 +41,8 @@ app.use(express.static("public"));
 app.listen(port, () => {
   console.log("********************");
   console.log("Restarting at:");
-  console.log(berechneZeit());
-  console.log(getTag());
+  console.log(time.berechneZeit());
+  console.log(time.getTag());
   console.log("********************");
   console.log(`App listening at http://ZimmerMatic:${port}`); // Publisher Server auf Port 3443
   console.log("Die IP Adresse lautet: 192.168.0.58");
@@ -56,6 +56,7 @@ const leds = require("./modules/leds");
 const rS = require("./modules/rolladenSteuerung");
 const rR = require("./modules/rolladenRoutine");
 const Ikea = require("./modules/tradfri");
+const time = require("./modules/zeit");
 
 //Globale Variablen
 let status = true;
@@ -84,13 +85,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get("", function (req,res) {
-  const file = `${__dirname}/public/dashboard/dash`;
-  console.log("Anfrage kam an");
-  console.log(file);
-  res.sendFile(file); 
-})
-
 app.get("/DownloadLog", function (req, res) {
   const file = `${__dirname}/cheese.log`;
   console.log("Anfrage kam an");
@@ -101,7 +95,7 @@ app.get("/DownloadLog", function (req, res) {
 app.get("/DownloadLogCom", function (req, res) {
   console.log("********************");
   console.log("Download Anfrage");
-  console.log(berechneZeit() + ", " + getTag());
+  console.log(time.berechneZeit() + ", " + time.getTag());
   console.log("********************");
   const file = `${__dirname}/log-file.txt`;
   console.log(file);
@@ -204,81 +198,3 @@ wss.on("connection", function connection(ws, req) {
     console.log("Client has disconnceted");
   });
 });
-
-// diese funktion schickt das übergebene Objekt , int , string oder json an alle verbundenen Clients
-function berechneZeit() {
-  let a = new Date();
-  b = c = d = zeit = 0;
-  b = a.getHours();
-  c = a.getMinutes();
-  d = a.getSeconds();
-  if (b < 10) {
-    b = "0" + b;
-  }
-  if (c < 10) {
-    c = "0" + c;
-  }
-  if (d < 10) {
-    d = "0" + d;
-  }
-  zeit = b + ":" + c + ":" + d;
-  return zeit;
-}
-exports.berechneZeit = berechneZeit;
-
-function getTag() {
-  let dt = new Date();
-  let month = "" + (dt.getMonth() + 1);
-  let day = "" + dt.getDate();
-  let year = dt.getFullYear();
-  if (month.length < 2) month = "0" + month;
-  if (day.length < 2) day = "0" + day;
-
-  let dateF = [year, month, day].join("-");
-  return dateF;
-}
-
-let start = new Date();
-let jahr = start.getFullYear();
-let monat =  start.getMonth();
-let tag = start.getDate();
-let stunde = start.getHours();
-let minute = start.getMinutes();
-let sekunde = start.getSeconds();
-let millisekunde = start.getMilliseconds();
- // Erstes Release von Javascript
-
- 
- const startDateTime = new Date(jahr,monat,tag,stunde,minute,sekunde,millisekunde); // letzter Neustart 
- const startStamp = startDateTime.getTime();
- 
- let newDate = new Date();
- let newStamp = newDate.getTime();
- 
- let timer;
- 
- function updateClock() {
-     newDate = new Date();
-     newStamp = newDate.getTime();
-     let diff = Math.round((newStamp-startStamp)/1000);
-     
-     let d = Math.floor(diff/(24*60*60));
-     diff = diff-(d*24*60*60);
-     let h = Math.floor(diff/(60*60));
-     diff = diff-(h*60*60);
-     let m = Math.floor(diff/(60));
-     diff = diff-(m*60);
-
-    let startZeit = d+" Tage, "+h+" Stunden, "+m+" Minuten Uptime";
-    broadcastTime(startZeit);
- }
- 
- timer = setInterval(updateClock, 45000);
-
- function broadcastTime(String){
-    for (let i = 0; i < ClientswsBrowser.length; i++) {
-      ClientswsBrowser[i].send(
-        JSON.stringify({ type: "uptime", value: String })
-      );
-    }
- }
