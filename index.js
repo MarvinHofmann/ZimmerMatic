@@ -17,6 +17,14 @@ let anzClients = 2;
 const schedule = require("node-schedule");
 const cronParser = require("cron-parser");
 
+//Logger4JS
+const log4js = require("log4js");
+log4js.configure({
+  appenders: { cheese: { type: "file", filename: "error.log" } },
+  categories: { default: { appenders: ["errorZMbyMH"], level: "error" } }
+});
+const logger = log4js.getLogger("errorZMbyMH");
+
 // Init. EXpress Server
 const express = require("express");
 const app = express();
@@ -87,7 +95,11 @@ app.get("/hello" , function(req, res) {
 app.get("/tschuess" , function(req, res) {
   console.log("Nachricht kam an!");
   for (let i = 0; i < currentClientsws.length; i++) {
-    currentClientsws[i].send("0,0,0,0");    
+    try {
+      currentClientsws[i].send("0,0,0,0");      
+    } catch (error) {
+      logger.error(error); 
+    }
   }
   Ikea.fetchLampe("BL", "Helligkeit", 0);
   Ikea.fetchLampe("BR", "Helligkeit", 0);

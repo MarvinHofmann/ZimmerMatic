@@ -21,13 +21,13 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="index.html">Temperatur</a>
+                <a class="nav-link" aria-current="page" href="../index.html">Temperatur</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="rolladensteuerung/rolladenSteuerung.html">Rolladensteuerung</a>
+                <a class="nav-link" href="../rolladensteuerung/rolladenSteuerung.html">Rolladensteuerung</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="Lampen/lampenSteuerung.html">Licht</a>
+                <a class="nav-link" href="../Lampen/lampenSteuerung.html">Licht</a>
               </li>
               
               <li class="nav-item dropdown">
@@ -35,9 +35,9 @@
                   Alles Mögliche
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="ttt/ttt.html">Tic Tac Toe</a></li>
-                  <li><a class="dropdown-item" href="rolladenroutine/rolladenRoutine.html">Rolladen Routine</a></li>
-                  <li><a class="dropdown-item" href="pflanzen/pflanzen.html">Pflanzen</a></li>
+                  <li><a class="dropdown-item" href="../ttt/ttt.html">Tic Tac Toe</a></li>
+                  <li><a class="dropdown-item" href="../rolladenroutine/rolladenRoutine.html">Rolladen Routine</a></li>
+                  <li><a class="dropdown-item" href="../pflanzen/pflanzen.html">Pflanzen</a></li>
                   <li><a class="dropdown-item " href="../ledSteuerung/colorPicker.html">LEDs</a></li>
                 </ul>
               </li>
@@ -152,25 +152,25 @@
 
 
 
-    <div class="col-xl-6 col-6 mx-auto mt-5">
-        <div class="bg-white rounded-lg p-5 shadow">
-          <h2 class="h6 font-weight-bold text-center mb-4">Fenster</h2>
+    <div class="col-xl-3 col-4 mx-auto mt-5 " style="height: 290px;" >
+        <div class="bg-white rounded-lg p-5 shadow h-100">
+          <h2 class="h6 font-weight-bold text-center mb-4">Rolladen</h2>
           <div class="row text-center mt-4">
-            <div class="col-6 border-right">
-              <div class="h4 font-weight-bold mb-0" ><label id="">Zu</label></div><span class="small text-gray">Bett</span>
+            <div class="col-12 border-right">
+              <div class="h4 font-weight-bold mb-0" ><label style="margin-top: 10px" id="">Offen</label></div><span class="small text-gray">Status</span>
+              
             </div>
-            <div class="col-6 border-right">
-              <div class="h4 font-weight-bold mb-0" ><label id="">Offen</label></div><span class="small text-gray">Toilette</span>
-            </div>
+            <button onclick="send()" class="btn btn-secondary" style="margin-top: 20px;  background-color: #343a40">Zu</button>
+            <button onclick="send()" class="btn btn-secondary" style="margin-top: 10px; background-color: #343a40">Auf</button>
           </div>
         </div> 
     </div>
 
     
     
-    <div class="col-xl-6 col-6 mx-auto mt-5">
+    <div class="col-xl-6 col-4 mx-auto mt-5">
         <div class="bg-white rounded-lg p-5 shadow">
-          <h2 class="h6 font-weight-bold text-center mb-4">Rolladen</h2>
+          <h2 class="h6 font-weight-bold text-center mb-4">Fenster</h2>
           <div class="progress mx-auto">
             <span class="progress-left">
                           <span class="progress-bar border-primary"></span>
@@ -184,9 +184,18 @@
           </div>
         </div>
     </div>
-    
-    
-      
+
+    <div class="col-xl-3 col-4 mx-auto mt-5">
+      <div class="bg-white rounded-lg p-5 shadow h-100 ">
+        <h2 class="h6 font-weight-bold text-center mb-4">Log-Dateien</h2>
+        <div class="row text-center mt-4">
+          <div class="col-12 border-right"> 
+          </div>
+          <button onclick="send()" class="btn btn-secondary" style="margin-top: 10px;  background-color: #343a40">Download</button>
+        </div>
+      </div> 
+  </div>
+         
   </div>
 </div>
 </main>
