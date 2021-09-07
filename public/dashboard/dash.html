@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='dash.css'>
+    <script src='main.js'></script>
+    <link rel="icon" type="home.icon" href="../favicons/home.ico">
+    <title>Home</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="dash.html">ZimmerMatic by MH</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="index.html">Temperatur</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="rolladensteuerung/rolladenSteuerung.html">Rolladensteuerung</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Lampen/lampenSteuerung.html">Licht</a>
+              </li>
+              
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Alles Mögliche
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="ttt/ttt.html">Tic Tac Toe</a></li>
+                  <li><a class="dropdown-item" href="rolladenroutine/rolladenRoutine.html">Rolladen Routine</a></li>
+                  <li><a class="dropdown-item" href="pflanzen/pflanzen.html">Pflanzen</a></li>
+                  <li><a class="dropdown-item " href="../ledSteuerung/colorPicker.html">LEDs</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+      </nav>
+      <main class="px-3">
+        <div class="container py-5">
+  <div class="row " >
+
+    <!-- For demo purpose -->
+   
+    <!-- END -->
+
+    <div class="col-xl-6 col-lg-6 mx-auto">
+      <div class="bg-white rounded-lg p-5 shadow mb-5 ">
+        <h2 class="h6 font-weight-bold text-center mb-4">Median-Temperatur</h2>
+
+        <!-- Progress bar 1 -->
+        <div class="progress mx-auto">
+          <span class="progress-left">
+                        <span class="progress-bar border-primary"></span>
+          </span>
+          <span class="progress-right">
+                        <span class="progress-bar border-primary"></span>
+          </span>
+          <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+            <div class="h2 font-weight-bold" ><label id="tempCont">22°C</label></div>
+          </div>
+        </div>
+        <!-- END -->
+
+        <!-- Demo info -->
+        <div class="row text-center mt-4">
+          <div class="col-6 border-right">
+            <div class="h4 font-weight-bold mb-0" ><label id="feuchtCont">56%</label></div><span class="small text-gray">Luftfeuchtigkeit</span>
+          </div>
+          <div class="col-6">
+            <div class="h4 font-weight-bold mb-0" ><label id="uhr1">29°C</label></div><span class="small text-gray">Tageshoch</span>
+          </div>
+        </div>
+        <!-- END -->
+      </div>
+    </div>
+
+    <div class="col-xl-6 col-lg-6 mx-auto">
+      <div class="bg-white rounded-lg p-5 shadow mb-5">
+        <h2 class="h6 font-weight-bold text-center mb-4">Licht</h2>
+
+        <!-- Progress bar 2 -->
+        <div class="progress mx-auto">
+          <span class="progress-left">
+                        <span class="progress-bar border-danger"></span>
+          </span>
+          <span class="progress-right">
+                        <span class="progress-bar border-danger"></span>
+          </span>
+          <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+            <div class="h2 font-weight-bold" ><label id="tempCont2">OFF</label></div>
+          </div>
+        </div>
+        <!-- END -->
+
+        <!-- Demo info-->
+        <div class="row text-center mt-4">
+          <div class="col-4 border-right">
+            <div class="h4 font-weight-bold mb-0" ><label id="feuchtCont2">OFF</label></div><span class="small text-gray">Bett rechts</span>
+          </div>
+          <div class="col-4 border-right">
+            <div class="h4 font-weight-bold mb-0" ><label id="feuchtCont2">OFF</label></div><span class="small text-gray">Bett rechts</span>
+          </div>
+          <div class="col-4">
+            <div class="h4 font-weight-bold mb-0"><label id="uhr2">OFF</label></div><span class="small text-gray">Basteltisch</span>
+          </div>
+        </div>
+        <!-- END -->
+      </div>
+    </div>
+
+    <div class="col-xl-12 col-12 mx-auto">
+      <div class="bg-white rounded-lg p-5 shadow">
+        <h2 class="h6 font-weight-bold text-center mb-4">LEDs</h2>
+        <div class="leds">
+            <div class="row text-center mt-4">
+                <div class="col-4 border-right">
+                  <div class="h4 font-weight-bold mb-0" ><label id="">OFF</label></div><span class="small text-gray">Schreibtisch</span>
+                </div>
+                <div class="col-4 border-right">
+                  <div class="h4 font-weight-bold mb-0" ><label id="">OFF</label></div><span class="small text-gray">Schreibtisch Emely</span>
+                </div>
+                <div class="col-4">
+                  <div class="h4 font-weight-bold mb-0"><label id="">OFF</label></div><span class="small text-gray">Uhr</span>
+                </div>
+              </div>
+         
+              <div class="row text-center mt-4">
+                <div class="col-4 border-right">
+                  <div class="h4 font-weight-bold mb-0" ><label id="">OFF</label></div><span class="small text-gray">Dartscheibe</span>
+                </div>
+                <div class="col-4 border-right">
+                  <div class="h4 font-weight-bold mb-0" ><label id="">OFF</label></div><span class="small text-gray">Couch</span>
+                </div>
+                <div class="col-4 border-right">
+                    <div class="h4 font-weight-bold mb-0" ><label id="">OFF</label></div><span class="small text-gray">Schrank</span>
+                  </div>
+              </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col-xl-6 col-6 mx-auto mt-5">
+        <div class="bg-white rounded-lg p-5 shadow">
+          <h2 class="h6 font-weight-bold text-center mb-4">Fenster</h2>
+          <div class="row text-center mt-4">
+            <div class="col-6 border-right">
+              <div class="h4 font-weight-bold mb-0" ><label id="">Zu</label></div><span class="small text-gray">Bett</span>
+            </div>
+            <div class="col-6 border-right">
+              <div class="h4 font-weight-bold mb-0" ><label id="">Offen</label></div><span class="small text-gray">Toilette</span>
+            </div>
+          </div>
+        </div> 
+    </div>
+
+    
+    
+    <div class="col-xl-6 col-6 mx-auto mt-5">
+        <div class="bg-white rounded-lg p-5 shadow">
+          <h2 class="h6 font-weight-bold text-center mb-4">Rolladen</h2>
+          <div class="progress mx-auto">
+            <span class="progress-left">
+                          <span class="progress-bar border-primary"></span>
+            </span>
+            <span class="progress-right">
+                          <span class="progress-bar border-primary"></span>
+            </span>
+            <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+              <div class="h2 font-weight-bold" ><label id="tempCont">Offen</label></div>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    
+      
+  </div>
+</div>
+</main>
+</body>
+</html>

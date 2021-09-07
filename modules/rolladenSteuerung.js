@@ -55,8 +55,8 @@ function handleAbstand(abstand) {
 exports.handleAbstand = handleAbstand;
 
 function syncDelay(milliseconds){
-  var start = new Date().getTime();
-  var end=0;
+  let start = new Date().getTime();
+  let end=0;
   while( (end-start) < milliseconds){
       end = new Date().getTime();
   }
