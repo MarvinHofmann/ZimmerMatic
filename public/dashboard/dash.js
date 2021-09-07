@@ -4,9 +4,9 @@ function format(seconds){
     }
     let hours = Math.floor(seconds / (60*60));
     let minutes = Math.floor(seconds % (60*60) / 60);
-    let seconds = Math.floor(seconds % 60);
+    let seconds1 = Math.floor(seconds % 60);
   
-    return pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
+    return pad(hours) + ':' + pad(minutes) + ':' + pad(seconds1);
   }
   
   let uptime = process.uptime();
