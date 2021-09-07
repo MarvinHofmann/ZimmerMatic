@@ -39,6 +39,11 @@ const path = require("path");
 app.use(express.static("public"));
 
 app.listen(port, () => {
+  console.log("********************");
+  console.log("Restarting at:");
+  console.log(berechneZeit());
+  console.log(getTag());
+  console.log("********************");
   console.log(`App listening at http://ZimmerMatic:${port}`); // Publisher Server auf Port 3443
   console.log("Die IP Adresse lautet: 192.168.0.58");
 });
@@ -88,7 +93,7 @@ app.get('/DownloadLog', function(req, res){
 app.get('/DownloadLogCom', function(req, res){
   console.log("********************");
   console.log("Download Anfrage");
-  console.log(berechneZeit());
+  console.log(berechneZeit() + ", " + getTag());
   console.log("********************");
   const file = `${__dirname}/log-file.txt`;
   console.log(file);
@@ -211,3 +216,12 @@ function berechneZeit() {
   return zeit;
 }
 exports.berechneZeit = berechneZeit;
+
+function getTag() {
+  let b = new Date();
+  x = b.getDay;
+  y = b.getMonth;
+  z = b.getFullYear;
+  tag = x + "." + y + "." + z;
+  return tag;
+}
