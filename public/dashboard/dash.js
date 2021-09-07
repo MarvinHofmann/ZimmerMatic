@@ -2,22 +2,15 @@ const ws = new WebSocket("ws://192.168.0.58:3000");
 
 ws.addEventListener("open", () => {
   console.log("Client connected with server!");
-});
-
-let startDateTime;
-
-ws.addEventListener("message", function (event) {
-  const data = JSON.parse(event.data);
-  //console.log(data);
   switch (data.value) {
-      case "uptimeStart":
-          console.log(data.value);
-          startDateTime = data.value;
-          break;
-  
-      default:
-          break;
-  }
+    case "uptimeStart":
+        console.log(data.value);
+        startDateTime = data.value;
+        break;
+
+    default:
+        break;
+}
 });
 
 const startStamp = startDateTime.getTime();
