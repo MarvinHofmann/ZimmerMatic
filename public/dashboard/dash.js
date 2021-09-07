@@ -1,7 +1,4 @@
 function getLog(){
-    fetch('http://192.168.0.58:3443/DownloadLog', {
-        method: 'GET'      
-     }).then(data => {
-         console.log(data);
-    });
+    indow.open( 
+        "http://zimmermatic:3443/DownloadLog", "_blank");
 }
