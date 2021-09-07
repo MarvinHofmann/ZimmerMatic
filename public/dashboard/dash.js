@@ -1,5 +1,24 @@
-let start = new Date;
-const startDateTime = new Date(start.getFullYear(),start.getMonth(),start.getDate(),start.getHours(),start.getMinutes(),start.getSeconds(),start.getMilliseconds()); // Erstes Release von Javascript
+const ws = new WebSocket("ws://192.168.0.58:3000");
+
+ws.addEventListener("open", () => {
+  console.log("Client connected with server!");
+});
+
+let startDateTime;
+
+ws.addEventListener("message", function (event) {
+  const data = JSON.parse(event.data);
+  //console.log(data);
+  switch (data.value) {
+      case "uptimeStart":
+          startDateTime = data.value;
+          break;
+  
+      default:
+          break;
+  }
+});
+
 const startStamp = startDateTime.getTime();
 
 let newDate = new Date();
@@ -35,6 +54,3 @@ function getLogComplete(){
         "http://zimmermatic:3443/DownloadLogCom", "_blank");
 }
 
-function getLights(){
-
-}   
