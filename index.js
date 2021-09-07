@@ -182,8 +182,8 @@ wss.on("connection", function connection(ws, req) {
   ClientswsBrowser[clientsCn] = ws;
   temp.publish();
   pflanzen.publish();
-  for (let i = 0; i < main.ClientswsBrowser.length; i++) {
-      main.ClientswsBrowser[i].send(
+  for (let i = 0; i < ClientswsBrowser.length; i++) {
+      ClientswsBrowser[i].send(
       JSON.stringify({ type: "uptimeStart", value: startDateTime })
       );
   }
