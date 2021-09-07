@@ -85,6 +85,13 @@ app.get('/DownloadLog', function(req, res){
   res.download(file); // Set disposition and send it.
 });
 
+app.get('/DownloadLogCom', function(req, res){
+  const file = `${__dirname}/log-file.txt`;
+  console.log("Anfrage kam an");
+  console.log(file);
+  res.download(file); // Set disposition and send it.
+});
+
 app.get("/hello" , function(req, res) {
   console.log("Nachricht kam an!");
   currentClientsws[1].send("255,161,20,100");
