@@ -1,6 +1,7 @@
 const WebSocket = require("ws");
 const main = require("../index.js");
 const tel = require("./telegram");
+const zeit = require("./zeit.js");
 let plFeucht1,
 plFeucht2,
 plFeucht3,
@@ -17,7 +18,7 @@ exports.plZeit3 = plZeit3;
 main.app.post("/plfanze1", function (req, res) {
     plFeucht1 = req.body.feuchtigkeit;
     console.log("Pflanze 1: " + plFeucht1);
-    plZeit1 = main.berechneZeit();
+    plZeit1 = zeit.berechneZeit();
     broadcastPflanzen(plFeucht1, plZeit1, "S1");
     if (plFeucht1 >= 440) {
       //390 - 440
@@ -29,7 +30,7 @@ main.app.post("/plfanze1", function (req, res) {
 main.app.post("/plfanze2", function (req, res) {
     plFeucht2 = req.body.feuchtigkeit;
     console.log("Pflanze 2: " + plFeucht2);
-    plZeit2 = main.berechneZeit();
+    plZeit2 = zeit.berechneZeit();
     broadcastPflanzen(plFeucht2, plZeit2, "S2");
     if (plFeucht2 >= 320) {
       //380-410
@@ -41,7 +42,7 @@ main.app.post("/plfanze2", function (req, res) {
   main.app.post("/plfanze3", function (req, res) {
     plFeucht3 = req.body.feuchtigkeit;
     console.log("Pflanze 3: " + plFeucht3);
-    plZeit3 = main.berechneZeit();
+    plZeit3 = zeit.berechneZeit();
     broadcastPflanzen(plFeucht3, plZeit3, "S3");
     if (plFeucht3 >= 180) {
       //zw 180 && 200

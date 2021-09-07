@@ -2,6 +2,8 @@ const WebSocket = require("ws");
 const main = require("../index.js");
 const tel = require("./telegram");
 const rol = require("./rolladenSteuerung");
+const zeit = require("./zeit.js");
+
 let temp,
   feucht,
   temp2,
@@ -36,7 +38,7 @@ function broadcast(feucht, temp, zeit, sender) {
 main.app.post("/", function (req, res) {
     temp = req.body.temperatur;
     feucht = req.body.feuchtigkeit;
-    zeit1 = main.berechneZeit();
+    zeit1 = zeit.berechneZeit();
     console.log(
       "Temperatur1: " + temp + " Feuchtigkeit1: " + feucht + " Zeit: " + zeit1
     );
@@ -48,7 +50,7 @@ main.app.post("/", function (req, res) {
   main.app.post("/senderZwei", function (req, res) {
     temp2 = req.body.temperatur;
     feucht2 = req.body.feuchtigkeit;
-    zeit2 = main.berechneZeit();
+    zeit2 = zeit.berechneZeit();
     console.log(
       "Temperatur2: " + temp2 + " Feuchtigkeit2: " + feucht2 + " Zeit: " + zeit2
     );
@@ -60,7 +62,7 @@ main.app.post("/", function (req, res) {
   main.app.post("/senderDrei", function (req, res) {
     temp3 = req.body.temperatur;
     feucht3 = req.body.feuchtigkeit;
-    zeit3 = main.berechneZeit();
+    zeit3 = zeit.berechneZeit();
     console.log(
       "Temperatur3: " + temp3 + " Feuchtigkeit3: " + feucht3 + " Zeit: " + zeit3
     );
