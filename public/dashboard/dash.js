@@ -1,29 +1,18 @@
-let start = new Date;
-const startDateTime = new Date(start.getFullYear,start.getMonth,start.getDate,start.getHours,start.getMinutes,start.getSeconds,start.getMilliseconds); // Erstes Release von Javascript
-const startStamp = startDateTime.getTime();
+function format(seconds){
+    function pad(s){
+      return (s < 10 ? '0' : '') + s;
+    }
+    let hours = Math.floor(seconds / (60*60));
+    let minutes = Math.floor(seconds % (60*60) / 60);
+    let seconds = Math.floor(seconds % 60);
+  
+    return pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
+  }
+  
+  let uptime = process.uptime();
+  console.log(format(uptime));
 
-let newDate = new Date();
-let newStamp = newDate.getTime();
-
-let timer;
-
-function updateClock() {
-    newDate = new Date();
-    newStamp = newDate.getTime();
-    let diff = Math.round((newStamp-startStamp)/1000);
-    
-    let d = Math.floor(diff/(24*60*60));
-    diff = diff-(d*24*60*60);
-    let h = Math.floor(diff/(60*60));
-    diff = diff-(h*60*60);
-    let m = Math.floor(diff/(60));
-    diff = diff-(m*60);
-    let s = diff;
-    
-    document.getElementById("uptime").innerHTML = d+" Tage, "+h+" Stunden, "+m+" Minuten, "+s+" Sekunden Uptime";
-}
-
-timer = setInterval(updateClock, 1000);
+  document.getElementById("uptime").innerHTML = uptime;
 
 function getLog(){
     window.open( 
