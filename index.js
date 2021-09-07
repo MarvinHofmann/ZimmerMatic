@@ -80,6 +80,7 @@ app.use(function (req, res, next) {
 
 app.get('/DownloadLog', function(req, res){
   const file = `${__dirname}/cheese.log`;
+  console.log("Anfrage kam an");
   res.download(file); // Set disposition and send it.
 });
 
