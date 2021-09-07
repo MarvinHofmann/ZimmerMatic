@@ -2,17 +2,49 @@ const ws = new WebSocket("ws://192.168.0.58:3000");
 
 ws.addEventListener("open", () => {
   console.log("Client connected with server!");
-  switch (data.value) {
-    case "uptimeStart":
-        console.log(data.value);
-        startDateTime = data.value;
-        break;
-
-    default:
-        break;
-}
+ 
 });
+let jahr,monat,sekunde,tag,minute,millisekunde,stunde;
 
+ws.addEventListener("message", function (event) {
+    const data = JSON.parse(event.data);
+    //console.log(data);
+    switch (data.type) {
+      case "jahr":
+        jahr = data.value;
+        break;
+  
+      case "monat":
+        monat = data.value;
+        break;
+  
+      case "tag":
+        tag = data.value;
+        break;
+  
+      case "stunde":
+        stunde = data.value;
+        break;
+  
+      case "minute":
+        minute = data.value;
+        break;
+  
+      case "sekunde":
+        sekunde = data.value;
+        break;
+  
+      case "millisekunde":
+        millisekunde = data.value;
+        break;
+          
+      default:
+      // Unknown websocket message type
+    }
+  });
+  
+
+const startDateTime = new Date(jahr,monat,tag,stunde,minute,sekunde,millisekunde); // letzter Neustart 
 const startStamp = startDateTime.getTime();
 
 let newDate = new Date();

@@ -37,16 +37,7 @@ app.use(bodyParser.json());
 const path = require("path");
 //express.static sucht im Ordner public nach der Index.js Datei und publisht sie direkt
 app.use(express.static("public"));
-let start = new Date();
-const startDateTime = new Date(
-  start.getFullYear(),
-  start.getMonth(),
-  start.getDate(),
-  start.getHours(),
-  start.getMinutes(),
-  start.getSeconds(),
-  start.getMilliseconds()
-); // Erstes Release von Javascript
+
 app.listen(port, () => {
   console.log("********************");
   console.log("Restarting at:");
@@ -182,11 +173,7 @@ wss.on("connection", function connection(ws, req) {
   ClientswsBrowser[clientsCn] = ws;
   temp.publish();
   pflanzen.publish();
-  for (let i = 0; i < ClientswsBrowser.length; i++) {
-      ClientswsBrowser[i].send(
-      JSON.stringify({ type: "uptimeStart", value: startDateTime })
-      );
-  }
+  broadcastTime();
   //broadcastRoutinen();
   ws.on("message", function incoming(message) {
     console.log("received: %s", message);
@@ -242,4 +229,41 @@ function getTag() {
 
   let dateF = [year, month, day].join("-");
   return dateF;
+}
+
+let start = new Date();
+let jahr = start.getFullYear();
+let monat =  start.getMonth();
+let tag = start.getDate();
+let stunde = start.getHours();
+let minute = start.getMinutes();
+let sekunde = start.getSeconds();
+let millisekunde = start.getMilliseconds();
+ // Erstes Release von Javascript
+
+function broadcastTime() {
+  for (let i = 0; i < ClientswsBrowser.length; i++) {
+    ClientswsBrowser[i].send(
+      JSON.stringify({ type: "jahr" + sender, value: jahr })
+    );
+    ClientswsBrowser[i].send(
+      JSON.stringify({ type: "monat" + sender, value: monat })
+    );
+    ClientswsBrowser[i].send(
+      JSON.stringify({ type: "tag" + sender, value: tag })
+    );
+    ClientswsBrowser[i].send(
+      JSON.stringify({ type: "stunde", value: stunde })
+    );
+    ClientswsBrowser[i].send(
+      JSON.stringify({ type: "minute" + sender, value: minute })
+    );
+    ClientswsBrowser[i].send(
+      JSON.stringify({ type: "sekunde" + sender, value: sekunde })
+    );
+    ClientswsBrowser[i].send(
+      JSON.stringify({ type: "millisekunde" + sender, value: millisekunde })
+    );
+    
+  }
 }
