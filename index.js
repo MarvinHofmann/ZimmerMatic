@@ -1,9 +1,14 @@
 /*ZimmerMatic Node.js Webserver*/
+/*Index Datei, bindet alle Module des Modules Ordne ein, erstellt den Express Server,
+sowie zwei websocket Server. Alle Whitelist Komponenten werden mit IP-Adresse gelistet. 
+Alle Websocket Verbindungen werden hier angenommen und losgeschickt*/
+
+
 //Websocket Server
 const WebSocket = require("ws");
 const wssLED = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
 exports.wssLED = wssLED;
-
+//2. Websocket mit anderem Port
 const wss = new WebSocket.Server({ port: 3000 }); // abgespilteter WS Server auf anderem Port
 exports.wss = wss;
 let ClientswsBrowser = [];
@@ -86,7 +91,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-
+/***********Halllo / Tschüss Button*******************/
 
 app.get("/hello", function (req, res) {
   console.log("Nachricht kam an!");
@@ -118,7 +123,9 @@ app.get("/tschuess", function (req, res) {
   res.sendStatus(200);
 });
 
-//Sagt, wenn ein Client verbunden ist oder wenn er disconnected
+/***************************************** */
+
+//Websocket handling für alle whitelist Clients
 wssLED.on("connection", function connection(ws, req) {
   console.log("Client connected!");
   //hole IP Adresse
@@ -155,13 +162,15 @@ wssLED.on("connection", function connection(ws, req) {
   });
 });
 
+
+//Websocket für Browser Clients
 wss.on("connection", function connection(ws, req) {
   console.log("Client connected!");
   ClientswsBrowser[clientsCn] = ws;
   temp.publish();
   pflanzen.publish();
   time.updateClock();
-  //broadcastRoutinen();
+  //broadcastRoutinen(); //Zeitweiße außer betrieb
   ws.on("message", function incoming(message) {
     console.log("received: %s", message);
     switch (message) {

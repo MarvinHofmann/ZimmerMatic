@@ -23,3 +23,10 @@ function getLogComplete(){
         "http://zimmermatic:3443/DownloadLogCom", "_blank");
 }
 
+function rolladenRunter() {
+    
+}
+
+function rolladenHoch() {
+    
+}
