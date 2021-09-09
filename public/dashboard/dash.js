@@ -26,9 +26,9 @@ function getLogComplete(){
 
 function getState(lampe) {
   let state;
-  let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_Helligkeit";
+  let adresse = "http://zimmermatic/rest/items/BL_Helligkeit/state";
   console.log("Frage Lampe an:" + adresse);
-  fetch(adresse, {method: 'GET', mode: 'no-cors'}).then(response => console.log(response));
+  fetch(adresse, {method: 'GET', mode: 'no-cors'}).then(response => console.log(response.text()));
 }
 
 

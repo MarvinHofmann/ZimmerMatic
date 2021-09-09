@@ -73,10 +73,11 @@ let ledD1Schreibtisch = "::ffff:192.168.0.78";
 let ledD1EmelySchr = "::ffff:192.168.0.80";
 
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
+const cors = require("cors");
+app.use(cors({
+    origin: "*",
+  })
+)
 
 /***********Halllo / Tschüss Button*******************/
 
