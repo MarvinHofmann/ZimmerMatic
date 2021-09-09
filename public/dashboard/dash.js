@@ -61,3 +61,18 @@ function updateClock() {
  
 }
  timer = setInterval(updateClock, 1000);
+
+ function getState(lampe){
+  fetch('http://zimmermatic:3443/getState', {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/JSON',
+    },
+    body: JSON.stringify({Lampe: lampe}).then(response => response.text())
+    .then((response) => {
+        antwort = response;
+        console.log(response);
+    })
+    .catch(err => console.log(err));
+});
+}

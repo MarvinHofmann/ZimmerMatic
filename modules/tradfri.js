@@ -1,5 +1,3 @@
-
-const { response } = require('express');
 const fetch = require('node-fetch');
 const main = require("../index");
 
@@ -18,8 +16,7 @@ main.app.post('/LampenAll' , function ( request, response){
   let wert = request.body.Wert;
   fetchLampe("BL", modus, wert);
   fetchLampe("BR", modus, wert);
-  fetchLampe("BT", modus, wert);
-  fetchLampeBR();
+  fetchLampe("BT", modus, wert);  
   response.sendStatus(200);
 });
 
@@ -38,13 +35,20 @@ function fetchSteckdose(mode){
 }
 exports.fetchSteckdose = fetchSteckdose;
 
-function fetchLampeBR(){
-  let adresse = "http://192.168.0.58:8080/rest/items/BR_Helligkeit/state";
+let antwort;
+function getState(lampe){
+  let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_Helligkeit/state";
   console.log("fetch an: " +adresse );
   fetch(adresse, {method: 'GET'}).then(response => response.text())
   .then((response) => {
-      console.log(response)
+      antwort = response;
+      console.log(response);
   })
   .catch(err => console.log(err));
+  return antwort;
 }
 
+main.app.post('/getState' , function ( request, response){
+  let lampe = request.body.Lampe;
+  response.send(getState(lampe));
+});
