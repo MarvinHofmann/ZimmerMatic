@@ -55,12 +55,15 @@ main.app.post('/getState' , function ( request, response){
 
 function updateLicht(){
   for (let i = 0; i < main.ClientswsBrowser.length; i++) {
+    console.log("sende : " + getState("BR"))
     main.ClientswsBrowser[i].send(
       JSON.stringify({ type: "BR", value: getState("BR") })
     );
+    console.log("sende : " + getState("BT"))
     main.ClientswsBrowser[i].send(
       JSON.stringify({ type: "BT", value: getState("BT") })
     );
+    console.log("sende : " + getState("BL"))
     main.ClientswsBrowser[i].send(
       JSON.stringify({ type: "BL", value: getState("BL") })
     );
