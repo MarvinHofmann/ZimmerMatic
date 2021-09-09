@@ -36,21 +36,10 @@ function fetchSteckdose(mode){
 }
 exports.fetchSteckdose = fetchSteckdose;
 
-main.app.post('/getState' , function ( request, response){
-  let lampe = request.body.Lampe;
-  response.send(getState(lampe));
-});
-
+getState("BT");
 function getState(lampe) {
   let state;
   let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_Helligkeit";
   console.log("Frage Lampe an:" + adresse);
-  fetch(adresse, {method: 'GET'}).then(response => response.json()).then(data =>{
-      switch (data.value) {
-        case "state":
-          state = data.value;
-          break;
-      }
-  });
-  return state;
+  fetch(adresse, {method: 'GET', mode: 'no-cors'}).then(response => console.log(response));
 }
