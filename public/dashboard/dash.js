@@ -25,13 +25,13 @@ function getLogComplete(){
 }
 
 getState("BL");
-getState("BR");
-getState("BT");
+//getState("BR");
+//getState("BT");
 function getState(lampe) {
   let state;
   let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_Helligkeit";
   console.log("Frage Lampe an:" + adresse);
-  fetch(adresse, {method: 'GET'}).then(response => response.json()).then(data =>{
+  fetch(adresse, {method: 'GET', mode: 'no-cors'}).then(response => response.json()).then(data =>{
     console.log(response.json());
       switch (data.value) {
         case "state":
@@ -42,9 +42,9 @@ function getState(lampe) {
       }
   });
   if (state > 0) {
-    document.getElementById(lampe + "_Status").innerText = String("ON");
+    document.getElementById("BL_Status").innerText = String("ON");
   }else{
-    document.getElementById(lampe + "_Status").innerText = String("OFF");
+    document.getElementById("BL_Status").innerText = String("OFF");
   }
 }
 
