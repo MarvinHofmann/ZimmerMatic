@@ -17,6 +17,7 @@ ws.addEventListener("message", function (event) {
 getState("BR");
 getState("BT");
 getState("BL");
+timer = setInterval(getState, 120000);
 
 function updateClock() {
   let a = new Date();
@@ -35,7 +36,7 @@ function updateClock() {
     }
   zeit = b + ":" + c + ":" + d; 
   document.getElementById("aktzeit").innerText = "Es ist der " + String(getTag()) + " um " + String(zeit);
- 
+  
 }
 timer = setInterval(updateClock, 1000);
 
@@ -69,7 +70,7 @@ function getState(lampe){
       console.log("Lampe ist an!")
       document.getElementById(lampe + "_Status").innerText = "ON";
       document.getElementById("lichtMain").innerText = "ON";
-      document.getElementById("lichtMain").style.color = green;
+      document.getElementById("lichtMain").style.color = "green";
     }
 })
 }
