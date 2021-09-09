@@ -68,8 +68,8 @@ function getState(lampe){
     }else{
       console.log("Lampe ist an!")
       document.getElementById(lampe + "_Status").innerText = "ON";
-      document.getElementById("lampeAll").innerText = "ON";
-      document.getElementById("lampeAll").style.color = green;
+      document.getElementById("lichtMain").innerText = "ON";
+      document.getElementById("lichtMain").style.color = green;
     }
 })
 }
