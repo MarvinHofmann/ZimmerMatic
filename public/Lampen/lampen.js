@@ -74,7 +74,7 @@ function sendFetch(lampe, modus, wert){
 }
 
 function sendFetchAll(modus, wert){
-    fetch('http://192.168.0.58:3443/LampenAll', {
+    fetch('http://zimmermatic:3443/LampenAll', {
       method: 'POST',
       headers: {
       'Content-Type': 'application/JSON',
