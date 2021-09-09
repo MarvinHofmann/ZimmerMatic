@@ -23,6 +23,8 @@ ws.addEventListener("message", function (event) {
     }
 });
 function checkState(value, lampe){
+  console.warn(value);
+  console.warn(lampe);
   if (value > 0) {
     console.log("Lampe ist an!")
     document.getElementById(lampe + "_Status").innerText = "ON";
@@ -81,4 +83,3 @@ function rolladenAktion(richtung) {
 let adresse = "http://zimmermatic:3443/rolladen" + richtung;
 fetch(adresse, {method: 'GET'});
 }
-
