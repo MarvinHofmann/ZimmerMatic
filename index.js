@@ -78,6 +78,14 @@ app.use(function (req, res, next) {
   next();
 });
 
+getState("BT");
+function getState(lampe) {
+  let state;
+  let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_Helligkeit";
+  console.log("Frage Lampe an:" + adresse);
+  fetch(adresse, {method: 'GET', mode: 'no-cors'}).then(response => console.log(response));
+}
+
 /***********Halllo / Tschüss Button*******************/
 
 app.get("/hello", function (req, res) {
