@@ -30,7 +30,7 @@ function checkState(value, lampe){
     document.getElementById("lichtMain").style.color = "green";
   }else{
     console.log("Lampe ist aus!")
-    document.getElementById( + "_Status").innerText = "OFF";
+    document.getElementById(lampe + "_Status").innerText = "OFF";
   }
 }
 
