@@ -1,5 +1,5 @@
 const ws = new WebSocket("ws://192.168.0.58:3000");
-let antwort;
+
 ws.addEventListener("open", () => {
   console.log("Client connected with server!");
 });
@@ -53,6 +53,7 @@ function getTag() {
 }
 
 function getState(lampe){
+  let antwort;
   fetch('http://zimmermatic:3443/getState', {
     method: 'POST',
     headers: {
