@@ -24,8 +24,8 @@ function getLogComplete(){
         "http://zimmermatic:3443/DownloadLogCom", "_blank");
 }
 
-getState("BR");
 getState("BL");
+getState("BR");
 getState("BT");
 function getState(lampe) {
   let state;
@@ -42,9 +42,9 @@ function getState(lampe) {
       }
   });
   if (state > 0) {
-    document.getElementById(lampe + "_Status").innerText = "ON";
+    document.getElementById(lampe + "_Status").innerText = String("ON");
   }else{
-    document.getElementById(lampe + "_Status").innerText = "OFF";
+    document.getElementById(lampe + "_Status").innerText = String("OFF");
   }
 }
 
