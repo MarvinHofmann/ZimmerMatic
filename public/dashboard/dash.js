@@ -31,7 +31,7 @@ function getState(lampe) {
   let state;
   let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_Helligkeit";
   console.log("Frage Lampe an:" + adresse);
-  fetch(adresse, {method: 'GET', mode: 'no-cors'}).then(response => response.json()).then(data =>{
+  fetch(adresse, {method: 'GET'}).then(response => response.json()).then(data =>{
     console.log(response.json());
       switch (data.value) {
         case "state":
