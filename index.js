@@ -44,11 +44,7 @@ const path = require("path");
 app.use(express.static("public"));
 
 app.listen(port, () => {
-  console.log("********************");
-  console.log("Restarting at:");
-  console.log(time.berechneZeit());
-  console.log(time.getTag());
-  console.log("********************");
+  consoleLogTime("Restarting at:")
   console.log(`App listening at http://ZimmerMatic:${port}`); // Publisher Server auf Port 3443
   console.log("Die IP Adresse lautet: 192.168.0.58");
 });
@@ -94,7 +90,8 @@ app.use(function (req, res, next) {
 /***********Halllo / Tschüss Button*******************/
 
 app.get("/hello", function (req, res) {
-  console.log("Nachricht kam an!");
+  rS.rolladenUP();
+  consoleLogTime("Zuhause Angemeldet:");
   currentClientsws[1].send("255,161,20,100");
   currentClientsws[2].send("255,161,20,100");
   currentClientsws[3].send("40,191,255,255");
@@ -103,12 +100,12 @@ app.get("/hello", function (req, res) {
     Ikea.fetchLampe("BL", "Helligkeit", 30);
     Ikea.fetchLampe("BR", "Helligkeit", 30);
   }
-  rS.rolladenUP();
   res.sendStatus(200);
 });
 
 app.get("/tschuess", function (req, res) {
-  console.log("Nachricht kam an!");
+  rS.rolladenDown();
+  consoleLogTime("Abgemeldet:")
   for (let i = 0; i < currentClientsws.length; i++) {
     try {
       currentClientsws[i].send("0,0,0,0");
@@ -119,7 +116,6 @@ app.get("/tschuess", function (req, res) {
   }
   Ikea.fetchLampe("BL", "Helligkeit", 0);
   Ikea.fetchLampe("BR", "Helligkeit", 0);
-  rS.rolladenDown();
   res.sendStatus(200);
 });
 
@@ -193,3 +189,11 @@ wss.on("connection", function connection(ws, req) {
     console.log("Client has disconnceted");
   });
 });
+
+function consoleLogTime(incoming) {
+  console.log("********************");
+  console.log(incoming);
+  console.log(time.berechneZeit());
+  console.log(time.getTag());
+  console.log("********************");
+}

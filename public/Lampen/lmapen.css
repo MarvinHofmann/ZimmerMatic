@@ -50,13 +50,14 @@
   }
 
   #sw{
+    width: 100%;
     padding-top: 2%;
     padding-bottom: 2%;
     display: grid;
     justify-content: center;
     align-content: center;
     align-items: center;
-    padding-left: 60px;
+    
     grid-template-columns: 50% 50%;
     grid-row: auto auto;
     

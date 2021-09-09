@@ -23,6 +23,29 @@ function getLogComplete(){
         "http://zimmermatic:3443/DownloadLogCom", "_blank");
 }
 
+getState("BR");
+getState("BL");
+getState("BT");
+function getState(lampe) {
+  let state;
+  let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_Helligkeit";
+  console.log("Frage Lampe an:" + adresse);
+  fetch(adresse, {method: 'GET'}).then(response => response.json()).then(data =>{
+      switch (data.value) {
+        case "state":
+          console.log("Anfrage erfolgreich: " + data);
+          state = data.value;
+          console.log(state);
+          break;
+      }
+  });
+  if (state > 0) {
+    document.getElementById("").innerHTML = "ON";
+  }else{
+    document.getElementById("").innerHTML = "OFF";
+  }
+}
+
 function rolladenRunter() {
     
 }
