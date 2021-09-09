@@ -12,12 +12,15 @@ ws.addEventListener("message", function (event) {
         document.getElementById("uptime").innerText = String(data.value);
         break;
       case "BR":
+        console.warn("Ankommende zahl: " + data.value)
         checkState(data.value, "BR");
         break;
       case "BT":
+        console.warn("Ankommende zahl: " + data.value)
         checkState(data.value, "BT");
           break;
       case "BL":
+        console.warn("Ankommende zahl: " + data.value)
         checkState(data.value, "BL");
         break;
     }
