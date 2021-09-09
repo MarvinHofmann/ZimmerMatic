@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 const ws = new WebSocket("ws://192.168.0.58:3000");
 
 ws.addEventListener("open", () => {
@@ -31,6 +33,7 @@ function getState(lampe) {
   let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_Helligkeit";
   console.log("Frage Lampe an:" + adresse);
   fetch(adresse, {method: 'GET'}).then(response => response.json()).then(data =>{
+    console.log(response.json());
       switch (data.value) {
         case "state":
           console.log("Anfrage erfolgreich: " + data);
