@@ -24,28 +24,11 @@ function getLogComplete(){
         "http://zimmermatic:3443/DownloadLogCom", "_blank");
 }
 
-getState("BL");
-//getState("BR");
-//getState("BT");
 function getState(lampe) {
   let state;
   let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_Helligkeit";
   console.log("Frage Lampe an:" + adresse);
-  fetch(adresse, {method: 'GET'}).then(response => response.json()).then(data =>{
-    console.log(response.json());
-      switch (data.value) {
-        case "state":
-          console.log("Anfrage erfolgreich: " + data);
-          state = data.value;
-          console.log(state);
-          break;
-      }
-  });
-  if (state > 0) {
-    document.getElementById("BL_Status").innerText = String("ON");
-  }else{
-    document.getElementById("BL_Status").innerText = String("OFF");
-  }
+  fetch(adresse, {method: 'GET'}).then(response => console.log(response));
 }
 
 function rolladenRunter() {
