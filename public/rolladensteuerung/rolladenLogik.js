@@ -1,5 +1,6 @@
 const ws = new WebSocket("ws://192.168.0.58:3000");
 let offen = false;
+
 ws.addEventListener("open", (message) => {
   console.log("Client connected with server!");
   ws.send("getAbstand");

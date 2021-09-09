@@ -24,8 +24,6 @@ function getLogComplete(){
         "http://zimmermatic:3443/DownloadLogCom", "_blank");
 }
 
-
-getState("BT");
 function getState(lampe) {
   let state;
   let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_Helligkeit";
@@ -34,12 +32,9 @@ function getState(lampe) {
 }
 
 
-function rolladenRunter() {
-    
-}
-
-function rolladenHoch() {
-    
+function rolladenAktion(richtung) {
+  let adresse = "http:zimmermatic:3443/rolladen" + richtung;
+  fetch(adresse, {method: 'GET'});
 }
 
 function getTag() {
@@ -70,7 +65,7 @@ function updateClock() {
       d = "0" + d;
     }
   zeit = b + ":" + c + ":" + d; 
-  document.getElementById("aktzeit").innerText = "Es ist der: " + String(getTag()) + " um " + String(zeit);
+  document.getElementById("aktzeit").innerText = "Es ist der " + String(getTag()) + " um " + String(zeit);
  
 }
  timer = setInterval(updateClock, 1000);

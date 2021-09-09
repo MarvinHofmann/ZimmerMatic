@@ -61,3 +61,13 @@ function syncDelay(milliseconds){
       end = new Date().getTime();
   }
  }
+
+main.app.get('/rolladenUp' ,function(req, res){
+  rolladenUP();
+  res.sendStatus(200);
+});
+
+main.app.get('/rolladenDown' ,function(req, res){
+  rolladenDown();
+  res.sendStatus(200);
+});
