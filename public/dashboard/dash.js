@@ -15,7 +15,7 @@ ws.addEventListener("message", function (event) {
 });
 
 getState("BR");
-//getState("BT");
+getState("BT");
 //getState("BL");
 timer = setInterval(getState, 120000);
 
