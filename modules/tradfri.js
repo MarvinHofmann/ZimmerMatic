@@ -52,3 +52,18 @@ main.app.post('/getState' , function ( request, response){
   let lampe = request.body.Lampe;
   response.send(getState(lampe));
 });
+
+function updateLicht(){
+  for (let i = 0; i < main.ClientswsBrowser.length; i++) {
+    main.ClientswsBrowser[i].send(
+      JSON.stringify({ type: "BR", value: getState("BR") })
+    );
+    main.ClientswsBrowser[i].send(
+      JSON.stringify({ type: "BT", value: getState("BT") })
+    );
+    main.ClientswsBrowser[i].send(
+      JSON.stringify({ type: "BL", value: getState("BL") })
+    );
+  }
+}
+exports.updateLicht = updateLicht;

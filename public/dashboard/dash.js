@@ -11,12 +11,29 @@ ws.addEventListener("message", function (event) {
       case "uptime":
         document.getElementById("uptime").innerText = String(data.value);
         break;
+      case "BR":
+        checkState(data.value, "BR");
+        break;
+      case "BT":
+        checkState(data.value, "BT");
+          break;
+      case "BL":
+        checkState(data.value, "BL");
+        break;
     }
 });
+function checkState(value, lampe){
+  if (value > 0) {
+    console.log("Lampe ist an!")
+    document.getElementById(lampe + "_Status").innerText = "ON";
+    document.getElementById("lichtMain").innerText = "ON";
+    document.getElementById("lichtMain").style.color = "green";
+  }else{
+    console.log("Lampe ist aus!")
+    document.getElementById( + "_Status").innerText = "OFF";
+  }
+}
 
-getState("BR");
-getState("BT");
-//getState("BL");
 timer = setInterval(getState, 120000);
 
 function updateClock() {
@@ -50,31 +67,6 @@ function getTag() {
 
   let dateF = [day, month,year].join(".");
   return dateF;
-}
-
-function getState(lampe){
-  
-  fetch('http://zimmermatic:3443/getState', {
-    method: 'POST',
-    headers: {
-    'Content-Type': 'application/JSON',
-    },
-    body: JSON.stringify({Lampe: lampe})
-}).then(response => response.text())
-  .then((response) => {
-    let antwort;
-    antwort = response;
-    console.log("Response von " + lampe + response + "Antwort: " + antwort);
-    if (antwort > 0) {
-      console.log("Lampe ist an!")
-      document.getElementById(lampe + "_Status").innerText = "ON";
-      document.getElementById("lichtMain").innerText = "ON";
-      document.getElementById("lichtMain").style.color = "green";
-    }else{
-      console.log("Lampe ist aus!")
-      document.getElementById(lampe + "_Status").innerText = "OFF";
-    }
-})
 }
 
 function getLog(){

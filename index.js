@@ -158,6 +158,7 @@ wss.on("connection", function connection(ws, req) {
   temp.publish();
   pflanzen.publish();
   time.updateClock();
+  Ikea.updateLicht();
   //broadcastRoutinen(); //Zeitweiße außer betrieb
   ws.on("message", function incoming(message) {
     console.log("received: %s", message);
