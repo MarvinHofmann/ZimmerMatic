@@ -72,18 +72,9 @@ let ledD1UHR = "::ffff:192.168.0.76";
 let ledD1Schreibtisch = "::ffff:192.168.0.78";
 let ledD1EmelySchr = "::ffff:192.168.0.80";
 
-const cors = require("cors");
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
   next();
 });
 
