@@ -35,9 +35,8 @@ function fetchSteckdose(mode){
 }
 exports.fetchSteckdose = fetchSteckdose;
 
-
-function getState(lampe){
-  let antwort;
+main.app.post('/getState' , function ( request, response){
+  let lampe = request.body.Lampe;
   let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_Helligkeit/state";
   console.log("fetch an: " +adresse );
   fetch(adresse, {method: 'GET'}).then(response => response.text())
@@ -46,12 +45,7 @@ function getState(lampe){
       console.log(response);
   })
   .catch(err => console.log(err));
-  return antwort;
-}
-
-main.app.post('/getState' , function ( request, response){
-  let lampe = request.body.Lampe;
-  response.send(getState(lampe));
+  response.send(antwort);
 });
 
 function updateLicht(){
