@@ -34,8 +34,6 @@ function checkState(value, lampe){
   }
 }
 
-timer = setInterval(getState, 120000);
-
 function updateClock() {
   let a = new Date();
     b = c = d = zeit = 0;
