@@ -24,14 +24,6 @@ function getLogComplete(){
         "http://zimmermatic:3443/DownloadLogCom", "_blank");
 }
 
-function getState(lampe) {
-  let state;
-  let adresse = "http://zimmermatic/rest/items/BL_Helligkeit/state";
-  console.log("Frage Lampe an:" + adresse);
-  fetch(adresse, {method: 'GET', mode: 'no-cors'}).then(response => console.log(response.text()));
-}
-
-
 function rolladenAktion(richtung) {
   let adresse = "http://zimmermatic:3443/rolladen" + richtung;
   fetch(adresse, {method: 'GET'});
