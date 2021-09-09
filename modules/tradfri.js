@@ -35,8 +35,9 @@ function fetchSteckdose(mode){
 }
 exports.fetchSteckdose = fetchSteckdose;
 
-let antwort;
+
 function getState(lampe){
+  let antwort;
   let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_Helligkeit/state";
   console.log("fetch an: " +adresse );
   fetch(adresse, {method: 'GET'}).then(response => response.text())
