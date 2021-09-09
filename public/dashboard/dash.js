@@ -15,8 +15,8 @@ ws.addEventListener("message", function (event) {
 });
 
 getState("BR");
-getState("BT");
-getState("BL");
+//getState("BT");
+//getState("BL");
 timer = setInterval(getState, 120000);
 
 function updateClock() {
