@@ -39,7 +39,7 @@ colorPicker.on("input:end", function (color) {
 
 function sendFetch(red, green, blue, value, who) {
   console.log("Sende Fetch");
-  fetch("http://192.168.0.58:3443/D1Leds", {
+  fetch("http://zimmermatic:3443/D1Leds", {
     method: "POST",
     headers: {
       "Content-Type": "application/JSON",
@@ -49,7 +49,7 @@ function sendFetch(red, green, blue, value, who) {
 }
 
 function sendFetchAll(red, green, blue, value) {
-    fetch("http://192.168.0.58:3443/D1LedsAll", {
+    fetch("http://zimmermatic/D1LedsAll", {
       method: "POST",
       headers: {
         "Content-Type": "application/JSON",
