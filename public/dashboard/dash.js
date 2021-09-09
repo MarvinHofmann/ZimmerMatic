@@ -53,7 +53,7 @@ function getTag() {
 }
 
 function getState(lampe){
-  let antwort;
+  
   fetch('http://zimmermatic:3443/getState', {
     method: 'POST',
     headers: {
@@ -62,10 +62,7 @@ function getState(lampe){
     body: JSON.stringify({Lampe: lampe})
 }).then(response => response.text())
   .then((response) => {
-    antwort = response;
-    if (response === undefined || response === null) {
-      getState(lampe);
-    }
+    let antwort;
     console.log("Response von " + lampe + response + "Antwort: " + antwort);
     if (antwort <= 0) {
       console.log("Lampe ist aus!")
