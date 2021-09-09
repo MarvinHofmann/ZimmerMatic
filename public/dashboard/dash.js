@@ -33,7 +33,7 @@ function getState(lampe) {
 
 
 function rolladenAktion(richtung) {
-  let adresse = "http:zimmermatic:3443/rolladen" + richtung;
+  let adresse = "http://zimmermatic:3443/rolladen" + richtung;
   fetch(adresse, {method: 'GET'});
 }
 
