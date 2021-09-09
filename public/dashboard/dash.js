@@ -50,7 +50,7 @@ function getTag() {
   let dateF = [day, month,year].join(".");
   return dateF;
 }
-
+let antwort;
 function getState(lampe){
   fetch('http://zimmermatic:3443/getState', {
     method: 'POST',
