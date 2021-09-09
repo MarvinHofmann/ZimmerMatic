@@ -14,32 +14,9 @@ ws.addEventListener("message", function (event) {
     }
 });
 
-function getLog(){
-    window.open( 
-        "http://zimmermatic:3443/DownloadLog", "_blank");
-}
-
-function getLogComplete(){
-    window.open( 
-        "http://zimmermatic:3443/DownloadLogCom", "_blank");
-}
-
-function rolladenAktion(richtung) {
-  let adresse = "http://zimmermatic:3443/rolladen" + richtung;
-  fetch(adresse, {method: 'GET'});
-}
-
-function getTag() {
-  let dt = new Date();
-  let month = "" + (dt.getMonth() + 1);
-  let day = "" + dt.getDate();
-  let year = dt.getFullYear();
-  if (month.length < 2) month = "0" + month;
-  if (day.length < 2) day = "0" + day;
-
-  let dateF = [day, month,year].join(".");
-  return dateF;
-}
+getState("BR");
+getState("BT");
+getState("BL");
 
 function updateClock() {
   let a = new Date();
@@ -60,9 +37,21 @@ function updateClock() {
   document.getElementById("aktzeit").innerText = "Es ist der " + String(getTag()) + " um " + String(zeit);
  
 }
- timer = setInterval(updateClock, 1000);
+timer = setInterval(updateClock, 1000);
 
- function getState(lampe){
+function getTag() {
+  let dt = new Date();
+  let month = "" + (dt.getMonth() + 1);
+  let day = "" + dt.getDate();
+  let year = dt.getFullYear();
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+
+  let dateF = [day, month,year].join(".");
+  return dateF;
+}
+
+function getState(lampe){
   fetch('http://zimmermatic:3443/getState', {
     method: 'POST',
     headers: {
@@ -75,8 +64,25 @@ function updateClock() {
     console.log(response);
 })
   .catch(err => console.log(err));
+  if (antwort <= 0) {
+    document.getElementById(lampe + "_Status").innerText = "OFF";
+  }else{
+    document.getElementById(lampe + "_Status").innerText = "ON";
+  }
 }
 
-getState("BR");
-getState("BT");
-getState("BL");
+function getLog(){
+  window.open( 
+      "http://zimmermatic:3443/DownloadLog", "_blank");
+}
+
+function getLogComplete(){
+  window.open( 
+      "http://zimmermatic:3443/DownloadLogCom", "_blank");
+}
+
+function rolladenAktion(richtung) {
+let adresse = "http://zimmermatic:3443/rolladen" + richtung;
+fetch(adresse, {method: 'GET'});
+}
+
