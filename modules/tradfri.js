@@ -41,6 +41,10 @@ exports.fetchSteckdose = fetchSteckdose;
 function fetchLampeBR(){
   let adresse = "http://192.168.0.58:8080/rest/items/BR_Helligkeit/state";
   console.log("fetch an: " +adresse );
-  fetch(adresse, {method: 'GET'}).then(response => console.log(response.text()));
+  fetch(adresse, {method: 'GET'}).then(response => response.text())
+  .then((response) => {
+      console.log(response)
+  })
+  .catch(err => console.log(err));
 }
 
