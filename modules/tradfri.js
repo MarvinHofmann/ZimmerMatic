@@ -35,18 +35,19 @@ function fetchSteckdose(mode){
 }
 exports.fetchSteckdose = fetchSteckdose;
 
-main.app.post('/getState' , function ( request, response){
-  let lampe = request.body.Lampe;
+
+function getState(lampe){
   let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_Helligkeit/state";
-  console.log("fetch an: " +adresse );
+  console.log("fetch an: " + adresse );
   fetch(adresse, {method: 'GET'}).then(response => response.text())
   .then((response) => {
       antwort = response;
       console.log(response);
+      return response;
   })
   .catch(err => console.log(err));
-  response.send(antwort);
-});
+ 
+}
 
 function updateLicht(){
   for (let i = 0; i < main.ClientswsBrowser.length; i++) {
