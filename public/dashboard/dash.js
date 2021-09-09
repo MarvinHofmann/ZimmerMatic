@@ -62,6 +62,9 @@ function getState(lampe){
 }).then(response => response.text())
   .then((response) => {
     antwort = response;
+    if (response === undefined || response === null) {
+      getState(lampe);
+    }
     console.log("Response: " + response);
     if (antwort <= 0) {
       console.log("Lampe ist aus!")
