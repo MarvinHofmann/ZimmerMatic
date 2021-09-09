@@ -49,7 +49,7 @@ function sendFetch(red, green, blue, value, who) {
 }
 
 function sendFetchAll(red, green, blue, value) {
-    fetch("http://zimmermatic/D1LedsAll", {
+    fetch("http://zimmermatic:3443/D1LedsAll", {
       method: "POST",
       headers: {
         "Content-Type": "application/JSON",
