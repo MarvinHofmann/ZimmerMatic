@@ -61,12 +61,14 @@ function getState(lampe){
 }).then(response => response.text())
   .then((response) => {
     antwort = response;
-    console.log(response);
+    console.log("Response: " + response);
 })
-  .catch(err => console.log(err));
+  console.log("Antwort: " + antwort);
   if (antwort <= 0) {
+    console.log("Lampe ist aus!")
     document.getElementById(lampe + "_Status").innerText = "OFF";
   }else{
+    console.log("Lampe ist an!")
     document.getElementById(lampe + "_Status").innerText = "ON";
   }
 }
