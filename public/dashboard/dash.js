@@ -40,9 +40,9 @@ function getState(lampe) {
       }
   });
   if (state > 0) {
-    document.getElementById("").innerHTML = "ON";
+    document.getElementById(lampe + "_Status").innerHTML = "ON";
   }else{
-    document.getElementById("").innerHTML = "OFF";
+    document.getElementById(lampe + "_Status").innerHTML = "OFF";
   }
 }
 
