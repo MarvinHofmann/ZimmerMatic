@@ -73,6 +73,10 @@ function updateClock() {
         antwort = response;
         console.log(response);
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
 });
 }
+
+getState("BR");
+getState("BT");
+getState("BL");
