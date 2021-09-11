@@ -130,7 +130,7 @@ function handleDB(sender, feuchtIn, tempIn) {
   console.log(cntA[sender]);
 }
 
-xports.publishDash = function(){
+exports.publishDash = function(){
   let th = db.getTagesHoch();
   console.log(th);
   for (let i = 0; i < main.ClientswsBrowser.length; i++) {
