@@ -25,12 +25,15 @@ ws.addEventListener("message", function (event) {
       break;
     case "Temp":
       document.getElementById("medianTemp").innerText = String(data.value);
+      console.log(data.value);
       break;
     case "Feucht":
       document.getElementById("medianFeucht").innerText = String(data.value);
+      console.log(data.value);
       break;
     case "High":
       document.getElementById("high").innerText = String(data.value);
+      console.log(data.value);
       break;
   }
 });

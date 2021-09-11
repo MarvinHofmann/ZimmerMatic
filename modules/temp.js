@@ -47,6 +47,7 @@ main.app.post("/", function (req, res) {
     getTempAverage();
     broadcast(feucht, temp, zeit1, "S1");
     handleDB(0,feucht,temp);
+    db.getAll();
     res.sendStatus(200);
   });
   
@@ -118,7 +119,7 @@ function handleDB(sender, feuchtIn, tempIn) {
       temperatur: tempIn,
       date: String(a.getDate()) + String(a.getMonth()+1) + String(a.getUTCFullYear())
     };
-    console.log(db.getAll());
+    db.getAll();
     console.log("speichern!");
     db.store(jsonT, function (err) {
       if (err != null) {

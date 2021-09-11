@@ -11,6 +11,7 @@ exports.store = store;
 
 function getAll() {
     db.find({}, function (err, docs) {
+        console.log(docs);
         return docs;
     });
 }
