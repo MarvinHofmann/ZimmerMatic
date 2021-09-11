@@ -121,7 +121,9 @@ function handleDB(sender, feuchtIn, tempIn) {
         console.log("erfolgreich gestored");
       }
     });
+    cntA[sender] = 0;
   }
+  console.log(cntA[sender]);
 }
 
 exports.publishDash = function(){
