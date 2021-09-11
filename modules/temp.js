@@ -114,6 +114,10 @@ function handleDB(sender, feuchtIn, tempIn) {
       temperatur: tempIn,
       date: String(a.getDate()) + String(a.getMonth()+1) + String(a.getUTCFullYear())
     };
+    db.find({},function (err, docs) {
+      console.log(docs);
+    });
+    console.log("speichern!");
     db.store(jsonT, function (err) {
       if (err != null) {
         console.log(err);
