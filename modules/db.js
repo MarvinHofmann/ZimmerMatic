@@ -25,8 +25,8 @@ exports.getTagesHoch = function () {
         console.log(docs[0].temperatur);   
         tH = docs[0].temperatur;
         console.log("TH First:" + tH);
-    });
-    console.log("TH SEcconst:" + tH);
-    return(tH);
+        console.log("TH SEcconst:" + String(tH));
+        return(String(tH));
+    });   
 }
     
