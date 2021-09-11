@@ -4,7 +4,6 @@ const tel = require("./telegram");
 const rol = require("./rolladenSteuerung");
 const zeit = require("./zeit.js");
 const db = require("./db");
-const { CLOSING } = require("ws");
 
 let temp,
   feucht,
@@ -117,7 +116,6 @@ function handleDB(sender, feuchtIn, tempIn) {
       date: String(a.getDate()) + String(a.getMonth()+1) + String(a.getUTCFullYear())
     };
     //db.getAll();
-    console.log("speichern!");
     db.store(jsonT, function (err) {
       if (err != null) {
         console.log(err);
