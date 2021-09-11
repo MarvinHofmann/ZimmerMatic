@@ -23,7 +23,8 @@ exports.getTagesHoch = function () {
         //console.log(docs);    
         console.log(docs[0].temperatur);   
         let tH = docs[0].temperatur;
-        return(tH);
+        console.log(tH);
+        return(String(tH));
     });
 }
     

@@ -132,7 +132,7 @@ function handleDB(sender, feuchtIn, tempIn) {
 
 exports.publishDash = function(){
   let th = db.getTagesHoch();
-  console.log(th);
+  console.log("TH:" + th);
   for (let i = 0; i < main.ClientswsBrowser.length; i++) {
     main.ClientswsBrowser[i].send(
       JSON.stringify({ type: "Temp", value: average })
