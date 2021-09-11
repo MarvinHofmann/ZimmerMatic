@@ -4,6 +4,7 @@ const tel = require("./telegram");
 const rol = require("./rolladenSteuerung");
 const zeit = require("./zeit.js");
 const db = require("./db");
+const { CLOSING } = require("ws");
 
 let temp,
   feucht,
@@ -108,7 +109,8 @@ exports.botSendStatus = function(){
 
 function handleDB(sender, feuchtIn, tempIn) {
   let a = new Date();
-  if (cntA[sender]++ === 4) {
+  if (cntA[sender]++ == 4) {
+    console.log("Habe 4 ");
     let jsonT = {
       feuchtigkeit: feuchtIn,
       temperatur: tempIn,
