@@ -131,17 +131,13 @@ function handleDB(sender, feuchtIn, tempIn) {
 }
 
 exports.publishDash = function(){
-  let th = db.getTagesHoch();
-  console.log("TH:" + th);
+  db.getTagesHoch();
   for (let i = 0; i < main.ClientswsBrowser.length; i++) {
     main.ClientswsBrowser[i].send(
       JSON.stringify({ type: "Temp", value: average })
     );
     main.ClientswsBrowser[i].send(
       JSON.stringify({ type: "Feucht" , value: getFeuchtAverage() })
-    );
-    main.ClientswsBrowser[i].send(
-      JSON.stringify({ type: "High", value: th })
     );
   }
 }

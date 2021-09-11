@@ -26,6 +26,11 @@ exports.getTagesHoch = function () {
         tH = docs[0].temperatur;
         console.log("TH First:" + tH);
         console.log("TH SEcconst:" + String(tH));
+        for (let i = 0; i < main.ClientswsBrowser.length; i++) {
+            main.ClientswsBrowser[i].send(
+                JSON.stringify({ type: "High", value: tH })
+              );
+        }
         return(String(tH));
     });   
 }
