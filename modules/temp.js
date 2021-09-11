@@ -47,7 +47,6 @@ main.app.post("/", function (req, res) {
     getTempAverage();
     broadcast(feucht, temp, zeit1, "S1");
     handleDB(0,feucht,temp);
-    db.getAll();
     res.sendStatus(200);
   });
   
@@ -111,15 +110,13 @@ exports.botSendStatus = function(){
 function handleDB(sender, feuchtIn, tempIn) {
   let a = new Date();
   cntA[sender]++;
-  console.log(cntA[sender]);
   if (cntA[sender] == 4) {
-    console.log("Habe 4 ");
     let jsonT = {
       feuchtigkeit: feuchtIn,
       temperatur: tempIn,
       date: String(a.getDate()) + String(a.getMonth()+1) + String(a.getUTCFullYear())
     };
-    db.getAll();
+    //db.getAll();
     console.log("speichern!");
     db.store(jsonT, function (err) {
       if (err != null) {
@@ -133,7 +130,9 @@ function handleDB(sender, feuchtIn, tempIn) {
   console.log(cntA[sender]);
 }
 
-exports.publishDash = function(){
+xports.publishDash = function(){
+  let th = db.getTagesHoch();
+  console.log(th);
   for (let i = 0; i < main.ClientswsBrowser.length; i++) {
     main.ClientswsBrowser[i].send(
       JSON.stringify({ type: "Temp", value: average })
@@ -142,7 +141,7 @@ exports.publishDash = function(){
       JSON.stringify({ type: "Feucht" , value: getFeuchtAverage() })
     );
     main.ClientswsBrowser[i].send(
-      JSON.stringify({ type: "High", value: db.getTagesHoch() })
+      JSON.stringify({ type: "High", value: th })
     );
   }
 }

@@ -20,9 +20,10 @@ exports.getAll = getAll;
 exports.getTagesHoch = function () {
     let a = new Date();
     db.find({date: String(a.getDate()) + String(a.getMonth()+1) + String(a.getUTCFullYear())}).sort({temperatur: -1}).limit(1).exec(function (err,docs) {
-        console.log(docs);    
-        console.log(docs[0].temperatur);        
-        return(docs[0].temperatur);
+        //console.log(docs);    
+        console.log(docs[0].temperatur);   
+        let tH = docs[0].temperatur;
+        return(tH);
     });
 }
     
