@@ -109,7 +109,9 @@ exports.botSendStatus = function(){
 
 function handleDB(sender, feuchtIn, tempIn) {
   let a = new Date();
-  if (cntA[sender]++ == 4) {
+  cntA[sender]++;
+  console.log(cntA[sender]);
+  if (cntA[sender] == 4) {
     console.log("Habe 4 ");
     let jsonT = {
       feuchtigkeit: feuchtIn,
