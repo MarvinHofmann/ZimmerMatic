@@ -5,3 +5,4 @@ TemperaturMesser/Pflanze1/arduino_secretPF1.h
 TemperaturMesser/Pflanze2/arduino_secretPF2.h
 TemperaturMesser/Pflanze3/arduino_secretPF3.h
 TemperaturMesser/Schreibtisch_Sender3/arduino_secrets.h
+*.db

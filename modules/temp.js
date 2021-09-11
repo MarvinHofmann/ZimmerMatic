@@ -3,6 +3,7 @@ const main = require("../index.js");
 const tel = require("./telegram");
 const rol = require("./rolladenSteuerung");
 const zeit = require("./zeit.js");
+const db = require("./db");
 
 let temp,
   feucht,
@@ -34,7 +35,7 @@ function broadcast(feucht, temp, zeit, sender) {
   }
 
 /********************************Temperatursensoren******************************************* */
-
+let cntA = [0,0,0];
 main.app.post("/", function (req, res) {
     temp = req.body.temperatur;
     feucht = req.body.feuchtigkeit;
@@ -44,6 +45,7 @@ main.app.post("/", function (req, res) {
     );
     getTempAverage();
     broadcast(feucht, temp, zeit1, "S1");
+    handleDB(0,feucht,temp);
     res.sendStatus(200);
   });
   
@@ -56,6 +58,7 @@ main.app.post("/", function (req, res) {
     );
     getTempAverage();
     broadcast(feucht2, temp2, zeit2, "S2");
+    handleDB(1,feucht2,temp2);
     res.sendStatus(200);
   });
   
@@ -68,6 +71,7 @@ main.app.post("/", function (req, res) {
     );
     getTempAverage();
     broadcast(feucht3, temp3, zeit3, "S3");
+    handleDB(2,feucht2,temp3);
     res.sendStatus(200);
   });
 
@@ -83,6 +87,10 @@ function getTempAverage() {
 }
 exports.getTempAverage = getTempAverage;
 
+function getFeuchtAverage() {
+  return ((feucht + feucht2 + feucht3) / 3).toFixed(2);
+}
+
 function publish(){
     broadcast(feucht, temp, zeit1, "S1");
     broadcast(feucht2, temp2, zeit2, "S2");
@@ -96,4 +104,30 @@ exports.botSendStatus = function(){
   + "Temp1: " + temp
   + "Temp2: " + temp2
   + "Temp3: " + temp3);
+}
+
+function handleDB(sender, feuchtIn, tempIn) {
+  let a = new Date();
+  if (cntA[sender]++ === 4) {
+    let jsonT = {
+      feuchtigkeit: feuchtIn,
+      temperatur: tempIn,
+      date: String(a.getDate()) + String(a.getMonth()+1) + String(a.getUTCFullYear())
+    };
+    db.store(jsonT);
+  }
+}
+
+exports.publishDash = function(){
+  for (let i = 0; i < main.ClientswsBrowser.length; i++) {
+    main.ClientswsBrowser[i].send(
+      JSON.stringify({ type: "Temp", value: average })
+    );
+    main.ClientswsBrowser[i].send(
+      JSON.stringify({ type: "Feucht" , value: getFeuchtAverage() })
+    );
+    main.ClientswsBrowser[i].send(
+      JSON.stringify({ type: "High", value: db.getTagesHoch() })
+    );
+  }
 }
