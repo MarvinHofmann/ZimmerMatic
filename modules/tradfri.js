@@ -50,6 +50,7 @@ function getState(lampe){
 function updateLicht(){
   getState("BR");
   getState("BL");
+  
   getState("BT");
 }
 exports.updateLicht = updateLicht;
