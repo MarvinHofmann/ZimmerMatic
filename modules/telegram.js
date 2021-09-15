@@ -18,7 +18,6 @@ bot.on("message", (msg) => {
   console.log(msg.text);
   switch (msg.text) {
     case "/temp":
-      console.log("bin hier" + temp.average);
       bot.sendMessage(chatId, "Die Temperatur im Mittel beträgt: " + main.average);
       break;
     case "/temp@zimmerMatic_Bot":

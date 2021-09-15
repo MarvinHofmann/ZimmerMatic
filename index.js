@@ -65,7 +65,7 @@ let status = true;
 exports.status = status;
 
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
-let d1 = "::ffff:192.168.0.62";
+let d1 = "::ffff:192.168.0.83";
 let ledD1 = "::ffff:192.168.0.73";
 let ledD1Sofa = "::ffff:192.168.0.64";
 let ledD1UHR = "::ffff:192.168.0.76";
@@ -149,7 +149,6 @@ wssLED.on("connection", function connection(ws, req) {
 
 //Websocket für Browser Clients
 wss.on("connection", function connection(ws, req) {
-  console.log("Client connected!");
   ClientswsBrowser[clientsCn] = ws;
   temp.publish();
   pflanzen.publish();
@@ -176,7 +175,6 @@ wss.on("connection", function connection(ws, req) {
     }
   });
   ws.on("close", (data) => {
-    console.log("Client has disconnceted");
   });
 });
 

@@ -40,9 +40,6 @@ main.app.post("/", function (req, res) {
     temp = req.body.temperatur;
     feucht = req.body.feuchtigkeit;
     zeit1 = zeit.berechneZeit();
-    console.log(
-      "Temperatur1: " + temp + " Feuchtigkeit1: " + feucht + " Zeit: " + zeit1
-    );
     getTempAverage();
     broadcast(feucht, temp, zeit1, "S1");
     handleDB(0,feucht,temp);
@@ -53,9 +50,6 @@ main.app.post("/", function (req, res) {
     temp2 = req.body.temperatur;
     feucht2 = req.body.feuchtigkeit;
     zeit2 = zeit.berechneZeit();
-    console.log(
-      "Temperatur2: " + temp2 + " Feuchtigkeit2: " + feucht2 + " Zeit: " + zeit2
-    );
     getTempAverage();
     broadcast(feucht2, temp2, zeit2, "S2");
     handleDB(1,feucht2,temp2);
@@ -66,9 +60,6 @@ main.app.post("/", function (req, res) {
     temp3 = req.body.temperatur;
     feucht3 = req.body.feuchtigkeit;
     zeit3 = zeit.berechneZeit();
-    console.log(
-      "Temperatur3: " + temp3 + " Feuchtigkeit3: " + feucht3 + " Zeit: " + zeit3
-    );
     getTempAverage();
     broadcast(feucht3, temp3, zeit3, "S3");
     handleDB(2,feucht2,temp3);

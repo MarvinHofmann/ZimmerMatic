@@ -11,10 +11,13 @@ main.app.post('/fensterZu', function (request, response) {
     console.log("mache rolladen zu");
     main.currentClientsws[0].send("101");
     syncDelay(1500);    
-    main.currentClientsws[4].send("0,0,0,0");
-    main.currentClientsws[1].send("0,0,0,0");
-    main.currentClientsws[2].send("0,0,0,0");
-    main.currentClientsws[3].send("0");
+    for (let i = 1; i < main.currentClientsws.length; i++) {
+      try {
+        currentClientsws[i].send("0,0,0,0");
+      } catch (error) {
+        logger.error(error);
+      }
+    }
     syncDelay(3000);
     //status = true;
     lampen.fetchLampe("BL", "Helligkeit", 0);

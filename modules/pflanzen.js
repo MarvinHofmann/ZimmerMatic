@@ -17,7 +17,6 @@ exports.plZeit3 = plZeit3;
 /********************************Pflanzenüberwachung*********************************************/
 main.app.post("/plfanze1", function (req, res) {
     plFeucht1 = req.body.feuchtigkeit;
-    console.log("Pflanze 1: " + plFeucht1);
     plZeit1 = zeit.berechneZeit();
     broadcastPflanzen(plFeucht1, plZeit1, "S1");
     if (plFeucht1 >= 440) {
@@ -29,7 +28,6 @@ main.app.post("/plfanze1", function (req, res) {
   
 main.app.post("/plfanze2", function (req, res) {
     plFeucht2 = req.body.feuchtigkeit;
-    console.log("Pflanze 2: " + plFeucht2);
     plZeit2 = zeit.berechneZeit();
     broadcastPflanzen(plFeucht2, plZeit2, "S2");
     if (plFeucht2 >= 320) {
@@ -41,7 +39,6 @@ main.app.post("/plfanze2", function (req, res) {
   
   main.app.post("/plfanze3", function (req, res) {
     plFeucht3 = req.body.feuchtigkeit;
-    console.log("Pflanze 3: " + plFeucht3);
     plZeit3 = zeit.berechneZeit();
     broadcastPflanzen(plFeucht3, plZeit3, "S3");
     if (plFeucht3 >= 180) {

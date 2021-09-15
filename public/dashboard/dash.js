@@ -32,7 +32,7 @@ ws.addEventListener("message", function (event) {
       console.log(data.value);
       break;
     case "High":
-      document.getElementById("high").innerText = String(data.value);
+      document.getElementById("high").innerText = String(data.value) + "°C";
       console.log(data.value);
       break;
   }
