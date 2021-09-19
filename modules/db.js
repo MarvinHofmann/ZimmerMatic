@@ -40,6 +40,7 @@ exports.getTagesHoch = function () {
         return String(tH);
       } catch (error) {
         console.log(error);
+        console.log(err)
       }
     });
 };
