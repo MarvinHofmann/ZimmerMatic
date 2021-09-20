@@ -114,7 +114,7 @@ function setAll(value) {
   console.log(value);
 }
 
-function buttonfunction(num) {
+function btnfunction(num) {
   switch (num) {
     case 1:
       sendFetchAll(0,0,0,0);
