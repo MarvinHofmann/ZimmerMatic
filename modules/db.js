@@ -30,7 +30,7 @@ exports.getTagesHoch = function () {
     .limit(1)
     .exec(function (err, docs) {
       try {
-        console.log(docs[0].temperatur);
+        //console.log(docs[0].temperatur);
         tH = docs[0].temperatur;
         for (let i = 0; i < main.ClientswsBrowser.length; i++) {
           main.ClientswsBrowser[i].send(
