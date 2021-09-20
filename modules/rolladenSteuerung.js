@@ -19,7 +19,7 @@ main.app.post('/fensterZu', function (request, response) {
       try {
         currentClientsws[i].send("0,0,0,0");
       } catch (error) {
-        logger.error(error);
+        console.error(console.error());
       }
     }
     syncDelay(3000);
