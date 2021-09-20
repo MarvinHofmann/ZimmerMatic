@@ -7,7 +7,7 @@ main.app.post('/fensterZu', function (request, response) {
   console.log("Soll ich fenster zu ?");
   let a = new Date();
   console.log("stunde: " + a.getHours());
-  if (a.getHours() >= 12 || a.getHours() <= 18) {
+  if (a.getHours() >= 22 || a.getHours() <= 6) {
     console.log("mache rolladen zu");
     try {
       main.currentClientsws[0].send("101");
