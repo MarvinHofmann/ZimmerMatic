@@ -31,7 +31,13 @@ exports.getTagesHoch = function () {
     .exec(function (err, docs) {
       try {
         //console.log(docs[0].temperatur);
-        tH = docs[0].temperatur;
+        try {
+          tH = docs[0].temperatur;
+        } catch (error) {
+          //Kein DB eitrag
+         console.error(error); 
+         tH = 88;
+        }
         for (let i = 0; i < main.ClientswsBrowser.length; i++) {
           main.ClientswsBrowser[i].send(
             JSON.stringify({ type: "High", value: tH })
