@@ -120,11 +120,11 @@ function btnfunction(num) {
       sendFetchAll(0,0,0,0);
       break;
     case 2:
-      sendFetch(0,255,255,100,2);
-      sendFetch(252,79,255,100,1);
-      sendFetch(252,79,255,100,5);
-      sendFetch(0,255,255,100,3);
-      sendFetch(0,255,255,100,4);
+      sendFetch(0,255,255,60,2);
+      sendFetch(252,79,255,80,1);
+      sendFetch(252,79,255,80,5);
+      sendFetch(0,255,255,80,3);
+      sendFetch(0,255,255,80,4);
       break;
     case 3:
       sendFetch(255, 255, 255, 100, 4);
