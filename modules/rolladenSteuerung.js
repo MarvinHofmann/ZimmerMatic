@@ -4,10 +4,9 @@ const lampen = require("./tradfri");
 const led = require("./leds");
 
 main.app.post('/fensterZu', function (request, response) {
-  console.log("Soll ich fenster zu ?");
   let a = new Date();
-  console.log("stunde: " + a.getHours());
   if (a.getHours() >= 22 || a.getHours() <= 6) {
+    console.log("stunde: " + a.getHours());
     console.log("mache rolladen zu");
     try {
       main.currentClientsws[0].send("101");
@@ -25,8 +24,7 @@ main.app.post('/fensterZu', function (request, response) {
     syncDelay(3000);
     //status = true;
     lampen.fetchLampe("BL", "Helligkeit", 0);
-    lampen.fetchLampe("BR", "Helligkeit", 0);
-    
+    lampen.fetchLampe("BR", "Helligkeit", 0); 
   }
   response.sendStatus(200);
 });
