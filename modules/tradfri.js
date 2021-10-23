@@ -43,8 +43,13 @@ exports.fetchLampe = fetchLampe;
 
 function fetchSteckdose(mode){
   let adresse = "http://192.168.0.58:8080/rest/items/StD_Betrieb";
-  console.log(fetch(adresse, {method: 'POST', body: mode}));
-  
+  fetch(adresse, {method: 'POST', body: mode}).then(response => response.text())
+  .then((response) => {
+      antwort = response;
+      console.log(response);
+      console.log(antwort);
+  })
+  .catch(err => console.log(err));;
 }
 exports.fetchSteckdose = fetchSteckdose;
 
