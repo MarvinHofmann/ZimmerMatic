@@ -10,12 +10,14 @@ ws.addEventListener("open", (message) => {
 ws.addEventListener("message", function (event) {
   const data = JSON.parse(event.data);
   console.log(data.value);
+  console.log("Habe nachricht");
   switch (data.type) {
     case "Dose":
         if (data.value == "ON") {
             document.getElementById("druck").checked = true;    
         }else{
             document.getElementById("druck").checked = false;    
+            console.log("isOFF");
         }
       break;
   }
@@ -32,4 +34,8 @@ function sendFetchBegin() {
         "Content-Type": "application/JSON",
       }
     });
+}
+
+function setStatusChecked(value) {
+    
 }
