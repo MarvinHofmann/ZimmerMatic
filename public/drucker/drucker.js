@@ -45,11 +45,11 @@ function sendFetch(value) {
       body: JSON.stringify({state: value}),
     });
 }
-
+ 
 function setStatusSteckdose(value) {
     dSwitch = value;
     
-    if (true) {
+    if (dSwitch == true) {
         sendFetch("ON");    
     }else{
         sendFetch("OFF");    
