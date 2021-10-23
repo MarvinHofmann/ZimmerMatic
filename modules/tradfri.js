@@ -19,6 +19,13 @@ main.app.post('/LampenAll' , function ( request, response){
   response.sendStatus(200);
 });
 
+main.app.get('/GetState' , function ( request, response){
+  getStateSD();  
+  response.sendStatus(200);
+});
+
+
+
 function fetchLampe(lampe, modus, wert){
     let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_" + modus;
     fetch(adresse, {method: 'POST', body: wert});
@@ -31,6 +38,20 @@ function fetchSteckdose(mode){
   fetch(adresse, {method: 'POST', body: mode});
 }
 exports.fetchSteckdose = fetchSteckdose;
+
+function getStateSD(){
+  let adresse = "http://192.168.0.58:8080/rest/items/StD_Betrieb/state";
+  fetch(adresse, {method: 'GET'}).then(response => response.text())
+  .then((response) => {
+      antwort = response;
+      for (let i = 0; i < main.ClientswsBrowser.length; i++) {
+        main.ClientswsBrowser[i].send(
+          JSON.stringify({ type: Dose, value: response })
+        );
+      }
+  })
+  .catch(err => console.log(err));
+}
 
 
 function getState(lampe){

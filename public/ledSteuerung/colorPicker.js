@@ -128,6 +128,8 @@ function btnfunction(num) {
       break;
     case 3:
       sendFetch(255, 255, 255, 100, 4);
+      sendFetch(255, 255, 255, 100, 5);
+      sendFetch(0,255,255,80,3);
       break;
     case 4:
       sendFetchAll(0,255,255,100);
