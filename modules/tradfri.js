@@ -56,7 +56,7 @@ function getStateSD(){
         console.log("Schicke Status");
         main.ClientswsBrowser[i].send(
           
-          JSON.stringify({ type: Dose, value: response })
+          JSON.stringify({ type: "Dose", value: response })
         );
       }
   })
