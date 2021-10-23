@@ -36,6 +36,18 @@ function sendFetchBegin() {
     });
 }
 
-function setStatusChecked(value) {
-    
+function sendFetch(value) {
+    fetch("http://zimmermatic:3443/SD", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/JSON",
+      },
+      body: JSON.stringify({state: value}),
+    });
+}
+
+function setStatusSteckdose(value) {
+    dSwitch = value;
+    sendFetch(value);
+    console.log(value + ": Value");
 }

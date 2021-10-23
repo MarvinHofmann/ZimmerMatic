@@ -24,6 +24,12 @@ main.app.get('/GetState' , function ( request, response){
   response.sendStatus(200);
 });
 
+main.app.post('/SD' , function ( request, response){
+  state = request.body.state; 
+  fetchSteckdose(state)
+  response.sendStatus(200);
+});
+
 
 
 function fetchLampe(lampe, modus, wert){
