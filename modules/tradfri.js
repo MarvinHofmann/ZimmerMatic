@@ -21,14 +21,12 @@ main.app.post('/LampenAll' , function ( request, response){
 
 main.app.get('/GetState' , function ( request, response){
   getStateSD();  
-  console.log("Kam an Hole status:");
   response.sendStatus(200);
 });
 
 main.app.post('/SD' , function ( request, response){
   state = request.body.state; 
   fetchSteckdose(state)
-  console.log("Kam an: status: " + state);
   response.sendStatus(200);
 });
 
@@ -42,6 +40,7 @@ exports.fetchLampe = fetchLampe;
 
 
 function fetchSteckdose(mode){
+  console.log("Kam an");
   let adresse = "http://192.168.0.58:8080/rest/items/StD_Betrieb";
   fetch(adresse, {method: 'POST', body: mode});
 }
@@ -53,7 +52,6 @@ function getStateSD(){
   .then((response) => {
       antwort = response;
       for (let i = 0; i < main.ClientswsBrowser.length; i++) {
-        console.log("Schicke Status");
         main.ClientswsBrowser[i].send(
           
           JSON.stringify({ type: "Dose", value: response })

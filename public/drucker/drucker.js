@@ -10,7 +10,6 @@ ws.addEventListener("open", (message) => {
 ws.addEventListener("message", function (event) {
   const data = JSON.parse(event.data);
   console.log(data.value);
-  console.log("Habe nachricht");
   switch (data.type) {
     case "Dose":
         if (data.value == "ON") {

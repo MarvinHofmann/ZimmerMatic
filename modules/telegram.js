@@ -30,6 +30,7 @@ bot.on("message", (msg) => {
       break;
     case "/STOP":
       trad.fetchSteckdose("OFF")
+      console.log("Nachricht kam aN");
       break;
     default:
       break;
