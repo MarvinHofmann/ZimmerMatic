@@ -6,6 +6,7 @@ const bot = new TelegramBot(token, { polling: true });
 const main = require("../index.js");
 const pflanzen = require("./pflanzen");
 const temp = require("./temp");
+const trad = require("../modules/tradfri")
 
 
 /*********************************Telegram Bot**********************************/
@@ -26,6 +27,9 @@ bot.on("message", (msg) => {
     case "/status":
       pflanzen.botSendStatus();
       temp.botSendStatus();
+      break;
+    case "/STOP":
+      trad.fetchSteckdose("OFF")
       break;
     default:
       break;
