@@ -48,6 +48,11 @@ function sendFetch(value) {
 
 function setStatusSteckdose(value) {
     dSwitch = value;
-    sendFetch(value);
+    
+    if (true) {
+        sendFetch("ON");    
+    }else{
+        sendFetch("OFF");    
+    }
     console.log(value + ": Value");
 }
