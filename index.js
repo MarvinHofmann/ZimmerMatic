@@ -111,7 +111,7 @@ app.get("/EmergencyOne", function (req, res) {
   rS.rolladenDown();
   consoleLogTime("Emergeny!")
   let a = new Date();
-  if (a.getHours() >= 17 || a.getHours() <= 7){
+  if (a.getHours() >= 23 || a.getHours() <= 7){
     currentClientsws[4].send("255,255,255,100");
     currentClientsws[2].send("255,255,255,100");
   }else{
