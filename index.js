@@ -129,7 +129,7 @@ app.get("/EmergencyOne", function (req, res) {
 }
 
 res.sendStatus(200);
-sleep(20000);
+sleep(120000);
 currentClientsws[4].send("0,0,0,0");
 currentClientsws[2].send("0,0,0,0");
 });
