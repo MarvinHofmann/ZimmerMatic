@@ -114,6 +114,9 @@ app.get("/EmergencyOne", function (req, res) {
   if (a.getHours() >= 23 || a.getHours() <= 7){
     currentClientsws[4].send("255,255,255,100");
     currentClientsws[2].send("255,255,255,100");
+    sleep(120000);
+  currentClientsws[4].send("0,0,0,0");
+  currentClientsws[2].send("0,0,0,0");
   }else{
     rS.rolladenUP();
     currentClientsws[4].send("255,255,255,40");
@@ -129,9 +132,7 @@ app.get("/EmergencyOne", function (req, res) {
 }
 
 res.sendStatus(200);
-sleep(120000);
-currentClientsws[4].send("0,0,0,0");
-currentClientsws[2].send("0,0,0,0");
+
 });
 
 /***************************************** */
