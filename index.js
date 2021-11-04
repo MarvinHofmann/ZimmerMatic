@@ -107,6 +107,32 @@ app.get("/tschuess", function (req, res) {
   res.sendStatus(200);
 });
 
+app.get("/EmergencyOne", function (req, res) {
+  rS.rolladenDown();
+  consoleLogTime("Emergeny!")
+  let a = new Date();
+  if (a.getHours() >= 23 || a.getHours() <= 7){
+    currentClientsws[4].send("255,255,255,50");
+    Ikea.fetchLampe("BL", "Helligkeit", 40);
+    Ikea.fetchLampe("BR", "Helligkeit", 40);
+  }else{
+    Ikea.fetchLampe("BL", "Helligkeit", 10);
+    currentClientsws[4].send("255,255,255,40");
+    currentClientsws[3].send("255,255,255,255");
+  }
+  function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+  	
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
+
+res.sendStatus(200);
+sleep(20000);
+});
+
 /***************************************** */
 
 //Websocket handling für alle whitelist Clients
