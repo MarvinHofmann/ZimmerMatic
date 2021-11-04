@@ -104,6 +104,7 @@ app.get("/tschuess", function (req, res) {
   }
   Ikea.fetchLampe("BL", "Helligkeit", 0);
   Ikea.fetchLampe("BR", "Helligkeit", 0);
+  Ikea.fetchLampe("BT", "Helligkeit", 0);
   res.sendStatus(200);
 });
 
@@ -111,7 +112,7 @@ app.get("/EmergencyOne", function (req, res) {
   rS.rolladenDown();
   consoleLogTime("Emergeny!")
   let a = new Date();
-  if (a.getHours() >= 23 || a.getHours() <= 7){
+  if (a.getHours() >= 22 || a.getHours() <= 7){
     currentClientsws[4].send("255,255,255,100");
     currentClientsws[2].send("255,255,255,100");
     sleep(120000);

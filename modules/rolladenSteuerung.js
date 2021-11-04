@@ -25,6 +25,7 @@ main.app.post('/fensterZu', function (request, response) {
     //status = true;
     lampen.fetchLampe("BL", "Helligkeit", 0);
     lampen.fetchLampe("BR", "Helligkeit", 0); 
+    lampen.fetchLampe("BT", "Helligkeit", 0); 
   }
   response.sendStatus(200);
 });
