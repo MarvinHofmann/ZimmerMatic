@@ -111,14 +111,14 @@ app.get("/EmergencyOne", function (req, res) {
   rS.rolladenDown();
   consoleLogTime("Emergeny!")
   let a = new Date();
-  if (a.getHours() >= 23 || a.getHours() <= 7){
+  if (a.getHours() >= 17 || a.getHours() <= 7){
     currentClientsws[4].send("255,255,255,50");
     Ikea.fetchLampe("BL", "Helligkeit", 40);
     Ikea.fetchLampe("BR", "Helligkeit", 40);
   }else{
     rS.rolladenUP();
     currentClientsws[4].send("255,255,255,40");
-    currentClientsws[3].send("255,255,255,255");
+    currentClientsws[3].send("40,191,255,255");
   }
   function sleep(milliseconds) {
   const date = Date.now();
