@@ -116,7 +116,7 @@ app.get("/EmergencyOne", function (req, res) {
     Ikea.fetchLampe("BL", "Helligkeit", 40);
     Ikea.fetchLampe("BR", "Helligkeit", 40);
   }else{
-    Ikea.fetchLampe("BL", "Helligkeit", 10);
+    rS.rolladenUP();
     currentClientsws[4].send("255,255,255,40");
     currentClientsws[3].send("255,255,255,255");
   }
