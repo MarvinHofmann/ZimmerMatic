@@ -112,9 +112,8 @@ app.get("/EmergencyOne", function (req, res) {
   consoleLogTime("Emergeny!")
   let a = new Date();
   if (a.getHours() >= 17 || a.getHours() <= 7){
-    currentClientsws[4].send("255,255,255,50");
-    Ikea.fetchLampe("BL", "Helligkeit", 40);
-    Ikea.fetchLampe("BR", "Helligkeit", 40);
+    currentClientsws[4].send("255,255,255,100");
+    currentClientsws[2].send("255,255,255,100");
   }else{
     rS.rolladenUP();
     currentClientsws[4].send("255,255,255,40");
@@ -131,6 +130,8 @@ app.get("/EmergencyOne", function (req, res) {
 
 res.sendStatus(200);
 sleep(20000);
+currentClientsws[4].send("0,0,0,0");
+currentClientsws[2].send("0,0,0,0");
 });
 
 /***************************************** */
