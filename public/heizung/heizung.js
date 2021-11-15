@@ -10,15 +10,8 @@ async function getStateHeizung(who) {
 }
 
 function waerme(value ,who) {
-    if (who === 1) {
-        sendFetch(value, "HZFen_ST");
+        sendFetch(value, who);
         document.getElementById(who).innerText =value + String("°C");
-        print(value);
-    }else if (who === 2) {
-        sendFetch(value, "HZF_ST");
-        document.getElementById(who).innerText =value + String("°C");
-        print(value);
-    }
 }
 
 function print(value ,who) {
