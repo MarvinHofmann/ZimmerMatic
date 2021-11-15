@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const main = require("../index");
+const { publishDash } = require('./temp');
 
 function fetchHeizung(Heizung, wert){
     let adresse = "http://192.168.0.58:8080/rest/items/" + Heizung + "/state";
@@ -11,8 +12,7 @@ function publishHeizung(){
     getState("HZF_ST");
     getState("HZFen_ST");
 }
-exports.updateLicht = updateLicht;
-
+exports.publishHeizung = publishHeizung;
 //GET STATE from set Temperature
 function getState(heizung) {
 let adresse = "http://192.168.0.58:8080/rest/items/" + heizung + "/state";
