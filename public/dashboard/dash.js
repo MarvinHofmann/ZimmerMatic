@@ -99,7 +99,7 @@ function rolladenAktion(richtung) {
   fetch(adresse, { method: "GET" });
 }
 
-function getStateFenster() {
+async function getStateFenster() {
   let adresse = "http://192.168.0.58:8080/rest/items/DGFensterkontakt_State/state";
   fetch(adresse, {method: 'GET'}).then(response => response.text())
   .then((response) => {
