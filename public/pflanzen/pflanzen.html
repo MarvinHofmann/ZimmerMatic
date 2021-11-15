@@ -9,43 +9,11 @@
     <link rel='stylesheet' type='text/css' media='screen' href='../style.css'>
     <script src='pflanzen.js'></script>
     <link rel="icon" type="home.icon" href="../favicons/pflanze.ico">    
+    <script src="http://www.w3schools.com/lib/w3data.js"></script>
     <title>Home</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="../dashboard/dash.html">ZimmerMatic by MH</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="../index.html">Temperatur</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../rolladensteuerung/rolladenSteuerung.html">Rolladensteuerung</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="../Lampen/lampenSteuerung.html">Licht</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Alles Mögliche
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="../ttt/ttt.html">Tic Tac Toe</a></li>
-                  <li><a class="dropdown-item" href="../rolladenroutine/rolladenRoutine.html">Rolladen Routine</a></li>
-                  <li><a class="dropdown-item active" href="../pflanzen/pflanzen.html">Pflanzen</a></li>
-                  <li><a class="dropdown-item " href="../ledSteuerung/colorPicker.html">LEDs</a></li>
-                  <li><a class="dropdown-item " href="../drucker/drucker.html">3D-Drucker</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-      </nav>
+  <div w3-include-html="../../Templates/nav.html"></div>
       <main class="px-3">
         <div class="container py-5">
   <div class="row " >
@@ -154,5 +122,8 @@
    
   </div>
 </div>
+<script>
+  w3IncludeHTML();
+</script>
 </body>
 </html>
