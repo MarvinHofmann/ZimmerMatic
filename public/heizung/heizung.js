@@ -39,6 +39,7 @@ function print(value ,who) {
 }
 
 function sendFetch(wert, wer){
+    console.log(wer);
     fetch('http://zimmermatic:3443/Heizung', {
       method: 'POST',
       headers: {
