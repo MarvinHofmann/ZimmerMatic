@@ -12,11 +12,11 @@ async function getStateHeizung(who) {
 function waerme(value ,who) {
     if (who === 1) {
         sendFetch(value, "HZFen_ST");
-        document.getElementById(who).innerText = "Setze: " + value + String("°C");
+        document.getElementById(who).innerText =value + String("°C");
         print(value);
     }else if (who === 2) {
         sendFetch(value, "HZF_ST");
-        document.getElementById(who).innerText = "Setze: " + value + String("°C");
+        document.getElementById(who).innerText =value + String("°C");
         print(value);
     }
 }
