@@ -42,6 +42,7 @@ app.use(bodyParser.json());
 const path = require("path");
 //express.static sucht im Ordner public nach der Index.js Datei und publisht sie direkt
 app.use(express.static("public"));
+app.use(express.static("templates"));
 
 app.listen(port, () => {
   consoleLogTime("Restarting at:")
@@ -77,10 +78,10 @@ let ledD1EmelySchr = "::ffff:192.168.0.80";
 
 /***********Halllo / Tschüss Button*******************/
 
-app.get('/nav.html', function(request, response){
+/*app.get('/nav.html', function(request, response){
   response.sendFile('http://zimmermatic:3443/nav.html');
 });
-
+*/
 app.get("/hello", function (req, res) {
   rS.rolladenUP();
   consoleLogTime("Zuhause Angemeldet:");
