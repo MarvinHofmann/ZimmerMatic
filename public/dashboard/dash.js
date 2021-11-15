@@ -2,9 +2,11 @@ const ws = new WebSocket("ws://192.168.0.58:3000");
 
 ws.addEventListener("open", () => {
   console.log("Client connected with server!");
+  getStateFenster();
 });
 
 ws.addEventListener("message", function (event) {
+  
   const data = JSON.parse(event.data);
   //console.log(data);
   switch (data.type) {
@@ -95,4 +97,14 @@ function getLogComplete() {
 function rolladenAktion(richtung) {
   let adresse = "http://zimmermatic:3443/rolladen" + richtung;
   fetch(adresse, { method: "GET" });
+}
+
+function getStateFenster() {
+  let adresse = "http://192.168.0.58:8080/rest/items/DGFensterkontakt_State/state";
+  fetch(adresse, {method: 'GET'}).then(response => response.text())
+  .then((response) => {
+      antwort = response;
+      console.log(antwort);
+  })
+  .catch(err => console.log(err));   
 }
