@@ -9,10 +9,10 @@ ws.addEventListener("message", function (event) {
     console.log(data);
     //Hole hier daten für aktuellen Wert
     switch (data.type) {
-      case "HZF_ST":
+      case "HZFen_ST":
         document.getElementById("get1").innerText = String(data.value);
         break;
-      case "HZFen_ST":
+      case "HZF_ST":
         document.getElementById("get2").innerText = String(data.value);
         break;
     }
