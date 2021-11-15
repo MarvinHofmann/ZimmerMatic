@@ -77,10 +77,6 @@ let ledD1EmelySchr = "::ffff:192.168.0.80";
 
 /***********Halllo / Tschüss Button*******************/
 
-app.get('/Templates/nav.html', function(request, response){
-  response.sendFile('Templates/nav.html');
-});
-
 app.get("/hello", function (req, res) {
   rS.rolladenUP();
   consoleLogTime("Zuhause Angemeldet:");
