@@ -9,12 +9,7 @@ function fetchHeizung(Heizung, wert){
     fetch(adresse, {method: 'POST', body: wert});
 }
 
-//publish
-function publishHeizung(){
-    getState("HZF_ST");
-    getState("HZFen_ST");
-}
-exports.publishHeizung = publishHeizung;
+
 
 main.app.post('/Heizung' , function ( request, response){
     let heizung = request.body.Heizung;
