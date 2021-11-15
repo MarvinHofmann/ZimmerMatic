@@ -2,7 +2,7 @@ const main = require("../index");
 const temp = require("./temp");
 const lampen = require("./tradfri");
 const led = require("./leds");
-const homematic = require("./modules/homematic");
+const homematic = require("./homematic");
 
 main.app.post('/fensterZu', function (request, response) {
   let a = new Date();
