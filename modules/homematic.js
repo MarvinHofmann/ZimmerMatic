@@ -40,7 +40,9 @@ main.app.post('/Heizung' , function ( request, response){
 });
 
 main.app.get('/FensterState' , function ( request, response){
-    response.send(getStateFenster(true));
+    let v = getStateFenster(true);
+    console.log(v);
+    response.send(v);
 });
 
 function heizungOff(){
