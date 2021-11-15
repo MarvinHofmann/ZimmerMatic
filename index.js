@@ -94,6 +94,7 @@ app.get("/hello", function (req, res) {
     Ikea.fetchLampe("BL", "Helligkeit", 30);
     Ikea.fetchLampe("BR", "Helligkeit", 30);
   }
+  homematic.heizungON();
   res.sendStatus(200);
 });
 

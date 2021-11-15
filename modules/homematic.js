@@ -44,3 +44,9 @@ function heizungOff(){
     fetchHeizung("HZF_ST", 0);
 }
 exports.heizungOff = heizungOff;
+
+function heizungON(){
+    fetchHeizung("HZFen_ST", 20);
+    fetchHeizung("HZF_ST", 20);
+}
+exports.heizungON = heizungON;

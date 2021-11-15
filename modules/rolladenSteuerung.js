@@ -2,6 +2,7 @@ const main = require("../index");
 const temp = require("./temp");
 const lampen = require("./tradfri");
 const led = require("./leds");
+const homematic = require("./modules/homematic");
 
 main.app.post('/fensterZu', function (request, response) {
   let a = new Date();
@@ -26,6 +27,7 @@ main.app.post('/fensterZu', function (request, response) {
     lampen.fetchLampe("BL", "Helligkeit", 0);
     lampen.fetchLampe("BR", "Helligkeit", 0); 
     lampen.fetchLampe("BT", "Helligkeit", 0); 
+    homematic.heizungOff();
   }
   response.sendStatus(200);
 });
