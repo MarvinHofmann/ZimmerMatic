@@ -1,7 +1,7 @@
 getStateHeizung("HZF_ST")
 getStateHeizung("HZFen_ST")
 
-async function getStateFenster(who) {
+async function getStateHeizung(who) {
     let adresse = "http://192.168.0.58:8080/rest/items/" + who + "/state";
     const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
     console.log(antwort);
