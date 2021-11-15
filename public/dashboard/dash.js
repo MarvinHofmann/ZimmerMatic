@@ -104,8 +104,8 @@ function getStateFenster() {
   fetch(adresse, {method: 'GET'}).then(response => response.text())
   .then((response) => {
       antwort = response;
-      console.log(antwort);
-      document.getElementById("fensterStatus").innerText = antwort;
+      let res = await antwort;
+      document.getElementById("fensterStatus").innerText = res;
   })
   .catch(err => console.log(err));   
 }
