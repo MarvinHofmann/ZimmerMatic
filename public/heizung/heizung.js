@@ -5,6 +5,7 @@ async function getStateHeizung(who) {
     let adresse = "http://192.168.0.58:8080/rest/items/" + who + "/state";
     const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
     console.log(antwort);
+    console.log(who);
     document.getElementById(who).innerText = String(antwort);
 }
 
