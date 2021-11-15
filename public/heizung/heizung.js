@@ -1,31 +1,21 @@
-const ws = new WebSocket("ws://192.168.0.58:3000");
+getStateHeizung("HZF_ST")
+getStateHeizung("HZFen_ST")
 
-ws.addEventListener("open", () => {
-  console.log("Client connected with server!");
-});
-
-ws.addEventListener("message", function (event) {
-    const data = JSON.parse(event.data);
-    //console.log(data);
-    //Hole hier daten für aktuellen Wert
-    switch (data.type) {
-      case "HZFen_ST":
-        document.getElementById("get1").innerText = String(data.value);
-        break;
-      case "HZF_ST":
-        document.getElementById("get2").innerText = String(data.value);
-        break;
-    }
-  });
+async function getStateFenster(who) {
+    let adresse = "http://192.168.0.58:8080/rest/items/" + who + "/state";
+    const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
+    console.log(antwort);
+    document.getElementById(who).innerText = String(antwort);
+}
 
 function waerme(value ,who) {
     if (who === 1) {
         sendFetch(value, "HZFen_ST");
-        document.getElementById("get1").innerText = "Setze: " + value + String("°C");
+        document.getElementById(who).innerText = "Setze: " + value + String("°C");
         print(value);
     }else if (who === 2) {
         sendFetch(value, "HZF_ST");
-        document.getElementById("get2").innerText = "Setze: " + value + String("°C");
+        document.getElementById(who).innerText = "Setze: " + value + String("°C");
         print(value);
     }
 }

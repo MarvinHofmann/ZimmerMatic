@@ -16,22 +16,6 @@ function publishHeizung(){
 }
 exports.publishHeizung = publishHeizung;
 
-//GET STATE from set Temperature
-function getState(heizung) {
-let adresse = "http://192.168.0.58:8080/rest/items/" + heizung + "/state";
-  fetch(adresse, {method: 'GET'}).then(response => response.text())
-  .then((response) => {
-      antwort = response;
-      //console.log(antwort);
-      for (let i = 0; i < main.ClientswsBrowser.length; i++) {
-        main.ClientswsBrowser[i].send(
-          JSON.stringify({ type: heizung, value: response })
-        );
-      }
-  })
-  .catch(err => console.log(err));
-}
-
 main.app.post('/Heizung' , function ( request, response){
     let heizung = request.body.Heizung;
     let wert = request.body.Wert;
