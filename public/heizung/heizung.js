@@ -21,9 +21,11 @@ ws.addEventListener("message", function (event) {
 function waerme(value ,who) {
     if (who === 1) {
         sendFetch(value, "HZFen_ST");
+        document.getElementById("get1").innerText = "Setze: " + value + String("°C");
         print(value);
     }else if (who === 2) {
         sendFetch(value, "HZF_ST");
+        document.getElementById("get2").innerText = "Setze: " + value + String("°C");
         print(value);
     }
 }
@@ -31,7 +33,7 @@ function waerme(value ,who) {
 function print(value ,who) {
     if (who === 1) {
         console.log(value);
-    document.getElementById("set1").innerText = "Setze: " + value + String("°C");
+        document.getElementById("set1").innerText = "Setze: " + value + String("°C");
     }else if (who === 2) {
         console.log(value);
         document.getElementById("set2").innerText = "Setze: " + value + String("°C");    
