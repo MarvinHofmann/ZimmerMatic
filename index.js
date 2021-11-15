@@ -111,6 +111,7 @@ app.get("/tschuess", function (req, res) {
   Ikea.fetchLampe("BL", "Helligkeit", 0);
   Ikea.fetchLampe("BR", "Helligkeit", 0);
   Ikea.fetchLampe("BT", "Helligkeit", 0);
+  homematic.heizungOff();
   res.sendStatus(200);
 });
 

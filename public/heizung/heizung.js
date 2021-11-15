@@ -6,7 +6,7 @@ ws.addEventListener("open", () => {
 
 ws.addEventListener("message", function (event) {
     const data = JSON.parse(event.data);
-    console.log(data);
+    //console.log(data);
     //Hole hier daten für aktuellen Wert
     switch (data.type) {
       case "HZFen_ST":
@@ -32,10 +32,10 @@ function waerme(value ,who) {
 
 function print(value ,who) {
     if (who === 1) {
-        console.log(value);
+        //console.log(value);
         document.getElementById("set1").innerText = "Setze: " + value + String("°C");
     }else if (who === 2) {
-        console.log(value);
+        //console.log(value);
         document.getElementById("set2").innerText = "Setze: " + value + String("°C");    
     }
 }

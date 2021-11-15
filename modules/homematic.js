@@ -3,10 +3,9 @@ const main = require("../index");
 const { publishDash } = require('./temp');
 
 function fetchHeizung(Heizung, wert){
-    
     let adresse = "http://192.168.0.58:8080/rest/items/" + Heizung;
-    console.log("fetch an:" + adresse);
-    console.log("wert: " + wert);
+   // console.log("fetch an:" + adresse);
+   // console.log("wert: " + wert);
     fetch(adresse, {method: 'POST', body: wert});
 }
 
@@ -23,7 +22,7 @@ let adresse = "http://192.168.0.58:8080/rest/items/" + heizung + "/state";
   fetch(adresse, {method: 'GET'}).then(response => response.text())
   .then((response) => {
       antwort = response;
-      console.log(antwort);
+      //console.log(antwort);
       for (let i = 0; i < main.ClientswsBrowser.length; i++) {
         main.ClientswsBrowser[i].send(
           JSON.stringify({ type: heizung, value: response })
@@ -39,3 +38,9 @@ main.app.post('/Heizung' , function ( request, response){
     fetchHeizung(heizung,wert);
     response.sendStatus(200);
 });
+
+function heizungOff(){
+    fetchHeizung("HZFen_ST", 0);
+    fetchHeizung("HZF_ST", 0);
+}
+exports.heizungOff = heizungOff;
