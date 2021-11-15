@@ -103,9 +103,10 @@ async function getStateFenster() {
   let adresse = "http://192.168.0.58:8080/rest/items/DGFensterkontakt_State/state";
   const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text())
   .then((response) => {
-      antwort = response;
-      
+      const aString = await response;
+      return aString;
   })
   .catch(err => console.log(err)); 
-  document.getElementById("fensterStatus").innerText = antwort;
+  console.log(aString);
+  document.getElementById("fensterStatus").innerText = aString;
 }
