@@ -6,13 +6,13 @@ ws.addEventListener("open", () => {
 
 ws.addEventListener("message", function (event) {
     const data = JSON.parse(event.data);
-    //console.log(data);
+    console.log(data);
     //Hole hier daten für aktuellen Wert
     switch (data.type) {
-      case "HZF":
+      case "HZF_ST":
         document.getElementById("get1").innerText = String(data.value);
         break;
-      case "HZFen":
+      case "HZFen_ST":
         document.getElementById("get2").innerText = String(data.value);
         break;
     }

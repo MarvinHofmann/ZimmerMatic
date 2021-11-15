@@ -13,12 +13,14 @@ function publishHeizung(){
     getState("HZFen_ST");
 }
 exports.publishHeizung = publishHeizung;
+
 //GET STATE from set Temperature
 function getState(heizung) {
 let adresse = "http://192.168.0.58:8080/rest/items/" + heizung + "/state";
   fetch(adresse, {method: 'GET'}).then(response => response.text())
   .then((response) => {
       antwort = response;
+      console.log(antwort);
       for (let i = 0; i < main.ClientswsBrowser.length; i++) {
         main.ClientswsBrowser[i].send(
           JSON.stringify({ type: heizung, value: response })
