@@ -11,6 +11,8 @@ async function getStateHeizung(who) {
 
 function waerme(value ,who) {
         sendFetch(value, who);
+        console.log(who);
+
         document.getElementById(who).innerText =value + String("°C");
 }
 
@@ -25,12 +27,8 @@ function print(value ,who) {
 }
 
 function sendFetch(wert, wer){
-    console.log(wer);
-    fetch('http://zimmermatic:3443/Heizung', {
-      method: 'POST',
-      headers: {
-      'Content-Type': 'application/JSON',
-      },
-      body: JSON.stringify({Heizung: wer, Wert: wert})
-  });
+    let adresse = "http://192.168.0.58:8080/rest/items/" + wer;
+    // console.log("fetch an:" + adresse);
+    // console.log("wert: " + wert);
+     fetch(adresse, {method: 'POST', body: wert});
 }
