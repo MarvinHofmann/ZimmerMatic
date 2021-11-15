@@ -74,16 +74,10 @@ let ledD1UHR = "::ffff:192.168.0.76";
 let ledD1Schreibtisch = "::ffff:192.168.0.78";
 let ledD1EmelySchr = "::ffff:192.168.0.80";
 
-
- 
-
 /***********Halllo / Tschüss Button*******************/
 
-/*app.get('/nav.html', function(request, response){
-  response.sendFile('http://zimmermatic:3443/nav.html');
-});
-*/
 app.get("/hello", function (req, res) {
+  let a = new Date();
   rS.rolladenUP();
   consoleLogTime("Zuhause Angemeldet:");
   currentClientsws[1].send("255,161,20,100");
@@ -94,7 +88,9 @@ app.get("/hello", function (req, res) {
     Ikea.fetchLampe("BL", "Helligkeit", 30);
     Ikea.fetchLampe("BR", "Helligkeit", 30);
   }
-  homematic.heizungON();
+  if (a.getHours() < 21 || a.getHours() > 8) {
+    homematic.heizungON(); 
+  }
   res.sendStatus(200);
 });
 
