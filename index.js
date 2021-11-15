@@ -77,7 +77,6 @@ let ledD1EmelySchr = "::ffff:192.168.0.80";
 /***********Halllo / Tschüss Button*******************/
 
 app.get("/hello", function (req, res) {
-  let a = new Date();
   rS.rolladenUP();
   consoleLogTime("Zuhause Angemeldet:");
   currentClientsws[1].send("255,161,20,100");
