@@ -4,7 +4,7 @@ const { publishDash } = require('./temp');
 
 function fetchHeizung(Heizung, wert){
     
-    let adresse = "http://192.168.0.58:8080/rest/items/" + Heizung + "/state";
+    let adresse = "http://192.168.0.58:8080/rest/items/" + Heizung;
     console.log("fetch an:" + adresse);
     console.log("wert: " + wert);
     fetch(adresse, {method: 'POST', body: wert});
