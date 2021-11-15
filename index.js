@@ -77,9 +77,9 @@ let ledD1EmelySchr = "::ffff:192.168.0.80";
 
 /***********Halllo / Tschüss Button*******************/
 
-//app.get('/nav.html', function(request, response){
-  //response.sendFile('http://zimmermatic:3443/nav.html');
-//});
+app.get('/nav.html', function(request, response){
+  response.sendFile('nav.html');
+});
 
 app.get("/hello", function (req, res) {
   rS.rolladenUP();
