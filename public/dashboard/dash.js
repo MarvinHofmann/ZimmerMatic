@@ -105,7 +105,7 @@ function getStateFenster() {
   .then((response) => {
       antwort = response;
       console.log(antwort);
-      document.getElementById(fensterStatus).innerText = antwort;
+      document.getElementById("fensterStatus").innerText = antwort;
   })
   .catch(err => console.log(err));   
 }
