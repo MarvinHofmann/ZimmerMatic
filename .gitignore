@@ -1,10 +1,4 @@
-TemperaturMesser/websocket/arduino_secret.h
-TemperaturMesser/Batterie_Sender1/arduino_secretBatt.h
-TemperaturMesser/Bett_Sender2/arduino_secretSe2.h
-TemperaturMesser/Pflanze1/arduino_secretPF1.h
-TemperaturMesser/Pflanze2/arduino_secretPF2.h
-TemperaturMesser/Pflanze3/arduino_secretPF3.h
-TemperaturMesser/Schreibtisch_Sender3/arduino_secrets.h
+
 *.db
 
 # Logs
