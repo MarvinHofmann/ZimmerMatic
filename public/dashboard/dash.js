@@ -3,6 +3,10 @@ const ws = new WebSocket("ws://192.168.0.58:3000");
 ws.addEventListener("open", () => {
   console.log("Client connected with server!");
   getStateFenster();
+  getStateHeizung("HZF_ST")
+  getStateHeizung("HZFen_ST")
+  getStateHeizung("HZF_AT")
+  getStateHeizung("HZFen_AT")
 });
 
 ws.addEventListener("message", function (event) {
@@ -104,4 +108,10 @@ async function getStateFenster() {
   const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
   console.log(antwort);
   document.getElementById("fensterStatus").innerText = antwort;
+}
+
+async function getStateHeizung(who) {
+  let adresse = "http://192.168.0.58:8080/rest/items/" + who + "/state";
+  const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
+  document.getElementById(who).innerText = String(antwort);
 }

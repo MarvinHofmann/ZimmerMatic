@@ -58,27 +58,22 @@
       </div>
     </div>
   </nav>
-
-
-  
+ 
       <main class="px-3">
         <div class="container py-5">
-  <div class="row " >
+      <div class="row " >
 
-    <!-- For demo purpose -->
     <div class="col-lg-12 mx-auto mb-5 text-white text-center">
       <h2 class="display-7 " style="color: #343a40; " id="">Herzlich Willkommen</h2>
       <h2 class="display-12 " style="color: #343a40; font-size: 25px;" id="aktzeit"></h2>
       <h2 class="display-12 " style="color: #343a40; font-size: 25px;" id="uptime">Uptime:</h2>
     </div>
-    
-    <!-- END -->
+  
 
     <div class="col-xl-6 col-lg-6 mx-auto">
-      <div class="bg-white rounded-lg p-5 shadow mb-5 ">
+      <div class="bg-white rounded-lg p-5 shadow ">
         <h2 class="h6 font-weight-bold text-center mb-4">Median-Temperatur</h2>
 
-        <!-- Progress bar 1 -->
         <div class="progress mx-auto">
           <span class="progress-left">
                         <span class="progress-bar border-primary"></span>
@@ -90,9 +85,7 @@
             <div class="h2 font-weight-bold" ><label id="medianTemp">22°C</label></div>
           </div>
         </div>
-        <!-- END -->
 
-        <!-- Demo info -->
         <div class="row text-center mt-4">
           <div class="col-6 border-right">
             <div class="h4 font-weight-bold mb-0" ><label id="medianFeucht">56%</label></div><span class="small text-gray">Luftfeuchtigkeit</span>
@@ -101,15 +94,13 @@
             <div class="h4 font-weight-bold mb-0" ><label id="high">29°C</label></div><span class="small text-gray">Tageshoch</span>
           </div>
         </div>
-        <!-- END -->
       </div>
     </div>
 
     <div class="col-xl-6 col-lg-6 mx-auto">
-      <div class="bg-white rounded-lg p-5 shadow mb-5">
+      <div class="bg-white rounded-lg p-5 shadow ">
         <h2 class="h6 font-weight-bold text-center mb-4">Licht</h2>
 
-        <!-- Progress bar 2 -->
         <div class="progress mx-auto">
           <span class="progress-left">
                         <span class="progress-bar border-danger"></span>
@@ -121,9 +112,8 @@
             <div class="h2 font-weight-bold" ><label id="lichtMain" style="color: red;">OFF</label></div>
           </div>
         </div>
-        <!-- END -->
-
-        <!-- Demo info-->
+        
+        
         <div class="row text-center mt-4">
           <div class="col-4 border-right">
             <div class="h4 font-weight-bold mb-0" ><label id="BR_Status">OFF</label></div><span class="small text-gray">Bett rechts</span>
@@ -135,21 +125,16 @@
             <div class="h4 font-weight-bold mb-0"><label id="BT_Status">OFF</label></div><span class="small text-gray">Basteltisch</span>
           </div>
         </div>
-        <!-- END -->
       </div>
     </div>
 
     
 
 
-    <div class="col-xl-4 col-lg-4 mx-auto mt-5 " style="height: 290px;" >
+    <div class="col-xl-4 col-lg-4 mx-auto mt-4 " style="height: 290px;" >
         <div class="bg-white rounded-lg p-5 shadow h-100">
           <h2 class="h6 font-weight-bold text-center mb-4">Rolladen</h2>
           <div class="row text-center mt-4">
-            <div class="col-12 border-right">
-              <div class="h4 font-weight-bold mb-0" ><label style="margin-top: 10px" id="">Offen</label></div><span class="small text-gray">Status</span>
-              
-            </div>
             <button onclick="rolladenAktion('Down')" class="btn btn-secondary" style="margin-top: 20px;  background-color: #343a40">Zu</button>
             <button onclick="rolladenAktion('Up')" class="btn btn-secondary" style="margin-top: 10px; background-color: #343a40">Auf</button>
           </div>
@@ -158,24 +143,21 @@
 
     
     
-    <div class="col-xl-4 col-lg-4 mx-auto mt-5">
-        <div class="bg-white rounded-lg p-5 shadow">
-          <h2 class="h6 font-weight-bold text-center mb-4">Fenster</h2>
-          <div class="progress mx-auto">
-            <span class="progress-left">
-                          <span class="progress-bar border-primary"></span>
-            </span>
-            <span class="progress-right">
-                          <span class="progress-bar border-primary"></span>
-            </span>
-            <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
-              <div class="h2 font-weight-bold" ><label id="fensterStatus">Offen</label></div>
+    <div class="col-xl-4 col-lg-4 mx-auto mt-4">
+        <div class="bg-white rounded-lg p-5 shadow" style="height: 290px;">
+          <h2 class="h6 font-weight-bold text-center mb-4">Batterien</h2>
+          <div class="parent">
+            <div class="div1"><span class="dot" id="dotWiBtn"></span> </div>
+            <div class="div2">Willkommen Button </div>
+            <div class="div3"><span class="dot" id="dotEmBtn"></span> </div>
+            <div class="div4">Emergency Button </div>
+            <div class="div5"><span class="dot" id="dotTeBtn"></span> </div>
+            <div class="div6">Temperatur Sender </div>
             </div>
-          </div>
         </div>
     </div>
 
-    <div class="col-xl-4 col-lg-6 mx-auto mt-5">
+    <div class="col-xl-4 col-lg-6 mx-auto mt-4 mb-">
       <div class="bg-white rounded-lg p-5 shadow h-100">
         <h2 class="h6 font-weight-bold text-center mb-1">Log-Dateien (Error)</h2>
         <div class="row text-center mt-1">
@@ -187,8 +169,181 @@
         </div>
       </div> 
   </div>
-         
+
+  <div class="col-xl-12 col-lg-6 mx-auto mt-4">
+    <div class="bg-white rounded-lg p-5 shadow">
+      <h2 class="h6 font-weight-bold text-center mb-4">Fenster</h2>
+
+      <div class="card-group">
+        <div class="card">
+          
+          <div class="card-body">
+            
+            <h5 class="card-title">Fenster Bett</h5>
+            <div class="progress mx-auto">
+              <span class="progress-left">
+                            <span class="progress-bar border-primary"></span>
+              </span>
+              <span class="progress-right">
+                            <span class="progress-bar border-primary"></span>
+              </span>
+              <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                <div class="h2 font-weight-bold" ><label id="">Offen</label></div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="card">
+          
+          <div class="card-body">
+            <h5 class="card-title">Fenster Klo</h5>
+            <div class="progress mx-auto">
+              <span class="progress-left">
+                            <span class="progress-bar border-primary"></span>
+              </span>
+              <span class="progress-right">
+                            <span class="progress-bar border-primary"></span>
+              </span>
+              <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                <div class="h2 font-weight-bold" ><label id="">Offen</label></div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="card">
+          
+          <div class="card-body">
+            <h5 class="card-title">Fenster Raum</h5>
+            <div class="progress mx-auto">
+              <span class="progress-left">
+                            <span class="progress-bar border-primary"></span>
+              </span>
+              <span class="progress-right">
+                            <span class="progress-bar border-primary"></span>
+              </span>
+              <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                <div class="h2 font-weight-bold" ><label id="fensterStatus">Offen</label></div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+
+    </div>
   </div>
+
+  <div class="col-xl-8 col-lg-6 mx-auto mt-4">
+    <div class="bg-white rounded-lg p-5 shadow "  style="height: 348px;">
+      <h2 class="h6 font-weight-bold text-center mb-2">Heizung</h2>
+      
+      <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+         
+        </div>
+        <div class="carousel-inner" style="height: 250px;">
+          <div class="carousel-item active">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Heizung Raum</h5>
+                <div class="parent1">
+                  <div class="div11"> 
+                    <div class="progress mx-auto">
+                    <span class="progress-left">
+                                    <span class="progress-bar border-primary"></span>
+                    </span>
+                    <span class="progress-right">
+                                  <span class="progress-bar border-primary"></span>
+                    </span>
+                    <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                      
+                      <div class="h2 font-weight-bold" ><label id="HZF_AT">22°C</label>
+                      </div>  
+                    </div>
+                    
+                  </div>
+                </div>
+                  <div class="div12"> <div class="progress mx-auto">
+                    <span class="progress-left">
+                                  <span class="progress-bar border-primary"></span>
+                    </span>
+                    
+                    <span class="progress-right">
+                                  <span class="progress-bar border-primary"></span>
+                    </span>
+                    <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                      <div class="h2 font-weight-bold" ><label id="HZF_ST">22°C</label>
+                        
+                        </div>
+                    </div>        
+                  </div> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item" style="height: 250px;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Heizung Fenster</h5>
+                <div class="parent1">
+                  <div class="div11"> 
+                    <div class="progress mx-auto">
+                    <span class="progress-left">
+                                    <span class="progress-bar border-primary"></span>
+                    </span>
+                    <span class="progress-right">
+                                  <span class="progress-bar border-primary"></span>
+                    </span>
+                    <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                      <div class="h2 font-weight-bold" ><label id="HZFen_AT">22°C</label></div>
+                    </div>
+                    
+                  </div>
+                </div>
+                  <div class="div12"> <div class="progress mx-auto">
+                    <span class="progress-left">
+                                  <span class="progress-bar border-primary"></span>
+                    </span>
+                    <span class="progress-right">
+                                  <span class="progress-bar border-primary"></span>
+                    </span>
+                    <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                      <div class="h2 font-weight-bold" ><label id="HZFen_ST">22°C</label></div>
+                    </div>
+                  </div> </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="col-xl-4 col-lg-4 mx-auto mt-4">
+    <div class="bg-white rounded-lg p-5 shadow" style="height: 348px;">
+      <h2 class="h6 font-weight-bold text-center mb-4">Sonstiges</h2>
+      <p><a href="http://octopi.local/">http://octopi.local/</a></p>
+      <p><a href="http://192.168.0.58:8080/">http://openhab:8080/</a></p>
+      <p><a href="http://zimmermatic:3443/">http://zimmermatic:3443/</a></p>
+    </div>
+  </div>
+  
 </div>
 </main>
 </body>
