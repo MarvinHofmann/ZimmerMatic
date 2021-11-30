@@ -3,7 +3,6 @@
 sowie zwei websocket Server. Alle Whitelist Komponenten werden mit IP-Adresse gelistet. 
 Alle Websocket Verbindungen werden hier angenommen und losgeschickt*/
 
-
 //Websocket Server
 const WebSocket = require("ws");
 const wssLED = new WebSocket.Server({ port: 8000 }); // abgespilteter WS Server auf anderem Port
@@ -61,6 +60,7 @@ const Ikea = require("./modules/tradfri");
 const time = require("./modules/zeit");
 const logs = require("./modules/logfiles");
 const homematic = require("./modules/homematic");
+const internal = require("stream");
 
 //Globale Variablen
 let status = true;
