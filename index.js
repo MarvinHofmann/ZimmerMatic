@@ -77,7 +77,6 @@ let ledD1EmelySchr = "::ffff:192.168.0.80";
 /***********Halllo / Tschüss Button*******************/
 
 app.get("/hello", function (req, res) {
-  rS.rolladenUP();
   consoleLogTime("Zuhause Angemeldet:");
   currentClientsws[1].send("255,161,20,100");
   currentClientsws[2].send("255,161,20,100");
@@ -86,9 +85,11 @@ app.get("/hello", function (req, res) {
   if (a.getHours() >= 18 || a.getHours() <= 6) {
     Ikea.fetchLampe("BL", "Helligkeit", 30);
     Ikea.fetchLampe("BR", "Helligkeit", 30);
+  }else{
+    rS.rolladenUP();
   }
   if (a.getHours() < 21 || a.getHours() > 8) {
-    homematic.heizungON(); 
+    homematic.heizungON(21); 
   }
   res.sendStatus(200);
 });
@@ -118,7 +119,7 @@ app.get("/EmergencyOne", function (req, res) {
   if (a.getHours() >= 22 || a.getHours() <= 7){
     currentClientsws[4].send("255,255,255,100");
     currentClientsws[2].send("255,255,255,100");
-    sleep(120000);
+    sleep(90000);
   currentClientsws[4].send("0,0,0,0");
   currentClientsws[2].send("0,0,0,0");
   }else{

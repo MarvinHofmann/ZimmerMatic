@@ -30,9 +30,9 @@ function heizungOff(){
 }
 exports.heizungOff = heizungOff;
 
-function heizungON(){
-    fetchHeizung("HZFen_ST", 20);
-    fetchHeizung("HZF_ST", 20);
+function heizungON(degree){
+    fetchHeizung("HZFen_ST", degree);
+    fetchHeizung("HZF_ST", degree);
 }
 exports.heizungON = heizungON;
 
