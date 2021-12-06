@@ -1,5 +1,4 @@
 const ws = new WebSocket("ws://192.168.0.58:3000");
-let offen = false;
 
 ws.addEventListener("open", (message) => {
   console.log("Client connected with server!");
@@ -10,9 +9,7 @@ ws.addEventListener("message", function (event) {
   const data = JSON.parse(event.data);
   switch (data.type) {
     case "abstand":
-      document.getElementById("runterBtn").style.backgroundColor = "red";
-      document.getElementById("runterBtn").innerText = "Fenster Offen";
-      offen = true;
+      console.log(data.value);
       break;
     default:
       break;
@@ -27,11 +24,11 @@ function btnfunction(number) {
       break;
     case 2:
       ws.send("stop");
+      ws.send("getAbstand");
+      ws.send("getAbstand");
       break;
     case 3:
-      if (!offen) {
         ws.send("runter"); 
-      }
       break;
 
     default:
