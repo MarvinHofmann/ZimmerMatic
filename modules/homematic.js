@@ -3,7 +3,7 @@ const main = require("../index");
 const { publishDash } = require('./temp');
 
 function fetchHeizung(Heizung, wert){
-    let adresse = "http://192.168.0.58:8080/rest/items/" + Heizung;
+    let adresse = "http://192.168.0.138:8080/rest/items/" + Heizung;
    // console.log("fetch an:" + adresse);
    // console.log("wert: " + wert);
     fetch(adresse, {method: 'POST', body: wert});
@@ -37,7 +37,7 @@ function heizungON(degree){
 exports.heizungON = heizungON;
 
 function getStateFenster(rBool) {
-    let adresse = "http://192.168.0.58:8080/rest/items/DGFensterkontakt_State/state";
+    let adresse = "http://192.168.0.138:8080/rest/items/DGFensterkontakt_State/state";
     fetch(adresse, {method: 'GET'}).then(response => response.text())
     .then((response) => {
         antwort = response;

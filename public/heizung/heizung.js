@@ -2,7 +2,7 @@ getStateHeizung("HZF_ST")
 getStateHeizung("HZFen_ST")
 
 async function getStateHeizung(who) {
-    let adresse = "http://192.168.0.58:8080/rest/items/" + who + "/state";
+    let adresse = "http://192.168.0.138:8080/rest/items/" + who + "/state";
     const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
     document.getElementById(who).innerText = String(antwort);
 }
@@ -21,6 +21,6 @@ function print(value ,who) {
 }
 
 function sendFetch(wert, wer){
-    let adresse = "http://192.168.0.58:8080/rest/items/" + wer;
+    let adresse = "http://192.168.0.138:8080/rest/items/" + wer;
     fetch(adresse, {method: 'POST', body: wert});
 }

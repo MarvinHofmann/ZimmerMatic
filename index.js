@@ -46,7 +46,7 @@ app.use(express.static("templates"));
 app.listen(port, () => {
   consoleLogTime("Restarting at:")
   console.log(`App listening at http://ZimmerMatic:${port}`); // Publisher Server auf Port 3443
-  console.log("Die IP Adresse lautet: 192.168.0.58");
+  console.log("Die IP Adresse lautet: 192.168.0.138");
 });
 
 //Einpflegen der Module

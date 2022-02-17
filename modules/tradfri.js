@@ -33,20 +33,20 @@ main.app.post('/SD' , function ( request, response){
 
 
 function fetchLampe(lampe, modus, wert){
-    let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_" + modus;
+    let adresse = "http://192.168.0.138:8080/rest/items/" + lampe + "_" + modus;
     fetch(adresse, {method: 'POST', body: wert});
 }
 exports.fetchLampe = fetchLampe;
 
 
 function fetchSteckdose(mode){
-  let adresse = "http://192.168.0.58:8080/rest/items/StD_Betrieb";
+  let adresse = "http://192.168.0.138:8080/rest/items/StD_Betrieb";
   fetch(adresse, {method: 'POST', body: mode});
 }
 exports.fetchSteckdose = fetchSteckdose;
 
 function getStateSD(){
-  let adresse = "http://192.168.0.58:8080/rest/items/StD_Betrieb/state";
+  let adresse = "http://192.168.0.138:8080/rest/items/StD_Betrieb/state";
   fetch(adresse, {method: 'GET'}).then(response => response.text())
   .then((response) => {
       antwort = response;
@@ -62,7 +62,7 @@ function getStateSD(){
 
 
 function getState(lampe){
-  let adresse = "http://192.168.0.58:8080/rest/items/" + lampe + "_Helligkeit/state";
+  let adresse = "http://192.168.0.138:8080/rest/items/" + lampe + "_Helligkeit/state";
   fetch(adresse, {method: 'GET'}).then(response => response.text())
   .then((response) => {
       antwort = response;

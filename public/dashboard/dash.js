@@ -1,4 +1,4 @@
-const ws = new WebSocket("ws://192.168.0.58:3000");
+const ws = new WebSocket("ws://192.168.0.138:3000");
 
 ws.addEventListener("open", () => {
   console.log("Client connected with server!");
@@ -105,14 +105,14 @@ function rolladenAktion(richtung) {
 }
 
 async function getStateFenster(who) {
-  let adresse = "http://192.168.0.58:8080/rest/items/" + who +"_State/state";
+  let adresse = "http://192.168.0.138:8080/rest/items/" + who +"_State/state";
   const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
   console.log(antwort);
   document.getElementById(who).innerText = antwort;
 }
 
 async function getStateHeizung(who) {
-  let adresse = "http://192.168.0.58:8080/rest/items/" + who + "/state";
+  let adresse = "http://192.168.0.138:8080/rest/items/" + who + "/state";
   const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
   document.getElementById(who).innerText = String(antwort);
 }
