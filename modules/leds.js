@@ -12,7 +12,7 @@ main.app.post("/D1Leds", function (req, res) {
   try {
     currentClientsws[i].send(send(`${r},${g},${b},${v}`));
   } catch (error) {
-    logger.error(error);
+    console.log("Client nicht Verfügbar");
   }
   res.sendStatus(200);
 });
@@ -27,7 +27,7 @@ main.app.post("/D1LedsAll", function (req, res) {
     try {
       currentClientsws[i].send(send(`${r},${g},${b},${v}`));
     } catch (error) {
-      logger.error(error);
+        console.log("Client nicht Verfügbar");
     }
   }
   res.sendStatus(200);
