@@ -169,7 +169,7 @@ wssLED.on("connection", function connection(ws, req) {
   } else if (ip === ledD1EmelySchr) {
     console.log("client Emely verbunden!");
     currentClientsws[5] = ws;
-  } else if (ip == "ESP32UHR"){
+  } else if (ip == ESP32UHR){
     console.log("Uhr Back To Future Verbunden!");
     currentClientsws[6] = ws;
   }
