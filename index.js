@@ -44,7 +44,7 @@ app.use(express.static("public"));
 app.use(express.static("templates"));
 
 app.listen(port, () => {
-  consoleLogTime("Restarting at:")
+  consoleLogTime("Restarting at:");
   console.log(`App listening at http://ZimmerMatic:${port}`); // Publisher Server auf Port 3443
   console.log("Die IP Adresse lautet: 192.168.0.138");
 });
@@ -78,25 +78,29 @@ let ledD1EmelySchr = "::ffff:192.168.0.80";
 
 app.get("/hello", function (req, res) {
   consoleLogTime("Zuhause Angemeldet:");
-  currentClientsws[1].send("255,161,20,100");
-  currentClientsws[2].send("255,161,20,100");
-  currentClientsws[3].send("40,191,255,255");
+  try {
+    currentClientsws[1].send("255,161,20,100"); //Sofa
+    currentClientsws[2].send("256,161,20,100"); //Dart
+    currentClientsws[3].send("40,191,255,255"); //Uhr
+  } catch (error) {
+    console.log("Client nicht Verfügbar!");
+  }
   let a = new Date();
   if (a.getHours() >= 18 || a.getHours() <= 6) {
     Ikea.fetchLampe("BL", "Helligkeit", 30);
     Ikea.fetchLampe("BR", "Helligkeit", 30);
-  }else{
+  } else {
     rS.rolladenUP();
   }
   if (a.getHours() < 21 || a.getHours() > 8) {
-    homematic.heizungON(21); 
+    homematic.heizungON(21);
   }
   res.sendStatus(200);
 });
 
 app.get("/tschuess", function (req, res) {
   rS.rolladenDown();
-  consoleLogTime("Abgemeldet:")
+  consoleLogTime("Abgemeldet:");
   for (let i = 0; i < currentClientsws.length; i++) {
     try {
       currentClientsws[i].send("0,0,0,0");
@@ -114,30 +118,28 @@ app.get("/tschuess", function (req, res) {
 
 app.get("/EmergencyOne", function (req, res) {
   rS.rolladenDown();
-  consoleLogTime("Emergeny!")
+  consoleLogTime("Emergeny!");
   let a = new Date();
-  if (a.getHours() >= 22 || a.getHours() <= 7){
+  if (a.getHours() >= 22 || a.getHours() <= 7) {
     currentClientsws[4].send("255,255,255,100");
     currentClientsws[2].send("255,255,255,100");
     sleep(90000);
-  currentClientsws[4].send("0,0,0,0");
-  currentClientsws[2].send("0,0,0,0");
-  }else{
+    currentClientsws[4].send("0,0,0,0");
+    currentClientsws[2].send("0,0,0,0");
+  } else {
     rS.rolladenUP();
     currentClientsws[4].send("255,255,255,40");
     currentClientsws[3].send("40,191,255,255");
   }
   function sleep(milliseconds) {
-  const date = Date.now();
-  let currentDate = null;
-  do {
-  	
-    currentDate = Date.now();
-  } while (currentDate - date < milliseconds);
-}
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+  }
 
-res.sendStatus(200);
-
+  res.sendStatus(200);
 });
 
 /***************************************** */
@@ -179,7 +181,6 @@ wssLED.on("connection", function connection(ws, req) {
   });
 });
 
-
 //Websocket für Browser Clients
 wss.on("connection", function connection(ws, req) {
   ClientswsBrowser[clientsCn] = ws;
@@ -207,8 +208,7 @@ wss.on("connection", function connection(ws, req) {
       default:
     }
   });
-  ws.on("close", (data) => {
-  });
+  ws.on("close", (data) => {});
 });
 
 function consoleLogTime(incoming) {
