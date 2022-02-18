@@ -10,7 +10,7 @@ main.app.post("/D1Leds", function (req, res) {
   //console.log("Fetch kam an Sende an " + n);
   //console.log(`r: ${r}, g: ${g}, b: ${b}, v: ${v}`);
   try {
-    main.currentClientsws[i].send(`${r},${g},${b},${v}`);
+    main.currentClientsws[n].send(`${r},${g},${b},${v}`);
   } catch (error) {
     console.log("Client nicht Verfügbar");
   }
