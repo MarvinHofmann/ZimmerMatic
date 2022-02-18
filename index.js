@@ -203,7 +203,11 @@ wss.on("connection", function connection(ws, req) {
         rS.rolladenDown();
         break;
       case "getAbstand":
-        currentClientsws[0].send("0");
+        try {
+          currentClientsws[0].send("0");
+        } catch (error) {
+          console.log("Kein Abstand");          
+        }
         break;
       default:
     }
