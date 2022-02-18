@@ -36,7 +36,12 @@ function rolladenUP() {
   if (temp.average > 24) {
     //status = false;
   }
-  main.currentClientsws[0].send("99");
+  try {
+    main.currentClientsws[0].send("99");
+  } catch (error) {
+    console.log("not available");
+  }
+  
 }
 exports.rolladenUP = rolladenUP;
 function rolladenStop() {
