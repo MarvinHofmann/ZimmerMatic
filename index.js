@@ -71,6 +71,7 @@ let d1 = "::ffff:192.168.0.62";
 let ledD1 = "::ffff:192.168.0.73";
 let ledD1Sofa = "::ffff:192.168.0.64";
 let ledD1UHR = "::ffff:192.168.0.76";
+let ESP32UHR = "::ffff:192.168.0.128";
 let ledD1Schreibtisch = "::ffff:192.168.0.78";
 let ledD1EmelySchr = "::ffff:192.168.0.80";
 
@@ -168,6 +169,9 @@ wssLED.on("connection", function connection(ws, req) {
   } else if (ip === ledD1EmelySchr) {
     console.log("client Emely verbunden!");
     currentClientsws[5] = ws;
+  } else if (ip == "ESP32UHR"){
+    console.log("Uhr Back To Future Verbunden!");
+    currentClientsws[6] = ws;
   }
   //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
   ws.on("message", function incoming(message) {
