@@ -80,7 +80,7 @@ app.get("/hello", function (req, res) {
   consoleLogTime("Zuhause Angemeldet:");
   try {
     currentClientsws[1].send("256,161,20,100"); //DART
-    currentClientsws[2].send("255,161,20,100"); //Sofa
+    currentClientsws[2].send("256,161,20,100"); //Sofa
     currentClientsws[3].send("40,191,255,255"); //Uhr
   } catch (error) {
     console.log("Client nicht Verfügbar!");
