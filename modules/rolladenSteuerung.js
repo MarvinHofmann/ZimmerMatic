@@ -45,12 +45,20 @@ function rolladenUP() {
 }
 exports.rolladenUP = rolladenUP;
 function rolladenStop() {
-  main.currentClientsws[0].send("100");
+  try {
+    main.currentClientsws[0].send("100");
+  } catch (error) {
+    console.log("not available");
+  }
 }
 exports.rolladenStop = rolladenStop;
 function rolladenDown() {
   status = true;
-  main.currentClientsws[0].send("101");
+  try {
+    main.currentClientsws[0].send("101");
+  } catch (error) {
+    console.log("not available");
+  }
 }
 exports.rolladenDown = rolladenDown;
 
