@@ -10,7 +10,7 @@ main.app.post("/D1Leds", function (req, res) {
   //console.log("Fetch kam an Sende an " + n);
   //console.log(`r: ${r}, g: ${g}, b: ${b}, v: ${v}`);
   try {
-    main.currentClientsws[i].send(send(`${r},${g},${b},${v}`));
+    main.currentClientsws[i].send(`${r},${g},${b},${v}`);
   } catch (error) {
     console.log("Client nicht Verfügbar");
   }
@@ -25,7 +25,7 @@ main.app.post("/D1LedsAll", function (req, res) {
   //console.log(`r: ${r}, g: ${g}, b: ${b}, v: ${v}`);
   for (let i = 0; i < main.currentClientsws.length; i++) {
     try {
-      main.currentClientsws[i].send(send(`${r},${g},${b},${v}`));
+      main.currentClientsws[i].send(`${r},${g},${b},${v}`);
     } catch (error) {
         console.log("Client nicht Verfügbar");
     }
