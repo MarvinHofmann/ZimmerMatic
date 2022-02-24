@@ -1,6 +1,6 @@
 /*ZimmerMatic Node.js Webserver*/
 /*Index Datei, bindet alle Module des Modules Ordne ein, erstellt den Express Server,
-sowie zwei websocket Server. Alle Whitelist Komponenten werden mit IP-Adresse gelistet. 
+sowie zwei websocket Server. Alle Whitelist Komponenten werden mit IP-Adresse gelistet.
 Alle Websocket Verbindungen werden hier angenommen und losgeschickt*/
 
 //Websocket Server
@@ -67,7 +67,7 @@ let status = true;
 exports.status = status;
 
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
-let d1 = "::ffff:192.168.0.62";
+let d1 = "::ffff:192.168.0.192";
 let ledD1 = "::ffff:192.168.0.73";
 let ledD1Sofa = "::ffff:192.168.0.64";
 let ledD1UHR = "::ffff:192.168.0.76";
@@ -209,7 +209,7 @@ wss.on("connection", function connection(ws, req) {
         try {
           currentClientsws[0].send("0");
         } catch (error) {
-          console.log("Kein Abstand");          
+          console.log("Kein Abstand");
         }
         break;
       default:
