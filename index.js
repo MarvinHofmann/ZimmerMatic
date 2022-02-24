@@ -67,7 +67,7 @@ let status = true;
 exports.status = status;
 
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
-let d1 = "::ffff:192.168.0.192";
+let d1 = "::ffff:192.168.0.129";
 let ledD1 = "::ffff:192.168.0.73";
 let ledD1Sofa = "::ffff:192.168.0.64";
 let ledD1UHR = "::ffff:192.168.0.76";
