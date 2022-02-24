@@ -12,6 +12,7 @@ main.app.post("/D1Leds", function (req, res) {
   try {
     main.currentClientsws[n].send(`${r},${g},${b},${v}`);
   } catch (error) {
+    console.log(n);
     console.log("Client " + main.currentClientsws[n] + " nicht Verfügbar");
   }
   res.sendStatus(200);
