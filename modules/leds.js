@@ -7,8 +7,6 @@ main.app.post("/D1Leds", function (req, res) {
   let b = req.body.blue;
   let v = Number(req.body.value) * 2.5;
   let n = req.body.who;
-  //console.log("Fetch kam an Sende an " + n);
-  //console.log(`r: ${r}, g: ${g}, b: ${b}, v: ${v}`);
   try {
     main.currentClientsws[n].send(`${r},${g},${b},${v}`);
   } catch (error) {
