@@ -66,6 +66,14 @@ const internal = require("stream");
 let status = true;
 exports.status = status;
 
+const map = new Map(); //key value store für Clients WS
+map.set('rolladen', false);
+map.set('ledDart', false);
+map.set('ledSofa', false);
+map.set('ledUhr', false);
+map.set('esp32', false);
+map.set('schreibtisch', false);
+map.set('schreibtischEm', false);
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.129";
 let ledD1 = "::ffff:192.168.0.73";
@@ -143,8 +151,8 @@ app.get("/EmergencyOne", function (req, res) {
 });
 
 app.get("/clients", function (req, res) {
-  console.log(currentClientsws[0]);
-  res.send(currentClientsws);
+  console.log(map);
+  res.send(map);
 });
 
 /***************************************** */
@@ -158,23 +166,30 @@ wssLED.on("connection", function connection(ws, req) {
   /**Verbinden der Whitelist D1 mini */
   if (ip === d1) {
     console.log("client 0 verbunden!");
+    map.set('rolladen', true);
     currentClientsws[0] = ws;
   } else if (ip === ledD1) {
+    map.set('ledDart', true);
     console.log("client Dart verbunden!");
     currentClientsws[1] = ws;
   } else if (ip === ledD1Sofa) {
+    map.set('ledSofa', true);
     console.log("client Sofa verbunden!");
     currentClientsws[2] = ws;
   } else if (ip === ledD1UHR) {
+    map.set('ledUhr', true);
     console.log("client Uhr verbunden!");
     currentClientsws[3] = ws;
   } else if (ip === ledD1Schreibtisch) {
     console.log("client Tisch verbunden!");
+    map.set('schreibtisch', true);
     currentClientsws[4] = ws;
   } else if (ip === ledD1EmelySchr) {
     console.log("client Emely verbunden!");
+    map.set('schreibtischEm', true);
     currentClientsws[5] = ws;
   } else if (ip == ESP32UHR){
+    map.set('esp32', true);
     console.log("Uhr Back To Future Verbunden!");
     currentClientsws[6] = ws;
   }
