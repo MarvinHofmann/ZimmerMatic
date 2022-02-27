@@ -116,3 +116,9 @@ async function getStateHeizung(who) {
   const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
   document.getElementById(who).innerText = String(antwort);
 }
+
+async function getClient() {
+  let adresse = "http://192.168.0.138:3443/clients";
+  const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
+  document.getElementById(who).innerText = String(antwort);
+}

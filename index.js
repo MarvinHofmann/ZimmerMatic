@@ -142,6 +142,10 @@ app.get("/EmergencyOne", function (req, res) {
   res.sendStatus(200);
 });
 
+app.get("/clients", function (req, res) {
+  res.send(currentClientsws);
+});
+
 /***************************************** */
 
 //Websocket handling für alle whitelist Clients
