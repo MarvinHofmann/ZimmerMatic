@@ -143,6 +143,7 @@ app.get("/EmergencyOne", function (req, res) {
 });
 
 app.get("/clients", function (req, res) {
+  console.log(currentClientsws);
   res.send(currentClientsws);
 });
 
