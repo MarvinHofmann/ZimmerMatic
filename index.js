@@ -67,13 +67,13 @@ let status = true;
 exports.status = status;
 
 const map = new Map(); //key value store für Clients WS
-map.set('rolladen', false);
-map.set('ledDart', false);
-map.set('ledSofa', false);
-map.set('ledUhr', false);
-map.set('esp32', false);
-map.set('schreibtisch', false);
-map.set('schreibtischEm', false);
+map.set('rolladen', {ip: "::ffff:192.168.0.129", connection: false});
+map.set('ledDart', {ip: "::ffff:192.168.0.73", connection: false});
+map.set('ledSofa', {ip: "::ffff:192.168.0.64", connection: false});
+map.set('ledUhr', {ip: "::ffff:192.168.0.76", connection: false});
+map.set('esp32', {ip: "::ffff:192.168.0.128", connection: false});
+map.set('schreibtisch', {ip: "::ffff:192.168.0.78", connection: false});
+map.set('schreibtischEm', {ip: "::ffff:192.168.0.80", connection: false});
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.129";
 let ledD1 = "::ffff:192.168.0.73";
@@ -152,6 +152,7 @@ app.get("/EmergencyOne", function (req, res) {
 
 app.get("/clients", function (req, res) {
   console.log(map);
+  console.log(map.get('rolladen').ip);
   res.send(map);
 });
 
@@ -202,6 +203,11 @@ wssLED.on("connection", function connection(ws, req) {
   ws.on("close", (data) => {
     console.log("Client has disconnceted");
   });
+});
+
+wssLED.on("close", function close(ws,req){
+  console.log("Client disconnected")
+  map.
 });
 
 //Websocket für Browser Clients
