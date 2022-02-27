@@ -152,7 +152,7 @@ app.get("/EmergencyOne", function (req, res) {
 
 app.get("/clients", function (req, res) {
   console.log(map);
-  console.log(map.get('rolladen').ip);
+  console.log(map.get('rolladen'));
   res.send(map);
 });
 
@@ -206,8 +206,7 @@ wssLED.on("connection", function connection(ws, req) {
 });
 
 wssLED.on("close", function close(ws,req){
-  console.log("Client disconnected")
-  map.
+  console.log("Client disconnected on dis")
 });
 
 //Websocket für Browser Clients
