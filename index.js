@@ -143,6 +143,9 @@ app.get("/EmergencyOne", function (req, res) {
 });
 
 app.get("/clients", function (req, res) {
+  currentClientsws.forEach(client => {
+    console.log(client);
+  });
   console.log(currentClientsws);
   res.send(currentClientsws);
 });
