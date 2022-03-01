@@ -187,6 +187,7 @@ app.get("/clients", function (req, res) {
 
 /***************************************** */
 function getClients() {
+  console.log("Kümmere mich um Clients");
   //Websocket handling für alle whitelist Clients
   wssLED.on("connection", function connection(ws, req) {
     console.log("Client connected!");
@@ -229,10 +230,8 @@ function getClients() {
   });
 }
 
-async function updateConnection(_ip, _conVal) {
-  if (!DBClient.isConnected()) {
-    await DBClient.connect();
-  }
+function updateConnection(_ip, _conVal) {
+  console.log("Melde Client an");
   const collection = app.locals.collection;
   collection.updateOne({ ip: _ip }, { $set: { connection: _conVal } }, function (err, res) {
     if (err) throw err;
