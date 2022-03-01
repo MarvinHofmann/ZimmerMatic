@@ -98,14 +98,6 @@ const internal = require("stream");
 let status = true;
 exports.status = status;
 
-const map = new Map(); //key value store für Clients WS
-map.set('rolladen', {ip: "::ffff:192.168.0.129", connection: false});
-map.set('ledDart', {ip: "::ffff:192.168.0.73", connection: false});
-map.set('ledSofa', {ip: "::ffff:192.168.0.64", connection: false});
-map.set('ledUhr', {ip: "::ffff:192.168.0.76", connection: false});
-map.set('esp32', {ip: "::ffff:192.168.0.128", connection: false});
-map.set('schreibtisch', {ip: "::ffff:192.168.0.78", connection: false});
-map.set('schreibtischEm', {ip: "::ffff:192.168.0.80", connection: false});
 //D1 Mini Whitelist, um ihm besondere Dinge zu senden
 let d1 = "::ffff:192.168.0.129";
 let ledD1 = "::ffff:192.168.0.73";
@@ -195,6 +187,7 @@ wssLED.on("connection", function connection(ws, req) {
   console.log("Client connected!");
   //hole IP Adresse
   const ip = req.socket.remoteAddress;
+  updateConnection(ip, true);
   console.log(ip);
   /**Verbinden der Whitelist D1 mini */
   if (ip === d1) {
@@ -236,6 +229,14 @@ wssLED.on("connection", function connection(ws, req) {
     console.log("Client has disconnceted");
   });
 });
+
+function updateConnection(_ip, _conVal) {
+  const collection = app.locals.collection;
+  collection.updateOne({ip: _ip}, {$set: {connection: _conVal}}, function(err, res) {
+    if (err) throw err;
+    console.log("1 document updated");
+  });
+}
 
 wssLED.on("close", function close(ws,req){
   console.log("Client disconnected on dis")
