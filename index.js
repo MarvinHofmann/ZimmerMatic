@@ -36,8 +36,7 @@ const DBClient = new MongoClient(uri, {
   useUnifiedTopology: true,
 });
 
-async function init() {
-  console.log(DBClient.isConnected()); // false
+console.log(DBClient.isConnected()); // false
   MongoClient.connect(uri)
   .then(client => {
     try {
@@ -46,13 +45,15 @@ async function init() {
       app.locals.collection = collection;
       console.log("connection erfolgt");
       app.emit('ready');
+      getClients();
     } catch (error) {
       console.log(error);
     }
 });
   console.log(DBClient.isConnected()); // true
-}
-init();
+
+
+
 
 //Logger4JS
 const log4js = require("log4js");
@@ -185,14 +186,13 @@ app.get("/clients", function (req, res) {
 });
 
 /***************************************** */
-
-//Websocket handling für alle whitelist Clients
+function getClients() {
+  //Websocket handling für alle whitelist Clients
 wssLED.on("connection", function connection(ws, req) {
   console.log("Client connected!");
   //hole IP Adresse
   const ip = req.socket.remoteAddress;
-  //console.log(DBClient.isConnected());
-  //updateConnection(ip, true);
+  updateConnection(ip, true);
   console.log(ip);
   /**Verbinden der Whitelist D1 mini */
   if (ip === d1) {
@@ -227,6 +227,7 @@ wssLED.on("connection", function connection(ws, req) {
     console.log("Client has disconnceted");
   });
 });
+}
 
 async function updateConnection(_ip, _conVal) {
   if (!DBClient.isConnected()) {
