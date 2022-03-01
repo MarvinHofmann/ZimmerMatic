@@ -27,7 +27,10 @@ dotenv.config();
 //mongo
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
+
 const uri = process.env.DB_URL;
+console.log(uri);
+
 const DBClient = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
