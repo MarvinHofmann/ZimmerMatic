@@ -24,31 +24,6 @@ const cronParser = require("cron-parser");
 const dotenv = require("dotenv");
 dotenv.config();
 
-//mongo
-const mongodb = require('mongodb');
-const MongoClient = mongodb.MongoClient;
-
-const uri = process.env.DB_URL;
-console.log(uri);
-
-const DBClient = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-
-MongoClient.connect(uri)
-  .then(client => {
-    try {
-      const db = client.db('clients');
-      const collection = db.collection('wsClients');
-      app.locals.collection = collection;
-      console.log("connection erfolgt");
-    } catch (error) {
-      console.log(error);
-    }
-  });
-
 //Logger4JS
 const log4js = require("log4js");
 log4js.configure({
@@ -88,7 +63,7 @@ const Ikea = require("./modules/tradfri");
 const time = require("./modules/zeit");
 const logs = require("./modules/logfiles");
 const homematic = require("./modules/homematic");
-const internal = require("stream");
+const mongodb = require("./modules/mongoDB");
 
 //Globale Variablen
 let status = true;
@@ -170,12 +145,6 @@ app.get("/EmergencyOne", function (req, res) {
   res.sendStatus(200);
 });
 
-app.get("/clients", function (req, res) {
-  console.log(map);
-  console.log(map.get('rolladen'));
-  res.send(map);
-});
-
 /***************************************** */
   //Websocket handling für alle whitelist Clients
   wssLED.on("connection", function connection(ws, req) {
@@ -217,16 +186,6 @@ app.get("/clients", function (req, res) {
       console.log("Client has disconnceted");
     });
   });
-
-
-function updateConnection(_ip, _conVal) {
-  console.log("Melde Client an");
-  const collection = app.locals.collection;
-  collection.updateOne({ ip: _ip }, { $set: { connection: _conVal } }, function (err, res) {
-    if (err) throw err;
-    console.log("1 document updated");
-  });
-}
 
 wssLED.on("close", function close(ws, req) {
   console.log("Client disconnected on dis")
