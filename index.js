@@ -37,7 +37,7 @@ const DBClient = new MongoClient(uri, {
 });
 
 async function init() {
-  console.log(mongoClient.isConnected()); // false
+  console.log(DBClient.isConnected()); // false
   MongoClient.connect(uri)
   .then(client => {
     try {
@@ -50,7 +50,7 @@ async function init() {
       console.log(error);
     }
 });
-  console.log(mongoClient.isConnected()); // true
+  console.log(DBClient.isConnected()); // true
 }
 init();
 
