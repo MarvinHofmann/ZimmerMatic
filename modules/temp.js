@@ -99,6 +99,7 @@ exports.botSendStatus = function(){
 
 function handleDB(sender, feuchtIn, tempIn) {
   cntA[sender]++;
+  let a = new Date();
   if (cntA[sender] == 2) { // nur jede halbe Stunde ein Value
     let jsonT = {
       sender: sender,
