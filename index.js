@@ -50,7 +50,7 @@ MongoClient.connect(uri)
       console.log(error);
     }
   });
-console.log(DBClient.isConnected()); // true
+
 
 
 
