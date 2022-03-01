@@ -36,8 +36,8 @@ const DBClient = new MongoClient(uri, {
   useUnifiedTopology: true,
 });
 
-console.log(DBClient.isConnected()); // false
-  MongoClient.connect(uri)
+
+MongoClient.connect(uri)
   .then(client => {
     try {
       const db = client.db('clients');
@@ -49,8 +49,8 @@ console.log(DBClient.isConnected()); // false
     } catch (error) {
       console.log(error);
     }
-});
-  console.log(DBClient.isConnected()); // true
+  });
+console.log(DBClient.isConnected()); // true
 
 
 
@@ -77,7 +77,7 @@ const path = require("path");
 app.use(express.static("public"));
 app.use(express.static("templates"));
 
-app.on("ready", function() {
+app.on("ready", function () {
   app.listen(port, () => {
     consoleLogTime("Restarting at:");
     console.log(`App listening at http://ZimmerMatic:${port}`); // Publisher Server auf Port 3443
@@ -143,7 +143,7 @@ app.get("/tschuess", function (req, res) {
     try {
       currentClientsws[i].send("0,0,0,0");
     } catch (error) {
-       logger.error(error);
+      logger.error(error);
     }
   }
   Ikea.fetchLampe("BL", "Helligkeit", 0);
@@ -188,45 +188,45 @@ app.get("/clients", function (req, res) {
 /***************************************** */
 function getClients() {
   //Websocket handling für alle whitelist Clients
-wssLED.on("connection", function connection(ws, req) {
-  console.log("Client connected!");
-  //hole IP Adresse
-  const ip = req.socket.remoteAddress;
-  updateConnection(ip, true);
-  console.log(ip);
-  /**Verbinden der Whitelist D1 mini */
-  if (ip === d1) {
-    console.log("client 0 verbunden!");
-    currentClientsws[0] = ws;
-  } else if (ip === ledD1) {
-    console.log("client Dart verbunden!");
-    currentClientsws[1] = ws;
-  } else if (ip === ledD1Sofa) {
-    console.log("client Sofa verbunden!");
-    currentClientsws[2] = ws;
-  } else if (ip === ledD1UHR) {
-    console.log("client Uhr verbunden!");
-    currentClientsws[3] = ws;
-  } else if (ip === ledD1Schreibtisch) {
-    console.log("client Tisch verbunden!");
-    currentClientsws[4] = ws;
-  } else if (ip === ledD1EmelySchr) {
-    console.log("client Emely verbunden!");
-    currentClientsws[5] = ws;
-  } else if (ip == ESP32UHR){
-    console.log("Uhr Back To Future Verbunden!");
-    currentClientsws[6] = ws;
-  }
-  //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
-  ws.on("message", function incoming(message) {
-    console.log("received: %s", message);
-    //Einzige message die ankommen kann ist der Abstand vom Fenster
-    rS.handleAbstand(message);
+  wssLED.on("connection", function connection(ws, req) {
+    console.log("Client connected!");
+    //hole IP Adresse
+    const ip = req.socket.remoteAddress;
+    updateConnection(ip, true);
+    console.log(ip);
+    /**Verbinden der Whitelist D1 mini */
+    if (ip === d1) {
+      console.log("client 0 verbunden!");
+      currentClientsws[0] = ws;
+    } else if (ip === ledD1) {
+      console.log("client Dart verbunden!");
+      currentClientsws[1] = ws;
+    } else if (ip === ledD1Sofa) {
+      console.log("client Sofa verbunden!");
+      currentClientsws[2] = ws;
+    } else if (ip === ledD1UHR) {
+      console.log("client Uhr verbunden!");
+      currentClientsws[3] = ws;
+    } else if (ip === ledD1Schreibtisch) {
+      console.log("client Tisch verbunden!");
+      currentClientsws[4] = ws;
+    } else if (ip === ledD1EmelySchr) {
+      console.log("client Emely verbunden!");
+      currentClientsws[5] = ws;
+    } else if (ip == ESP32UHR) {
+      console.log("Uhr Back To Future Verbunden!");
+      currentClientsws[6] = ws;
+    }
+    //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
+    ws.on("message", function incoming(message) {
+      console.log("received: %s", message);
+      //Einzige message die ankommen kann ist der Abstand vom Fenster
+      rS.handleAbstand(message);
+    });
+    ws.on("close", (data) => {
+      console.log("Client has disconnceted");
+    });
   });
-  ws.on("close", (data) => {
-    console.log("Client has disconnceted");
-  });
-});
 }
 
 async function updateConnection(_ip, _conVal) {
@@ -234,13 +234,13 @@ async function updateConnection(_ip, _conVal) {
     await DBClient.connect();
   }
   const collection = app.locals.collection;
-  collection.updateOne({ip: _ip}, {$set: {connection: _conVal}}, function(err, res) {
+  collection.updateOne({ ip: _ip }, { $set: { connection: _conVal } }, function (err, res) {
     if (err) throw err;
     console.log("1 document updated");
   });
 }
 
-wssLED.on("close", function close(ws,req){
+wssLED.on("close", function close(ws, req) {
   console.log("Client disconnected on dis")
 });
 
@@ -275,7 +275,7 @@ wss.on("connection", function connection(ws, req) {
       default:
     }
   });
-  ws.on("close", (data) => {});
+  ws.on("close", (data) => { });
 });
 
 function consoleLogTime(incoming) {
