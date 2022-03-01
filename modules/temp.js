@@ -3,7 +3,7 @@ const main = require("../index.js");
 const tel = require("./telegram");
 const rol = require("./rolladenSteuerung");
 const zeit = require("./zeit.js");
-const db = require("./db");
+const db = require("./mongoDB");
 
 let temp,
   feucht,
@@ -100,8 +100,9 @@ exports.botSendStatus = function(){
 function handleDB(sender, feuchtIn, tempIn) {
   let a = new Date();
   cntA[sender]++;
-  if (cntA[sender] == 4) {
+  if (cntA[sender] == 2) { // nur jede halbe Stunde ein Value
     let jsonT = {
+      sender: sender,
       feuchtigkeit: feuchtIn,
       temperatur: tempIn,
       date: String(a.getDate()) + String(a.getMonth()+1) + String(a.getUTCFullYear())
@@ -119,7 +120,7 @@ function handleDB(sender, feuchtIn, tempIn) {
 }
 
 exports.publishDash = function(){
-  db.getTagesHoch();
+  //db.getTagesHoch();
   for (let i = 0; i < main.ClientswsBrowser.length; i++) {
     main.ClientswsBrowser[i].send(
       JSON.stringify({ type: "Temp", value: average })

@@ -23,7 +23,7 @@ MongoClient.connect(uri)
     }
 });
 
-function storeTempVal(valObj) {
+function store(valObj) {
     main.app.locals.collection.insertOne(valObj, function(err, res) {
         if (err) throw err;
         console.log("1 document inserted");
