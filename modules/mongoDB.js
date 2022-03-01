@@ -34,12 +34,11 @@ function store(valObj) {
 }
 exports.store = store;
 
-main.app.get("/tempValues", (req, res) => {
+main.app.get("/db/tempValues", (req, res) => {
     const collection = main.app.locals.collection;
     collection.distinct("temperatur")
         .then(response => res.status(200).json(response))
         .catch(error => console.error(error));
-    res.sendStatus(200);
 });
 
 main.app.get("/db/tageshoch", (req, res) => {
