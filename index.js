@@ -192,30 +192,23 @@ wssLED.on("connection", function connection(ws, req) {
   /**Verbinden der Whitelist D1 mini */
   if (ip === d1) {
     console.log("client 0 verbunden!");
-    map.set('rolladen', true);
     currentClientsws[0] = ws;
   } else if (ip === ledD1) {
-    map.set('ledDart', true);
     console.log("client Dart verbunden!");
     currentClientsws[1] = ws;
   } else if (ip === ledD1Sofa) {
-    map.set('ledSofa', true);
     console.log("client Sofa verbunden!");
     currentClientsws[2] = ws;
   } else if (ip === ledD1UHR) {
-    map.set('ledUhr', true);
     console.log("client Uhr verbunden!");
     currentClientsws[3] = ws;
   } else if (ip === ledD1Schreibtisch) {
     console.log("client Tisch verbunden!");
-    map.set('schreibtisch', true);
     currentClientsws[4] = ws;
   } else if (ip === ledD1EmelySchr) {
     console.log("client Emely verbunden!");
-    map.set('schreibtischEm', true);
     currentClientsws[5] = ws;
   } else if (ip == ESP32UHR){
-    map.set('esp32', true);
     console.log("Uhr Back To Future Verbunden!");
     currentClientsws[6] = ws;
   }
