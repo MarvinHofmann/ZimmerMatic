@@ -50,7 +50,7 @@ MongoClient.connect(uri)
         const ip = req.socket.remoteAddress;
         updateConnection(ip, true);
         console.log(ip);
-        /**Verbinden der Whitelist D1 mini */
+        /**Verbinden der Whitelist D1 mini 
         if (ip === d1) {
           console.log("client 0 verbunden!");
           currentClientsws[0] = ws;
@@ -72,7 +72,7 @@ MongoClient.connect(uri)
         } else if (ip == ESP32UHR) {
           console.log("Uhr Back To Future Verbunden!");
           currentClientsws[6] = ws;
-        }
+        }*/
         //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
         ws.on("message", function incoming(message) {
           console.log("received: %s", message);
