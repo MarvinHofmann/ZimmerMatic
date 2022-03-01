@@ -98,14 +98,13 @@ exports.botSendStatus = function(){
 }
 
 function handleDB(sender, feuchtIn, tempIn) {
-  let a = new Date();
   cntA[sender]++;
   if (cntA[sender] == 2) { // nur jede halbe Stunde ein Value
     let jsonT = {
       sender: sender,
       feuchtigkeit: feuchtIn,
       temperatur: tempIn,
-      date: String(a.getDate()) + String(a.getMonth()+1) + String(a.getUTCFullYear())
+      date: new Date();
     };
     //db.getAll();
     db.store(jsonT, function (err) {

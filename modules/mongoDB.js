@@ -37,6 +37,6 @@ exports.store = store;
 
 main.app.get("/store", (req,res) =>{
     let obj = {sensor: "bett", temp: 22, hum: 46};
-    storeTempVal(obj);
+    store(obj);
     res.sendStatus(200);
 });
