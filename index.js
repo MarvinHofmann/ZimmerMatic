@@ -36,7 +36,9 @@ const DBClient = new MongoClient(uri, {
   useUnifiedTopology: true,
 });
 
-MongoClient.connect(uri)
+async function init() {
+  console.log(mongoClient.isConnected()); // false
+  MongoClient.connect(uri)
   .then(client => {
     try {
       const db = client.db('clients');
@@ -48,7 +50,9 @@ MongoClient.connect(uri)
       console.log(error);
     }
 });
-
+  console.log(mongoClient.isConnected()); // true
+}
+init();
 
 //Logger4JS
 const log4js = require("log4js");
