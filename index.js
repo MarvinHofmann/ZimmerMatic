@@ -43,6 +43,7 @@ MongoClient.connect(uri)
       const collection = db.collection('wsClients');
       app.locals.collection = collection;
       console.log("connection erfolgt");
+      app.emit('ready');
     } catch (error) {
       console.log(error);
     }
@@ -71,11 +72,14 @@ const path = require("path");
 app.use(express.static("public"));
 app.use(express.static("templates"));
 
-app.listen(port, () => {
-  consoleLogTime("Restarting at:");
-  console.log(`App listening at http://ZimmerMatic:${port}`); // Publisher Server auf Port 3443
-  console.log("Die IP Adresse lautet: 192.168.0.138");
-});
+app.on("ready", function() {
+  app.listen(port, () => {
+    consoleLogTime("Restarting at:");
+    console.log(`App listening at http://ZimmerMatic:${port}`); // Publisher Server auf Port 3443
+    console.log("Die IP Adresse lautet: 192.168.0.138");
+  });
+})
+
 
 //Einpflegen der Module
 const telegrambot = require("./modules/telegram.js");
