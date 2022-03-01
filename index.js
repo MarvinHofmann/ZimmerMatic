@@ -44,16 +44,12 @@ MongoClient.connect(uri)
       const collection = db.collection('wsClients');
       app.locals.collection = collection;
       console.log("connection erfolgt");
-      app.emit('ready');
       getClients();
+      app.emit('ready');
     } catch (error) {
       console.log(error);
     }
   });
-
-
-
-
 
 //Logger4JS
 const log4js = require("log4js");
