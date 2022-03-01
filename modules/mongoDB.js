@@ -27,12 +27,11 @@ function storeTempVal(valObj) {
     main.app.locals.collection.insertOne(valObj, function(err, res) {
         if (err) throw err;
         console.log("1 document inserted");
-        db.close();
     });
 
     const collection = main.app.locals.collection;
     collection.find({}).toArray()
-    .then(response => console.log(json(response)));
+    .then(response => console.log(response));
 }
 exports.storeTempVal = storeTempVal;
 
