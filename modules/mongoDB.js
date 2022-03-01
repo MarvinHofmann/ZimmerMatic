@@ -34,7 +34,7 @@ function store(valObj) {
 }
 exports.store = store;
 
-main.app.get("/db/tempValues", (req, res) => {
+main.app.get("/tempValues", (req, res) => {
     const collection = main.app.locals.collection;
     collection.distinct("temperatur")
         .then(response => res.status(200).json(response))
