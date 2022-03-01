@@ -21,6 +21,31 @@ let anzClients = 2;
 const schedule = require("node-schedule");
 const cronParser = require("cron-parser");
 
+const dotenv = require("dotenv");
+dotenv.config();
+
+//mongo
+const mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
+const uri = process.env.DB_URL;
+const DBClient = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+MongoClient.connect(uri)
+  .then(client => {
+    try {
+      const db = client.db('clients');
+      const collection = db.collection('wsClients');
+      app.locals.collection = collection;
+      console.log("connection erfolgt");
+    } catch (error) {
+      console.log(error);
+    }
+});
+
+
 //Logger4JS
 const log4js = require("log4js");
 log4js.configure({
