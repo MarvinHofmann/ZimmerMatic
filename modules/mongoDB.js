@@ -16,7 +16,7 @@ MongoClient.connect(uri)
     try {
       const db = client.db('tempSensor');
       const tempCollection = db.collection('values');
-      app.locals.collection = tempCollection;
+      main.app.locals.collection = tempCollection;
       console.log("connection erfolgt");
     } catch (error) {
       console.log(error);
@@ -24,13 +24,13 @@ MongoClient.connect(uri)
 });
 
 function storeTempVal(valObj) {
-    app.locals.collection.insertOne(valObj, function(err, res) {
+    main.app.locals.collection.insertOne(valObj, function(err, res) {
         if (err) throw err;
         console.log("1 document inserted");
         db.close();
     });
 
-    const collection = app.locals.collection;
+    const collection = main.app.locals.collection;
     collection.find({}).toArray()
     .then(response => console.log(json(response)));
 }
