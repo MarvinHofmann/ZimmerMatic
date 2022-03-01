@@ -36,7 +36,7 @@ function storeTempVal(valObj) {
 }
 exports.storeTempVal = storeTempVal;
 
-main.app.get("/", (req,res) =>{
+main.app.get("/store", (req,res) =>{
     let obj = {sensor: _Bett, temp: 22, hum: 46};
     storeTempVal(obj);
     res.sendStatus(200);
