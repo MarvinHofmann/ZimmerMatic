@@ -186,8 +186,9 @@ app.get("/clients", function (req, res) {
 wssLED.on("connection", function connection(ws, req) {
   console.log("Client connected!");
   //hole IP Adresse
-  const ip = req.socket.remoteAddress;
-  updateConnection(ip, true);
+ 
+    updateConnection(ip, true);
+   
   console.log(ip);
   /**Verbinden der Whitelist D1 mini */
   if (ip === d1) {
@@ -230,7 +231,10 @@ wssLED.on("connection", function connection(ws, req) {
   });
 });
 
-function updateConnection(_ip, _conVal) {
+async function updateConnection(_ip, _conVal) {
+  if (!DBClient.isConnected()) {
+    await DBClient.connect();
+  }
   const collection = app.locals.collection;
   collection.updateOne({ip: _ip}, {$set: {connection: _conVal}}, function(err, res) {
     if (err) throw err;
