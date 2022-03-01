@@ -33,7 +33,7 @@ function store(valObj) {
     collection.find({}).toArray()
     .then(response => console.log(response));
 }
-exports.storeTempVal = storeTempVal;
+exports.store = store;
 
 main.app.get("/store", (req,res) =>{
     let obj = {sensor: "bett", temp: 22, hum: 46};
