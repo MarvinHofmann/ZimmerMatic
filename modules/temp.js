@@ -98,13 +98,6 @@ function getTempAverage() {
   }
   averageHum = ((feucht + feucht2 + feucht3) / 3).toFixed(2);
   average = ((temp + temp2 + temp3) / 3).toFixed(2);
-  db.storeMedian(obj, function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("ferfolgreich geschrieben");
-    }
-  })
   if (average > 24 /*&& main.status === true*/) {
     //tel.sendM("Fahre Rolladen runter Temperatur >24°");
     rol.rolladenDown();
