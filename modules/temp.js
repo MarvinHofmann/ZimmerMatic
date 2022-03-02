@@ -72,12 +72,31 @@ main.app.post("/", function (req, res) {
 
 //schließe Rolladen, wenn wärmer als 24 ° Durchschnitt
 function getTempAverage() {
+    averageHum = ((feucht + feucht2 + feucht3) / 3).toFixed(2);
     average = ((temp + temp2 + temp3) / 3).toFixed(2);
+    let obj = {
+      feuchtigkeit: averageHum,
+      temperatur: average,
+      date:
+      String(a.getDate()) + ":" +
+      String(a.getMonth() + 1) + ":" +
+      String(a.getUTCFullYear()),
+      time: String(a.getHours()) + ":" + String(a.getMinutes()),
+      timestamp: new Date()
+    }
+    db.storeMedian(obj, function (err) {
+      if (err) {
+        console.log(err);
+      }else{
+        console.log("ferfolgreich geschrieben");
+      }
+    })
     if (average > 24 /*&& main.status === true*/) {
       //tel.sendM("Fahre Rolladen runter Temperatur >24°");
       rol.rolladenDown();
      // main.status = false; //setze status
     }
+
 }
 exports.getTempAverage = getTempAverage;
 

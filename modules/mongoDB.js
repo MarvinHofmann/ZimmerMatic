@@ -16,7 +16,9 @@ MongoClient.connect(uri)
         try {
             const db = client.db('sensorV');
             const tempCollection = db.collection('th');
+            const medianTempColl = db.collection('median')
             main.app.locals.collection = tempCollection;
+            main.app.locals.mediancoll = medianTempColl;
             console.log("connection erfolgt");
         } catch (error) {
             console.log(error);
@@ -33,6 +35,18 @@ function store(valObj) {
         .then(response => console.log(response));
 }
 exports.store = store;
+
+function store(valObj) {
+    main.app.locals.mediancoll.insertOne(valObj, function (err, res) {
+        if (err) throw err;
+        console.log("1 document inserted");
+    });
+    const collection = main.app.locals.mediancoll
+    collection.find({}).toArray()
+        .then(response => console.log(response));
+}
+exports.storeMedian = storeMedian;
+
 
 main.app.get("/db/tempValues", (req, res) => {
     const collection = main.app.locals.collection;
