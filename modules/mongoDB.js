@@ -14,8 +14,8 @@ const DBClient = new MongoClient(uri, {
 MongoClient.connect(uri)
     .then(client => {
         try {
-            const db = client.db('tempSensor');
-            const tempCollection = db.collection('values');
+            const db = client.db('sensor');
+            const tempCollection = db.collection('temphum');
             main.app.locals.collection = tempCollection;
             console.log("connection erfolgt");
         } catch (error) {
