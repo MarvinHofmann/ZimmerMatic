@@ -105,7 +105,12 @@ function handleDB(sender, feuchtIn, tempIn) {
       sender: sender,
       feuchtigkeit: feuchtIn,
       temperatur: tempIn,
-      date: new Date(Date.now()).toISOString()
+      date:
+      String(a.getDate()) + ":" +
+      String(a.getMonth() + 1) + ":" +
+      String(a.getUTCFullYear()),
+      time: String(a.getHours) + ":" + String(a.getMinutes),
+      timestamp: new Date()
     };
     //db.getAll();
     db.store(jsonT, function (err) {
