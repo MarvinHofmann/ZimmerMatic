@@ -72,6 +72,7 @@ main.app.post("/", function (req, res) {
 
 //schließe Rolladen, wenn wärmer als 24 ° Durchschnitt
 function getTempAverage() {
+  let a = new Date();
     averageHum = ((feucht + feucht2 + feucht3) / 3).toFixed(2);
     average = ((temp + temp2 + temp3) / 3).toFixed(2);
     let obj = {
