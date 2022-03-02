@@ -105,10 +105,7 @@ function handleDB(sender, feuchtIn, tempIn) {
       sender: sender,
       feuchtigkeit: feuchtIn,
       temperatur: tempIn,
-      date:
-      String(a.getDate()) +
-      String(a.getMonth() + 1) +
-      String(a.getUTCFullYear())
+      date: new Date().toISOString
     };
     //db.getAll();
     db.store(jsonT, function (err) {
@@ -123,7 +120,6 @@ function handleDB(sender, feuchtIn, tempIn) {
 }
 
 exports.publishDash = function(){
-  //db.getTagesHoch();
   for (let i = 0; i < main.ClientswsBrowser.length; i++) {
     main.ClientswsBrowser[i].send(
       JSON.stringify({ type: "Temp", value: average })

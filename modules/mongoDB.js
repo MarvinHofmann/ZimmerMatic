@@ -42,6 +42,12 @@ main.app.get("/db/tempValues", (req, res) => {
 });
 
 main.app.get("/db/tageshoch", (req, res) => {
-    
-    res.sendStatus(200);
+    let a = new Date();
+    let today = new Date().toISOString();
+    console.log("DB Anfrage");
+    const collection = main.app.locals.collection;
+    //Alle werte heute nach tag gesucht absteigend nach temperatur sortiert,nur der erste Wert
+    collection.find({ date: today }).sort({temperatur: -1}).toArray()
+        .then(response => res.status(200).json(response[0].temperatur))
+        .catch(error => console.error(error));
 });

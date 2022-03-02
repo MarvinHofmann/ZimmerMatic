@@ -8,6 +8,7 @@ ws.addEventListener("open", () => {
   getStateHeizung("HZFen_ST")
   getStateHeizung("HZF_AT")
   getStateHeizung("HZFen_AT")
+  getTagesHoch()
 });
 
 ws.addEventListener("message", function (event) {
@@ -117,8 +118,8 @@ async function getStateHeizung(who) {
   document.getElementById(who).innerText = String(antwort);
 }
 
-async function getClient() {
-  let adresse = "http://192.168.0.138:3443/clients";
+async function getTagesHoch() {
+  let adresse = "http://192.168.0.138:3443/db/tageshoch";
   const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
-  document.getElementById(who).innerText = String(antwort);
+  //document.getElementById("medianTemp").innerText = String(antwort);
 }
