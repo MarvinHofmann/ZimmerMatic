@@ -36,7 +36,7 @@ function store(valObj) {
 }
 exports.store = store;
 
-function store(valObj) {
+function storeMedian(valObj) {
     main.app.locals.mediancoll.insertOne(valObj, function (err, res) {
         if (err) throw err;
         console.log("1 document inserted");
