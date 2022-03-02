@@ -37,6 +37,7 @@ function broadcast(feucht, temp, zeit, sender) {
 /********************************Temperatursensoren******************************************* */
 let cntA = [0,0,0];
 main.app.post("/", function (req, res) {
+  console.log("Angekommen: " + req.body.temperatur + " : " + req.body.feuchtigkeit + " S1");
     temp = req.body.temperatur;
     feucht = req.body.feuchtigkeit;
     zeit1 = zeit.berechneZeit();
@@ -47,6 +48,7 @@ main.app.post("/", function (req, res) {
   });
   
   main.app.post("/senderZwei", function (req, res) {
+    console.log("Angekommen: " + req.body.temperatur + " : " + req.body.feuchtigkeit + " S2");
     temp2 = req.body.temperatur;
     feucht2 = req.body.feuchtigkeit;
     zeit2 = zeit.berechneZeit();
@@ -57,6 +59,7 @@ main.app.post("/", function (req, res) {
   });
   
   main.app.post("/senderDrei", function (req, res) {
+    console.log("Angekommen: " + req.body.temperatur + " : " + req.body.feuchtigkeit + " S3");
     temp3 = req.body.temperatur;
     feucht3 = req.body.feuchtigkeit;
     zeit3 = zeit.berechneZeit();
