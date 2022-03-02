@@ -112,7 +112,7 @@ function handleDB(sender, feuchtIn, tempIn) {
       String(a.getDate()) + ":" +
       String(a.getMonth() + 1) + ":" +
       String(a.getUTCFullYear()),
-      time: String(a.getHours) + ":" + String(a.getMinutes),
+      time: String(a.getHours()) + ":" + String(a.getMinutes()),
       timestamp: new Date()
     };
     //db.getAll();
