@@ -72,7 +72,7 @@ main.app.get('/db/temp/medium', (req, res) => {
 main.app.get('/db/temp/sender1', (req, res) => {
     console.log("DB Anfrage");
     const collection = main.app.locals.collection;
-    collection.find({sender: 0}).toArray()
+    collection.find({sender: 0, date: "3:3:2022"}).toArray()
         .then(response => res.status(200).json(response))
         .catch(error => console.error(error));
 });
@@ -80,7 +80,7 @@ main.app.get('/db/temp/sender1', (req, res) => {
 main.app.get('/db/temp/sender2', (req, res) => {
     console.log("DB Anfrage");
     const collection = main.app.locals.collection;
-    collection.find({sender: 1}).toArray()
+    collection.find({sender: 1, date: "3:3:2022"}).toArray()
         .then(response => res.status(200).json(response))
         .catch(error => console.error(error));
 });
