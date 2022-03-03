@@ -73,7 +73,8 @@ main.app.post("/senderDrei", function (req, res) {
 
 //schließe Rolladen, wenn wärmer als 24 ° Durchschnitt
 function getTempAverage() {
-  if (cntAverage == 6) {
+  cntAverage ++;
+  if (cntAverage == 3) {
     cntAverage = 0;
     let a = new Date();
     averageHum = ((feucht + feucht2 + feucht3) / 3).toFixed(2);
