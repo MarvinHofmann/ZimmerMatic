@@ -1,7 +1,7 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 #outsideContainer {
@@ -10,23 +10,23 @@
   align-content: center;
   align-items: center;
 }
-#checkBox{
+#checkBox {
   margin-top: 2%;
   display: grid;
   justify-content: center;
   align-content: center;
-  align-items: center;  
+  align-items: center;
   padding-top: 2%;
   padding-bottom: 2%;
 }
-#picker{
+#picker {
   margin-bottom: 20px;
 }
-.btn.btn-outline-primary{
+.btn.btn-outline-primary {
   width: 90px;
   height: 90px;
 }
-.row{
+.row {
   display: grid;
   grid-template-columns: 90px 90px 90px;
   grid-row: auto auto;

@@ -12,7 +12,7 @@ ws.addEventListener("open", () => {
 });
 
 ws.addEventListener("message", function (event) {
-  
+
   const data = JSON.parse(event.data);
   //console.log(data);
   switch (data.type) {
@@ -106,21 +106,21 @@ function rolladenAktion(richtung) {
 }
 
 async function getStateFenster(who) {
-  let adresse = "http://192.168.0.138:8080/rest/items/" + who +"_State/state";
-  const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
+  let adresse = "http://192.168.0.138:8080/rest/items/" + who + "_State/state";
+  const antwort = await fetch(adresse, { method: 'GET' }).then(response => response.text());
   console.log(antwort);
   document.getElementById(who).innerText = antwort;
 }
 
 async function getStateHeizung(who) {
   let adresse = "http://192.168.0.138:8080/rest/items/" + who + "/state";
-  const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
+  const antwort = await fetch(adresse, { method: 'GET' }).then(response => response.text());
   document.getElementById(who).innerText = String(antwort);
 }
 
 async function getTagesHoch() {
   let adresse = "http://zimmermatic:3443/db/tageshoch";
-  const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
+  const antwort = await fetch(adresse, { method: 'GET' }).then(response => response.text());
   document.getElementById("high").innerText = String(antwort);
 }
 
@@ -128,40 +128,40 @@ async function setupMedium() {
   const ctx = document.getElementById("Durchschnitt").getContext("2d");
   const dataTemps = await getData("medium");
   const myChart = new Chart(ctx, {
-      type: "line",
-      data: {
-          labels: dataTemps.times,
-          datasets: [
-              {
-                  label: "Temperatur in °C",
-                  data: dataTemps.temps,
-                  fill: false,
-                  borderColor: "rgba(255, 99, 132, 1)",
-                  backgroundColor: "rgba(255, 99, 132, 0.5)",
-                  borderWidth: 1,
-              },
-              {
-                  label: "feuchtigkeit in %",
-                  data: dataTemps.humid,
-                  fill: false,
-                  borderColor: "rgba(10, 10, 255, 1)",
-                  backgroundColor: "rgba(10, 10, 255, 0.5)",
-                  borderWidth: 1,
-              },
+    type: "line",
+    data: {
+      labels: dataTemps.times,
+      datasets: [
+        {
+          label: "Temperatur in °C",
+          data: dataTemps.temps,
+          fill: false,
+          borderColor: "rgba(255, 99, 132, 1)",
+          backgroundColor: "rgba(255, 99, 132, 0.5)",
+          borderWidth: 1,
+        },
+        {
+          label: "feuchtigkeit in %",
+          data: dataTemps.humid,
+          fill: false,
+          borderColor: "rgba(10, 10, 255, 1)",
+          backgroundColor: "rgba(10, 10, 255, 0.5)",
+          borderWidth: 1,
+        },
 
-          ],
-      },
-      options: {
-          scales: {
-              yAxes: [
-                  {
-                      ticks: {
-                          beginAtZero: true,
-                      },
-                  },
-              ],
+      ],
+    },
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
           },
+        ],
       },
+    },
   });
 }
 window.addEventListener("load", setupMedium);
@@ -169,7 +169,7 @@ window.addEventListener("load", setupMedium);
 async function getData(sender) {
   // const response = await fetch('testdata.csv');
   const response = await fetch("http://zimmermatic:3443/db/temp/" + sender, {
-      method: "GET",
+    method: "GET",
   });
   const data = await response.json();
 
@@ -180,9 +180,9 @@ async function getData(sender) {
   const hum2 = [];
   const times2 = [];
   for (let i = 0; i < data.length; i++) {
-          temps.push(data[i].temperatur);
-          humid.push(data[i].feuchtigkeit);
-          times.push(data[i].time);
+    temps.push(data[i].temperatur);
+    humid.push(data[i].feuchtigkeit);
+    times.push(data[i].time);
   }
   return { temps, times, humid, tempS2, hum2 };
 }

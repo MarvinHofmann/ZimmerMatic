@@ -9,76 +9,76 @@ let BateltischSwitch = false;
 function helligkeit(value) {
     if (alleSwitch) {
         sendFetchAll("Helligkeit", value);
-    }if(BLSwitch){
+    } if (BLSwitch) {
         sendFetch("BL", "Helligkeit", value);
-    }if(BRSwitch){
+    } if (BRSwitch) {
         sendFetch("BR", "Helligkeit", value);
-    }if (BateltischSwitch) {
+    } if (BateltischSwitch) {
         sendFetch("BT", "Helligkeit", value);
     }
     console.log(value);
 }
 
-function farbtemperatur(value){
+function farbtemperatur(value) {
     if (alleSwitch) {
         sendFetchAll("Farbtemperatur", value);
-    }if(BLSwitch){
+    } if (BLSwitch) {
         sendFetch("BL", "Farbtemperatur", value);
-    }if(BRSwitch){
+    } if (BRSwitch) {
         sendFetch("BR", "Farbtemperatur", value);
-    }if (BateltischSwitch) {
+    } if (BateltischSwitch) {
         sendFetch("BT", "Farbtempertaur", value);
     }
     console.log(value);
 }
 
-function setStatusBL(value){
+function setStatusBL(value) {
     BLSwitch = value;
     document.getElementById("Alle").checked = false;
     alleSwitch = false;
     console.log(value);
 }
 
-function setStatusBR(value){
+function setStatusBR(value) {
     BRSwitch = value
     document.getElementById("Alle").checked = false;
     alleSwitch = false;
     console.log(value);
 }
-function setBastel(value){
+function setBastel(value) {
     BateltischSwitch = value
     document.getElementById("Alle").checked = false;
     alleSwitch = false;
     console.log(value);
 }
 
-function setAll(value){
+function setAll(value) {
     alleSwitch = value;
     document.getElementById("BL").checked = false;
     document.getElementById("BR").checked = false;
     document.getElementById("BT").checked = false;
-     BLSwitch = false;
-     BRSwitch = false;
-     let BateltischSwitch = false;
+    BLSwitch = false;
+    BRSwitch = false;
+    let BateltischSwitch = false;
     console.log(value);
 }
 
-function sendFetch(lampe, modus, wert){
+function sendFetch(lampe, modus, wert) {
     fetch('http://zimmermatic:3443/Lampen', {
-      method: 'POST',
-      headers: {
-      'Content-Type': 'application/JSON',
-      },
-      body: JSON.stringify({Lampe: lampe, Modus: modus, Wert: wert})
-  });
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/JSON',
+        },
+        body: JSON.stringify({ Lampe: lampe, Modus: modus, Wert: wert })
+    });
 }
 
-function sendFetchAll(modus, wert){
+function sendFetchAll(modus, wert) {
     fetch('http://zimmermatic:3443/LampenAll', {
-      method: 'POST',
-      headers: {
-      'Content-Type': 'application/JSON',
-      },
-      body: JSON.stringify({Modus: modus, Wert: wert})
-  });
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/JSON',
+        },
+        body: JSON.stringify({ Modus: modus, Wert: wert })
+    });
 }

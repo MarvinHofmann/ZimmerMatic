@@ -44,52 +44,51 @@ ws.addEventListener("message", function (event) {
 });
 
 function send() {
-    console.log("sende");
-    console.log(document.getElementById("inputTime").value);
-    
-    fetch("http://zimmermatic:3443/create", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        time: document.getElementById("inputTime").value,
-        richtung: getRichtung(),
-        einmalig: getEinmalig(),
-      }),
-    });
-  }
-  
-  function getRichtung(){
-    if (document.getElementById("Hoch").checked) {
-      return "99"
-    }else if (document.getElementById("Runter").checked) {
-      return "101"
-    }
-  }
+  console.log("sende");
+  console.log(document.getElementById("inputTime").value);
 
-  function getEinmalig(){
-    if (document.getElementById("Einmalig").checked) {
-      return 1;
-    }else{
-      return 0;
-    }
+  fetch("http://zimmermatic:3443/create", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      time: document.getElementById("inputTime").value,
+      richtung: getRichtung(),
+      einmalig: getEinmalig(),
+    }),
+  });
+}
+
+function getRichtung() {
+  if (document.getElementById("Hoch").checked) {
+    return "99"
+  } else if (document.getElementById("Runter").checked) {
+    return "101"
   }
-  
-  function sendDelete() {
-    console.log("sende Löschen");
-    console.log(document.getElementById("inputIndexDelete").value);
-    fetch("/deleteR", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        num: (document.getElementById("inputIndexDelete").value) - 1,
-      }),
-    });
+}
+
+function getEinmalig() {
+  if (document.getElementById("Einmalig").checked) {
+    return 1;
+  } else {
+    return 0;
   }
-  
-  
+}
+
+function sendDelete() {
+  console.log("sende Löschen");
+  console.log(document.getElementById("inputIndexDelete").value);
+  fetch("/deleteR", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      num: (document.getElementById("inputIndexDelete").value) - 1,
+    }),
+  });
+}
+

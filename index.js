@@ -47,9 +47,9 @@ app.use(express.static("public"));
 app.use(express.static("templates"));
 
 app.listen(port, () => {
-    consoleLogTime("Restarting at:");
-    console.log(`App listening at http://ZimmerMatic:${port}`); // Publisher Server auf Port 3443
-    console.log("Die IP Adresse lautet: 192.168.0.138");
+  consoleLogTime("Restarting at:");
+  console.log(`App listening at http://ZimmerMatic:${port}`); // Publisher Server auf Port 3443
+  console.log("Die IP Adresse lautet: 192.168.0.138");
 });
 
 //Einpflegen der Module
@@ -146,46 +146,46 @@ app.get("/EmergencyOne", function (req, res) {
 });
 
 /***************************************** */
-  //Websocket handling für alle whitelist Clients
-  wssLED.on("connection", function connection(ws, req) {
-    console.log("Client connected!");
-    //hole IP Adresse
-    const ip = req.socket.remoteAddress;
-    //updateConnection(ip, true);
-    console.log(ip);
-    /**Verbinden der Whitelist D1 mini */
-    if (ip === d1) {
-      console.log("client 0 verbunden!");
-      currentClientsws[0] = ws;
-    } else if (ip === ledD1) {
-      console.log("client Dart verbunden!");
-      currentClientsws[1] = ws;
-    } else if (ip === ledD1Sofa) {
-      console.log("client Sofa verbunden!");
-      currentClientsws[2] = ws;
-    } else if (ip === ledD1UHR) {
-      console.log("client Uhr verbunden!");
-      currentClientsws[3] = ws;
-    } else if (ip === ledD1Schreibtisch) {
-      console.log("client Tisch verbunden!");
-      currentClientsws[4] = ws;
-    } else if (ip === ledD1EmelySchr) {
-      console.log("client Emely verbunden!");
-      currentClientsws[5] = ws;
-    } else if (ip == ESP32UHR) {
-      console.log("Uhr Back To Future Verbunden!");
-      currentClientsws[6] = ws;
-    }
-    //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
-    ws.on("message", function incoming(message) {
-      console.log("received: %s", message);
-      //Einzige message die ankommen kann ist der Abstand vom Fenster
-      rS.handleAbstand(message);
-    });
-    ws.on("close", (data) => {
-      console.log("Client has disconnceted");
-    });
+//Websocket handling für alle whitelist Clients
+wssLED.on("connection", function connection(ws, req) {
+  console.log("Client connected!");
+  //hole IP Adresse
+  const ip = req.socket.remoteAddress;
+  //updateConnection(ip, true);
+  console.log(ip);
+  /**Verbinden der Whitelist D1 mini */
+  if (ip === d1) {
+    console.log("client 0 verbunden!");
+    currentClientsws[0] = ws;
+  } else if (ip === ledD1) {
+    console.log("client Dart verbunden!");
+    currentClientsws[1] = ws;
+  } else if (ip === ledD1Sofa) {
+    console.log("client Sofa verbunden!");
+    currentClientsws[2] = ws;
+  } else if (ip === ledD1UHR) {
+    console.log("client Uhr verbunden!");
+    currentClientsws[3] = ws;
+  } else if (ip === ledD1Schreibtisch) {
+    console.log("client Tisch verbunden!");
+    currentClientsws[4] = ws;
+  } else if (ip === ledD1EmelySchr) {
+    console.log("client Emely verbunden!");
+    currentClientsws[5] = ws;
+  } else if (ip == ESP32UHR) {
+    console.log("Uhr Back To Future Verbunden!");
+    currentClientsws[6] = ws;
+  }
+  //Sendet dem D1 mini als besonderen Client die Anweisungen hoch runter stop
+  ws.on("message", function incoming(message) {
+    console.log("received: %s", message);
+    //Einzige message die ankommen kann ist der Abstand vom Fenster
+    rS.handleAbstand(message);
   });
+  ws.on("close", (data) => {
+    console.log("Client has disconnceted");
+  });
+});
 
 wssLED.on("close", function close(ws, req) {
   console.log("Client disconnected on dis")

@@ -1,125 +1,124 @@
 .progress {
-    width: 150px;
-    height: 150px;
-    background: none;
-    position: relative;
-  }
-  
-  .progress::after {
-    content: "";
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 6px solid #eee;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  
-  .progress>span {
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    z-index: 1;
-  }
-  
-  .progress .progress-left {
-    left: 0;
-  }
-  
-  .progress .progress-bar {
-    width: 100%;
-    height: 100%;
-    background: none;
-    border-width: 6px;
-    border-style: solid;
-    position: absolute;
-    top: 0;
-  }
-  
-  .progress .progress-left .progress-bar {
-    left: 100%;
-    border-top-right-radius: 80px;
-    border-bottom-right-radius: 80px;
-    border-left: 0;
-    -webkit-transform-origin: center left;
-    transform-origin: center left;
-  }
-  
-  .progress .progress-right {
-    right: 0;
-  }
-  
-  .progress .progress-right .progress-bar {
-    left: -100%;
-    border-top-left-radius: 80px;
-    border-bottom-left-radius: 80px;
-    border-right: 0;
-    -webkit-transform-origin: center right;
-    transform-origin: center right;
-  }
-  
-  .progress .progress-value {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  
-  /*
+  width: 150px;
+  height: 150px;
+  background: none;
+  position: relative;
+}
+
+.progress::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 6px solid #eee;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress > span {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.progress .progress-left {
+  left: 0;
+}
+
+.progress .progress-bar {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border-width: 6px;
+  border-style: solid;
+  position: absolute;
+  top: 0;
+}
+
+.progress .progress-left .progress-bar {
+  left: 100%;
+  border-top-right-radius: 80px;
+  border-bottom-right-radius: 80px;
+  border-left: 0;
+  -webkit-transform-origin: center left;
+  transform-origin: center left;
+}
+
+.progress .progress-right {
+  right: 0;
+}
+
+.progress .progress-right .progress-bar {
+  left: -100%;
+  border-top-left-radius: 80px;
+  border-bottom-left-radius: 80px;
+  border-right: 0;
+  -webkit-transform-origin: center right;
+  transform-origin: center right;
+}
+
+.progress .progress-value {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/*
   *
   * ==========================================
   * FOR DEMO PURPOSE
   * ==========================================
   *
   */
-  
-  body {
-    min-height: 100vh;
-  }
-  
-  .rounded-lg {
-    border-radius: 1rem;
-  }
-  
-  .text-gray {
-    color: #aaa;
-  }
-  
-  div.h4 {
-    line-height: 1rem;
-  }
-  
-  #label1{
-    font-size: 18px;
-    color: white;
-  }
 
-  #aktuelleRoutine{
-    font-size: 17px;
-    color: white;
-  }
+body {
+  min-height: 100vh;
+}
 
-  .MYdi{
-    font-size: large;
-    color: white;
-  }
+.rounded-lg {
+  border-radius: 1rem;
+}
 
-  #Routinen{
-     margin-left: 10px;
-    margin-right: 15px;
-  }
+.text-gray {
+  color: #aaa;
+}
 
+div.h4 {
+  line-height: 1rem;
+}
 
-  .row{
-    margin-top: 1%;
-    margin-left: 1%;
-    margin-right: 1%;
-    margin-bottom: 1%;
-  }
-    
-  #placeholder{
-      margin-top: 10px;
-      margin-bottom: 10px;
-  }
+#label1 {
+  font-size: 18px;
+  color: white;
+}
+
+#aktuelleRoutine {
+  font-size: 17px;
+  color: white;
+}
+
+.MYdi {
+  font-size: large;
+  color: white;
+}
+
+#Routinen {
+  margin-left: 10px;
+  margin-right: 15px;
+}
+
+.row {
+  margin-top: 1%;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-bottom: 1%;
+}
+
+#placeholder {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

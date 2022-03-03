@@ -1,73 +1,73 @@
-:root{
-    --purple: #353535;
+:root {
+  --purple: #353535;
 }
-#headline{
-    text-align: center;
+#headline {
+  text-align: center;
 }
-body{
-    background-color: rgb(243, 243, 243);
-    margin: 0;
-    padding: 0;
-    color: var(--purple);
-    font-family: sans-serif;
+body {
+  background-color: rgb(243, 243, 243);
+  margin: 0;
+  padding: 0;
+  color: var(--purple);
+  font-family: sans-serif;
 }
-*{
-    box-sizing: border-box;
-}
-
-h1{
-    font-size: 54px;
-    text-transform: uppercase;
+* {
+  box-sizing: border-box;
 }
 
-.container{
-    padding: 40px;
-    /*height: 100vh;*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+h1 {
+  font-size: 54px;
+  text-transform: uppercase;
 }
 
-#gameboard{
-    width: 450px;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 40px;
+.container {
+  padding: 40px;
+  /*height: 100vh;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.box{
-    height: 150px;
-    width: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--purple);
-    font-size: 150px;
-    
+#gameboard {
+  width: 450px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
 }
-button{
-    padding: 10px 20px;
-    border-radius: 10px;
-    background-color: var(--purple);
-    color: rgb(255, 255, 255);
-    border-color: var(--purple);
-    font-size: 18px;
-    transition: 200ms transdorm;
+
+.box {
+  height: 150px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--purple);
+  font-size: 150px;
 }
-button:hover{
-    cursor: pointer;
-    transform: translateY(-2px);
-}#Wilkommen{
-    text-align: center;
+button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: var(--purple);
+  color: rgb(255, 255, 255);
+  border-color: var(--purple);
+  font-size: 18px;
+  transition: 200ms transdorm;
 }
-#btnUmgebung{
-    text-align: center;
+button:hover {
+  cursor: pointer;
+  transform: translateY(-2px);
 }
-#btnEas{
-    margin-top: 6px;
-    text-align: center;
+#Wilkommen {
+  text-align: center;
 }
-#homeBtn{
-    align-items: right;
+#btnUmgebung {
+  text-align: center;
+}
+#btnEas {
+  margin-top: 6px;
+  text-align: center;
+}
+#homeBtn {
+  align-items: right;
 }

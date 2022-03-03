@@ -28,7 +28,7 @@ function btnfunction(number) {
       ws.send("getAbstand");
       break;
     case 3:
-        ws.send("runter"); 
+      ws.send("runter");
       break;
 
     default:

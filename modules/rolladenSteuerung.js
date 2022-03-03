@@ -14,7 +14,7 @@ main.app.post('/fensterZu', function (request, response) {
     } catch (error) {
       console.log(error);
     }
-    syncDelay(1500);    
+    syncDelay(1500);
     for (let i = 1; i < main.currentClientsws.length; i++) {
       try {
         main.currentClientsws[i].send("0,0,0,0");
@@ -25,8 +25,8 @@ main.app.post('/fensterZu', function (request, response) {
     syncDelay(3000);
     //status = true;
     lampen.fetchLampe("BL", "Helligkeit", 0);
-    lampen.fetchLampe("BR", "Helligkeit", 0); 
-    lampen.fetchLampe("BT", "Helligkeit", 0); 
+    lampen.fetchLampe("BR", "Helligkeit", 0);
+    lampen.fetchLampe("BT", "Helligkeit", 0);
     homematic.heizungOff();
   }
   response.sendStatus(200);
@@ -41,7 +41,7 @@ function rolladenUP() {
   } catch (error) {
     console.log("not available");
   }
-  
+
 }
 exports.rolladenUP = rolladenUP;
 function rolladenStop() {
@@ -75,20 +75,20 @@ function handleAbstand(abstand) {
 }
 exports.handleAbstand = handleAbstand;
 
-function syncDelay(milliseconds){
+function syncDelay(milliseconds) {
   let start = new Date().getTime();
-  let end=0;
-  while( (end-start) < milliseconds){
-      end = new Date().getTime();
+  let end = 0;
+  while ((end - start) < milliseconds) {
+    end = new Date().getTime();
   }
- }
+}
 
-main.app.get('/rolladenUp' ,function(req, res){
+main.app.get('/rolladenUp', function (req, res) {
   rolladenUP();
   res.sendStatus(200);
 });
 
-main.app.get('/rolladenDown' ,function(req, res){
+main.app.get('/rolladenDown', function (req, res) {
   rolladenDown();
   res.sendStatus(200);
 });

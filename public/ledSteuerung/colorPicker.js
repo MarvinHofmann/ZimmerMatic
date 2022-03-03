@@ -117,29 +117,29 @@ function setAll(value) {
 function btnfunction(num) {
   switch (num) {
     case 1:
-      sendFetchAll(0,0,0,0);
+      sendFetchAll(0, 0, 0, 0);
       break;
     case 2:
-      sendFetch(0,255,255,60,2);
-      sendFetch(252,79,255,80,1);
-      sendFetch(252,79,255,80,5);
-      sendFetch(0,255,255,80,3);
-      sendFetch(0,255,255,80,4);
+      sendFetch(0, 255, 255, 60, 2);
+      sendFetch(252, 79, 255, 80, 1);
+      sendFetch(252, 79, 255, 80, 5);
+      sendFetch(0, 255, 255, 80, 3);
+      sendFetch(0, 255, 255, 80, 4);
       break;
     case 3:
       sendFetch(255, 255, 255, 100, 4);
       sendFetch(255, 255, 255, 100, 1);
       sendFetch(255, 255, 255, 100, 5);
-      sendFetch(0,255,255,80,3);
+      sendFetch(0, 255, 255, 80, 3);
       break;
     case 4:
-      sendFetchAll(0,255,255,100);
+      sendFetchAll(0, 255, 255, 100);
       break;
     case 5:
-      sendFetchAll(0,255,255,100);
+      sendFetchAll(0, 255, 255, 100);
       break;
     case 6:
-      
+
       break;
     default:
       break;

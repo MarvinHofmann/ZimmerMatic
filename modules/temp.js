@@ -72,7 +72,7 @@ main.app.post("/senderDrei", function (req, res) {
 let cntAverage = 0;
 //schließe Rolladen, wenn wärmer als 24 ° Durchschnitt
 function getTempAverage() {
-  cntAverage ++;
+  cntAverage++;
   if (cntAverage == 3) {
     cntAverage = 0;
     averageHum = ((feucht + feucht2 + feucht3) / 3).toFixed(2);
@@ -82,7 +82,7 @@ function getTempAverage() {
       temperatur: average,
       date: zeit.getDBFormat(),
       time: zeit.getDBFormatTime(),
-      timestamp: new Date().toLocaleString("de-DE", {timeZone: "Europe/Berlin"})
+      timestamp: new Date().toLocaleString("de-DE", { timeZone: "Europe/Berlin" })
     }
     db.storeMedian(obj, function (err) {
       if (err) {
@@ -132,7 +132,7 @@ function handleDB(sender, feuchtIn, tempIn) {
       temperatur: tempIn,
       date: zeit.getDBFormat(),
       time: zeit.getDBFormatTime(),
-      timestamp: new Date().toLocaleString("de-DE", {timeZone: "Europe/Berlin"})
+      timestamp: new Date().toLocaleString("de-DE", { timeZone: "Europe/Berlin" })
     };
     //db.getAll();
     db.store(jsonT, function (err) {

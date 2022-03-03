@@ -1,6 +1,6 @@
 //Variablen Deklaration
 const boxes = Array.from(document.getElementsByClassName('box')); //Array bestehend aus den angelegten Boxen
-const playText = document.getElementById('playText'); 
+const playText = document.getElementById('playText');
 const restartBtn = document.getElementById('restartBtn');
 const array = [];
 const O_TEXT = "O";
@@ -37,12 +37,12 @@ const boxClicked = (e) => {
             currentPlayer = '';
             return;
         }
-     
-        if(currentPlayer == O_TEXT){
+
+        if (currentPlayer == O_TEXT) {
             currentPlayer = X_TEXT;
         }
-        else if(currentPlayer == X_TEXT){
-            currentPlayer=O_TEXT;
+        else if (currentPlayer == X_TEXT) {
+            currentPlayer = O_TEXT;
         }
     }
 };
@@ -81,7 +81,7 @@ const playerHasWon = () => {
             console.log(`${currentPlayer} gewinnt untere Reihe`)
             return true;
         }
-        if(array[2]==currentPlayer && array[6] == currentPlayer){
+        if (array[2] == currentPlayer && array[6] == currentPlayer) {
             return true;
         }
     }
@@ -103,10 +103,10 @@ restartBtn.addEventListener('click', restart);
 restart();
 drawBoard();
 
-function jumpHome(){
+function jumpHome() {
     console.log("Clicked");
     window.location = "../index.html";
 }
 
-homeBtn.addEventListener('click',jumpHome);
+homeBtn.addEventListener('click', jumpHome);
 

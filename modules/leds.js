@@ -26,7 +26,7 @@ main.app.post("/D1LedsAll", function (req, res) {
     try {
       main.currentClientsws[i].send(`${r},${g},${b},${v}`);
     } catch (error) {
-        console.log("Client nicht Verfügbar");
+      console.log("Client nicht Verfügbar");
     }
   }
   res.sendStatus(200);

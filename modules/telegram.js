@@ -36,6 +36,6 @@ bot.on("message", (msg) => {
   }
 });
 
-exports.sendM = function(s){
-    bot.sendMessage(chatId, s);
+exports.sendM = function (s) {
+  bot.sendMessage(chatId, s);
 }
