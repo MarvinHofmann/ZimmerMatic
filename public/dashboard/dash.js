@@ -121,7 +121,7 @@ async function getStateHeizung(who) {
 async function getTagesHoch() {
   let adresse = "http://zimmermatic:3443/db/tageshoch";
   const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
-  document.getElementById("medianTemp").innerText = String(antwort);
+  document.getElementById("high").innerText = String(antwort);
 }
 
 async function setupMedium() {
