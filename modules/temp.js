@@ -83,7 +83,7 @@ function getTempAverage() {
       temperatur: average,
       date: zeit.getDBFormat(),
       time: zeit.getDBFormatTime(),
-      timestamp: new Date().toLocaleString("de-DE", {timeZone: "Europe/Berlin"}
+      timestamp: new Date().toLocaleString("de-DE", {timeZone: "Europe/Berlin"})
     }
     db.storeMedian(obj, function (err) {
       if (err) {
