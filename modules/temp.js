@@ -76,18 +76,14 @@ function getTempAverage() {
   cntAverage ++;
   if (cntAverage == 3) {
     cntAverage = 0;
-    let a = new Date();
     averageHum = ((feucht + feucht2 + feucht3) / 3).toFixed(2);
     average = ((temp + temp2 + temp3) / 3).toFixed(2);
     let obj = {
       feuchtigkeit: averageHum,
       temperatur: average,
-      date:
-        String(a.getDate()) + ":" +
-        String(a.getMonth() + 1) + ":" +
-        String(a.getUTCFullYear()),
-      time: String(a.getHours()) + ":" + String(a.getMinutes()),
-      timestamp: new Date()
+      date: zeit.getDBFormat(),
+      time: zeit.getDBFormatTime(),
+      timestamp: new Date().toLocaleString("de-DE", {timeZone: "Europe/Berlin"}
     }
     db.storeMedian(obj, function (err) {
       if (err) {
@@ -135,12 +131,9 @@ function handleDB(sender, feuchtIn, tempIn) {
       sender: sender,
       feuchtigkeit: feuchtIn,
       temperatur: tempIn,
-      date:
-        String(a.getDate()) + ":" +
-        String(a.getMonth() + 1) + ":" +
-        String(a.getUTCFullYear()),
-      time: String(a.getHours()) + ":" + String(a.getMinutes()),
-      timestamp: new Date()
+      date: zeit.getDBFormat(),
+      time: zeit.getDBFormatTime(),
+      timestamp: new Date().toLocaleString("de-DE", {timeZone: "Europe/Berlin"})
     };
     //db.getAll();
     db.store(jsonT, function (err) {

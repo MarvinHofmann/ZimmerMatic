@@ -79,4 +79,22 @@ let millisekunde = start.getMilliseconds();
     return dateF;
   }
   exports.getTag = getTag;
+
+  function getDBFormat(){
+    a = new Date();
+    //return bsp.: 13:2:2022
+    return String(a.getDate()) + ":" + String(a.getMonth() + 1) + ":" + String(a.getUTCFullYear());
+  }
+  exports.getDBFormat = getDBFormat;
   
+
+  function getDBFormatTime(){
+    a = new Date();
+    if (a.getMinutes() < 10) {
+      //return bsp.: 17:02 
+      return String(a.getHours()) + ":0" + String(a.getMinutes())
+    }else{
+      return String(a.getHours()) + ":" + String(a.getMinutes())
+    }
+  }
+  exports.getDBFormatTime = getDBFormatTime;
