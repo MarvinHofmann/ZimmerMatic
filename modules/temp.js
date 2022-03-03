@@ -14,8 +14,7 @@ let temp,
   zeit1,
   zeit2,
   zeit3,
-  average,
-  cntAverage;
+  average;
 exports.temp = temp;
 exports.average = average;
 function broadcast(feucht, temp, zeit, sender) {
@@ -70,9 +69,10 @@ main.app.post("/senderDrei", function (req, res) {
   res.sendStatus(200);
 });
 
-
+let cntAverage = 0;
 //schließe Rolladen, wenn wärmer als 24 ° Durchschnitt
 function getTempAverage() {
+  console.log("werte: " + cntAverage);
   cntAverage ++;
   if (cntAverage == 3) {
     cntAverage = 0;
