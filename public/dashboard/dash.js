@@ -119,7 +119,7 @@ async function getStateHeizung(who) {
 }
 
 async function getTagesHoch() {
-  let adresse = "http://192.168.0.138:3443/db/tageshoch";
+  let adresse = "http://zimmermatic:3443/db/tageshoch";
   const antwort = await fetch(adresse, {method: 'GET'}).then(response => response.text());
   document.getElementById("medianTemp").innerText = String(antwort);
 }
@@ -168,7 +168,7 @@ window.addEventListener("load", setupMedium);
 
 async function getData(sender) {
   // const response = await fetch('testdata.csv');
-  const response = await fetch("http://192168.0.138:3443/db/temp/" + sender, {
+  const response = await fetch("http://zimmermatic:3443/db/temp/" + sender, {
       method: "GET",
   });
   const data = await response.json();

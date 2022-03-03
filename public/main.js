@@ -238,7 +238,7 @@ async function setupSender3() {
 
 async function getData(sender) {
     // const response = await fetch('testdata.csv');
-    const response = await fetch("http://192168.0.138:3443/db/temp/" + sender, {
+    const response = await fetch("http://zimmermatic:3443/db/temp/" + sender, {
         method: "GET",
     });
     const data = await response.json();
