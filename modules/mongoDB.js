@@ -19,7 +19,7 @@ MongoClient.connect(uri)
             const medianTempColl = db.collection('median')
             main.app.locals.collection = tempCollection;
             main.app.locals.mediancoll = medianTempColl;
-            console.log("connection erfolgt");
+            console.log("DB Connection erfolgt");
         } catch (error) {
             console.log(error);
         }
@@ -28,7 +28,6 @@ MongoClient.connect(uri)
 function store(valObj) {
     main.app.locals.collection.insertOne(valObj, function (err, res) {
         if (err) throw err;
-        console.log("1 document inserted");
     });
 }
 exports.store = store;
@@ -36,7 +35,6 @@ exports.store = store;
 function storeMedian(valObj) {
     main.app.locals.mediancoll.insertOne(valObj, function (err, res) {
         if (err) throw err;
-        console.log("1 document inserted");
     });
 }
 exports.storeMedian = storeMedian;
@@ -51,7 +49,6 @@ main.app.get("/db/tempValues", (req, res) => {
 
 main.app.get("/db/tageshoch", (req, res) => {
     let today = time.getDBFormat();
-    console.log("DB Anfrage");
     const collection = main.app.locals.collection;
     //Alle werte heute nach tag gesucht absteigend nach temperatur sortiert,nur der erste Wert
     collection.find({ date: today }).sort({temperatur: -1}).toArray()
@@ -62,7 +59,6 @@ main.app.get("/db/tageshoch", (req, res) => {
 
 /*****************GRAFIKEN ABFRAGEN********************** */
 main.app.get('/db/temp/medium', (req, res) => {
-    console.log("DB Anfrage");
     const collection = main.app.locals.mediancoll;
     collection.find({date: "3:3:2022"}).toArray()
         .then(response => res.status(200).json(response))
@@ -70,7 +66,6 @@ main.app.get('/db/temp/medium', (req, res) => {
 });
 
 main.app.get('/db/temp/sender1', (req, res) => {
-    console.log("DB Anfrage");
     const collection = main.app.locals.collection;
     collection.find({sender: 0, date: "3:3:2022"}).toArray()
         .then(response => res.status(200).json(response))
@@ -78,7 +73,6 @@ main.app.get('/db/temp/sender1', (req, res) => {
 });
 
 main.app.get('/db/temp/sender2', (req, res) => {
-    console.log("DB Anfrage");
     const collection = main.app.locals.collection;
     collection.find({sender: 1, date: "3:3:2022"}).toArray()
         .then(response => res.status(200).json(response))
@@ -86,7 +80,6 @@ main.app.get('/db/temp/sender2', (req, res) => {
 });
 
 main.app.get('/db/temp/sender3', (req, res) => {
-    console.log("DB Anfrage");
     const collection = main.app.locals.collection;
     collection.find({sender: 2, date: "3:3:2022"}).toArray()
         .then(response => res.status(200).json(response))
