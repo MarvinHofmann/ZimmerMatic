@@ -30,10 +30,6 @@ function store(valObj) {
         if (err) throw err;
         console.log("1 document inserted");
     });
-    //Debug
-    const collection = main.app.locals.collection;
-    collection.find({}).toArray()
-        .then(response => console.log(response));
 }
 exports.store = store;
 
@@ -42,10 +38,6 @@ function storeMedian(valObj) {
         if (err) throw err;
         console.log("1 document inserted");
     });
-    //Debug ausgabe nach jedem store
-    const collection = main.app.locals.mediancoll
-    collection.find({}).toArray()
-        .then(response => console.log(response));
 }
 exports.storeMedian = storeMedian;
 
