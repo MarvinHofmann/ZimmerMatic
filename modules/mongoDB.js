@@ -64,7 +64,7 @@ main.app.get("/db/tageshoch", (req, res) => {
 main.app.get('/db/temp/medium', (req, res) => {
     console.log("DB Anfrage");
     const collection = main.app.locals.mediancoll;
-    collection.find().toArray()
+    collection.find({date: "3:3:2022"}).toArray()
         .then(response => res.status(200).json(response))
         .catch(error => console.error(error));
 });
