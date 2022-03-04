@@ -101,7 +101,15 @@ function getLastGone(typ) {
     main.app.locals.roomTime.find({type: typ}).toArray(function (err, results) {
         let path = results[results.length - 1].milli;
         console.log(path);
-        return path;
+        let goneTime = parseFloat((new Date().getTime() -path) / 60000);
+        let dbObj = {
+            type: typ,
+            date: time.getDBFormat(),
+            time: time.getDBFormatTime(),
+            milli: new Date().getTime(),
+            calc: goneTime
+          };
+        storeAnwesenheit(obj);
     });
 }
 exports.getLastGone = getLastGone;
