@@ -99,7 +99,7 @@ exports.storeAnwesenheit = storeAnwesenheit;
 
 function getLastGone() {
     main.app.locals.roomTime.find({type: "gehen"}).toArray(function (err, results) {
-        path = results[results.length - 1].time;
+        let path = results[results.length - 1].time;
         console.log(path);
         return path;
     });
