@@ -117,8 +117,10 @@ app.get("/tschuess", function (req, res) {
     type: "gehen",
     date:  time.getDBFormat(),
     time: time.getDBFormatTime(),
+    milli: new Date().getTime(),
     calc: new Date().getTime()
   };
+  mongodb.storeAnwesenheit()dbObj;
   rS.rolladenDown();
   consoleLogTime("Abgemeldet:");
   for (let i = 0; i < currentClientsws.length; i++) {
