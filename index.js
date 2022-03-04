@@ -82,6 +82,7 @@ let ledD1EmelySchr = "::ffff:192.168.0.80";
 
 app.get("/hello", function (req, res) {
   let goneTime = ((new Date().getTime() - mongodb.getLastGone("gehen")) / 60000);
+  console.log(goneTime);
   console.log(new Date().getTime())
   let dbObj = {
     type: "kommen",
