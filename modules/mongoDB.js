@@ -60,28 +60,28 @@ main.app.get("/db/tageshoch", (req, res) => {
 /*****************GRAFIKEN ABFRAGEN********************** */
 main.app.get('/db/temp/medium', (req, res) => {
     const collection = main.app.locals.mediancoll;
-    collection.find({ date: "3:3:2022" }).toArray()
+    collection.find({ date: time.getDBFormat() }).toArray()
         .then(response => res.status(200).json(response))
         .catch(error => console.error(error));
 });
 
 main.app.get('/db/temp/sender1', (req, res) => {
     const collection = main.app.locals.collection;
-    collection.find({ sender: 0, date: "3:3:2022" }).toArray()
+    collection.find({ sender: 0, date: time.getDBFormat() }).toArray()
         .then(response => res.status(200).json(response))
         .catch(error => console.error(error));
 });
 
 main.app.get('/db/temp/sender2', (req, res) => {
     const collection = main.app.locals.collection;
-    collection.find({ sender: 1, date: "3:3:2022" }).toArray()
+    collection.find({ sender: 1, date: time.getDBFormat() }).toArray()
         .then(response => res.status(200).json(response))
         .catch(error => console.error(error));
 });
 
 main.app.get('/db/temp/sender3', (req, res) => {
     const collection = main.app.locals.collection;
-    collection.find({ sender: 2, date: "3:3:2022" }).toArray()
+    collection.find({ sender: 2, date: time.getDBFormat() }).toArray()
         .then(response => res.status(200).json(response))
         .catch(error => console.error(error));
 });
