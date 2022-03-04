@@ -37,7 +37,6 @@ function broadcast(feucht, temp, zeit, sender) {
 /********************************Temperatursensoren******************************************* */
 let cntA = [0, 0, 0];
 main.app.post("/", function (req, res) {
-  //console.log("Angekommen: " + req.body.temperatur + " : " + req.body.feuchtigkeit + " S1");
   temp = req.body.temperatur;
   feucht = req.body.feuchtigkeit;
   zeit1 = zeit.berechneZeit();
@@ -48,7 +47,6 @@ main.app.post("/", function (req, res) {
 });
 
 main.app.post("/senderZwei", function (req, res) {
-  //console.log("Angekommen: " + req.body.temperatur + " : " + req.body.feuchtigkeit + " S2");
   temp2 = req.body.temperatur;
   feucht2 = req.body.feuchtigkeit;
   zeit2 = zeit.berechneZeit();
@@ -59,7 +57,6 @@ main.app.post("/senderZwei", function (req, res) {
 });
 
 main.app.post("/senderDrei", function (req, res) {
-  //console.log("Angekommen: " + req.body.temperatur + " : " + req.body.feuchtigkeit + " S3");
   temp3 = req.body.temperatur;
   feucht3 = req.body.feuchtigkeit;
   zeit3 = zeit.berechneZeit();
@@ -73,7 +70,7 @@ let cntAverage = 0;
 //schließe Rolladen, wenn wärmer als 24 ° Durchschnitt
 function getTempAverage() {
   cntAverage++;
-  if (cntAverage == 3) {
+  if (cntAverage == 12) { //Nur jede stunde ein wert alle 15 min 3 werte 3*4 =12
     cntAverage = 0;
     averageHum = ((feucht + feucht2 + feucht3) / 3).toFixed(2);
     average = ((temp + temp2 + temp3) / 3).toFixed(2);
@@ -124,9 +121,8 @@ exports.botSendStatus = function () {
 
 function handleDB(sender, feuchtIn, tempIn) {
   cntA[sender]++;
-  let a = new Date();
-  if (cntA[sender] == 2) { // nur jede halbe Stunde ein Value
-    let jsonT = {
+  if (cntA[sender] == 4) { // nur jede Stunde ein Value 4*15 min
+    let objDB = {
       sender: sender,
       feuchtigkeit: feuchtIn,
       temperatur: tempIn,
@@ -135,7 +131,7 @@ function handleDB(sender, feuchtIn, tempIn) {
       timestamp: new Date().toLocaleString("de-DE", { timeZone: "Europe/Berlin" })
     };
     //db.getAll();
-    db.store(jsonT, function (err) {
+    db.store(objDB, function (err) {
       if (err != null) {
         console.log(err);
       } else {
