@@ -109,7 +109,7 @@ function getLastGone(typ) {
             milli: new Date().getTime(),
             calc: goneTime
           };
-        storeAnwesenheit(obj);
+        storeAnwesenheit(dbObj);
     });
 }
 exports.getLastGone = getLastGone;
