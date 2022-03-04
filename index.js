@@ -81,7 +81,7 @@ let ledD1EmelySchr = "::ffff:192.168.0.80";
 /***********Halllo / Tschüss Button*******************/
 
 app.get("/hello", function (req, res) {
-  let goneTime = ((new Date().getTime() - mongodb.getLastGone()) / 60000);
+  let goneTime = ((new Date().getTime() - mongodb.getLastGone("gehen")) / 60000);
   console.log(new Date().getTime())
   let dbObj = {
     type: "kommen",
@@ -113,12 +113,13 @@ app.get("/hello", function (req, res) {
 });
 
 app.get("/tschuess", function (req, res) {
+  let goneTime = ((new Date().getTime() - mongodb.getLastGone("kommen")) / 60000);
   let dbObj = {
     type: "gehen",
     date:  time.getDBFormat(),
     time: time.getDBFormatTime(),
     milli: new Date().getTime(),
-    calc: new Date().getTime()
+    calc: goneTime
   };
   mongodb.storeAnwesenheit(dbObj);
   rS.rolladenDown();
