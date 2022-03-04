@@ -1,6 +1,7 @@
 const main = require("../index");
 const time = require("./zeit")
 const mongodb = require('mongodb');
+const path = require("path");
 const MongoClient = mongodb.MongoClient;
 
 const uri = process.env.DB_URL;
@@ -16,9 +17,11 @@ MongoClient.connect(uri)
         try {
             const db = client.db('sensorV');
             const tempCollection = db.collection('th');
-            const medianTempColl = db.collection('median')
+            const medianTempColl = db.collection('median');
+            const roomTime = db.collection('anwesenheit');
             main.app.locals.collection = tempCollection;
             main.app.locals.mediancoll = medianTempColl;
+            main.app.locals.roomTime = roomTime;
             console.log("DB Connection erfolgt");
         } catch (error) {
             console.log(error);
@@ -85,3 +88,20 @@ main.app.get('/db/temp/sender3', (req, res) => {
         .then(response => res.status(200).json(response))
         .catch(error => console.error(error));
 });
+
+/*******************Anwesenheit************* */
+function storeAnwesenheit(valObj) {
+    main.app.locals.roomTime.insertOne(valObj, function (err, res) {
+        if (err) throw err;
+    });
+}
+exports.storeAnwesenheit = storeAnwesenheit;
+
+function getLastGone() {
+    main.app.locals.roomTime.find({}).toArray(function (err, results) {
+        path = results[results.length - 1].time;
+        console.log(path);
+        return path;
+    });
+}
+exports.getLastGone = getLastGone;

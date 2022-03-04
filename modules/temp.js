@@ -131,7 +131,7 @@ function handleDB(sender, feuchtIn, tempIn) {
       timestamp: new Date().toLocaleString("de-DE", { timeZone: "Europe/Berlin" })
     };
     //db.getAll();
-    db.store(objDB, function (err) {
+    db.store(objDB,  function (err) {
       if (err != null) {
         console.log(err);
       } else {
