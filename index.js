@@ -81,6 +81,7 @@ let ledD1EmelySchr = "::ffff:192.168.0.80";
 /***********Halllo / Tschüss Button*******************/
 
 app.get("/hello", function (req, res) {
+  console.log("last Milli: " + mongodb.getLastGone("gehen"));
   let goneTime = parseFloat((new Date().getTime() - mongodb.getLastGone("gehen")) / 60000);
   console.log(goneTime);
   console.log(new Date().getTime())
