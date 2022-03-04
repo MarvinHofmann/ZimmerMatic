@@ -120,7 +120,7 @@ app.get("/tschuess", function (req, res) {
     milli: new Date().getTime(),
     calc: new Date().getTime()
   };
-  mongodb.storeAnwesenheit()dbObj;
+  mongodb.storeAnwesenheit(dbObj);
   rS.rolladenDown();
   consoleLogTime("Abgemeldet:");
   for (let i = 0; i < currentClientsws.length; i++) {
