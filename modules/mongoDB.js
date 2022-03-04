@@ -98,7 +98,7 @@ function storeAnwesenheit(valObj) {
 exports.storeAnwesenheit = storeAnwesenheit;
 
 function getLastGone(typ) {
-    main.app.locals.roomTime.find({type: typ}).toArray(function (err, results) {
+    main.app.locals.roomTime.find({}).toArray(function (err, results) {
         let path = results[results.length - 1].milli;
         console.log(path);
         let goneTime = parseFloat((new Date().getTime() -path) / 60000);
