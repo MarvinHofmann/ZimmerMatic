@@ -32,15 +32,15 @@ ws.addEventListener("message", function (event) {
       checkState(data.value, "BL");
       break;
     case "Temp":
-      document.getElementById("medianTemp").innerText = String(data.value);
+      document.getElementById("medianTemp").innerText = String(data.value + " °C");
       console.log(data.value);
       break;
     case "Feucht":
-      document.getElementById("medianFeucht").innerText = String(data.value);
+      document.getElementById("medianFeucht").innerText = String(data.value  + " %");
       console.log(data.value);
       break;
     case "High":
-      document.getElementById("high").innerText = String(data.value) + "°C";
+      document.getElementById("high").innerText = String(data.value + " °C");
       console.log(data.value);
       break;
   }
