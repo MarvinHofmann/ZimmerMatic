@@ -13,7 +13,7 @@ async function getStateHeizung(who, promtText) {
 
 function waerme(value, who) {
     sendFetch(value, who);
-    document.getElementById(who).innerText ="Aktuell: " + value + String("°C");
+    document.getElementById(who).innerText =value + String("°C");
 }
 
 function print(value, who) {
