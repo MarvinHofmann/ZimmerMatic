@@ -98,6 +98,7 @@ function storeAnwesenheit(valObj) {
 exports.storeAnwesenheit = storeAnwesenheit;
 
 function getLastGone(typ) {
+    //nehme zeit aus letztem Eintrag berechne differenz 
     main.app.locals.roomTime.find({}).toArray(function (err, results) {
         let path = results[results.length - 1].milli;
         console.log(path);

@@ -1,11 +1,13 @@
 .slidecontainer {
-  width: 80%; /* Width of the outside container */
-  margin-left: 10%;
+  margin-top: 20px;
+  width: 100%; /* Width of the outside container */
+  
   margin-bottom: 30px;
 }
 
 /* The slider itself */
 .slider {
+  
   -webkit-appearance: none; /* Override default CSS styles */
   appearance: none;
   width: 100%; /* Full-width */
@@ -45,4 +47,78 @@ h2 {
   justify-content: center;
   align-content: center;
   align-items: center;
+}
+.progress {
+  width: 150px;
+  height: 150px;
+  background: none;
+  position: relative;
+}
+
+.progress::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 6px solid #eee;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress > span {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.progress .progress-left {
+  left: 0;
+}
+
+.progress .progress-bar {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border-width: 6px;
+  border-style: solid;
+  position: absolute;
+  top: 0;
+}
+
+.progress .progress-left .progress-bar {
+  left: 100%;
+  border-top-right-radius: 80px;
+  border-bottom-right-radius: 80px;
+  border-left: 0;
+  -webkit-transform-origin: center left;
+  transform-origin: center left;
+}
+
+.progress .progress-right {
+  right: 0;
+}
+
+.progress .progress-right .progress-bar {
+  left: -100%;
+  border-top-left-radius: 80px;
+  border-bottom-left-radius: 80px;
+  border-right: 0;
+  -webkit-transform-origin: center right;
+  transform-origin: center right;
+}
+
+.progress .progress-value {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.row{
+  margin-top: 2%;
+  width: 80%;
+  margin-left: 10%;
 }

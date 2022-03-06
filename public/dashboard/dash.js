@@ -141,7 +141,7 @@ async function setupMedium() {
           borderWidth: 1,
         },
         {
-          label: "feuchtigkeit in %",
+          label: "Luftfeuchtigkeit in %",
           data: dataTemps.humid,
           fill: false,
           borderColor: "rgba(10, 10, 255, 1)",
