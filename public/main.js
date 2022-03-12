@@ -86,7 +86,7 @@ async function setupMedium() {
           borderWidth: 1,
         },
         {
-          label: "feuchtigkeit in %",
+          label: "Luftfeuchtigkeit in %",
           data: dataTemps.humid,
           fill: false,
           borderColor: "rgba(10, 10, 255, 1)",
@@ -127,7 +127,7 @@ async function setupSender1() {
           borderWidth: 1,
         },
         {
-          label: "feuchtigkeit in %",
+          label: "Luftfeuchtigkeit in %",
           data: dataTemps.humid,
           fill: false,
           borderColor: "rgba(10, 10, 255, 1)",
@@ -168,7 +168,7 @@ async function setupSender2() {
           borderWidth: 1,
         },
         {
-          label: "feuchtigkeit in %",
+          label: "Luftfeuchtigkeit in %",
           data: dataTemps.humid,
           fill: false,
           borderColor: "rgba(10, 10, 255, 1)",

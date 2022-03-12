@@ -83,7 +83,22 @@ exports.getTag = getTag;
 function getDBFormat() {
   a = new Date();
   //return bsp.: 13:2:2022
-  return String(a.getDate()) + ":" + String(a.getMonth() + 1) + ":" + String(a.getUTCFullYear());
+  if (a.getDate() < 10) {
+    if (a.getMonth()+1 < 10) {
+      return String("0" + a.getDate()) + ":0" + String(a.getMonth() + 1) + ":" + String(a.getUTCFullYear());  
+    }else{
+      return String("0" + a.getDate()) + ":" + String(a.getMonth() + 1) + ":" + String(a.getUTCFullYear());  
+    }
+  }
+  if (a.getMonth() + 1 < 10) {
+    if (a.getDate() < 10) {
+      return String("0" + a.getDate()) + ":0" + String(a.getMonth() + 1) + ":" + String(a.getUTCFullYear());  
+    }else{
+      return String(a.getDate()) + ":0" + String(a.getMonth() + 1) + ":" + String(a.getUTCFullYear());  
+    }
+  }else{
+    return String(a.getDate()) + ":" + String(a.getMonth() + 1) + ":" + String(a.getUTCFullYear());  
+  }  
 }
 exports.getDBFormat = getDBFormat;
 
