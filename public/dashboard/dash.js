@@ -36,7 +36,7 @@ ws.addEventListener("message", function (event) {
       console.log(data.value);
       break;
     case "Feucht":
-      document.getElementById("medianFeucht").innerText = String(data.value  + "%");
+      document.getElementById("medianFeucht").innerText = String(data.value + "%");
       console.log(data.value);
       break;
     case "High":
@@ -124,9 +124,9 @@ async function getTagesHoch() {
   document.getElementById("high").innerText = String(antwort);
 }
 
-async function setupMedium() {
+async function setupGraph(sender, date) {
   const ctx = document.getElementById("Durchschnitt").getContext("2d");
-  const dataTemps = await getData("medium");
+  const dataTemps = await getData(sender, date);
   const myChart = new Chart(ctx, {
     type: "line",
     data: {
@@ -164,13 +164,28 @@ async function setupMedium() {
     },
   });
 }
-window.addEventListener("load", setupMedium);
+window.addEventListener("load", setupGraph("medium"));
 
-async function getData(sender) {
-  // const response = await fetch('testdata.csv');
-  const response = await fetch("http://zimmermatic:3443/db/temp/" + sender, {
-    method: "GET",
+async function getData(sender, date) {
+  console.log(sender);
+  console.log("DateInc: " + date);
+  let formateDate = date[0] + ":" + date[1] + ":" + date[2];
+  console.log("Format: " + formateDate);
+  if (sender == "medium") {
+    const response = await fetch("http://192.168.0.138/db/temp/all/medium", {
+    method: "POST", headers: {
+      "Content-Type": "application/JSON",
+    },
+    body: JSON.stringify({ date: formateDate}),
+  });  
+  }else{
+    const response = await fetch("http://192.168.0.138/db/temp/post", {
+    method: "POST", headers: {
+      "Content-Type": "application/JSON",
+    },
+    body: JSON.stringify({ date: formateDate, sender: sender }),
   });
+  }
   const data = await response.json();
 
   const temps = [];
@@ -186,3 +201,33 @@ async function getData(sender) {
   }
   return { temps, times, humid, tempS2, hum2 };
 }
+
+$(document).on('change', '#senderSelect', function() {
+  let selected = $('#senderSelect').val();
+  console.log(selected);
+
+  let selectedDate = $('#datepicker').val();
+  let date = [];
+  date.push(selectedDate[0] + selectedDate[1]);
+  date.push(selectedDate[3] + selectedDate[4]);
+  date.push(selectedDate[6] + selectedDate[7]+ selectedDate[8] + selectedDate[9]);
+
+  console.log("Date Sender Select: " + date);
+
+  setupGraph(selected, date);
+});
+
+$(function() {
+  $('#datepicker').datepicker({
+  }).on('changeDate', function(e){
+      let sender =  $('#senderSelect').val();
+      console.log(sender);
+      let arr = [];
+      arr.push(e.format('dd'));
+      arr.push(e.format('mm'));
+      arr.push(e.format('yyyy'));
+      console.log(arr);
+      setupGraph(sender ,arr)
+  });
+  $('#datepicker').datepicker("setDate",'now');
+});

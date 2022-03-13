@@ -89,6 +89,21 @@ main.app.get('/db/temp/sender3', (req, res) => {
         .catch(error => console.error(error));
 });
 
+main.app.post('/db/temp/post', (req, res) => {
+    const collection = main.app.locals.collection;
+    collection.find({ sender: req.body.sender, date: req.body.date }).toArray()
+        .then(response => res.status(200).json(response))
+        .catch(error => console.error(error));
+});
+
+main.app.post('/db/temp/all/medium', (req, res) => {
+    const collection = main.app.locals.mediancoll;
+    collection.find({ date: req.body.date }).toArray()
+        .then(response => res.status(200).json(response))
+        .catch(error => console.error(error));
+});
+
+
 /*******************Anwesenheit************* */
 function storeAnwesenheit(valObj) {
     main.app.locals.roomTime.insertOne(valObj, function (err, res) {

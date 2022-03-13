@@ -5,12 +5,19 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    
   <link rel='stylesheet' type='text/css' media='screen' href='dash.css'>
   <script src='dash.js'></script>
   <link rel="icon" type="home.icon" href="../favicons/dashboard.ico">
@@ -112,13 +119,28 @@
  
 
         <div class="col-xl-6 col-lg-6 mx-auto mt-4">
-          <a href="../index.html" id="ca">
           <div class="bg-white rounded-lg p-5 shadow "  style="height: 353px;">
-            <h2 class="h6 font-weight-bold text-center mb-2">Median-Temperatur</h2>
+            <div class="containerM">
+              <div class="Durchschnitt"> <h5 class="card-title">Grafiken</h5></div>
+              <div class="DatePicker"><div class="input-group date">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="datepicker"
+                  placeholder="TT.MM.JJJJ"
+                />
+              </div></div>
+              <div class="Submit"><select id = "senderSelect" class="form-select" aria-label="Default select example">
+                <option value = "medium" selected>Medium</option>
+                <option value="0">Bett</option>
+                <option value="1">Sofa</option>
+                <option value="2">Schreibtisch</option>
+              </select></div>
+            </div>   
                   <canvas id="Durchschnitt" ></canvas>
           </div>
-          </a>
         </div>
+
 
         <div class="col-xl-4 col-lg-6 mx-auto">
           <a href="../Lampen/lampenSteuerung.html" id="ca">
@@ -387,6 +409,21 @@
         </div>
       </div>
   </main>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js'></script>
+  <!-- JS Datei Bootstrap Sprache Deutsch, muss als zweites JS stehen -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.de.min.js'></script>
+  <script>
+  $('#datepicker').datepicker({
+    format: 'dd.mm.yyyy',
+    startDate: '12.03.2022',
+    startView: "2",
+    endDate:"-0d",
+    todayBtn: true,
+    todayHighlight: true,
+    autoclose: true, 
+    language: 'de' 
+  }); 
+</script>
 </body>
 
 </html>
