@@ -171,15 +171,16 @@ async function getData(sender, date) {
   console.log("DateInc: " + date);
   let formateDate = date[0] + ":" + date[1] + ":" + date[2];
   console.log("Format: " + formateDate);
+  let response;
   if (sender == "medium") {
-    const response = await fetch("http://zimmermatic:3443/db/temp/all/medium", {
+    response = await fetch("http://zimmermatic:3443/db/temp/all/medium", {
     method: "POST", headers: {
       "Content-Type": "application/JSON",
     },
     body: JSON.stringify({ date: formateDate}),
   });  
   }else{
-    const response = await fetch("http://zimmermatic:3443/db/temp/post", {
+    response = await fetch("http://zimmermatic:3443/db/temp/post", {
     method: "POST", headers: {
       "Content-Type": "application/JSON",
     },
