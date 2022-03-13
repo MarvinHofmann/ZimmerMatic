@@ -91,7 +91,7 @@ main.app.get('/db/temp/sender3', (req, res) => {
 
 main.app.post('/db/temp/post', (req, res) => {
     const collection = main.app.locals.collection;
-    collection.find({ sender: req.body.sender, date: req.body.date }).toArray()
+    collection.find({ sender: parseInt(req.body.sender), date: req.body.date }).toArray()
         .then(response => res.status(200).json(response))
         .catch(error => console.error(error));
 });
