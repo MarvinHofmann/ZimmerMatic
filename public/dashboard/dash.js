@@ -123,11 +123,14 @@ async function getTagesHoch() {
   const antwort = await fetch(adresse, { method: 'GET' }).then(response => response.text());
   document.getElementById("high").innerText = String(antwort);
 }
-
+let myChart = null;
 async function setupGraph(sender, date) {
+  if(myChart!=null){
+    myChart.destroy();
+}
   const ctx = document.getElementById("Durchschnitt").getContext("2d");
   const dataTemps = await getData(sender, date);
-  const myChart = new Chart(ctx, {
+  myChart = new Chart(ctx, {
     type: "line",
     data: {
       labels: dataTemps.times,
