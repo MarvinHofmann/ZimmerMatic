@@ -172,14 +172,14 @@ async function getData(sender, date) {
   let formateDate = date[0] + ":" + date[1] + ":" + date[2];
   console.log("Format: " + formateDate);
   if (sender == "medium") {
-    const response = await fetch("http://192.168.0.138/db/temp/all/medium", {
+    const response = await fetch("http://192.168.0.138:3443/db/temp/all/medium", {
     method: "POST", headers: {
       "Content-Type": "application/JSON",
     },
     body: JSON.stringify({ date: formateDate}),
   });  
   }else{
-    const response = await fetch("http://192.168.0.138/db/temp/post", {
+    const response = await fetch("http://192.168.0.138:3443/db/temp/post", {
     method: "POST", headers: {
       "Content-Type": "application/JSON",
     },
