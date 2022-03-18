@@ -147,6 +147,16 @@ app.get("/EmergencyOne", function (req, res) {
   res.sendStatus(200);
 });
 
+app.get("/essenFertig", function (req,res){
+  currentClientsws[4].send("255,255,255,100");
+  currentClientsws[5].send("255,255,255,100");
+  currentClientsws[4].send("255,255,255,0");
+  currentClientsws[5].send("255,255,255,0");
+  currentClientsws[4].send("255,255,255,100");
+  currentClientsws[5].send("255,255,255,100");
+  res.send(200);
+});
+
 /***************************************** */
 //Websocket handling für alle whitelist Clients
 wssLED.on("connection", function connection(ws, req) {

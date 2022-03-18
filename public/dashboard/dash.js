@@ -126,6 +126,8 @@ async function getTagesHoch() {
 let myChart = null;
 async function setupGraph(sender, date) {
   if(myChart!=null){
+    //Zerstört das Chart Objekt vor erstellen eines neuen 
+    //Verhindert Visual Bugs beim abfahren der Linie
     myChart.destroy();
 }
   const ctx = document.getElementById("Durchschnitt").getContext("2d");
