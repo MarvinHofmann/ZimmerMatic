@@ -4,7 +4,7 @@ const lampen = require("./tradfri");
 const led = require("./leds");
 const homematic = require("./homematic");
 
-main.app.post('/fensterZu', function (request, response) {
+main.app.get('/fensterZu', function (request, response) {
   let a = new Date();
   if (a.getHours() >= 22 || a.getHours() <= 6) {
     console.log("stunde: " + a.getHours());
