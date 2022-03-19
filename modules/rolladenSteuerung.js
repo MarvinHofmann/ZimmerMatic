@@ -6,7 +6,6 @@ const homematic = require("./homematic");
 
 main.app.get('/fensterZu', function (request, response) {
   let a = new Date();
-  if (a.getHours() >= 22 || a.getHours() <= 6) {
     console.log("stunde: " + a.getHours());
     console.log("mache rolladen zu");
     try {
@@ -28,7 +27,6 @@ main.app.get('/fensterZu', function (request, response) {
     lampen.fetchLampe("BR", "Helligkeit", 0);
     lampen.fetchLampe("BT", "Helligkeit", 0);
     homematic.heizungOff();
-  }
   response.sendStatus(200);
 });
 
