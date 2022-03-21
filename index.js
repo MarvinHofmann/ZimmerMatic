@@ -65,7 +65,8 @@ const time = require("./modules/zeit");
 const logs = require("./modules/logfiles");
 const homematic = require("./modules/homematic");
 const mongodb = require("./modules/mongoDB");
-const buttons = require(".modules/IoTButtonEndpunkte");
+const buttons = require("./modules/IoTButtonEndpunkte");
+
 //Globale Variablen
 let status = true;
 exports.status = status;
