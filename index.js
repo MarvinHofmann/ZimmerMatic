@@ -148,12 +148,14 @@ app.get("/EmergencyOne", function (req, res) {
 });
 
 app.get("/essenFertig", function (req,res){
-  currentClientsws[4].send("255,255,255,100");
-  currentClientsws[5].send("255,255,255,100");
-  currentClientsws[4].send("255,255,255,0");
-  currentClientsws[5].send("255,255,255,0");
-  currentClientsws[4].send("255,255,255,100");
-  currentClientsws[5].send("255,255,255,100");
+  for (let i = 0; i < 3; i++) {
+    currentClientsws[4].send("0,0,0,0");
+    currentClientsws[5].send("0,0,0,0");
+    currentClientsws[4].send("255,0,0,255");
+    currentClientsws[5].send("255,0,0,255");
+  }
+  currentClientsws[4].send("255,255,255,255");
+  currentClientsws[5].send("255,255,255,255");
   res.send(200);
 });
 
