@@ -168,3 +168,4 @@ function consoleLogTime(incoming) {
   console.log(time.getTag());
   console.log("********************");
 }
+exports.consoleLogTime = consoleLogTime;

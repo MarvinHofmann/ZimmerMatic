@@ -18,7 +18,7 @@ main.app.get("/essenFertig", function (req, res) {
 
 main.app.get("/hello", function (req, res) {
     mongodb.getLastGone("kommen")
-    consoleLogTime("Zuhause Angemeldet:");
+    main.consoleLogTime("Zuhause Angemeldet:");
     try {
         main.currentClientsws[1].send("256,161,20,100"); //DART
         main.currentClientsws[2].send("256,161,20,100"); //Sofa
@@ -42,7 +42,7 @@ main.app.get("/hello", function (req, res) {
 main.app.get("/tschuess", function (req, res) {
     mongodb.getLastGone("gehen");
     rS.rolladenDown();
-    consoleLogTime("Abgemeldet:");
+    main.consoleLogTime("Abgemeldet:");
     for (let i = 0; i < main.currentClientsws.length; i++) {
         try {
             main.currentClientsws[i].send("0,0,0,0");
@@ -62,5 +62,6 @@ main.app.get("/druckerButton", function (req, res) {
     
     res.sendStatus(200);
 });
+
 
 
