@@ -31,6 +31,7 @@ log4js.configure({
   categories: { default: { appenders: ["cheese"], level: "error" } },
 });
 const logger = log4js.getLogger("cheese");
+exports.logger = logger;
 
 // Init. EXpress Server
 const express = require("express");
@@ -64,7 +65,7 @@ const time = require("./modules/zeit");
 const logs = require("./modules/logfiles");
 const homematic = require("./modules/homematic");
 const mongodb = require("./modules/mongoDB");
-
+const buttons = require(".modules/IoTButtonEndpunkte");
 //Globale Variablen
 let status = true;
 exports.status = status;
@@ -78,86 +79,6 @@ let ESP32UHR = "::ffff:192.168.0.128";
 let ledD1Schreibtisch = "::ffff:192.168.0.78";
 let ledD1EmelySchr = "::ffff:192.168.0.80";
 
-/***********Halllo / Tschüss Button*******************/
-
-app.get("/hello", function (req, res) {
-  mongodb.getLastGone("kommen")
-  consoleLogTime("Zuhause Angemeldet:");
-  try {
-    currentClientsws[1].send("256,161,20,100"); //DART
-    currentClientsws[2].send("256,161,20,100"); //Sofa
-    currentClientsws[3].send("40,191,255,255"); //Uhr
-  } catch (error) {
-    console.log("Client nicht Verfügbar!");
-  }
-  let a = new Date();
-  if (a.getHours() >= 18 || a.getHours() <= 6) {
-    Ikea.fetchLampe("BL", "Helligkeit", 30);
-    Ikea.fetchLampe("BR", "Helligkeit", 30);
-  } else {
-    rS.rolladenUP();
-  }
-  if (a.getHours() < 21 || a.getHours() > 8) {
-    homematic.heizungON(21);
-  }
-  res.sendStatus(200);
-});
-
-app.get("/tschuess", function (req, res) {
-  mongodb.getLastGone("gehen");
-  rS.rolladenDown();
-  consoleLogTime("Abgemeldet:");
-  for (let i = 0; i < currentClientsws.length; i++) {
-    try {
-      currentClientsws[i].send("0,0,0,0");
-    } catch (error) {
-      logger.error(error);
-    }
-  }
-  Ikea.fetchLampe("BL", "Helligkeit", 0);
-  Ikea.fetchLampe("BR", "Helligkeit", 0);
-  Ikea.fetchLampe("BT", "Helligkeit", 0);
-  homematic.heizungOff();
-  res.sendStatus(200);
-});
-
-app.get("/EmergencyOne", function (req, res) {
-  rS.rolladenDown();
-  consoleLogTime("Emergeny!");
-  let a = new Date();
-  if (a.getHours() >= 22 || a.getHours() <= 7) {
-    currentClientsws[4].send("255,255,255,100");
-    currentClientsws[2].send("255,255,255,100");
-    sleep(90000);
-    currentClientsws[4].send("0,0,0,0");
-    currentClientsws[2].send("0,0,0,0");
-  } else {
-    rS.rolladenUP();
-    currentClientsws[4].send("255,255,255,40");
-    currentClientsws[3].send("40,191,255,255");
-  }
-  function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-      currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
-  }
-
-  res.sendStatus(200);
-});
-
-app.get("/essenFertig", function (req,res){
-  for (let i = 0; i < 3; i++) {
-    currentClientsws[4].send("0,0,0,0");
-    currentClientsws[5].send("0,0,0,0");
-    currentClientsws[4].send("255,0,0,255");
-    currentClientsws[5].send("255,0,0,255");
-  }
-  currentClientsws[4].send("255,255,255,255");
-  currentClientsws[5].send("255,255,255,255");
-  res.send(200);
-});
 
 /***************************************** */
 //Websocket handling für alle whitelist Clients
