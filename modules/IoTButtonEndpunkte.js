@@ -1,4 +1,5 @@
 const main = require("../index");
+const fetch = require('node-fetch');
 const Ikea = require("./tradfri");
 const mongodb = require("./mongoDB");
 const rS = require("./rolladenSteuerung");
