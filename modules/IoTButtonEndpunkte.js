@@ -13,7 +13,7 @@ main.app.get("/essenFertig", function (req, res) {
     }
     main.currentClientsws[4].send("255,255,255,255");
     main.currentClientsws[5].send("255,255,255,255");
-    res.send(200);
+    res.sendStaus(200);
 });
 
 main.app.get("/hello", function (req, res) {
@@ -59,6 +59,17 @@ main.app.get("/tschuess", function (req, res) {
 
 
 main.app.get("/druckerButton", function (req, res) {
+    let adresse = "http://192.168.0.138:8080/rest/items/StD_Betrieb/state";
+    fetch(adresse, { method: 'GET' }).then(response => response.text())
+        .then((response) => {
+            antwort = response;
+            if (antwort == "OFF") {
+                Ikea.fetchSteckdose("ON");            
+            }else{
+                Ikea.fetchSteckdose("OFF");            
+            }
+        })
+        .catch(err => console.log(err));
     
     res.sendStatus(200);
 });
