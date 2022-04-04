@@ -14,7 +14,7 @@ main.app.get("/essenFertig", function (req, res) {
     }
     main.currentClientsws[4].send("255,255,255,255");
     main.currentClientsws[5].send("255,255,255,255");
-    res.sendStaus(200);
+    res.sendStatus(200);
 });
 
 main.app.get("/hello", function (req, res) {
